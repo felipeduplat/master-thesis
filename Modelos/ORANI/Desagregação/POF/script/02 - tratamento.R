@@ -75,19 +75,22 @@ organizar_d = function(df) {
 # morador:
 organizar_m = function(df) {
   return(df %>%
-           filter(!is.na(renda_monet_pc)) %>%
+           filter(!is.na(renda_monet_pc)) %>%      # dropar  missing
+           filter(!v0306 %in% c(17:19)) %>%        # dropar pensionista, emp doméstico(a) e parente do emp
            mutate(id_fam = paste0(estrato_pof,
                                   tipo_situacao_reg,
                                   cod_upa,
                                   num_dom,
-                                  num_uc, sep = ""),
-                  quantil = cut(renda_monet_pc, breaks = Quantile(renda_monet_pc, weights = peso_final, probs = seq(0,1,0.01), na.rm = T),
+                                  num_uc, sep = "")) %>%
+           group_by(id_fam) %>%
+           reframe(rfpc = unique(renda_monet_pc),
+                   peso = unique(peso_final)) %>%
+           mutate(quantil = cut(rfpc, breaks = Quantile(rfpc, weights = peso, probs = seq(0,1,0.01), na.rm = T),
                                 labels = F,
                                 include.lowest = T)) %>%
-           group_by(id_fam, quantil) %>%
-           reframe(rpc = unique(renda_monet_pc)) %>%
+           select(!peso) %>%
            arrange(quantil) %>%
-           pivot_wider(names_from = quantil, values_from = rpc))
+           pivot_wider(names_from = quantil, values_from = rfpc))
 }
 
 #--- RODAR FUNÇÃO ---
