@@ -75,7 +75,7 @@ if (file.exists(path)) {print("Base existente.")} else {
                    na.strings=c(" "),
                    col.names = c("TIPO_REG","COD_UF","NUM_SEQ","NUM_DV","NUM_DOM","NUM_UC",
                                  "COD_INFORMANTE","ESTRATO_POF","PESO","PESO_FINAL",
-                                 "COND_UNIDADE_CONSUMO","NUM_FAMILIA","COND_FAMILIA",
+                                 "V0306","NUM_FAMILIA","COND_FAMILIA",
                                  "V0401","V04041","V04042","V04043","IDADE_ANOS","IDADE_MES",
                                  "IDADE_DIA","V0405","V0418","V0419","V0420","V0421","V0422",
                                  "V0425","V0426","V0427","V0428","ANOS_ESTUDO","V0429","V0441",

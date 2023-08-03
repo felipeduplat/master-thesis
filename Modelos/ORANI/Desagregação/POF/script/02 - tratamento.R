@@ -18,37 +18,42 @@ pacman::p_load(tidyverse,
 
 
 
-#-- IMPORTAR DADOS: SCN -------------------
+#-- IMPORTAR DADOS -------------------
 
-# 2008-2009:
-scn_09 = read_excel("dados/POF 2008-2009/SCN128.xlsx")
+#--- CONVERSOR SCN ---
 
-# 2017-2018:
-scn_18 = read_excel("dados/POF 2017-2018/SCN67.xlsx")
+# produtos:
+SCN128_09 = read_excel("dados/auxiliares/SCN128.xlsx", sheet = 1) # 2008-2009
+SCN128_18 = read_excel("dados/auxiliares/SCN128.xlsx", sheet = 3) # 2017-2018
+
+# setores:
+SCN68_09 = read_excel("dados/auxiliares/SCN68.xlsx",  sheet = 1)  # 2008-2009
+SCN68_18 = read_excel("dados/auxiliares/SCN68.xlsx",  sheet = 3)  # 2017-2018
 
 
+#--- POF ---
 
-#-- IMPORTAR DADOS: POF -------------------
-
-#--- CRIAR FUNÇÃO ---
+# criar função:
 importar = function(path, pattern) {
   files  = list.files(path, pattern = pattern, full.names = TRUE)
   data   = lapply(files, readRDS)
   do.call("bind_rows", data)
 }
 
+# rodar função:
+pof_09 = list(despesa = importar("dados/POF 2008-2009/", "despesa|aluguel|domesticos") %>%
+                left_join(SCN128_09, by = "v9001"),
+              
+              renda = importar("dados/POF 2008-2009/", "trabalho") %>%
+                rename("setor" = v53021) %>%
+                left_join(SCN68_09, by = "setor"))
 
-#--- RODAR FUNÇÃO ---
-
-# POF 2008-2009:
-morador_09 = readRDS("dados/POF 2008-2009/morador.rds")
-despesa_09 = importar("dados/POF 2008-2009/", "despesa|aluguel") %>%
-  left_join(scn_09, by = "v9001")
-
-# POF 2017-2018:
-morador_18 = readRDS("dados/POF 2017-2018/morador.rds")
-despesa_18 = importar("dados/POF 2017-2018/", "aluguel|despesa|coletiva") %>%
-  left_join(scn_18, by = "v9001")
+pof_18 = list(despesa = importar("dados/POF 2017-2018/", "despesa|aluguel|monetario") %>%
+                left_join(SCN128_18, by = "v9001"),
+              
+              renda = importar("dados/POF 2017-2018/", "trabalho") %>%
+                rename("setor" = v53061) %>%
+                left_join(SCN68_18, by = "setor"))
 
 
 
@@ -58,62 +63,72 @@ gc()
 #--- CRIAR FUNÇÃO ---
 
 # despesa:
-organizar_d = function(df) {
-  return(df %>%
-           mutate(id_fam = paste0(estrato_pof,
-                                  tipo_situacao_reg,
-                                  cod_upa,
-                                  num_dom,
-                                  num_uc, sep = "")) %>%
-           group_by(id_fam, scn) %>%
-           reframe(despesa = sum(v8000_defla)) %>%
-           arrange(scn) %>%
-           filter(!is.na(scn)) %>%
-           pivot_wider(names_from = scn, values_from = despesa))
+despesa = function(df) {
+  df$despesa %>%
+    mutate(id_fam = paste0(estrato_pof,
+                           tipo_situacao_reg,
+                           cod_upa,
+                           num_dom,
+                           num_uc)) %>%
+    group_by(id_fam, SCN128) %>%
+    reframe(peso    = unique(peso_final),
+            despesa = sum(v8000_defla),
+            renda   = sum(renda_total)) %>%
+    mutate(quantil  = cut(renda, breaks = Quantile(renda, weights = peso, probs = seq(0,1,0.01), na.rm = T),
+                         labels = F,
+                         include.lowest = T)) %>%
+    group_by(SCN128, quantil) %>%
+    reframe(despesa = sum(despesa)) %>%
+    arrange(quantil) %>%
+    pivot_wider(names_from = quantil, values_from = despesa)
 }
 
-# morador:
-organizar_m = function(df) {
-  return(df %>%
-           filter(!is.na(renda_monet_pc)) %>%      # dropar  missing
-           filter(!v0306 %in% c(17:19)) %>%        # dropar pensionista, emp doméstico(a) e parente do emp
-           mutate(id_fam = paste0(estrato_pof,
-                                  tipo_situacao_reg,
-                                  cod_upa,
-                                  num_dom,
-                                  num_uc, sep = "")) %>%
-           group_by(id_fam) %>%
-           reframe(rfpc = unique(renda_monet_pc),
-                   peso = unique(peso_final)) %>%
-           mutate(quantil = cut(rfpc, breaks = Quantile(rfpc, weights = peso, probs = seq(0,1,0.01), na.rm = T),
-                                labels = F,
-                                include.lowest = T)) %>%
-           select(!peso) %>%
-           arrange(quantil) %>%
-           pivot_wider(names_from = quantil, values_from = rfpc))
+# renda:
+renda = function(df) {
+  df$renda %>%
+  mutate(id_fam = paste0(estrato_pof,
+                         tipo_situacao_reg,
+                         cod_upa,
+                         num_dom,
+                         num_uc)) %>%
+    group_by(id_fam, SCN68) %>%
+    reframe(peso    = unique(peso_final),
+            renda   = sum(renda_total)) %>%
+    mutate(quantil  = cut(renda, breaks = Quantile(renda, weights = peso, probs = seq(0,1,0.01), na.rm = T),
+                          labels = F,
+                          include.lowest = T)) %>%
+    group_by(SCN68, quantil) %>%
+    reframe(renda = sum(renda)) %>%
+    arrange(quantil) %>%
+    pivot_wider(names_from = quantil, values_from = renda)
 }
+
 
 #--- RODAR FUNÇÃO ---
-despesa_09 = organizar_d(despesa_09)
-despesa_18 = organizar_d(despesa_18)
-morador_09 = organizar_m(morador_09)
-morador_18 = organizar_m(morador_18)
+
+# despesa:
+despesa_09 = despesa(pof_09)
+despesa_18 = despesa(pof_18)
+
+# renda:
+renda_09 = renda(pof_09)
+renda_18 = renda(pof_18)
 
 
 
 #--- EXPORTAR PARA O EXCEL -----------------------
-gc()
-write_xlsx(list("Despesas (2008-2009)" = despesa_09,
-                "Morador  (2008-2009)" = morador_09,
-                "Despesas (2017-2018)" = despesa_18,
-                "Morador  (2017-2018)" = morador_18), "output/Tabelas.xlsx")
+write_xlsx(list("despesa (2008-2009)" = despesa_09,
+                "renda (2008-2009)"   = renda_09,
+                "despesa (2017-2018)" = despesa_18,
+                "renda (2017-2018)"   = renda_18), "output/Tabelas (POF).xlsx")
+
+
+#--- LIMPAR RESÍDUO ---
+rm(importar, despesa, renda,
+   SCN128_09, SCN128_18, SCN68_09, SCN68_18)
 
 
 #--- SALVAR BASE ---
-save.image("base.RData")
-
-#--- LIMPAR RESÍDUO ---
-rm(importar, organizar_d, organizar_m,
-   scn_09, scn_18)
+save.image("dados/base.RData")
 
 
