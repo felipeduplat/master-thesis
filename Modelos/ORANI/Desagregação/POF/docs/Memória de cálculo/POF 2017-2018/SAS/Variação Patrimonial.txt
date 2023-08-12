@@ -1,0 +1,442 @@
+                            /* POF 2017-2018 */
+
+/* PROGRAMA PARA GERAÇÃO DA ESTIMATIVA PONTUAL DO ITEM VARIAÇÃO PATRIMONIAL */
+                     /* NÍVEL GEOGRÁFICO - BRASIL */
+
+
+
+
+/* Leitura do REGISTRO - OUTROS RENDIMENTOS */
+
+data outros_rendimentos;
+INFILE ".....\OUTROS_RENDIMENTOS.txt";
+INPUT
+@01  UF                      2.
+@03  ESTRATO_POF             4.
+@07  TIPO_SITUACAO_REG       1.
+@08  COD_UPA                 9.
+@17  NUM_DOM                 2.
+@19  NUM_UC                  1.
+@20  COD_INFORMANTE          2. 
+@22  QUADRO                  2.
+@24  SEQ                     2.
+@26  V9001                   7.
+@33  V8500                   10.2
+@43  V8501                   10.2    
+@53  V9010                   2.
+@55  V9011                   2.      
+@57  DEFLATOR                12.10
+@69  V8500_DEFLA             10.2
+@79  V8501_DEFLA             10.2
+@89  COD_IMPUT_VALOR         1.
+@90  FATOR_ANUALIZACAO       1.
+@91  PESO                    14.8
+@105 PESO_FINAL              14.8
+@119 RENDA_TOTAL             10.2 ;
+run;
+
+
+/*   Anualização e expansão dos valores de rendimentos utilizados para a obtenção 
+     dos resultados (variável V8500_DEFLA).
+     
+     a) Para anualizar, utilizamos o quesito "fator_anualizacao". No caso específico 
+     do quadro 54, cujas informações se referem a valores mensais, utilizamos também
+     o quesito V9011 (número de meses).
+     Os valores são anualizados para depois se obter uma média mensal.
+
+     b) Para expandir, utilizamos o quesito "peso_final".
+
+     c) Posteriormente, o resultado é dividido por 12 para obter a estimativa mensal. */
+
+
+data outros_rend ;
+set outros_rendimentos;
+
+codigo = int(V9001/100);
+
+if quadro = 54 then valor_mensal =(V8500_DEFLA*V9011*fator_anualizacao*peso_final)/12;
+else valor_mensal =(V8500_DEFLA*fator_anualizacao*peso_final)/12;
+
+run;
+
+
+
+/* Parte 1 – Para cada Unidade de Consumo (UC), soma dos valores referentes aos códigos:
+55008, 55010, 55016, 55020 a 55026, 55035, 55037, 55044, 55053 e 55061 */
+
+data codigos;
+set outros_rend;
+
+if codigo in(55008,55010,55016,55020,55021,55022,55023,55024,55025,55026,55035,55037,55044,55053,55061);
+run;
+
+proc means noprint data = codigos;
+var valor_mensal;
+output out = parte1 sum = soma1;
+run;
+
+data parte1 (keep=a soma1);
+set parte1;
+a=1;
+run;
+
+
+
+/* Parte 2 - Para cada informante, calcular as seguintes diferenças:
+Código 57001 – Código 56001 (só considerar quando a diferença for > 0)
+Código 57002 – Código 56002 (só considerar quando a diferença for > 0)
+Código 57003 – Código 56003 (só considerar quando a diferença for > 0)
+Código 57004 – Código 56004 (só considerar quando a diferença for > 0)
+
+O resultado final da parte 2 é a soma das diferenças maiores que 0. */
+
+
+/* Calculando a diferença entre os códigos 57001 e 56001 */
+
+data cod57001;
+set outros_rend;
+
+if codigo = 57001;
+
+run;
+
+proc sort data = cod57001;
+by cod_upa num_dom num_uc cod_informante;
+run;
+
+proc means noprint data = cod57001;
+by cod_upa num_dom num_uc cod_informante;
+var valor_mensal;
+output out = arquivo57001 (drop = _type_ _freq_) sum = soma57001;
+run;
+
+
+data cod56001;
+set outros_rend;
+
+if codigo = 56001;
+
+run;
+
+proc sort data = cod56001;
+by cod_upa num_dom num_uc cod_informante;
+run;
+
+proc means noprint data = cod56001;
+by cod_upa num_dom num_uc cod_informante;
+var valor_mensal;
+output out = arquivo56001 (drop = _type_ _freq_) sum = soma56001;
+run;
+
+data merge1;
+merge arquivo57001 arquivo56001;
+by cod_upa num_dom num_uc cod_informante;
+
+
+if soma57001 = . then soma57001 = 0;
+if soma56001 = . then soma56001 = 0;
+dif1 = soma57001 - soma56001;
+if dif1 > 0; 
+run;
+
+proc means noprint sum data = merge1;
+var dif1;
+output out = arquivo1 (keep = soma) sum = soma;
+run;
+
+
+/* Calculando a diferença entre os códigos 57002 e 56002 */
+
+
+data cod57002;
+set outros_rend;
+
+if codigo = 57002;
+
+run;
+
+proc sort data = cod57002;
+by cod_upa num_dom num_uc cod_informante;
+
+run;
+
+proc means noprint data = cod57002;
+by cod_upa num_dom num_uc cod_informante;
+
+var valor_mensal;
+output out = arquivo57002 (drop = _type_ _freq_) sum = soma57002;
+run;
+
+
+data cod56002;
+set outros_rend;
+
+if codigo = 56002;
+
+run;
+
+proc sort data = cod56002;
+by cod_upa num_dom num_uc cod_informante;
+
+run;
+
+proc means noprint data = cod56002;
+by cod_upa num_dom num_uc cod_informante;
+
+var valor_mensal;
+output out = arquivo56002 (drop = _type_ _freq_) sum = soma56002;
+run;
+
+data merge2;
+merge arquivo57002 arquivo56002;
+by cod_upa num_dom num_uc cod_informante;
+
+
+if soma57002 = . then soma57002 = 0;
+if soma56002 = . then soma56002 = 0;
+dif2 = soma57002 - soma56002;
+if dif2 > 0; 
+run;
+
+proc means noprint sum data = merge2;
+var dif2;
+output out = arquivo2 (keep = soma) sum = soma;
+run;
+
+
+/* Calculando a diferença entre os códigos 57003 e 56003 */
+
+data cod57003;
+set outros_rend;
+
+if codigo = 57003;
+
+run;
+
+proc sort data = cod57003;
+by cod_upa num_dom num_uc cod_informante;
+
+run;
+
+proc means noprint data = cod57003;
+by cod_upa num_dom num_uc cod_informante;
+var valor_mensal;
+output out = arquivo57003 (drop = _type_ _freq_) sum = soma57003;
+run;
+
+
+data cod56003;
+set outros_rend;
+
+if codigo = 56003;
+
+run;
+
+proc sort data = cod56003;
+by cod_upa num_dom num_uc cod_informante;
+
+run;
+
+proc means noprint data = cod56003;
+by cod_upa num_dom num_uc cod_informante;
+var valor_mensal;
+output out = arquivo56003 (drop = _type_ _freq_) sum = soma56003;
+run;
+
+data merge3;
+merge arquivo57003 arquivo56003;
+by cod_upa num_dom num_uc cod_informante;
+
+
+if soma57003 = . then soma57003 = 0;
+if soma56003 = . then soma56003 = 0;
+dif3 = soma57003 - soma56003;
+if dif3 > 0; 
+run;
+
+proc means noprint sum data = merge3;
+var dif3;
+output out = arquivo3 (keep = soma) sum = soma;
+run;
+
+
+/* Calculando a diferença entre os códigos 57004 e 56004 */
+
+data cod57004;
+set outros_rend;
+
+if codigo = 57004;
+
+run;
+
+proc sort data = cod57004;
+by cod_upa num_dom num_uc cod_informante;
+
+run;
+
+proc means noprint data = cod57004;
+by cod_upa num_dom num_uc cod_informante;
+var valor_mensal;
+output out = arquivo57004 (drop = _type_ _freq_) sum = soma57004;
+run;
+
+
+data cod56004;
+set outros_rend;
+
+if codigo = 56004;
+
+run;
+
+proc sort data = cod56004;
+by cod_upa num_dom num_uc cod_informante;
+run;
+
+proc means noprint data = cod56004;
+by cod_upa num_dom num_uc cod_informante;
+var valor_mensal;
+output out = arquivo56004 (drop = _type_ _freq_) sum = soma56004;
+run;
+
+data merge4;
+merge arquivo57004 arquivo56004;
+by cod_upa num_dom num_uc cod_informante;
+
+
+if soma57004 = . then soma57004 = 0;
+if soma56004 = . then soma56004 = 0;
+dif4 = soma57004 - soma56004;
+if dif4 > 0; 
+run;
+
+proc means noprint sum data = merge4;
+var dif4;
+output out = arquivo4 (keep = soma) sum = soma;
+run;
+
+
+/* Juntando os arquivos das diferenças */
+
+data junta;
+set arquivo1 arquivo2 arquivo3 arquivo4;
+run;
+
+proc means noprint data=junta;
+var soma;
+output out = parte2 (keep = soma2) sum = soma2;
+run;
+
+data parte2;
+set parte2;
+a = 1;
+run;
+
+
+/* Somando os valores das partes 1 e 2 */
+
+data soma_partes (keep=a soma_final);
+merge parte1 parte2;
+by a;
+soma_final=soma1+soma2;
+run;
+
+
+
+
+/* Leitura do REGISTRO - MORADOR, necessário para o cálculo do número de UC's expandido.
+Vale ressaltar que este é o único registro dos microdados que engloba todas as UC's */
+
+data morador;
+INFILE ".....\morador.txt";
+INPUT
+@01  UF                      2.
+@03  ESTRATO_POF             4.
+@07  TIPO_SITUACAO_REG       1.
+@08  COD_UPA                 9.
+@17  NUM_DOM                 2.
+@19  NUM_UC                  1.
+@20  COD_INFORMANTE          2.
+@22  V0306                   2.
+@24  V0401                   1.
+@25  V04021                  2.
+@27  V04022                  2.
+@29  V04023                  4.
+@33  V0403                   3.
+@36  V0404                   1.
+@37  V0405                   1.
+@38  V0406                   1.
+@39  V0407                   1.
+@40  V0408                   1.
+@41  V0409                   2.
+@43  V0410                   1.
+@44  V0411                   2.
+@46  V0412                   1.
+@47  V0413                   1.
+@48  V0414                   1.
+@49  V0415                   1.
+@50  V0416                   1.
+@51  V041711                 1.
+@52  V041712                 1.
+@53  V041721                 1.
+@54  V041722                 1.
+@55  V041731                 1.
+@56  V041732                 1.
+@57  V041741                 1.
+@58  V041742                 1.
+@59  V0418                   1.
+@60  V0419                   2.
+@62  V0420                   1.
+@63  V0421                   1.
+@64  V0422                   2.
+@66  V0423                   1.
+@67  V0424                   1.
+@68  V0425                   2.
+@70  V0426                   1.
+@71  V0427                   1.
+@72  V0428                   1.
+@73  V0429                   2.
+@75  V0430                   1.
+@76  ANOS_ESTUDO             2.
+@78  PESO                    14.8
+@92  PESO_FINAL              14.8
+@106 RENDA_TOTAL             10.2
+@116 NIVEL_INSTRUCAO         1.
+@117 RENDA_DISP_PC           20.10
+@137 RENDA_MONET_PC          20.10
+@157 RENDA_NAO_MONET_PC      20.10
+@177 DEDUCAO_PC              20.10 ;
+run;
+
+
+/* Extraindo todas as UC's do arquivo de morador */
+
+proc sort nodupkey data=morador; /* A partir da ordenação do arquivo de morador,
+mantém apenas uma vez a "chave" cod_upa num_dom num_uc no arquivo de saída.*/  
+by cod_upa num_dom num_uc;
+run;
+
+/* Calculando o número de UC's expandido */
+/* A cada domicílio é associado um peso_final e este é
+também associado a cada uma de suas unidades de consumo */
+/* Portanto, o total de unidades de consumo (familias) expandido, 
+é o resultado da soma dos pesos_finais a elas associados */  
+
+proc means noprint data=morador;
+var peso_final;
+output out=n_familia(drop=_type_ _freq_) sum=soma_familia;
+run;
+
+data n_familia;
+set n_familia;
+a = 1;
+run;
+
+
+
+/* Calculando a estimativa média mensal com o item Variação Patrimonial (resultado final) */
+
+data media_final (keep=media_mensal);
+merge soma_partes n_familia;
+by a;
+media_mensal=soma_final/soma_familia;
+run;

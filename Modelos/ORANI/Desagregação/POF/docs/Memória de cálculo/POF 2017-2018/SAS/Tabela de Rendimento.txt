@@ -1,0 +1,373 @@
+                           /* POF 2017-2018 */
+
+/* PROGRAMA PARA GERAÇÃO DAS ESTIMATIVAS PONTUAIS DA TABELA DE RENDIMENTO,
+EXCETO AS LINHAS DE RENDIMENTO NÃO MONETÁRIO E VARIAÇÃO PATRIMONIAL */
+                     /* NÍVEL GEOGRÁFICO - BRASIL */
+
+
+
+/* Leitura do REGISTRO - RENDIMENTO DO TRABALHO */
+
+data rendimento_trabalho;
+INFILE ".....\RENDIMENTO_TRABALHO.txt"; /*Caminho onde se encontra as bases de dados*/
+INPUT
+@01  UF                      2.
+@03  ESTRATO_POF             4.
+@07  TIPO_SITUACAO_REG       1.
+@08  COD_UPA                 9.
+@17  NUM_DOM                 2.
+@19  NUM_UC                  1.
+@20  COD_INFORMANTE          2. 
+@22  QUADRO                  2.
+@24  SUB_QUADRO              $1.
+@25  SEQ                     1.
+@26  V9001                   7.
+@33  V5302                   1.
+@34  V53021                  1.
+@35  V5303                   1.
+@36  V5304                   1.
+@37  V5305                   1.
+@38  V5307                   1.
+@39  V8500                   7.
+@46  V531112                 7.
+@53  V531122                 7.
+@60  V531132                 7.
+@67  V9010                   2.
+@69  V9011                   2.      
+@71  V5314                   3.      
+@74  V5315                   1.
+@75  DEFLATOR                12.10
+@87  V8500_DEFLA             10.2
+@97  V531112_DEFLA           10.2
+@107 V531122_DEFLA           10.2
+@117 V531132_DEFLA           10.2
+@127 COD_IMPUT_VALOR         1.
+@128 FATOR_ANUALIZACAO       1.
+@129 PESO                    14.8
+@143 PESO_FINAL              14.8
+@157 RENDA_TOTAL             10.2 
+@167 V53011                  4.
+@171 V53061                  5.;
+
+run;
+
+
+/*   Anualização e expansão dos valores de rendimentos utilizados para a obtenção 
+     dos resultados (variável V8500_DEFLA).
+     
+     a) Para anualizar, utilizamos o quesito "fator_anualizacao". No caso específico
+     deste registro, cujas informações se referem a valores mensais, utilizamos
+     também o quesito V9011 (número de meses).
+     Os valores são anualizados para depois se obter uma média mensal.
+
+     b) Para expandir, utilizamos o quesito "peso_final".
+
+     c) Posteriormente, o resultado é dividido por 12 para obter a estimativa mensal. */
+
+data rend_trabalho;
+set rendimento_trabalho;
+
+if V8500_DEFLA = . then delete;
+
+valor_mensal =(V8500_DEFLA*V9011*fator_anualizacao*peso_final)/12;
+
+run;
+
+
+
+/* Leitura do REGISTRO - OUTROS RENDIMENTOS */
+
+data outros_rendimentos;
+INFILE ".....\OUTROS_RENDIMENTOS.txt";
+INPUT
+@01  UF                      2.
+@03  ESTRATO_POF             4.
+@07  TIPO_SITUACAO_REG       1.
+@08  COD_UPA                 9.
+@17  NUM_DOM                 2.
+@19  NUM_UC                  1.
+@20  COD_INFORMANTE          2. 
+@22  QUADRO                  2.
+@24  SEQ                     2.
+@26  V9001                   7.
+@33  V8500                   10.2
+@43  V8501                   10.2    
+@53  V9010                   2.
+@55  V9011                   2.      
+@57  DEFLATOR                12.10
+@69  V8500_DEFLA             10.2
+@79  V8501_DEFLA             10.2
+@89  COD_IMPUT_VALOR         1.
+@90  FATOR_ANUALIZACAO       1.
+@91  PESO                    14.8
+@105 PESO_FINAL              14.8
+@119 RENDA_TOTAL             10.2 ;
+run;
+
+
+/*   Anualização e expansão dos valores de rendimentos utilizados para a obtenção 
+     dos resultados (variável V8500_DEFLA).
+     
+     a) Para anualizar, utilizamos o quesito "fator_anualizacao". No caso específico 
+     do quadro 54, cujas informações se referem a valores mensais, utilizamos também
+     o quesito V9011 (número de meses).
+     Os valores são anualizados para depois se obter uma média mensal.
+
+     b) Para expandir, utilizamos o quesito "peso_final".
+
+     c) Posteriormente, o resultado é dividido por 12 para obter a estimativa mensal. */
+
+data outros_rend;
+set outros_rendimentos;
+
+if quadro = 54 then valor_mensal =(V8500_DEFLA*V9011*fator_anualizacao*peso_final)/12;
+else valor_mensal =(V8500_DEFLA*fator_anualizacao*peso_final)/12;
+
+run;
+
+
+
+/* [1] Junção dos registros, quem englobam os itens componentes da tabela de rendimento. 
+
+   [2] Transformação do código do item (variável V9001) em 5 números, para ficar no mesmo
+       padrão dos códigos que constam nos arquivos de tradutores das tabelas. Esses códigos
+       são simplificados em 5 números, pois os 2 últimos números caracterizam sinônimos.
+       Todos os resultados da pesquisa são trabalhados com os códigos considerando os 5 primeiros números. */
+
+data junta;
+set rend_trabalho outros_rend; /*[1]*/
+codigo = int(V9001/100); /*[2]*/
+run;
+
+
+
+/* Leitura do arquivo de tradutor da tabela de rendimento. 
+   Este tradutor organiza os códigos de produtos pelos diferentes
+   grupos da tabela de rendimento. Não considerar as linhas 
+   referentes aos itens RENDIMENTO NÃO MONETÁRIO E VARIAÇÃO PATRIMONIAL,
+   pois as estimativas referentes a estes itens são calculadas em outros 
+   programas */
+
+
+proc import out=tradutor_rendimento  
+   datafile='.....\tradutor_rendimento.xls'
+     dbms=xls;
+   run;
+
+
+/* Juntando a base de dados com o tradutor da tabela de rendimento por código. */
+
+proc sql;
+CREATE TABLE junta_tradutor AS
+SELECT a.*,
+b.nivel_1,
+b.nivel_2,
+b.nivel_3
+from junta as a 
+left join tradutor_rendimento as b
+on a.codigo = b.codigo;
+QUIT;
+
+
+data merge1;
+set junta_tradutor;
+run;
+
+
+
+/* Somando os valores mensais de cada grupo de códigos, segundo cada nível, 
+conforme consta no tradutor. 
+   Os níveis 0 e 1 do tradutor, que dependem das linhas Rendimento Não Monetário
+e Variação Patrimonial não estão englobados nesta etapa. As estimativas referentes
+a estas linhas estão calculadas em outros programas */
+
+
+proc sort data=merge1;
+by nivel_2;
+run;
+
+proc means noprint data=merge1;
+by nivel_2;
+var valor_mensal;
+output out=soma_final_2 (drop=_type_ _freq_) sum=soma;
+run;
+
+data soma_final_2 (drop=nivel_2);
+set soma_final_2;
+if nivel_2 = . then delete;
+nivel=nivel_2;
+run;
+
+
+proc sort data=merge1;
+by nivel_3;
+run;
+
+proc means noprint data=merge1;
+by nivel_3;
+var valor_mensal;
+output out=soma_final_3 (drop=_type_ _freq_) sum=soma;
+run;
+
+data soma_final_3 (drop=nivel_3);
+set soma_final_3;
+if nivel_3 = . then delete;
+nivel=nivel_3;
+run;
+
+
+
+/* [1] Empilhando as somas obtidas no passo anterior 
+   [2] Criação da variável a=1 que será utilizada posteriomente para 
+   juntar com arquivo de número de unidades de consumo (familias) expandido */
+
+data soma_final;
+set soma_final_2 soma_final_3; /*[1]*/
+a = 1; /*[2]*/
+run;
+
+
+
+/* Leitura do REGISTRO - MORADOR, necessário para o cálculo do número de UC's expandido.
+Vale ressaltar que este é o único registro dos microdados que engloba todas as UC's */
+
+data morador;
+INFILE ".....\morador.txt";
+INPUT
+@01  UF                      2.
+@03  ESTRATO_POF             4.
+@07  TIPO_SITUACAO_REG       1.
+@08  COD_UPA                 9.
+@17  NUM_DOM                 2.
+@19  NUM_UC                  1.
+@20  COD_INFORMANTE          2.
+@22  V0306                   2.
+@24  V0401                   1.
+@25  V04021                  2.
+@27  V04022                  2.
+@29  V04023                  4.
+@33  V0403                   3.
+@36  V0404                   1.
+@37  V0405                   1.
+@38  V0406                   1.
+@39  V0407                   1.
+@40  V0408                   1.
+@41  V0409                   2.
+@43  V0410                   1.
+@44  V0411                   2.
+@46  V0412                   1.
+@47  V0413                   1.
+@48  V0414                   1.
+@49  V0415                   1.
+@50  V0416                   1.
+@51  V041711                 1.
+@52  V041712                 1.
+@53  V041721                 1.
+@54  V041722                 1.
+@55  V041731                 1.
+@56  V041732                 1.
+@57  V041741                 1.
+@58  V041742                 1.
+@59  V0418                   1.
+@60  V0419                   2.
+@62  V0420                   1.
+@63  V0421                   1.
+@64  V0422                   2.
+@66  V0423                   1.
+@67  V0424                   1.
+@68  V0425                   2.
+@70  V0426                   1.
+@71  V0427                   1.
+@72  V0428                   1.
+@73  V0429                   2.
+@75  V0430                   1.
+@76  ANOS_ESTUDO             2.
+@78  PESO                    14.8
+@92  PESO_FINAL              14.8
+@106 RENDA_TOTAL             10.2
+@116 NIVEL_INSTRUCAO         1.
+@117 RENDA_DISP_PC           20.10
+@137 RENDA_MONET_PC          20.10
+@157 RENDA_NAO_MONET_PC      20.10
+@177 DEDUCAO_PC              20.10 ;
+run;
+
+
+
+/* Extraindo todas as UC's do arquivo de morador */
+
+proc sort nodupkey data=morador; /* A partir da ordenação do arquivo de morador,
+mantém apenas uma vez a "chave" cod_upa num_dom num_uc no arquivo de saída.*/                     
+by cod_upa num_dom num_uc;
+run;
+
+
+/* Calculando o número de UC's expandido */
+/* A cada domicílio é associado um peso_final e este é
+também associado a cada uma de suas unidades de consumo */
+/* Portanto, o total de unidades de consumo (familias) expandido, 
+é o resultado da soma dos pesos_finais a elas associados */  
+
+proc means noprint data=morador;
+var peso_final;
+output out=n_familia(drop=_type_ _freq_) sum=soma_familia;
+run;
+
+
+/* Criação da variável a=1 que será utilizada posteriomente para juntar
+com o arquivo de somas dos valores mensais de cada grupo de códigos */
+
+data n_familia;
+set n_familia;
+a = 1;
+run;
+
+
+
+/* Calculando o rendimento médio mensal de cada grupo de códigos, 
+segundo cada nível, conforme consta no tradutor */
+
+data merge2;
+merge soma_final n_familia;
+by a;
+media_mensal = soma / soma_familia;
+run;
+
+proc sort data=merge2;
+by nivel;
+run;
+
+
+
+/* Leitura do arquivo de índice que determina a posição que
+cada linha deve ficar na tabela final */
+/* O arquivo de índice é apenas um arquivo auxiliar, 
+criado para associar os resultado gerados com a ordem
+de apresentacao da tabela de resultados */
+
+
+proc import out=indice_rendimento  
+   datafile='.....\indice_rendimento.xls'
+     dbms=xls;
+   run;
+
+
+proc sort data=indice_rendimento;
+by nivel;
+run;
+
+
+
+/* Juntando o aquivo dos rendimentos médios mensais de cada grupo
+de códigos com o arquivo de índice, para organizar os itens da tabela */
+
+data merge3 (keep= indice nivel descricao media_mensal);
+retain indice nivel descricao media_mensal;
+merge merge2 indice_rendimento;
+by nivel;
+format media_mensal 20.2;
+run;
+
+proc sort data=merge3;
+by indice;
+run;

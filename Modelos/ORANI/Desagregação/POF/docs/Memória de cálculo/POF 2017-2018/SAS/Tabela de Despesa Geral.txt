@@ -1,0 +1,689 @@
+                           /* POF 2017-2018 */
+
+/* PROGRAMA PARA GERAÇÃO DAS ESTIMATIVAS PONTUAIS DA TABELA DE DESPESA GERAL */
+                     /* NÍVEL GEOGRÁFICO - BRASIL */
+
+
+
+
+/* Leitura do REGISTRO - ALUGUEL ESTIMADO */
+
+data aluguel_estimado;
+INFILE ".....\ALUGUEL_ESTIMADO.txt";  /*Caminho onde se encontra as bases de dados*/
+INPUT
+@01  UF                      2.
+@03  ESTRATO_POF             4.
+@07  TIPO_SITUACAO_REG       1.
+@08  COD_UPA                 9.
+@17  NUM_DOM                 2.
+@19  NUM_UC                  1.
+@20  QUADRO                  2.
+@22  V9001                   7.
+@29  V9002                   2.
+@31  V8000                   10.2
+@41  V9010                   2.
+@43  V9011                   2.      
+@45  DEFLATOR                12.10
+@57  V8000_DEFLA             10.2
+@67  COD_IMPUT_VALOR         1.
+@68  FATOR_ANUALIZACAO       2.
+@70  PESO                    14.8
+@84  PESO_FINAL              14.8
+@98  RENDA_TOTAL             10.2 ;
+run;
+
+
+/*  Anualização e expansão dos valores utilizados para a obtenção dos resultados 
+    (variável V8000_defla). 
+
+    a) Para anualizar, utilizamos o quesito "fator_anualizacao". Neste registro, 
+    cujas informações se referem a valores mensais de alugueis, utilizamos também
+    o quesito V9011 (número de meses). 
+    Os valores são anualizados para depois se obter uma média mensal.
+
+    b) Para expandir, utilizamos o quesito "peso_final".
+
+    c) Posteriormente, o resultado é dividido por 12 para obter a estimativa mensal. */
+
+
+data alu_estimado;
+set aluguel_estimado;
+
+valor_mensal=(V8000_DEFLA*V9011*fator_anualizacao*peso_final)/12;
+
+run;
+
+
+
+
+/* Leitura do REGISTRO - DESPESA COLETIVA */
+
+data despesa_coletiva;
+INFILE ".....\DESPESA_COLETIVA.txt";
+INPUT
+@01  UF                      2.
+@03  ESTRATO_POF             4.
+@07  TIPO_SITUACAO_REG       1.
+@08  COD_UPA                 9.
+@17  NUM_DOM                 2.
+@19  NUM_UC                  1.
+@20  QUADRO                  2.
+@22  SEQ                     2.
+@24  V9001                   7.
+@31  V9002                   2.
+@33  V9005                   4.  
+@37  V8000                   10.2
+@47  V9010                   2.  
+@49  V9011                   2.  
+@51  V9012                   1.  
+@52  V1904                   10.2 
+@62  V1905                   1.  
+@63  DEFLATOR                12.10
+@75  V8000_DEFLA             10.2
+@85  V1904_DEFLA             10.2
+@95  COD_IMPUT_VALOR         1.
+@96  COD_IMPUT_QUANTIDADE    1.  
+@97  FATOR_ANUALIZACAO       2.
+@99  PESO                    14.8
+@113 PESO_FINAL              14.8
+@127 RENDA_TOTAL             10.2 
+@137 V9004                   5.;
+run;
+
+
+/*   Anualização e expansão dos valores utilizados para a obtenção dos resultados
+    (variáveis V8000_defla e V1904_defla). O quesito V1904_defla se refere a despesa 
+     com "INSS e Outras Contribuições Trabalhistas", que é utilizado no grupo 
+     "Outras despesas correntes".
+ 
+     a) Para anualizar, utilizamos o quesito "fator_anualizacao". No caso específico 
+     dos quadros 10 e 19, cujas informações se referem a valores mensais, utilizamos
+     também o quesito V9011 (número de meses).
+     Os valores são anualizados para depois se obter uma média mensal.
+
+     b) Para expandir, utilizamos o quesito "peso_final".
+
+     c) Posteriormente, o resultado é dividido por 12 para obter a estimativa mensal. */
+
+data desp_coletiva;
+set despesa_coletiva;
+
+if quadro in(10,19) then valor_mensal=(V8000_DEFLA*V9011*fator_anualizacao*peso_final)/12;
+else valor_mensal=(V8000_DEFLA*fator_anualizacao*peso_final)/12;
+
+inss_mensal=(V1904_DEFLA*V9011*fator_anualizacao*peso_final)/12;
+
+run;
+
+
+
+
+/* Leitura do REGISTRO - CADERNETA COLETIVA */ 
+
+data caderneta_coletiva;
+INFILE ".....\CADERNETA_COLETIVA.txt";
+INPUT
+@01  UF                      2.
+@03  ESTRATO_POF             4.
+@07  TIPO_SITUACAO_REG       1.
+@08  COD_UPA                 9.
+@17  NUM_DOM                 2.
+@19  NUM_UC                  1.
+@20  QUADRO                  2.
+@22  SEQ                     3.
+@25  V9001                   7.
+@32  V9002                   2.
+@34  V8000                   10.2
+@44  DEFLATOR                12.10
+@56  V8000_DEFLA             10.2
+@66  COD_IMPUT_VALOR         1.
+@67  FATOR_ANUALIZACAO       2.
+@69  PESO                    14.8
+@83  PESO_FINAL              14.8
+@97  RENDA_TOTAL             10.2 
+@107 V9005                   9.3 
+@116 V9007                   4. 
+@120 V9009                   5. 
+@125 QTD_FINAL               9.3
+@134 V9004                   5.;
+run;
+
+
+/* Anualização e expansão dos valores utilizados para a obtenção dos resultados 
+  (variável V8000_defla). 
+
+   a) Para anualizar, utilizamos o quesito "fator_anualizacao". Os valores são
+   anualizados para depois se obter uma média mensal.
+
+   b) Para expandir, utilizamos o quesito "peso_final".
+
+   c) Posteriormente, o resultado é dividido por 12 para obter a estimativa mensal. */
+
+data cad_coletiva;
+set caderneta_coletiva;
+
+valor_mensal=(V8000_DEFLA*fator_anualizacao*peso_final)/12;
+
+run;
+
+
+
+
+/* Leitura do REGISTRO - DESPESA INDIVIDUAL */
+
+data despesa_individual;
+INFILE ".....\DESPESA_INDIVIDUAL.txt";
+INPUT
+@01  UF                      2.
+@03  ESTRATO_POF             4.
+@07  TIPO_SITUACAO_REG       1.
+@08  COD_UPA                 9.
+@17  NUM_DOM                 2.
+@19  NUM_UC                  1.
+@20  COD_INFORMANTE          2. 
+@22  QUADRO                  2.
+@24  SEQ                     2.
+@26  V9001                   7.
+@33  V9002                   2.
+@35  V8000                   10.2
+@45  V9010                   2.  
+@47  V9011                   2.  
+@49  V9012                   1.  
+@50  V4104                   1.  
+@51  V4105                   1.  
+@52  DEFLATOR                12.10
+@64  V8000_DEFLA             10.2
+@74  COD_IMPUT_VALOR         1.
+@75  FATOR_ANUALIZACAO       2.
+@77  PESO                    14.8
+@91  PESO_FINAL              14.8
+@105 RENDA_TOTAL             10.2 
+@115 V9004                   5.;
+run;
+
+
+/*   Anualização e expansão dos valores utilizados para a obtenção dos resultados 
+    (variável V8000_defla). 
+
+     a) Para anualizar, utilizamos o quesito "fator_anualizacao". No caso específico 
+     dos quadros 44, 47, 48, 49 e 50, cujas informações se referem a valores mensais, 
+     utilizamos também o quesito V9011 (número de meses).
+     Os valores são anualizados para depois se obter uma média mensal.
+
+     b) Para expandir, utilizamos o quesito "peso_final".
+
+     c) Posteriormente, o resultado é dividido por 12 para obter a estimativa mensal. */
+
+
+data desp_individual;
+set despesa_individual;
+
+if quadro in(44,47,48,49,50) then valor_mensal=(V8000_DEFLA*V9011*fator_anualizacao*peso_final)/12;
+else valor_mensal=(V8000_DEFLA*fator_anualizacao*peso_final)/12;
+
+run;
+
+
+
+
+
+/* Leitura do REGISTRO - RENDIMENTO DO TRABALHO */
+
+data rendimento_trabalho;
+INFILE ".....\RENDIMENTO_TRABALHO.txt";
+INPUT
+@01  UF                      2.
+@03  ESTRATO_POF             4.
+@07  TIPO_SITUACAO_REG       1.
+@08  COD_UPA                 9.
+@17  NUM_DOM                 2.
+@19  NUM_UC                  1.
+@20  COD_INFORMANTE          2. 
+@22  QUADRO                  2.
+@24  SUB_QUADRO              1.
+@25  SEQ                     1.
+@26  V9001                   7.
+@33  V5302                   1.
+@34  V53021                  1.
+@35  V5303                   1.
+@36  V5304                   1.
+@37  V5305                   1.
+@38  V5307                   1.
+@39  V8500                   7.
+@46  V531112                 7.
+@53  V531122                 7.
+@60  V531132                 7.
+@67  V9010                   2.
+@69  V9011                   2.      
+@71  V5314                   3.      
+@74  V5315                   1.
+@75  DEFLATOR                12.10
+@87  V8500_DEFLA             10.2
+@97  V531112_DEFLA           10.2
+@107 V531122_DEFLA           10.2
+@117 V531132_DEFLA           10.2
+@127 COD_IMPUT_VALOR         1.
+@128 FATOR_ANUALIZACAO       1.
+@129 PESO                    14.8
+@143 PESO_FINAL              14.8
+@157 RENDA_TOTAL             10.2
+@167 V53011                  4.
+@171 V53061                  5.;
+
+run;
+
+
+/*   Anualização e expansão dos valores de deduções com "Previdência Pública",
+     "Imposto de Renda" e "Iss e Outros Impostos" utilizados para a obtenção 
+     dos resultados (variáveis V531112_defla, V531122_defla e V531132_defla).
+     Estes quesitos são utilizados no grupo "Outras despesas correntes". 
+
+     a) Para anualizar, utilizamos o quesito "fator_anualizacao". No caso específico
+     deste registro, cujas informações se referem a valores mensais, utilizamos
+     também o quesito V9011 (número de meses).
+     Os valores são anualizados para depois se obter uma média mensal.
+
+     b) Para expandir, utilizamos o quesito "peso_final".
+
+     c) Posteriormente, o resultado é dividido por 12 para obter a estimativa mensal. */
+
+
+data rend_trabalho;
+set rendimento_trabalho;
+
+prev_pub_mensal=(V531112_DEFLA*V9011*fator_anualizacao*peso_final)/12;
+imp_renda_mensal=(V531122_DEFLA*V9011*fator_anualizacao*peso_final)/12;
+iss_mensal=(V531132_DEFLA*V9011*fator_anualizacao*peso_final)/12;
+
+run;
+
+
+
+/* Leitura do REGISTRO - OUTROS RENDIMENTOS */
+
+data outros_rendimentos;
+INFILE ".....\OUTROS_RENDIMENTOS.txt";
+INPUT
+@01  UF                      2.
+@03  ESTRATO_POF             4.
+@07  TIPO_SITUACAO_REG       1.
+@08  COD_UPA                 9.
+@17  NUM_DOM                 2.
+@19  NUM_UC                  1.
+@20  COD_INFORMANTE          2. 
+@22  QUADRO                  2.
+@24  SEQ                     2.
+@26  V9001                   7.
+@33  V8500                   10.2
+@43  V8501                   10.2    
+@53  V9010                   2.
+@55  V9011                   2.      
+@57  DEFLATOR                12.10
+@69  V8500_DEFLA             10.2
+@79  V8501_DEFLA             10.2
+@89  COD_IMPUT_VALOR         1.
+@90  FATOR_ANUALIZACAO       1.
+@91  PESO                    14.8
+@105 PESO_FINAL              14.8
+@119 RENDA_TOTAL             10.2 ;
+run;
+
+
+/*   Anualização e expansão dos valores de deduções utilizados para a obtenção
+     dos resultados (variável V8501_defla).Este quesito é utilizado no grupo
+     "Outras despesas correntes".
+
+     a) Para anualizar, utilizamos o quesito "fator_anualizacao". No caso específico 
+     do quadro 54, cujas informações se referem a valores mensais, utilizamos também
+     o quesito V9011 (número de meses).
+     Os valores são anualizados para depois se obter uma média mensal.
+
+     b) Para expandir, utilizamos o quesito "peso_final".
+
+     c) Posteriormente, o resultado é dividido por 12 para obter a estimativa mensal. */
+
+
+data outros_rend;
+set outros_rendimentos;
+
+if quadro = 54 then deducao_mensal=(V8501_DEFLA*V9011*fator_anualizacao*peso_final)/12;
+else deducao_mensal=(V8501_DEFLA*fator_anualizacao*peso_final)/12;
+
+run;
+
+
+
+
+/* [1] Junção dos registros, quem englobam os itens componentes da tabela de despesa geral. 
+
+   [2] Transformação do código do item (variável V9001) em 5 números, para ficar no mesmo
+       padrão dos códigos que constam nos arquivos de tradutores das tabelas. Esses códigos
+       são simplificados em 5 números, pois os 2 últimos números caracterizam sinônimos
+       ou termos regionais do produto. Todos os resultados da pesquisa são trabalhados 
+       com os códigos considerando os 5 primeiros números. Por exemplo, tangerina e mexirica
+       tem códigos diferentes quando se considera 7 números, porém o mesmo código quando
+       se considera os 5 primeiros números. */
+
+data junta;
+set alu_estimado desp_coletiva cad_coletiva desp_individual rend_trabalho outros_rend; /* [1] */
+codigo = int(V9001/100); /* [2]*/
+run;
+
+
+
+/* Leitura do arquivo de tradutor da tabela de despesa geral. 
+   Este tradutor organiza os códigos de produtos pelos diferentes
+   grupos da tabela de despesa geral. */
+
+
+proc import out=tradutor_despesa  
+   datafile='.....\tradutor_despesa_geral.xls'
+     dbms=xls;
+   run;
+
+
+/* Juntando a base de dados com o tradutor da tabela de despesa geral por código. */
+
+proc sql;
+CREATE TABLE junta_tradutor AS
+SELECT a.*,
+b.variavel,
+b.nivel_0,
+b.nivel_1,
+b.nivel_2,
+b.nivel_3,
+b.nivel_4,
+b.nivel_5
+from junta as a 
+left join tradutor_despesa as b
+on a.codigo = b.codigo;
+QUIT;
+
+
+/* Criação da variável resultante "valor" que receberá os valores das variáveis de acordo
+com o grupo de despesa ao qual o código esteja associado. A maioria dos grupos da tabela
+utiliza o quesito V8000_DEFLA, referente a valores de despesas/aquisições dos produtos 
+e serviços. Já o grupo "Outras despesas correntes", além do quesito V8000_DEFLA, também
+utiliza os quesitos INSS (V1904_DEFLA)e deduções (V531112_DEFLA, V531122_DEFLA, 
+V531132_DEFLA ou V8501_DEFLA) */
+
+
+data merge1;
+set junta_tradutor;
+if variavel = 'V8000_DEFLA' then valor = valor_mensal;
+if variavel = 'V1904_DEFLA' then valor = inss_mensal;
+if variavel = 'V531112_DEFLA' then valor = prev_pub_mensal;
+if variavel = 'V531122_DEFLA' then valor = imp_renda_mensal;
+if variavel = 'V531132_DEFLA' then valor = iss_mensal;
+if variavel = 'V8501_DEFLA' then valor = deducao_mensal;
+if valor = . then delete;
+run;
+
+
+
+/* Somando os valores mensais de cada grupo de códigos, segundo cada nível, 
+conforme consta no tradutor */
+
+
+proc sort data=merge1;
+by nivel_0;
+run;
+
+proc means noprint data=merge1;
+by nivel_0;
+var valor;
+output out=soma_final_0 (drop=_type_ _freq_) sum=soma;
+run;
+
+data soma_final_0 (drop=nivel_0);
+set soma_final_0;
+if nivel_0 = . then delete;
+nivel=nivel_0;
+run;
+
+
+
+proc sort data=merge1;
+by nivel_1;
+run;
+
+proc means noprint data=merge1;
+by nivel_1;
+var valor;
+output out=soma_final_1 (drop=_type_ _freq_) sum=soma;
+run;
+
+data soma_final_1 (drop=nivel_1);
+set soma_final_1;
+if nivel_1 = . then delete;
+nivel=nivel_1;
+run;
+
+
+
+proc sort data=merge1;
+by nivel_2;
+run;
+
+proc means noprint data=merge1;
+by nivel_2;
+var valor;
+output out=soma_final_2 (drop=_type_ _freq_) sum=soma;
+run;
+
+data soma_final_2 (drop=nivel_2);
+set soma_final_2;
+if nivel_2 = . then delete;
+nivel=nivel_2;
+run;
+
+
+
+proc sort data=merge1;
+by nivel_3;
+run;
+
+proc means noprint data=merge1;
+by nivel_3;
+var valor;
+output out=soma_final_3 (drop=_type_ _freq_) sum=soma;
+run;
+
+data soma_final_3 (drop=nivel_3);
+set soma_final_3;
+if nivel_3 = . then delete;
+nivel=nivel_3;
+run;
+
+
+
+proc sort data=merge1;
+by nivel_4;
+run;
+
+proc means noprint data=merge1;
+by nivel_4;
+var valor;
+output out=soma_final_4 (drop=_type_ _freq_) sum=soma;
+run;
+
+data soma_final_4 (drop=nivel_4);
+set soma_final_4;
+if nivel_4 = . then delete;
+nivel=nivel_4;
+run;
+
+
+
+proc sort data=merge1;
+by nivel_5;
+run;
+
+proc means noprint data=merge1;
+by nivel_5;
+var valor;
+output out=soma_final_5 (drop=_type_ _freq_) sum=soma;
+run;
+
+data soma_final_5 (drop=nivel_5);
+set soma_final_5;
+if nivel_5 = . then delete;
+nivel=nivel_5;
+run;
+
+
+
+/* [1] Empilhando as somas obtidas no passo anterior 
+   [2] Criação da variável a=1 que será utilizada posteriomente para 
+   juntar com arquivo de número de unidades de consumo (familias) expandido */
+
+data soma_final;
+set soma_final_0 soma_final_1 soma_final_2 soma_final_3 soma_final_4 soma_final_5; /*[1]*/
+a = 1; /*[2]*/
+run;
+
+
+
+/* Leitura do REGISTRO - MORADOR, necessário para o cálculo do número de UC's expandido.
+Vale ressaltar que este é o único registro dos microdados que engloba todas as UC's */
+
+
+data morador;
+INFILE ".....\MORADOR.txt";
+INPUT
+@01  UF                      2.
+@03  ESTRATO_POF             4.
+@07  TIPO_SITUACAO_REG       1.
+@08  COD_UPA                 9.
+@17  NUM_DOM                 2.
+@19  NUM_UC                  1.
+@20  COD_INFORMANTE          2.
+@22  V0306                   2.
+@24  V0401                   1.
+@25  V04021                  2.
+@27  V04022                  2.
+@29  V04023                  4.
+@33  V0403                   3.
+@36  V0404                   1.
+@37  V0405                   1.
+@38  V0406                   1.
+@39  V0407                   1.
+@40  V0408                   1.
+@41  V0409                   2.
+@43  V0410                   1.
+@44  V0411                   2.
+@46  V0412                   1.
+@47  V0413                   1.
+@48  V0414                   1.
+@49  V0415                   1.
+@50  V0416                   1.
+@51  V041711                 1.
+@52  V041712                 1.
+@53  V041721                 1.
+@54  V041722                 1.
+@55  V041731                 1.
+@56  V041732                 1.
+@57  V041741                 1.
+@58  V041742                 1.
+@59  V0418                   1.
+@60  V0419                   2.
+@62  V0420                   1.
+@63  V0421                   1.
+@64  V0422                   2.
+@66  V0423                   1.
+@67  V0424                   1.
+@68  V0425                   2.
+@70  V0426                   1.
+@71  V0427                   1.
+@72  V0428                   1.
+@73  V0429                   2.
+@75  V0430                   1.
+@76  ANOS_ESTUDO             2.
+@78  PESO                    14.8
+@92  PESO_FINAL              14.8
+@106 RENDA_TOTAL             10.2
+@116 NIVEL_INSTRUCAO         1.
+@117 RENDA_DISP_PC           20.10
+@137 RENDA_MONET_PC          20.10
+@157 RENDA_NAO_MONET_PC      20.10
+@177 DEDUCAO_PC              20.10 ;
+run;
+
+
+
+
+/* Extraindo todas as UC's do arquivo de morador */
+
+proc sort nodupkey data=morador; /* A partir da ordenação do arquivo de morador,
+mantém apenas uma vez a "chave" cod_upa num_dom num_uc no arquivo de saída.*/                     
+by cod_upa num_dom num_uc;
+run;
+
+
+/* Calculando o número de UC's expandido */
+/* A cada domicílio é associado um peso_final e este é
+também associado a cada uma de suas unidades de consumo */
+/* Portanto, o total de unidades de consumo (familias) expandido, 
+é o resultado da soma dos pesos_finais a elas associados */  
+
+proc means noprint data=morador;
+var peso_final;
+output out=n_familia(drop=_type_ _freq_) sum=soma_familia;
+run;
+
+
+/* Criação da variável a=1 que será utilizada posteriomente para juntar
+com o arquivo de somas dos valores mensais de cada grupo de códigos */
+
+data n_familia;
+set n_familia;
+a = 1;
+run;
+
+
+
+/* Calculando a despesa média mensal de cada grupo de códigos, 
+segundo cada nível, conforme consta no tradutor */
+
+data merge2;
+merge soma_final n_familia;
+by a;
+media_mensal = soma / soma_familia;
+run;
+
+proc sort data=merge2;
+by nivel;
+run;
+
+
+
+/* Leitura do arquivo de índice que determina a posição que
+cada linha deve ficar na tabela final */
+/* O arquivo de índice é apenas um arquivo auxiliar, 
+criado para associar os resultado gerados com a ordem
+de apresentacao da tabela de resultados */
+
+proc import out=indice_despesa  
+   datafile='.....\indice_despesa.xls'
+     dbms=xls;
+   run;
+
+proc sort data=indice_despesa;
+by nivel;
+run;
+
+
+
+/* Juntando o aquivo das despesas médias mensais de cada grupo
+de códigos com o arquivo de índice, para organizar os itens da tabela */
+
+data merge3 (keep= indice nivel descricao media_mensal);
+retain indice nivel descricao media_mensal;
+merge merge2 indice_despesa;
+by nivel;
+format media_mensal 20.2;
+run;
+
+proc sort data=merge3;
+by indice;
+run;

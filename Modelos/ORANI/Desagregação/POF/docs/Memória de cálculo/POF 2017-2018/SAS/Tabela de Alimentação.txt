@@ -1,0 +1,372 @@
+                          /* POF 2017-2018 */
+
+/* PROGRAMA PARA GERAÇÃO DAS ESTIMATIVAS PONTUAIS DA TABELA DE ALIMENTACAO */
+                     /* NÍVEL GEOGRÁFICO - BRASIL */
+
+
+/* Leitura do REGISTRO - CADERNETA COLETIVA (Questionário POF 3) */ 
+
+data caderneta_coletiva;
+INFILE ".....\CADERNETA_COLETIVA.txt"; /*Caminho onde se encontra as bases de dados*/
+INPUT
+@01  UF                      2.
+@03  ESTRATO_POF             4.
+@07  TIPO_SITUACAO_REG       1.
+@08  COD_UPA                 9.
+@17  NUM_DOM                 2.
+@19  NUM_UC                  1.
+@20  QUADRO                  2.
+@22  SEQ                     3.
+@25  V9001                   7.
+@32  V9002                   2.
+@34  V8000                   10.2
+@44  DEFLATOR                12.10
+@56  V8000_DEFLA             10.2
+@66  COD_IMPUT_VALOR         1.
+@67  FATOR_ANUALIZACAO       2.
+@69  PESO                    14.8
+@83  PESO_FINAL              14.8
+@97  RENDA_TOTAL             10.2 
+@107 V9005                   9.3 
+@116 V9007                   4. 
+@120 V9009                   5. 
+@125 QTD_FINAL               9.3 
+@134 V9004                   5.;
+run;
+
+
+/* [1] Transformação do código do item (variável V9001) em 5 números, para ficar no mesmo padrão dos códigos que constam nos arquivos de
+       tradutores das tabelas. Esses códigos são simplificados em 5 números, pois os 2 últimos números caracterizam sinônimos ou termos 
+       regionais do produto. Todos os resultados da pesquisa são trabalhados com os códigos considerando os 5 primeiros números.
+       Por exemplo, tangerina e mexirica tem códigos diferentes quando se considera 7 números, porém o mesmo código quando se considera os 
+       5 primeiros números. 
+
+   [2] Exclusão dos itens do REGISTRO - CADERNETA COLETIVA (POF 3) que não se referem a alimentos (grupos 86 a 89, ver cadastro de produtos). 
+
+   [3] Anualização e expansão dos valores utilizados para a obtenção dos resultados (variável V8000_defla). 
+      a) Para anualizar, utilizamos o quesito "fator_anualizacao". Os valores são anualizados para depois se obter uma média mensal.
+      b) Para expandir, utilizamos o quesito "peso_final".
+      c) Posteriormente, o resultado é dividido por 12 para obter a estimativa mensal. */
+
+data cad_coletiva;
+set caderneta_coletiva;
+codigo = int(V9001/100); /* [1] */
+if 86001<= codigo<=89999 then delete; /* [2] */
+valor_mensal=(V8000_DEFLA*fator_anualizacao*peso_final)/12; /* [3] */
+run;
+
+
+/* Leitura do REGISTRO - DESPESA INDIVIDUAL (Questionário POF 4) */ 
+
+data despesa_individual;
+INFILE ".....\DESPESA_INDIVIDUAL.txt";
+INPUT
+
+@01  UF                      2.
+@03  ESTRATO_POF             4.
+@07  TIPO_SITUACAO_REG       1.
+@08  COD_UPA                 9.
+@17  NUM_DOM                 2.
+@19  NUM_UC                  1.
+@20  COD_INFORMANTE          2. 
+@22  QUADRO                  2.
+@24  SEQ                     2.
+@26  V9001                   7.
+@33  V9002                   2.
+@35  V8000                   10.2
+@45  V9010                   2.  
+@47  V9011                   2.  
+@49  V9012                   1.  
+@50  V4104                   1.  
+@51  V4105                   1.  
+@52  DEFLATOR_C              12.10
+@64  V8000_DEFLA             10.2
+@74  COD_IMPUT_VALOR         1.
+@75  FATOR_ANUALIZACAO       2.
+@77  PESO                    14.8
+@91  PESO_FINAL              14.8
+@105 RENDA_TOTAL             10.2 
+@115 V9004                   5.;
+run;
+
+
+/*  [1] Transformação do código do item (variável V9001) em 5 números, para ficar no mesmo padrão dos códigos que constam nos arquivos de
+       tradutores das tabelas. Esses códigos são simplificados em 5 números, pois os 2 últimos números caracterizam sinônimos ou termos 
+       regionais do produto. Todos os resultados da pesquisa são trabalhados com os códigos considerando os 5 primeiros números.
+       
+   
+    [2] Seleção dos itens do REGISTRO - DESPESA INDIVIDUAL (POF 4) que entram no tabela de alimentação 
+   (todos do quadro 24 e códigos 41001,48018,49075,49089).   
+
+
+    [3] Anualização e expansão dos valores utilizados para a obtenção dos resultados (variável V8000_defla). 
+      a) Para anualizar, utilizamos o quesito "fator_anualizacao". No caso específico dos quadros 48 e 49,
+      cujas informações se referem a valores mensais, utilizamos também o quesito V9011 (número de meses).
+      Os valores são anualizados para depois se obter uma média mensal.
+      b) Para expandir, utilizamos o quesito "peso_final".
+      c) Posteriormente, o resultado é dividido por 12 para obter a estimativa mensal. */
+
+data desp_individual;
+set despesa_individual;
+codigo = int(V9001/100); /*[1]*/
+if quadro = 24 or codigo in(41001,48018,49075,49089); /*[2]*/
+if quadro in(24,41) then valor_mensal=(V8000_DEFLA*fator_anualizacao*peso_final)/12; /* [3] */
+if quadro in(48,49) then valor_mensal=(V8000_DEFLA*V9011*fator_anualizacao*peso_final)/12; /*[3]*/
+run;
+
+
+
+/* [1] Junção dos registros CADERNETA COLETIVA e DESPESA INDIVIDUAL, quem englobam os itens de alimentação. 
+   [2] Ordenação das linhas por código de produtos. */
+
+data junta_ali; /* [1] */
+set cad_coletiva desp_individual;
+run;
+
+proc sort data=junta_ali; /* [2] */
+by codigo;
+run;
+
+
+/* [1] Leitura do arquivo de tradutor da tabela de alimentação. 
+       Este tradutor organiza os códigos de produtos pelos diferetes grupos da tabela de alimentacao.
+   [2] Ordenação das linhas por código de produtos. */
+
+
+proc import out=tradutor_alimentacao  /*[1]*/
+   datafile='.....\tradutor_alimentação.xls'
+     dbms=xls;
+   run;
+
+proc sort data=tradutor_alimentacao; /* [2] */
+by codigo;
+run;
+
+
+/* [1] Juntando a base de dados com o tradutor da tabela de alimentação por código. 
+   [2] Deletando as linhas referentes aos códigos que não tiveram frequência.  */
+
+data merge1; 
+merge junta_ali tradutor_alimentacao; /*[1]*/
+by codigo;
+if valor_mensal = . then delete; /*[2]*/
+run;
+
+
+
+/* Somando os valores mensais de cada grupo de códigos, segundo cada nível, conforme consta no tradutor */
+
+
+proc sort data=merge1;
+by nivel_0;
+run;
+
+proc means noprint data=merge1;
+by nivel_0;
+var valor_mensal;
+output out=soma_final_0 (drop=_type_ _freq_) sum=soma;
+run;
+
+data soma_final_0 (drop=nivel_0);
+set soma_final_0;
+nivel=nivel_0;
+run;
+
+
+
+proc sort data=merge1;
+by nivel_1;
+run;
+
+proc means noprint data=merge1;
+by nivel_1;
+var valor_mensal;
+output out=soma_final_1 (drop=_type_ _freq_) sum=soma;
+run;
+
+data soma_final_1 (drop=nivel_1);
+set soma_final_1;
+nivel=nivel_1;
+run;
+
+
+
+proc sort data=merge1;
+by nivel_2;
+run;
+
+proc means noprint data=merge1;
+by nivel_2;
+var valor_mensal;
+output out=soma_final_2 (drop=_type_ _freq_) sum=soma;
+run;
+
+data soma_final_2 (drop=nivel_2);
+set soma_final_2;
+nivel=nivel_2;
+run;
+
+
+
+proc sort data=merge1;
+by nivel_3;
+run;
+
+proc means noprint data=merge1;
+by nivel_3;
+var valor_mensal;
+output out=soma_final_3 (drop=_type_ _freq_) sum=soma;
+run;
+
+data soma_final_3 (drop=nivel_3);
+set soma_final_3;
+if nivel_3 = . then delete;
+nivel=nivel_3;
+run;
+
+
+
+/* [1] Empilhando as somas obtidas no passo anterior 
+   [2] Criação da variável a=1 que será utilizada posteriomente para juntar com arquivo de número de unidades de consumo (familias) expandido */
+
+data soma_final;
+set soma_final_0 soma_final_1 soma_final_2 soma_final_3; /*[1]*/
+a = 1; /*[2]*/ 
+run;
+
+
+
+/* Leitura do REGISTRO - MORADOR, necessário para o cálculo do número de UC's expandido.
+Vale ressaltar que este é o único registro dos microdados que engloba todas as UC's */
+
+data morador;
+INFILE ".....\morador.txt";
+INPUT
+@01  UF                      2.
+@03  ESTRATO_POF             4.
+@07  TIPO_SITUACAO_REG       1.
+@08  COD_UPA                 9.
+@17  NUM_DOM                 2.
+@19  NUM_UC                  1.
+@20  COD_INFORMANTE          2.
+@22  V0306                   2.
+@24  V0401                   1.
+@25  V04021                  2.
+@27  V04022                  2.
+@29  V04023                  4.
+@33  V0403                   3.
+@36  V0404                   1.
+@37  V0405                   1.
+@38  V0406                   1.
+@39  V0407                   1.
+@40  V0408                   1.
+@41  V0409                   2.
+@43  V0410                   1.
+@44  V0411                   2.
+@46  V0412                   1.
+@47  V0413                   1.
+@48  V0414                   1.
+@49  V0415                   1.
+@50  V0416                   1.
+@51  V041711                 1.
+@52  V041712                 1.
+@53  V041721                 1.
+@54  V041722                 1.
+@55  V041731                 1.
+@56  V041732                 1.
+@57  V041741                 1.
+@58  V041742                 1.
+@59  V0418                   1.
+@60  V0419                   2.
+@62  V0420                   1.
+@63  V0421                   1.
+@64  V0422                   2.
+@66  V0423                   1.
+@67  V0424                   1.
+@68  V0425                   2.
+@70  V0426                   1.
+@71  V0427                   1.
+@72  V0428                   1.
+@73  V0429                   2.
+@75  V0430                   1.
+@76  ANOS_ESTUDO             2.
+@78  PESO                    14.8
+@92  PESO_FINAL              14.8
+@106 RENDA_TOTAL             10.2
+@116 NIVEL_INSTRUCAO         1.
+@117 RENDA_DISP_PC           20.10
+@137 RENDA_MONET_PC          20.10
+@157 RENDA_NAO_MONET_PC      20.10
+@177 DEDUCAO_PC              20.10 ;
+run;
+
+
+/* Extraindo todas as UC's do arquivo de morador */
+
+proc sort nodupkey data=morador;/* A partir da ordenação do arquivo de morador, mantém apenas uma vez a "chave" cod_upa num_dom num_uc no arquivo
+de saída.*/                                   
+by cod_upa num_dom num_uc;
+run;
+
+
+/* Calculando o número de UC's expandido */
+/* A cada domicílio é associado um peso_final e este é também associado a cada uma de suas unidades de consumo */
+/* Portanto, o total de unidades de consumo (familias) expandido, é o resultado da soma dos pesos_finais a elas associados*/  
+
+proc means noprint data=morador;
+var peso_final;
+output out=n_familia(drop=_type_ _freq_) sum=soma_familia;
+run;
+
+
+/* Criação da variável a=1 que será utilizada posteriomente para juntar com o arquivo de somas dos valores mensais de cada grupo de códigos */
+
+data n_familia;
+set n_familia;
+a = 1;
+run;
+
+
+
+/* Calculando a despesa média mensal de cada grupo de códigos, segundo cada nível, conforme consta no tradutor */
+
+data merge2;
+merge soma_final n_familia;
+by a;
+media_mensal = soma / soma_familia;
+run;
+
+proc sort data=merge2;
+by nivel;
+run;
+
+
+
+/* Leitura do arquivo de índice que determina a posição que cada linha deve ficar na tabela final */
+/* O arquivo de índice é apenas um arquivo auxiliar, criado para associar os resultado gerados com a ordem de apresentacao
+da tabela de resultados */
+
+
+proc import out=indice_alimentacao  
+   datafile='.....\indice_alimentacao.xls'
+     dbms=xls;
+   run;
+
+proc sort data=indice_alimentacao;
+by nivel;
+run;
+
+
+/* Juntando o aquivo das despesas médias mensais de cada grupo de códigos com o arquivo de índice,
+para organizar os itens da tabela */
+
+data merge3 (keep = indice nivel descricao media_mensal);
+retain indice nivel descricao media_mensal;
+merge merge2 indice_alimentacao;
+by nivel;
+format media_mensal 20.2;
+run;
+
+proc sort data=merge3;
+by indice;
+run;

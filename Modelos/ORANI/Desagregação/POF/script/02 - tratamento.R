@@ -72,14 +72,14 @@ despesa = function(df) {
                            num_uc)) %>%
     group_by(id_fam, SCN128) %>%
     reframe(peso    = unique(peso_final),
-            despesa = sum(v8000_defla),
+            despesa = sum(v8000_defla * fator_anualizacao),
             renda   = sum(renda_total)) %>%
     mutate(quantil  = cut(renda, breaks = Quantile(renda, weights = peso, probs = seq(0,1,0.01), na.rm = T),
-                         labels = F,
-                         include.lowest = T)) %>%
+                          labels = F,
+                          include.lowest = T)) %>%
     group_by(SCN128, quantil) %>%
-    reframe(despesa = sum(despesa)) %>%
-    arrange(quantil) %>%
+    reframe(despesa = sum(despesa * peso)) %>%
+    arrange(quantil, SCN128) %>%
     pivot_wider(names_from = quantil, values_from = despesa)
 }
 
@@ -93,13 +93,13 @@ renda = function(df) {
                          num_uc)) %>%
     group_by(id_fam, SCN68) %>%
     reframe(peso    = unique(peso_final),
-            renda   = sum(renda_total)) %>%
+            renda   = sum(renda_total * fator_anualizacao)) %>%
     mutate(quantil  = cut(renda, breaks = Quantile(renda, weights = peso, probs = seq(0,1,0.01), na.rm = T),
                           labels = F,
                           include.lowest = T)) %>%
     group_by(SCN68, quantil) %>%
-    reframe(renda = sum(renda)) %>%
-    arrange(quantil) %>%
+    reframe(renda = sum(renda * peso)) %>%
+    arrange(quantil, SCN68) %>%
     pivot_wider(names_from = quantil, values_from = renda)
 }
 
@@ -120,7 +120,7 @@ renda_18 = renda(pof_18)
 write_xlsx(list("despesa (2008-2009)" = despesa_09,
                 "renda (2008-2009)"   = renda_09,
                 "despesa (2017-2018)" = despesa_18,
-                "renda (2017-2018)"   = renda_18), "output/Tabelas (POF).xlsx")
+                "renda (2017-2018)"   = renda_18), "output/raw/tabela.xlsx")
 
 
 #--- LIMPAR RESÍDUO ---

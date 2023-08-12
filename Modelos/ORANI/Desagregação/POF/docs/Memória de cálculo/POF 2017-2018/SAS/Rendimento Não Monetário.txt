@@ -1,0 +1,479 @@
+                       /* POF 2017-2018 */
+
+/* PROGRAMA PARA GERAÇÃO DA ESTIMATIVA PONTUAL DO ITEM RENDIMENTO NÃO MONETÁRIO */
+                     /* NÍVEL GEOGRÁFICO - BRASIL */
+
+
+
+
+/* Parte 1 - Para cada Unidade de Consumo (UC), somar todos os valores referentes
+as despesas não monetárias (quando o quesito Forma de Aquisição (V9002) for de 7 a 11). 
+Exceto, os valores do código 00101 (Aluguel Estimado). */
+
+
+
+/* Leitura do REGISTRO - DESPESA COLETIVA */
+
+data despesa_coletiva;
+INFILE ".....\DESPESA_COLETIVA.txt";
+INPUT
+@01  UF                      2.
+@03  ESTRATO_POF             4.
+@07  TIPO_SITUACAO_REG       1.
+@08  COD_UPA                 9.
+@17  NUM_DOM                 2.
+@19  NUM_UC                  1.
+@20  QUADRO                  2.
+@22  SEQ                     2.
+@24  V9001                   7.
+@31  V9002                   2.
+@33  V9005                   4.  
+@37  V8000                   10.2
+@47  V9010                   2.  
+@49  V9011                   2.  
+@51  V9012                   1.  
+@52  V1904                   10.2 
+@62  V1905                   1.  
+@63  DEFLATOR                12.10
+@75  V8000_DEFLA             10.2
+@85  V1904_DEFLA             10.2
+@95  COD_IMPUT_VALOR         1.
+@96  COD_IMPUT_QUANTIDADE    1.  
+@97  FATOR_ANUALIZACAO       2.
+@99  PESO                    14.8
+@113 PESO_FINAL              14.8
+@127 RENDA_TOTAL             10.2 
+@137 V9004                   5.;
+run;
+
+
+/* [1] Anualização e expansão dos valores utilizados para a obtenção dos resultados
+    (variável V8000_defla). 
+ 
+     a) Para anualizar, utilizamos o quesito "fator_anualizacao". No caso específico 
+     dos quadros 10 e 19, cujas informações se referem a valores mensais, utilizamos
+     também o quesito V9011 (número de meses).
+     Os valores são anualizados para depois se obter uma média mensal.
+
+     b) Para expandir, utilizamos o quesito "peso_final".
+
+     c) Posteriormente, o resultado é dividido por 12 para obter a estimativa mensal. 
+ 
+  [2] Filtrando somente as informações Não Monetárias */ 
+
+
+data desp_coletiva;
+set despesa_coletiva;
+
+codigo = int(V9001/100);
+
+if quadro in(10,19) then valor_mensal=(V8000_DEFLA*V9011*fator_anualizacao*peso_final)/12;
+else valor_mensal=(V8000_DEFLA*fator_anualizacao*peso_final)/12; /*[1]*/
+
+if V9002 >= 7; /*[2]*/
+
+run;
+
+
+/* Leitura do REGISTRO - CADERNETA COLETIVA */ 
+
+data caderneta_coletiva;
+INFILE ".....\CADERNETA_COLETIVA.txt";
+INPUT
+@01  UF                      2.
+@03  ESTRATO_POF             4.
+@07  TIPO_SITUACAO_REG       1.
+@08  COD_UPA                 9.
+@17  NUM_DOM                 2.
+@19  NUM_UC                  1.
+@20  QUADRO                  2.
+@22  SEQ                     3.
+@25  V9001                   7.
+@32  V9002                   2.
+@34  V8000                   10.2
+@44  DEFLATOR                12.10
+@56  V8000_DEFLA             10.2
+@66  COD_IMPUT_VALOR         1.
+@67  FATOR_ANUALIZACAO       2.
+@69  PESO                    14.8
+@83  PESO_FINAL              14.8
+@97  RENDA_TOTAL             10.2 
+@107 V9005                   9.3 
+@116 V9007                   4. 
+@120 V9009                   5. 
+@125 QTD_FINAL               9.3 
+@134 V9004                   5.;
+run;
+
+
+/* [1] Anualização e expansão dos valores utilizados para a obtenção dos resultados 
+  (variável V8000_defla). 
+
+   a) Para anualizar, utilizamos o quesito "fator_anualizacao". Os valores são
+   anualizados para depois se obter uma média mensal.
+
+   b) Para expandir, utilizamos o quesito "peso_final".
+
+   c) Posteriormente, o resultado é dividido por 12 para obter a estimativa mensal. 
+
+
+   [2] Filtrando somente as informações Não Monetárias */  
+
+
+data cad_coletiva;
+set caderneta_coletiva;
+
+codigo = int(V9001/100);
+
+valor_mensal=(V8000_DEFLA*fator_anualizacao*peso_final)/12; /*[1]*/
+
+
+if V9002 >= 7; /*[2]*/
+
+run;
+
+
+/* Leitura do REGISTRO - DESPESA INDIVIDUAL */
+
+data despesa_individual;
+INFILE ".....\DESPESA_INDIVIDUAL.txt";
+INPUT
+@01  UF                      2.
+@03  ESTRATO_POF             4.
+@07  TIPO_SITUACAO_REG       1.
+@08  COD_UPA                 9.
+@17  NUM_DOM                 2.
+@19  NUM_UC                  1.
+@20  COD_INFORMANTE          2. 
+@22  QUADRO                  2.
+@24  SEQ                     2.
+@26  V9001                   7.
+@33  V9002                   2.
+@35  V8000                   10.2
+@45  V9010                   2.  
+@47  V9011                   2.  
+@49  V9012                   1.  
+@50  V4104                   1.  
+@51  V4105                   1.  
+@52  DEFLATOR                12.10
+@64  V8000_DEFLA             10.2
+@74  COD_IMPUT_VALOR         1.
+@75  FATOR_ANUALIZACAO       2.
+@77  PESO                    14.8
+@91  PESO_FINAL              14.8
+@105 RENDA_TOTAL             10.2 
+@115 V9004                   5.;
+run;
+
+
+/* [1] Anualização e expansão dos valores utilizados para a obtenção dos resultados 
+    (variável V8000_defla). 
+
+     a) Para anualizar, utilizamos o quesito "fator_anualizacao". No caso específico 
+     dos quadros 44, 47, 48, 49 e 50, cujas informações se referem a valores mensais, 
+     utilizamos também o quesito V9011 (número de meses).
+     Os valores são anualizados para depois se obter uma média mensal.
+
+     b) Para expandir, utilizamos o quesito "peso_final".
+
+     c) Posteriormente, o resultado é dividido por 12 para obter a estimativa mensal. 
+
+
+    [2] Filtrando somente as informações Não Monetárias */ 
+
+
+
+data desp_individual;
+set despesa_individual;
+
+codigo = int(V9001/100);
+
+if quadro in(44,47,48,49,50) then valor_mensal=(V8000_DEFLA*V9011*fator_anualizacao*peso_final)/12;
+else valor_mensal=(V8000_DEFLA*fator_anualizacao*peso_final)/12; /*[1]*/
+
+if V9002 >= 7; /*[2]*/
+
+run;
+
+
+/* Junção dos registros, quem englobam os valores não monetários */
+
+data junta_nao_monet;
+set desp_coletiva cad_coletiva desp_individual;
+run; 
+
+
+/* Somas dos valores não monetários por Unidade de Consumo */
+
+proc sort data=junta_nao_monet;
+by cod_upa num_dom num_uc;
+run;
+
+proc means noprint data=junta_nao_monet;
+by cod_upa num_dom num_uc;
+var valor_mensal;
+output out= parte1(drop = _type_ _freq_) sum = soma_nao_monet;
+run;
+
+
+
+
+/* Parte 2 - Para cada Unidade de Consumo (UC), subtrair do valor referente 
+ao código 00101 (Aluguel Estimado) a soma dos valores das despesas monetárias 
+(quando o quesito Forma de Aquisição (V9002) for de 1 a 6) referentes aos seguintes códigos:
+
+Códigos do quadro 8 – 8001 a 8024,  8026 a 8068 e  8999
+Códigos do quadro 10 – 10006 e 10011
+Códigos do quadro 12 – 12005 a 12008, 12010 a 12015, 12017 a 12020, 12023 a 12025, 
+12027 a 12036  e 12999
+
+Só considerar quando a diferença entre o Aluguel Estimado e a soma desses códigos
+for maior que 0. */
+
+
+
+/* Leitura do REGISTRO - ALUGUEL ESTIMADO */
+
+data aluguel_estimado;
+INFILE ".....\ALUGUEL_ESTIMADO.txt";
+INPUT
+@01  UF                      2.
+@03  ESTRATO_POF             4.
+@07  TIPO_SITUACAO_REG       1.
+@08  COD_UPA                 9.
+@17  NUM_DOM                 2.
+@19  NUM_UC                  1.
+@20  QUADRO                  2.
+@22  V9001                   7.
+@29  V9002                   2.
+@31  V8000                   10.2
+@41  V9010                   2.
+@43  V9011                   2.      
+@45  DEFLATOR                12.10
+@57  V8000_DEFLA             10.2
+@67  COD_IMPUT_VALOR         1.
+@68  FATOR_ANUALIZACAO       2.
+@70  PESO                    14.8
+@84  PESO_FINAL              14.8
+@98  RENDA_TOTAL             10.2 ;
+run;
+
+
+/*  Anualização e expansão dos valores utilizados para a obtenção dos resultados 
+    (variável V8000_defla). 
+
+    a) Para anualizar, utilizamos o quesito "fator_anualizacao". Neste registro, 
+    cujas informações se referem a valores mensais de alugueis, utilizamos também
+    o quesito V9011 (número de meses). 
+    Os valores são anualizados para depois se obter uma média mensal.
+
+    b) Para expandir, utilizamos o quesito "peso_final".
+
+    c) Posteriormente, o resultado é dividido por 12 para obter a estimativa mensal. */
+
+
+data alu_estimado;
+set aluguel_estimado;
+codigo = int(V9001/100);
+
+valor_mensal=(V8000_DEFLA*V9011*peso_final)/12;
+
+run;
+
+
+/* Somas dos valores de Aluguel Estimado por Unidade de Consumo */
+
+proc sort data=alu_estimado;
+by cod_upa num_dom num_uc;
+run;
+
+proc means noprint data=alu_estimado;
+by cod_upa num_dom num_uc;
+var valor_mensal;
+output out=aluguel_estimado(drop=_type_ _freq_) sum = soma1;
+run;
+
+
+
+/* Soma dos códigos dos quadros 8, 10 e 12 descritos na introdução da Parte 2,
+segundo cada Unidade de Consumo */ 
+
+data codigos_subtracao;
+set despesa_coletiva;
+
+codigo = int(V9001/100);
+
+if V9002 <= 6;
+
+if (8001 <= codigo <= 8024)
+or (8026 <= codigo <= 8068)
+or codigo = 8999
+or codigo = 10006
+or codigo = 10011
+or (12005 <= codigo <=12008)
+or (12010 <= codigo <=12015)
+or (12017 <= codigo <=12020)
+or (12023 <= codigo <=12025)
+or (12027 <= codigo <=12036)
+or codigo = 12999;
+
+if quadro = 10 then valor_mensal=(V8000_DEFLA*V9011*fator_anualizacao*peso_final)/12;
+else valor_mensal=(V8000_DEFLA*fator_anualizacao*peso_final)/12;
+
+run;
+
+proc sort data=codigos_subtracao;
+by cod_upa num_dom num_uc;
+run;
+
+proc means noprint data=codigos_subtracao;
+by cod_upa num_dom num_uc;
+var valor_mensal;
+output out=cod_subtracao(drop=_type_ _freq_) sum = soma2;
+run;
+
+
+/* Calculando a diferença entre o valor do Aluguel Estimado e a
+soma dos códigos dos quadros 8, 10 e 12 descritos na introdução da Parte 2,
+segundo cada Unidade de Consumo */ 
+
+data parte2 (keep = cod_upa num_dom num_uc dif);
+merge aluguel_estimado cod_subtracao;
+by cod_upa num_dom num_uc;
+if soma1 = . then soma1 = 0;
+if soma2 = . then soma2 = 0;
+
+dif = soma1 - soma2;
+if dif > 0; 
+run;
+
+
+
+/* Somando os valores obtidos nas partes 1 e 2 */
+
+data merge_duas_partes ;
+merge parte1 parte2;
+by cod_upa num_dom num_uc;
+if soma_nao_monet = . then soma_nao_monet = 0;
+if dif = . then dif = 0;
+soma = soma_nao_monet + dif;
+run;
+
+proc means noprint data= merge_duas_partes;
+var soma;
+output out=soma_final (drop = _type_ _freq_) sum = soma_final;
+run; 
+
+
+/*Criação da variável a=1 que será utilizada posteriomente para 
+juntar com arquivo de número de unidades de consumo (familias) expandido */
+
+data soma_final;
+set soma_final;
+a = 1;
+run;
+
+
+/* Leitura do REGISTRO - MORADOR, necessário para o cálculo do número de UC's expandido.
+Vale ressaltar que este é o único registro dos microdados que engloba todas as UC's */
+
+data morador;
+INFILE ".....\morador.txt";
+INPUT
+@01  UF                      2.
+@03  ESTRATO_POF             4.
+@07  TIPO_SITUACAO_REG       1.
+@08  COD_UPA                 9.
+@17  NUM_DOM                 2.
+@19  NUM_UC                  1.
+@20  COD_INFORMANTE          2.
+@22  V0306                   2.
+@24  V0401                   1.
+@25  V04021                  2.
+@27  V04022                  2.
+@29  V04023                  4.
+@33  V0403                   3.
+@36  V0404                   1.
+@37  V0405                   1.
+@38  V0406                   1.
+@39  V0407                   1.
+@40  V0408                   1.
+@41  V0409                   2.
+@43  V0410                   1.
+@44  V0411                   2.
+@46  V0412                   1.
+@47  V0413                   1.
+@48  V0414                   1.
+@49  V0415                   1.
+@50  V0416                   1.
+@51  V041711                 1.
+@52  V041712                 1.
+@53  V041721                 1.
+@54  V041722                 1.
+@55  V041731                 1.
+@56  V041732                 1.
+@57  V041741                 1.
+@58  V041742                 1.
+@59  V0418                   1.
+@60  V0419                   2.
+@62  V0420                   1.
+@63  V0421                   1.
+@64  V0422                   2.
+@66  V0423                   1.
+@67  V0424                   1.
+@68  V0425                   2.
+@70  V0426                   1.
+@71  V0427                   1.
+@72  V0428                   1.
+@73  V0429                   2.
+@75  V0430                   1.
+@76  ANOS_ESTUDO             2.
+@78  PESO                    14.8
+@92  PESO_FINAL              14.8
+@106 RENDA_TOTAL             10.2
+@116 NIVEL_INSTRUCAO         1.
+@117 RENDA_DISP_PC           20.10
+@137 RENDA_MONET_PC          20.10
+@157 RENDA_NAO_MONET_PC      20.10
+@177 DEDUCAO_PC              20.10 ;
+run;
+
+
+
+/* Extraindo todas as UC's do arquivo de morador */
+
+proc sort nodupkey data=morador; /* A partir da ordenação do arquivo de morador,
+mantém apenas uma vez a "chave" cod_upa num_dom num_uc no arquivo de saída.*/                     
+by cod_upa num_dom num_uc;
+run;
+
+
+/* Calculando o número de UC's expandido */
+/* A cada domicílio é associado um peso_final e este é
+também associado a cada uma de suas unidades de consumo */
+/* Portanto, o total de unidades de consumo (familias) expandido, 
+é o resultado da soma dos pesos_finais a elas associados */
+
+proc means noprint data=morador;
+var peso_final;
+output out=n_familia(drop=_type_ _freq_) sum=soma_familia;
+run;
+
+
+/* Criação da variável a=1 que será utilizada posteriomente para juntar
+com o arquivo anterior */
+
+data n_familia;
+set n_familia;
+a = 1;
+run;
+
+
+/* Calculando o rendimento não monetário médio mensal (resultado final) */
+
+data renda_nao_monet ; 
+merge soma_final n_familia;
+by a;
+media = soma_final / soma_familia;
+format media 20.2;
+run;
