@@ -1,6 +1,6 @@
 
 <p align="center">
-  <img width="500" height="300" src="https://github.com/felipeduplat/Thesis/blob/main/img/000.png">
+  <img width="400" height="250" src="https://github.com/felipeduplat/Thesis/blob/main/img/000.png">
 </p>
 
 # master-thesis
