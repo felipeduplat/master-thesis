@@ -50,7 +50,14 @@ Texto.
 Texto. 
 
 <p align="center">
-  <img width="500" height="400" src="https://github.com/felipeduplat/Thesis/blob/main/img/003.png">
+  <img width="400" height="300" src="https://github.com/felipeduplat/Thesis/blob/main/img/003.png">
 </p>
+
+
+
+<!-- Bloco 03 - contribuições -->
+## :mailbox_with_mail: Contribuições 
+
+Dúvidas, sugestões e críticas podem ser direcionadas ao meu e-mail (duplat.f@gmail.com).
 
 
