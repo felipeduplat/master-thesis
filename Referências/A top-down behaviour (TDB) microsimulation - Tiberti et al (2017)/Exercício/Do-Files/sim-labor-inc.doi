@@ -1,0 +1,216 @@
+* sim-labor-inc.doi
+
+* start: wages for unskilled and skilled workers ------------------------------
+
+
+* iterate over skills (0=unskilled; 1=skilled)
+forvalues s = 0(1)1 {
+
+  preserve 
+  
+  keep if skilled_sim`i'==`s'
+  gen salaried_sim`i'=(worker_sim`i'==1)
+
+  * Heckman selection model
+  xi: heckman ln_wage_`s' gender hh_head i.region age_sim0 age2_sim0 education, ///
+    select(salaried_sim0=married age_sim0 gender i.region n_children)
+
+  * save standard errors of residuals
+  global sigw_`s' = e(sigma)
+
+  * predict log wage
+  * option ycond = E(y | y observed)
+  predict lnwage_fitted_`s'_sim`i', ycond
+
+  * generate residuals for individuals with observed wage 
+  gen res_`s'=ln_wage_`s' - lnwage_fitted_`s'_sim`i' if e(sample)
+
+  * generate residuals for individuals without (unobserved) wage -- draw randomly from
+  * a normal distribution with the relevant (skilled or unskilled) observed variance
+  replace res_`s' = invnorm(runiform())*$sigw_`s' if ln_wage_`s'==.
+
+  * convert ln wages to level values
+  gen wage_`s'_fitted_sim`i' = exp(lnwage_fitted_`s'_sim`i' + res_`s')
+  gen wage_`s' = exp(ln_wage_`s')
+
+  * wage changes
+  * chng_wage_1 = change in wage for skilled workers
+  * chng_wage_0 = change in wage for unskilled workers
+  if `s'==0 {
+    scalar 	chng_wage_`s' = chng_wage_sim`i'[1, 2]
+  }
+  
+  if `s'==1 {
+    scalar 	chng_wage_`s' = chng_wage_sim`i'[1, 1]
+  }
+
+  * assign fitted wages for individuals with missing wage
+  replace wage_`s'=wage_`s'_fitted_sim`i' if worker_sim0==1 & wage_`s'==.
+  gen wage_`s'_hat=0 if worker_sim0==1 & worker_sim`i'!=1
+
+  * initialize the simulated wage
+  replace wage_`s'_hat = wage_`s'_fitted_sim`i' if worker_sim0==1 & worker_sim`i'==1
+  replace wage_`s'_hat = wage_`s'_fitted_sim`i' if worker_sim0!=1 & worker_sim`i'==1
+  replace wage_`s' = 0 if wage_`s'==. | wage_`s'==1
+  replace wage_`s'_hat = 0 if wage_`s'_hat==. | wage_`s'_hat==1
+
+  gen wage_`s'_sim`i' = wage_`s' if worker_sim0==1 & worker_sim`i'==1
+  replace wage_`s'_sim`i'=wage_`s'_hat if worker_sim0!=1 & worker_sim`i'==1
+
+  * compute the average wages in sim`k' and in sim`i' and save them
+  sum wage_`s' [aw=wgt09_sim`k'] if worker_sim0==1 & wage_`s'>1
+  scalar imean = r(mean)
+  
+  sum wage_`s'_sim`i' [aw=wgt09_sim`i'] if worker_sim`i'==1 & wage_`s'_sim`i'>1
+  scalar ffmean = r(mean)
+  
+  
+  * calibrate the change of wages of all workers in skill `s'
+  * Note: if less productive people move out between 0 and `i', even if macro 
+  * changes in wages are positive we might be forced to downward adjust wages of
+  * workers in time `i', so that some individuals wage might be lower than that 
+  * observed in time 0 --> generating delta<0
+  global agwage = (1+chng_wage_`s')*(imean/ffmean)
+  replace wage_`s'_sim`i'=wage_`s'_sim`i'*$agwage
+  sum wage_`s'_sim`i' [aw=wgt09_sim`i'] if worker_sim`i'==1 & wage_`s'_sim`i'>1
+
+  * compute the absolute change in wage
+  gen delta_`s' = wage_`s'_sim`i' - wage_`s'
+  replace delta_`s' = 0 if delta_`s'==.
+  replace delta_`s' = -wage_`s' if worker_sim0==1 & worker_sim`i'!=1
+
+  * sum wage changes of all household members and collapse to one observation 
+  * per household
+  collapse(sum) delta_`s', by(hhid)
+  save "..\Output\wage_after`s'.dta", replace
+  
+  restore
+
+}
+
+* merge delta in wages for skilled and unskilled together
+use "..\Output\wage_after0.dta", clear
+merge 1:1 hhid using "..\Output\wage_after1.dta"
+drop _merge
+
+* changes in wages at the household level
+egen delta_hh_wage_sim`i'_`t'=rsum(delta_1 delta_0)
+save "..\Output\wage_after_sim`i'.dta", replace
+
+
+* end: wages for unskilled and skilled workers --------------------------------
+
+
+
+
+* start: profits for non-agricultural self-employed and farmers ---------------
+
+* iterate over occupational categories
+* non-agricultural self-employed (e=2) and farmers (e=3)
+forvalues e = 2(1)3 {
+
+  * load the (individual level) datasets with new occupational status 
+  * (skilled and unskilled)
+  use "..\Output\skilled0_sim`i'.dta", clear
+  append using "..\Output\skilled1_sim`i'.dta"
+
+  * "collapse" to a household level dataset
+  collapse n_worker`e'_1_sim`i' n_worker`e'_0_sim`i', by(hhid)
+  replace n_worker`e'_1_sim`i'=0 if n_worker`e'_1_sim`i'==.
+  replace n_worker`e'_0_sim`i'=0 if n_worker`e'_0_sim`i'==.
+
+  merge 1:m hhid using "..\Raw-Data\Uganda2009.dta"
+  drop _merge
+  *for simplicity, just keep 1 observation per household
+
+  keep hhid hheduc gender_hh region urban n_worker`e'_sim* n_worker`e'_1_sim* n_worker`e'_0_sim* ln_hhwork_`e'_sim* ln_hhwork_`e'_1_sim* ln_hhwork_`e'_0_sim* rev_`e'_tot_0 ln_rev_`e'_tot_0 ln_inp_2_tot_0 hsize fem_ratio mage wgt09_sim0 wgt09*
+  ds hhid, not 
+  collapse `r(varlist)', by(hhid)
+
+  * estimate farmer profit function (Cobb-Douglas production function)
+  regress ln_rev_`e'_tot_0 urban i.region gender_hh hheduc ln_hhwork_`e'_1_sim0 ln_hhwork_`e'_0_sim0 [aw=wgt09_sim0*hsize] ///
+    if rev_`e'_tot>0 & rev_`e'_tot!=.
+
+  /* with instrumental variables
+  tab region, gen(region_)
+  ivreg2 ln_rev_`e'_tot urban region_ gender_hh hheduc ln_hhwork_`e'_1_sim0 (ln_hhwork_`e'_0_sim0=hsize mage) [aw=wgt09_sim0*hsize] if rev_`e'_tot>0 & rev_`e'_tot!=., first endogtest(ln_hhwork_`e'_0_sim0)
+  */
+
+  * predict the ln revenue
+  predict ln_rev_`e'_hat_0
+
+  * generate residuals for those where wage is observed
+  predict res`e' if e(sample), r
+  * save standard error of residuals
+  gen sigw = sqrt(r(Var))
+
+
+  * generate residuals for those where self-employment revenues are not observed
+  * - draw randomly from a normal distribution with the relevant (skilled or 
+  * unskilled) observed variance
+  replace res`e' = invnormal(runiform())*sigw if rev_`e'_tot_0==. | rev_`e'_tot_0==0
+
+  * replace the number of working hh members with new numbers 
+  replace ln_hhwork_`e'_1_sim0 = ln(n_worker`e'_1_sim`i') if n_worker`e'_1_sim`i'!=n_worker`e'_1_sim0
+  replace ln_hhwork_`e'_1_sim0 = 0 if ln_hhwork_`e'_1_sim0==.
+  replace ln_hhwork_`e'_0_sim0 = ln(n_worker`e'_0_sim`i') if n_worker`e'_0_sim`i'!=n_worker`e'_0_sim0
+  replace ln_hhwork_`e'_0_sim0 = 0 if ln_hhwork_`e'_0_sim0==.
+
+  * predict estimated revenues and change with zero if missing (revenues or workers)
+  predict ln_rev_`e'_hat
+  gen rev_`e'_hat = exp(ln_rev_`e'_hat+res`e')
+  replace rev_`e'_tot = 0 if rev_`e'_tot_`k'==.
+  replace rev_`e'_hat = 0 if rev_`e'_hat==.
+  replace n_worker`e'_sim0 = 0 if n_worker`e'_sim0==.
+
+  * generate the output per worker - as the CGE provides the remuneration rate per worker
+  egen n_worker`e'_sim`i' = rsum(n_worker`e'_1_sim`i' n_worker`e'_0_sim`i')
+  replace rev_`e'_tot_`k' = 0 if rev_`e'_tot_`k'==. | rev_`e'_tot_`k'==1
+  replace rev_`e'_hat = 0 if rev_`e'_hat==. | rev_`e'_hat==1
+  gen revpw_`e'_0 = rev_`e'_tot_`k'/n_worker`e'_sim0
+  gen revpw_`e'_hat_`i' = rev_`e'_hat/n_worker`e'_sim`i'
+  replace revpw_`e'_hat_`i' = 0 if revpw_`e'_hat_`i'==. | revpw_`e'_hat_`i'==1
+  replace revpw_`e'_0 = 0 if revpw_`e'_0==. | revpw_`e'_0==1
+
+  * define the change of revenue for sectors 2 and 3 as scalars
+  if `e'==2 {
+    scalar 	chng_revse_`e' = chng_revse_sim`i'[1, 1]
+  }
+  
+  if `e'==3 {
+    scalar 	chng_revse_`e' = chng_revse_sim`i'[1, 2]
+  }
+
+  * estimate the average revenues at `k' and `i'
+  * note: individuals with zero income are excluded
+  sum revpw_`e'_`k' [aw=wgt09_sim`k'*hsize] if n_worker`e'_sim0>0 & revpw_`e'_0>1
+  scalar imean=r(mean)
+  gen revpw_`e'_`i'=revpw_`e'_0 if (n_worker`e'_sim0==n_worker`e'_sim`i') & n_worker`e'_sim0>0
+  replace revpw_`e'_`i'=revpw_`e'_hat_`i' if (n_worker`e'_sim0!=n_worker`e'_sim`i')
+
+  * Note: if less productive people move out between 0 and `i', even if macro changes in reveues are positive
+  * we might be forced to downward adjust revenues in time `i', so that some revenue might be lower than that observed in time 0-->generating delta<0)
+  sum revpw_`e'_`i' [aw=wgt09_sim`i'*hsize] if n_worker`e'_sim`i'>0 & revpw_`e'_`i'>1
+  scalar fmean=r(mean)
+  global agwage=(1+chng_revse_`e')*(imean/fmean)
+  replace revpw_`e'_`i' = revpw_`e'_`i'*$agwage
+  sum revpw_`e'_`i' [aw=wgt09_sim`i'*hsize] if n_worker`e'_sim`i'>0 & revpw_`e'_`i'>1
+
+  * generate the household revenue
+  gen rev`e'_`i' = revpw_`e'_`i'*n_worker`e'_sim`i'
+
+  * estimate the change between `i' and `k'
+  gen delta_`e'_sim`i'_`t' = rev`e'_`i' - rev_`e'_tot_`k'
+  replace delta_`e'_sim`i'_`t'=0 if delta_`e'_sim`i'_`t'==.
+
+  keep hhid delta_`e'_sim`i'_`t'
+  save "..\Output\rev`e'_sim`i'.dta", replace
+
+  
+}
+
+
+* end: profits for non-agricultural self-employed and farmers -----------------  
+
+
+

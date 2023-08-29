@@ -1,0 +1,1 @@
+Before running the codes, it is highly suggested to read section 3 of the Manual ("A top-down with behaviour (TDB) microsimulation toolkit for distributive analysis: a manual").

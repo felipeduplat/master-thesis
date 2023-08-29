@@ -1,0 +1,233 @@
+* sim-ocup.doi
+
+* initialize ocuppational categories and skills for t=i using t=i-1=k
+* in this case, k=0 is hard-coded
+gen worker_sim`i'  = worker_sim0
+gen skilled_sim`i' = skilled_sim0
+
+* iterate over skills (0=unskilled; 1=skilled)
+forvalues s=0(1)1 {
+
+  * iterate over occupational categories 
+  * (e=1 for wage workers; e=2 for non-agricultural self-employed; e=3 for farmers; e=4 for not working)
+  forvalues e = 1(1)3 {
+
+
+  * start: transform matrix with shocks as shares in percentage changes
+  * note: not needed if shocks in scen-defn-sim.doi are expressed as percentage changes
+
+  
+/*  
+    tabulate worker_sim0 [iw=wgt09_sim0] if skilled_sim0==`s' & worker_sim0!=.
+    local tot_force_sim0 = r(N)
+
+    tabulate worker_bau`i' [iw=wgt09_sim`i'] if skilled_bau`i'==`s' & worker_bau`i'!=.
+    local tot_force_bau`i' = r(N)
+
+    scalar 	chng_`s'`e' =  ((`empl_sh_`s'_bau`i'_`e''*`tot_force_bau`i'')/(`empl_sh_`s'_sim0_`e''*`tot_force_sim0'))-1
+*/    
+
+  * end: transform matrix with shocks as shares in percentage changes
+
+
+    * start: compute population growth
+    
+    tabulate worker_sim0 [iw=wgt09_sim0] if worker_sim0==`e' & skilled_sim0==`s'
+    local abs_0 = r(N)
+
+    tabulate worker_sim`i' [iw=wgt09_sim`i'] if worker_sim`i'==`e' & skilled_sim`i'==`s'
+    local abs_`i' = r(N)
+
+    local diff_`i' = (`abs_`i''/`abs_0')-1
+    
+    * end: compute population growth
+    
+    
+    * substract population growth 
+    scalar chng_`s'`e' =  empl_sh_`s'_sim`i'[1, `e'] - `diff_`i''
+
+  }
+
+}
+
+
+
+
+* iterate over skills (0=unskilled; 1=skilled)
+forvalues s = 0(1)1 {
+
+  * estimate multinomial logit for occupational category
+  include estimate-ocup.doi
+
+
+  * job queuing 
+  * for each occupational category, sort individuals according to their 
+  * estimated probability  
+
+  * iterate over occupational categories   
+  forvalues e = 1(1)3 {
+
+    * the procedure to single out individuals that change their ocuppational 
+    * category is different depending on whether the change is positive or
+    * negative; thus, two cases are considered
+  
+  
+    *--- start: case 1 - if decrease in occupational category `e'
+
+    * if employment in "e" decreases by "chng_s_e" ("n" people), replace the
+    * employment status with 4 for the "n" people employed in this sector 
+    * AND with the lowest probability of being employed in this sector
+    if chng_`s'`e'	<= 0 {
+      display as text "change for s=`s' and e=`e' is <=0"
+      
+      * estimate change% (jobs lost) in status `e' wrt the worker status in 
+      * sim`i' (with the population weight in sim`i')
+      tabulate worker_sim0 [iw=wgt09_sim0] if worker_sim0==`e' & skilled_sim0==`s'
+      local perc = abs(chng_`s'`e')/100
+
+      * identify the percentile of the probability (as predicted above) 
+      * corresponding to the change% just estimated, amongst (un)skilled workers in sector `e'
+      centile pr`e' if worker_sim0==`e' & skilled_sim`i'==`s', centile(`perc')
+
+      * replace with 4 (as there is a job lose) the worker status to workers 
+      * showing a probability lower than the one identified by the centile
+      replace worker_sim`i'=4 if ((pr`e'<=r(c_1) & pr`e'!=.) & (worker_sim0==`e')) & skilled_sim`i'==`s'
+
+      * ONLY for negative changes: generate a variable identifying individuals 
+      * moving from employment status 1 to employment 4 - to be used later
+      gen migr_`e'4=(worker_sim0==`e' & worker_sim`i'==4) & skilled_sim`i'==`s'
+
+    }
+    
+    
+    *--- end: case 1 - if decrease in occupational category `e'
+
+    
+    *--- start: case 2 - if increase in occupational category `e'
+
+    * if employment in `e' increases by "chng_s_e" ("n" people), replace the
+    * employment status with 1 for the "n" people not employed in this sector
+    * AND with the highest probability of being employed in this sector
+    if chng_`s'`e' 	> 0 {
+      display as text "change for s=`s' and e=`e' is >0"
+ 
+      * estimate the change% (new jobs) in status `e' wrt worker status in 
+      * sim0 with the population weight in sim0
+      tabulate worker_sim0 [iw=wgt09_sim0] if worker_sim0==`e' & skilled_sim0==`s'
+      local absolute_change = r(N)*abs(chng_`s'`e')
+      tabulate worker_sim0 [iw=wgt09_sim0] if worker_sim`i'!=`e' & worker_sim`i'!=. & skilled_sim`i'==`s'
+      local perc = (r(N) - `absolute_change') / r(N) * 100
+
+      * identify the percentile of the probability (as predicted above) 
+      * corresponding to the % change as just estimated, amongst (un)skilled 
+      * people who did not work in `e'
+      centile pr`e' if worker_sim0!=`e' & worker_sim0!=. & skilled_sim`i'==`s', centile(`perc')
+ 
+      * replace with `e' the status of (un)skilled people who did not work in 
+      * `e', showing a probability higher than the one identified by the centile
+      replace worker_sim`i'=`e' if pr`e'>=r(c_1) & worker_sim0!=`e' & worker_sim0!=. & pr`e'!=. & skilled_sim`i'==`s'
+    }
+
+    *--- end: case 2 - if increase in occupational category `e'
+
+  }
+
+  
+  * final adjustments necessary to satisfy macro changes
+  * we have first left people adjusting across working categories (1,2,3) 
+  * according to their utility (as done above) and then we search among 
+  * non-working people to fill the remaining jobs which are needed to satisfy 
+  * the macro changes
+  
+  * iterate over occupational categories   
+  forvalues e = 1(1)3 {
+  
+    * estimate the absolute number of changes based on the new occupational 
+    * status and then the difference needed to satisfy the macro results
+    tabulate worker_sim0 [iw=wgt09_sim0] if skilled_sim0==`s' & worker_sim0==`e'
+    local tot_force_sim0_`e'=r(N)
+    
+    tabulate worker_sim`i' [iw=wgt09_sim0] if skilled_sim`i'==`s' & worker_sim`i'==`e'
+    local tot_force_sim`i'_`e'=r(N)
+    
+    scalar 	chng_`s'`e'_abs = `tot_force_sim0_`e''*(1+chng_`s'`e') - `tot_force_sim`i'_`e''
+  }
+
+
+  * for each working occupational choices (e=1,2,3) allow exceeding (missing) 
+  * workers to move towards (from) non-working (working) status
+  
+  * iterate over occupational categories   
+  forvalues e = 1(1)3 {
+  
+  
+   * case 1 - exceeding workers in sector `e'
+    if (chng_`s'`e'_abs < 0) {
+    
+      * define the "exceeding workers" rate and use (100-) this rate to identify
+      * the percentile of probabilities. Again, such an approach is followed to 
+      * select workers moving out of sector `e'
+      tab worker_sim`i' [iw=wgt09_sim0] if worker_sim`i'==`e' & skilled_sim`i'==`s'
+      local perc = 100 - ((r(N)+chng_`s'`e'_abs)*100/r(N))
+      centile pr`e' if worker_sim`i'==`e' & skilled_sim`i'==`s', centile(`perc')
+      replace worker_sim`i'=4 if pr`e'<r(c_1) & pr`e'!=. & skilled_sim`i'==`s' & worker_sim`i'==`e'
+    }
+    
+    
+    * case 2 - missing workers in sector `e'
+    if chng_`s'`e'_abs > 0 {
+
+      * define the "missing workers" rate and use this rate to identify the 
+      * percentile of probabilities. Again, such an approach is followed to 
+      * select workers moving to sector `e'
+      tabulate worker_sim`i' [iw=wgt09_sim0] if worker_sim`i'==4 & pmax`e'==1& skilled_sim`i'==`s'
+      local perc = (r(N)-chng_`s'`e'_abs)*100/r(N)
+      centile pr`e' if worker_sim`i'==4 & pmax`e'==1 & skilled_sim`i'==`s', centile(`perc')
+      replace worker_sim`i'=`e' if pr`e'>=r(c_1) & worker_sim`i'==4 & pr`e'!=. & pmax`e'==1 & skilled_sim`i'==`s'
+    }
+
+
+  }
+
+  * for the changes in self-employment revenues (which is estimated at the 
+  * household level), we need to aggregate new employment status in sectors 2 
+  * and 3 at the household level 
+
+
+  
+  preserve
+
+  keep if skilled_sim`i'==`s'
+  keep hhid pid worker_sim`i' skilled_sim`i'
+  
+  gen worker2_`s'_sim`i' = worker_sim`i'==2
+  gen worker3_`s'_sim`i' = worker_sim`i'==3
+  
+  sort hhid    
+  by hhid: egen n_worker2_`s'_sim`i' = total(worker2_`s'_sim`i')
+  by hhid: egen n_worker3_`s'_sim`i' = total(worker3_`s'_sim`i')
+  drop worker2_`s'_sim`i' worker3_`s'_sim`i'
+  save "..\Output\skilled`s'_sim`i'.dta", replace
+
+  restore
+
+
+}
+
+* we have now estimated the new employment statuses in sim`i' - we create a 
+* single dataset including skilled and unskilled workers and then merge to 
+* the original dataset
+use "..\Output\skilled0_sim`i'.dta", clear
+append using "..\Output\skilled1_sim`i'.dta"
+merge 1:1 hhid pid using "..\Raw-Data\Uganda2009.dta"
+drop _merge
+
+* show employment transition matrix and check the simulation results
+tabulate worker_sim0 worker_sim`i' 
+tabulate worker_sim0 worker_sim`i' if skilled_sim0==1
+tabulate worker_sim0 worker_sim`i' if skilled_sim0==0
+tabulate worker_sim`i' [iw=wgt09_sim`i'] if skilled_sim0==1
+tabulate worker_sim`i' [iw=wgt09_sim`i'] if skilled_sim0==0
+
+
+

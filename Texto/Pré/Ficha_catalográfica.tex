@@ -1,0 +1,50 @@
+
+%---------------------------------------------------------------------
+% FICHA CATALOGRÁFICA
+%---------------------------------------------------------------------
+
+% São duas opções possíveis: usar um PDF pronto ou usar o comando abaixo. Se quiser usar o PDF, basta inserir um arquivo .pdf na pasta "Pré" chamado "Ficha catalográfica". Caso queira usar o comando, basta editá-lo abaixo de acordo com suas necessidades e depois remover o .pdf da pasta "Pré".
+
+\newcommand{\PalavraschaveTexto}{Palavra 01. Palavra 02. Palavra 03.}
+
+\newcommand{\insereFichaCatalografica}{ 
+		\IfFileExists{Pré/Ficha catalográfica.pdf}
+		{\includepdf[pages=-]{Pré/Ficha catalográfica.pdf}}
+		{
+			\begin{fichacatalografica}%\color{blue}
+			\vspace*{\fill}					% Posição vertical
+			\hrule							% Linha horizontal
+			\begin{center}					% Minipage Centralizado
+				\begin{minipage}[c]{12.5cm}		% Largura
+					
+					Luz, Felipe Duplat
+					
+					\hspace{0.5cm} \imprimirtitulo  / \imprimirautor. --
+					\imprimirlocal, \imprimirdata.
+					
+					\hspace{0.5cm} \pageref{LastPage} p. : il. color \\
+					
+					\hspace{0.5cm} \imprimirtipotrabalho (mestrado) - \imprimirinstituicao. \ImprimirProgramaPos, do \ImprimirSetor. \\ 
+					
+					\hspace{0.5cm} Orientador: \imprimirorientador \\
+					
+					\hspace{0.5cm} Coorientadora: \imprimircoorientadora \\
+					
+					\hspace{0.5cm} Defesa: \imprimirlocal, \imprimirdata. \\
+					
+					\begin{minipage}{.96\textwidth}
+						\hspace{0.5cm} 1. \PalavraschaveTexto. I. \imprimirinstituicao. \ImprimirSetor. \ImprimirProgramaPos. II. \imprimirorientador. III. \imprimircoorientadora. IV. \imprimirtitulo\\ 
+						
+						\hspace{92mm} CDU \imprimircdu \\
+					\end{minipage}
+				\end{minipage}
+			\end{center}
+			\hrule
+		\end{fichacatalografica}
+	}
+}
+
+\insereFichaCatalografica
+\cleardoublepage
+
+

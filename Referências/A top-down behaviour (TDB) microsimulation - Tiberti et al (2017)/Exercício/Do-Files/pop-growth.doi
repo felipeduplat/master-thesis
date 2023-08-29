@@ -1,0 +1,25 @@
+* pop-growth.doi
+
+* this do file shows how to change the population through static ageing
+* note: no need to run it; already included in Uganda data
+
+* in this case, it is assumed that population growth is 3%
+
+* generate categorical variables for regions
+* in Uganda there are 4 categories -> generate 4 dummy variables
+tabulate region, gen(iregion)
+
+* make a row matrix of population totals (by regions)
+
+* read from Excel
+preserve
+import excel using "Scen-Files\uga2010-base-defn.xlsx", sheet("pop") cellrange(A2) firstrow clear
+* each yr = one matrix
+forvalues i = 1(1)`yrnum' {
+  mkmat reg* if _n==`i', matrix(M`i')
+}
+restore  
+  
+forvalues r = 1(1)20 {
+  calibrate , marginals(iregion*) poptot(M`r') entrywt(wgt09_sim0) exitwt(wgt09_sim`r')
+}

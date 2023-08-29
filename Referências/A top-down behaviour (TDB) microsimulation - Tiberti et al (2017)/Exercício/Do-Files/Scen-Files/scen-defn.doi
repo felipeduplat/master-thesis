@@ -1,0 +1,62 @@
+* scen-defn.doi
+
+* to test:
+/*
+local scen = "base"
+local yrnum = 20
+
+clear all
+cd "C:\TDBmicrosim\Do-Files\Scen-Files"
+
+capture log close
+log using "tmp.log", replace
+*/
+
+
+*### changes in skilled employment ----------------------------------
+
+import excel using "Scen-Files\uga2010-`scen'-defn.xlsx", sheet("empl_sh_1_simT") cellrange(A4) firstrow clear
+* each yr = one matrix
+forvalues i = 1(1)`yrnum' {
+  mkmat emp* if _n==`i', matrix(empl_sh_1_sim`i')
+}
+
+*### changes in unskilled employment --------------------------------
+ 
+import excel using "Scen-Files\uga2010-`scen'-defn.xlsx", sheet("empl_sh_0_simT") cellrange(A4) firstrow clear
+* each yr = one matrix
+forvalues i = 1(1)`yrnum' {
+  mkmat emp* if _n==`i', matrix(empl_sh_0_sim`i')
+}
+
+*### changes in wages -----------------------------------------------
+
+import excel using "Scen-Files\uga2010-`scen'-defn.xlsx", sheet("chng_wage_simT") cellrange(A4) firstrow clear
+* each yr = one matrix
+forvalues i = 1(1)`yrnum' {
+  mkmat sk* if _n==`i', matrix(chng_wage_sim`i')
+}
+
+*### changes in self-employment income ------------------------------
+
+import excel using "Scen-Files\uga2010-`scen'-defn.xlsx", sheet("chng_revse_simT") cellrange(A4) firstrow clear
+* each yr = one matrix
+forvalues i = 1(1)`yrnum' {
+  mkmat self_emp* if _n==`i', matrix(chng_revse_sim`i')
+}
+
+*###  change in consumer prices (30 commodity categories) -----------
+
+import excel using "Scen-Files\uga2010-`scen'-defn.xlsx", sheet("chng_cons_p_simT") cellrange(A5) firstrow clear
+* each yr = one matrix
+forvalues i = 1(1)`yrnum' {
+  mkmat com* if _n==`i', matrix(chng_cons_p_sim`i')
+}
+
+
+matrix dir
+
+
+/*
+log close
+*/

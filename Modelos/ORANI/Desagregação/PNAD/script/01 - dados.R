@@ -39,17 +39,20 @@ SCN68 = read_excel("dados/auxiliares/SCN68.xlsx", sheet = 1)
 pnad_clean = pnad %>%
   left_join(SCN68, by = "v9907") %>%
   rename(peso  = v4732,
-         renda = v4719) %>%
+         renda = v4719,
+         rpc   = v4750) %>%
   filter(!v0401 %in% c(6:8)) %>%
   filter(!is.na(renda)) %>%
+  filter(!is.na(rpc)) %>%
   filter(renda != 999999999999) %>%
+  filter(rpc   != 999999999999) %>%
   mutate(id_fam    = paste0(v0101, uf, v0102, v0103),
          nqualif    = (v4803 %in% 0:4),
          semiqualif = (v4803 %in% 5:12),
          qualif     = (v4803 >= 13),
          across(where(is.logical), as.numeric)) %>%
   ungroup() %>%
-  select(peso, SCN68, renda, id_fam:qualif)
+  select(peso, SCN68, renda, rpc, id_fam:qualif)
 
 
 #--- LIMPAR RESÍDUO ---

@@ -23,7 +23,7 @@ pacman::p_load(tidyverse,
 path = "dados/POF 2008-2009/raw/- pof_08-09.zip"
 if (file.exists(path)) {print("POF 2008-2009 já baixada.")} else {
   curl_download("https://ftp.ibge.gov.br/Orcamentos_Familiares/Pesquisa_de_Orcamentos_Familiares_2008_2009/Microdados/Dados_20220413.zip",
-                "dados/POF 2008-2009/raw/pof_08-09.zip")
+                "dados/POF 2008-2009/raw/- pof_08-09.zip")
 }
 unzip(zipfile = "dados/POF 2008-2009/raw/- pof_08-09.zip", exdir = "dados/POF 2008-2009/raw/")
 
@@ -31,7 +31,7 @@ unzip(zipfile = "dados/POF 2008-2009/raw/- pof_08-09.zip", exdir = "dados/POF 20
 path = "dados/POF 2017-2018/raw/- pof_17-18.zip"
 if (file.exists(path)) {print("POF 2017-2018 já baixada.")} else {
   curl_download("https://ftp.ibge.gov.br/Orcamentos_Familiares/Pesquisa_de_Orcamentos_Familiares_2017_2018/Microdados/Dados_20230713.zip",
-                "dados/POF 2017-2018/raw/pof_17-18.zip")
+                "dados/POF 2017-2018/raw/- pof_17-18.zip")
 }
 unzip(zipfile = "dados/POF 2017-2018/raw/- pof_17-18.zip", exdir = "dados/POF 2017-2018/raw")
 

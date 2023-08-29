@@ -1,0 +1,111 @@
+* sim-hhd-inc.doi
+
+* compute total household income
+use "..\Output\wage_after_sim`i'.dta", clear
+merge 1:1 hhid using "..\Output\rev2_sim`i'.dta"
+drop _merge
+merge 1:1 hhid using "..\Output\rev3_sim`i'.dta"
+drop _merge
+
+* express changes in income in monthly terms 
+* note: monthly poverty line is used
+replace delta_hh_wage_sim`i' = delta_hh_wage_sim`i'/12
+replace delta_2_sim`i' = delta_2_sim`i'/12
+replace delta_3_sim`i' = delta_3_sim`i'/12
+
+* compute total change in household revenues from working activities
+egen delta_rev_sim`i'_`t' = rsum(delta_hh_wage_sim`i' delta_2_sim`i' delta_3_sim`i')
+
+keep hhid delta_rev_sim`i'_`t' delta_hh_wage_sim`i'_`t' delta_2_sim`i'_`t' delta_3_sim`i'_`t'
+save "..\Output\delta_rev_sim`i'_`t'.dta", replace
+
+
+* build database for poverty and distributive analysis
+
+* load raw database and merge with results database
+use "..\Raw-Data\Uganda2009.dta", clear
+merge m:1 hhid using "..\Output\delta_rev_sim`i'_`t'.dta"
+
+replace delta_rev_sim`i'_`t'=0 if delta_rev_sim`i'_`t'==.
+replace delta_hh_wage_sim`i'=0 if delta_hh_wage_sim`i'==.
+replace delta_2_sim`i'=0 if delta_2_sim`i'==.
+replace delta_3_sim`i'=0 if delta_3_sim`i'==.
+
+* geographical price deflator
+* note: Kampala is the region with highest PL
+* defl is regional price deflator; from regions other than Kampala prices to 
+* Kampala prices
+sum pov_line
+gen defl = r(max)/pov_line
+replace pov_line = r(max)
+
+* PL is defined at 2005/06 prices
+* cpexp30/nrrexp30 is price deflator; from 2009/10 prices to 2005/06 prices
+
+
+* estimate the welfare variable for sim`i' in iteration `t'
+* -> add delta revenues (after spatial price differences are taken into account)
+* to the base welfare variable 
+* adjustment of expenditures and computation of the incompressible demand
+* note: (cpexp30/nrrexp30) should be the 2005-2009 price deflator											
+forvalues c = 1(1)30 { 													
+  replace exp_`c' = exp_`c'*(cpexp30/nrrexp30)*defl 														
+} 													
+
+forvalues c = 1(1)30 { 													
+  replace exp_`c' = exp_`c'/equiv 														
+} 
+
+* welfare = total consumption spending
+* baseyr welfare
+egen welfare = rowtotal(exp_1-exp_30)
+
+* generate welfare variable for sim 
+gen welfare_sim`i'_`t' = welfare + (delta_rev_sim`i'_`t'*(cpexp30/nrrexp30)/equiv)*defl
+
+* generate budget shares
+forvalues c = 1(1)30 {
+  gen w_`c'=exp_`c'/welfare
+}
+
+* (cpexp30/nrrexp30) is the 2005-2009 price deflator 
+* poverty line is in 2005/05 prices											
+replace delta_rev_sim`i'_`t' = delta_rev_sim`i'_`t'*(cpexp30/nrrexp30)*defl/equiv
+
+replace delta_hh_wage_sim`i'_`t' = delta_hh_wage_sim`i'*(cpexp30/nrrexp30)*defl/equiv
+replace delta_2_sim`i'_`t' = delta_2_sim`i'_`t'*(cpexp30/nrrexp30)*defl/equiv
+replace delta_3_sim`i'_`t' = delta_3_sim`i'_`t'*(cpexp30/nrrexp30)*defl/equiv
+
+* why make initial prices equal to 1?
+forvalues c = 1(1)30 { 													
+  gen double p_ref_`c' = 1 																		
+} 													
+
+forvalues c = 1/30 {	
+  scalar chng_cons_p_sim`i'_`c' = chng_cons_p_sim`i'[1,`c']	
+  qui gen p_sim`i'_`c' = (1 + chng_cons_p_sim`i'_`c')*p_ref_`c'
+}
+
+* generate household specific price index assuming a Cobb-Douglas utility function
+gen double cpi_sim`i' = 1 						
+forvalues c = 1(1)30 { 		
+  replace cpi_sim`i' = cpi_sim`i'*((p_sim`i'_`c'/p_ref_`c')^w_`c')
+} 							
+
+* compute equivalent income after simulation
+replace welfare_sim`i'_`t'	= welfare_sim`i'_`t'/cpi_sim`i'
+qui replace		welfare_sim`i'_`t'		= 0 if welfare_sim`i'_`t'<0
+
+*
+*bacon welfare_sim`i'_`t', generate(out1) percentile(1)
+*gen zero=(welfare_sim`i'_`t'==0)
+
+*drop if out1==1
+*drop if zero==1
+
+keep hhid pid welfare welfare_sim`i'_`t' delta_hh_wage_sim`i'_* delta_2_sim`i'_* delta_3_sim`i'_* cpi_sim`i'
+save "..\Output\welfare_`t'.dta", replace
+
+
+
+

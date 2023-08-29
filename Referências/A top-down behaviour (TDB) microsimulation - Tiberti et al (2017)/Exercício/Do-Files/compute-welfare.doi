@@ -1,0 +1,48 @@
+* compute-welfare.doi
+
+use "..\Raw-Data\Uganda2009.dta", clear
+
+sum pov_line
+replace pov_line = r(max)
+
+forvalues t = 1(1)`iternum' {
+  merge 1:1 hhid pid using "..\Output\welfare_`t'.dta"
+  keep if _merge==3
+  drop _merge
+}
+
+*?? note: median and not mean is computed
+* estimate the welfare variable in sim`i' by taking the mean value of all `t' iterations 
+egen welfare_sim`i' = rowmedian(welfare_sim`i'_*)
+egen delta_hh_wage_sim`i' = rowmedian(delta_hh_wage_sim`i'_*)
+egen delta_2_sim`i' = rowmedian(delta_2_sim`i'_*)
+egen delta_3_sim`i' = rowmedian(delta_3_sim`i'_*)
+sort welfare, stable
+gen perc = sum(wgt09_sim0)
+replace perc = perc/perc[_N]
+gen perc_sim0 = ceil(perc*100)
+
+* welfare is multiplied by 100 and divided by PL; then, use 100 as PL
+replace welfare = welfare*100/pov_line
+replace welfare_sim`i' = welfare_sim`i'*100/pov_line
+replace delta_hh_wage_sim`i' = delta_hh_wage_sim`i'*100/pov_line
+replace delta_2_sim`i' = delta_2_sim`i'*100/pov_line
+replace delta_3_sim`i' = delta_3_sim`i'*100/pov_line
+
+* clone simulated welfare and ??delta?? variables so that they are linked to a
+* specific scenario 
+clonevar welfare_sim`i'_`scen' = welfare_sim`i' 
+
+
+* variable sim is used to idenfity scenarios in pov+dist-analysis.do
+gen sim = "`scen'"
+
+save "..\Output\welfare_sim`i'-`scen'.dta", replace
+
+* save data for decomposition analysis
+keep hhid pid sim wgt09_sim`i' ea stratum welfare welfare_sim`i' ///
+  delta_hh_wage_sim`i' delta_2_sim`i' delta_3_sim`i' cpi_sim`i'
+gen z=100
+save "..\Output\sim`i'-`scen'.dta", replace
+
+

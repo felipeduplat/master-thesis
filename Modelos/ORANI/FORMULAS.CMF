@@ -1,9 +1,0 @@
-! CMF file to produce data summary of ORANIG data
-!
-Auxiliary files = orani;
-! Inputs
-File BASEDATA = BASEDATA2015.har;
-! Outputs
-File SUMMARY = SUMMARY.HAR;
-
-NEQ = yes; ! yes, means do no simulation, only formulas

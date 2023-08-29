@@ -1,0 +1,55 @@
+* estimate-ocup.doi
+
+* keep required variables
+keep hhid pid age_* skilled_* worker_* gender hh_head region education married ///
+  n_children wgt09* urban education
+
+* estimate multinomial logit model for occupational category (labor supply)
+xi: mlogit worker_sim0 urban i.region gender hh_head age_sim0 education n_children married [pw=wgt09_sim0] ///
+  if skilled_sim0==`s', base(4)
+
+* predict individual probabilities for each occupational category
+predict pr_1 if worker_sim`i'!=., outcome(1) 
+predict pr_2 if worker_sim`i'!=., outcome(2)
+predict pr_3 if worker_sim`i'!=., outcome(3)
+predict pr_4 if worker_sim`i'!=., outcome(4)
+
+draw worker_sim0
+
+* generate linear predictions based on observables
+predict xb1 if worker_sim`i'!=., outcome(1) xb
+predict xb2 if worker_sim`i'!=., outcome(2) xb
+predict xb3 if worker_sim`i'!=., outcome(3) xb
+predict xb4 if worker_sim`i'!=., outcome(4) xb
+
+* generate actual utility for each occupational choice based on observables + unobservables
+gen ut1 = xb1 + u1
+gen ut2 = xb2 + u2
+gen ut3 = xb3 + u3
+gen ut4 = xb4 + u4
+
+* check: predicted and observed status should be the same
+gen worker_sim_ =.
+replace worker_sim_ =1 if ut1 == max(ut1,ut2,ut3,ut4)
+replace worker_sim_ =2 if ut2 == max(ut1,ut2,ut3,ut4)
+replace worker_sim_ =3 if ut3 == max(ut1,ut2,ut3,ut4)
+replace worker_sim_ =4 if ut4 == max(ut1,ut2,ut3,ut4)
+
+tabulate worker_sim0 worker_sim_ if worker_sim`i'!=. & e(sample)
+drop worker_sim_
+
+
+* estimate the probabilities associated to each category
+gen pr1 = exp(ut1) / ( exp(u4) + exp(ut1) + exp(ut2) + exp(ut3) )
+gen pr2 = exp(ut2) / ( exp(u4) + exp(ut1) + exp(ut2) + exp(ut3) )
+gen pr3 = exp(ut3) / ( exp(u4) + exp(ut1) + exp(ut2) + exp(ut3) )
+gen pr4 = exp(u4)  / ( exp(u4) + exp(ut1) + exp(ut2) + exp(ut3) )
+
+* define the highest probability according to the individual's utility
+gen pmax = max(pr1,pr2,pr3)
+
+gen pmax1 = pmax==pr1 & pr1!=.
+gen pmax2 = pmax==pr2 & pr2!=.
+gen pmax3 = pmax==pr3 & pr3!=.
+
+

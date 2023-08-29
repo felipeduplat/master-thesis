@@ -4,7 +4,7 @@
 !CoPS 2013 version!
  
 !Brazilian data!
-!1 households!
+!N households!
 !Dynamic extension - ORANIGRD!
  
 !-------------------------------------------------------------------!
@@ -30,7 +30,7 @@ Set NONMAR   # Non-margin commodities # = COM - MAR;                      ! n !
 Coefficient  ! Basic flows of commodities (excluding margin demands)!
  (all,c,COM)(all,s,SRC)(all,i,IND)  V1BAS(c,s,i)  # Intermediate basic flows #;
  (all,c,COM)(all,s,SRC)(all,i,IND)  V2BAS(c,s,i)  # Investment basic flows #;
- (all,c,COM)(all,s,SRC)(all,h,HOU)  V3BAS(c,s,h)    # Household basic flows #;
+ (all,c,COM)(all,s,SRC)(all,h,HOU)  V3BAS(c,s,h)  # Household basic flows #;
  (all,c,COM)                        V4BAS(c)      # Export basic flows #;
  (all,c,COM)(all,s,SRC)             V5BAS(c,s)    # Government basic flows #;
  (all,c,COM)(all,s,SRC)             V6BAS(c,s)    # Inventories basic flows #;
@@ -44,7 +44,7 @@ Read
 Variable  ! Variables used to update above flows !
  (all,c,COM)(all,s,SRC)(all,i,IND)  x1(c,s,i)  # Intermediate basic demands #;
  (all,c,COM)(all,s,SRC)(all,i,IND)  x2(c,s,i)  # Investment basic demands #;
- (all,c,COM)(all,s,SRC)(all,h,HOU)  x3(c,s,h)    # Household basic demands #;
+ (all,c,COM)(all,s,SRC)(all,h,HOU)  x3(c,s,h)  # Household basic demands #;
  (all,c,COM)                        x4(c)      # Export basic demands #;
  (all,c,COM)(all,s,SRC)             x5(c,s)    # Government basic demands #;
  (change) (all,c,COM)(all,s,SRC)    delx6(c,s) # Inventories demands #;
@@ -68,7 +68,7 @@ Coefficient
  (all,c,COM)(all,s,SRC)(all,i,IND)(all,m,MAR)
                                     V2MAR(c,s,i,m)  # Investment margins #;
 (all,c,COM)(all,s,SRC)(all,m,MAR)(all,h,HOU)
-                                    V3MAR(c,s,m,h)    # Households margins #;
+                                    V3MAR(c,s,m,h)  # Households margins #;
  (all,c,COM)(all,m,MAR)             V4MAR(c,m)      # Export margins #;
  (all,c,COM)(all,s,SRC)(all,m,MAR)  V5MAR(c,s,m)    # Government margins #;
 Read
