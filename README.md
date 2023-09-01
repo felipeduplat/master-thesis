@@ -24,19 +24,19 @@ Um repositório com o objetivo de compartilhar os arquivos, códigos e textos ut
 
 ### :file_folder: Apresentações:
 
-Texto.
+Contém os slides utilizados nas apresentações do seminário, qualificação e defesa.
 
 ### :file_folder: Modelos:
 
-Texto.
+Contém os arquivos e _scripts_ utilizados para o modelo ORANIG-BR e a microssimulação contrafactual.
 
 ### :file_folder: Referências:
 
-Texto.
+Contém todos os textos utilizados na dissertação.
 
 ### :file_folder: Texto:
 
-Texto.
+Contém o arquivo TeX da dissertação.
 
 <p align="center">
   <img width="400" height="300" src="https://github.com/felipeduplat/Thesis/blob/main/img/002.png">
