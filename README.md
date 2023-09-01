@@ -32,7 +32,7 @@ Contém os arquivos e _scripts_ utilizados para o modelo ORANIG-BR e a microssim
 
 ### :file_folder: Referências:
 
-Contém todos os textos utilizados na dissertação.
+Contém todos os artigos, livros e textos utilizados na dissertação.
 
 ### :file_folder: Texto:
 
