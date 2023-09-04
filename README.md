@@ -47,24 +47,24 @@ Contém o arquivo TeX da dissertação.
 <!-- Bloco 02 - Cronograma -->
 ## :calendar: Cronograma
 
-| #  |              Tarefas                    | set/22  | out/22  | nov/22  | dez/22  | jan/23  | fev/23  | 
-| -  |              -------                    | ------  | ------  | ------  | ------  | ------  | ------  |
-| 1  | Calibração do ORGANIG-BR                | <p align="center"> &#9744; </p> |                                 |                                 |                                 |         |         |
-| 2  | Fechamento do ORGANIG-BR                | <p align="center"> &#9744; </p> |                                 |                                 |                                 |         |         |
-| 3  | Simulações                              | <p align="center"> &#9744; </p> |                                 |                                 |                                 |         |         |
-| 4  | Tabular resultados do ORANIG-BR         | <p align="center"> &#9744; </p> |                                 |                                 |                                 |         |         |
-| 5  | Forma funcional da microssimulação      |                                 | <p align="center"> &#9744; </p> |                                 |                                 |         |         |
-| 6  | Estratégia empírica da microssimulação  |                                 | <p align="center"> &#9744; </p> |                                 |                                 |         |         |
-| 7  | Integração _top-down_                   |                                 | <p align="center"> &#9744; </p> |                                 |                                 |         |         |
-| 8  | Tabular resultados da microssimulação   |                                 | <p align="center"> &#9744; </p> |                                 |                                 |         |         |
-| 9  | Corrigir pontos da qualificação         |                                 |                                 | <p align="center"> &#9744; </p> |                                 |         |         |
-| 10 | Discussão sobre estrutura               |                                 |                                 | <p align="center"> &#9744; </p> |                                 |         |         |
-| 11 | Discussão sobre pobreza e desigualdade  |                                 |                                 | <p align="center"> &#9744; </p> |                                 |         |         |
-| 12 | Refazer Revisão de Literatura           |                                 |                                 |                                 | <p align="center"> &#9744; </p> |         |         |
-| 13 | Refazer Metodologia e Dados             |                                 |                                 |                                 | <p align="center"> &#9744; </p> |         |         |
-| 14 | Refazer Resultados                      |                                 |                                 |                                 |         | <p align="center"> &#9744; </p> |         |
-| 15 | Refazer Considerações Finais            |                                 |                                 |                                 |         | <p align="center"> &#9744; </p> |         |
-| 16 | Defesa da Dissertação                   |                                 |                                 |                                 |         |         | <p align="center"> &#9744; </p> |
+| #  |              Tarefas                   |             set/22              |              out/22             |              nov/22             |              dez/22             | jan/23  | fev/23  | 
+| -  |              -------                   |             ------              |              ------             |              ------             |              ------             | ------  | ------  |
+| 1  | Calibração do ORANIG-BR                | <p align="center"> &#9744; </p> |                                 |                                 |                                 |         |         |
+| 2  | Fechamento do ORANIG-BR                | <p align="center"> &#9744; </p> |                                 |                                 |                                 |         |         |
+| 3  | Simulações                             | <p align="center"> &#9744; </p> |                                 |                                 |                                 |         |         |
+| 4  | Tabular resultados do ORANIG-BR        | <p align="center"> &#9744; </p> |                                 |                                 |                                 |         |         |
+| 5  | Forma funcional da microssimulação     |                                 | <p align="center"> &#9744; </p> |                                 |                                 |         |         |
+| 6  | Estratégia empírica da microssimulação |                                 | <p align="center"> &#9744; </p> |                                 |                                 |         |         |
+| 7  | Integração _top-down_                  |                                 | <p align="center"> &#9744; </p> |                                 |                                 |         |         |
+| 8  | Tabular resultados da microssimulação  |                                 | <p align="center"> &#9744; </p> |                                 |                                 |         |         |
+| 9  | Corrigir pontos da qualificação        |                                 |                                 | <p align="center"> &#9744; </p> |                                 |         |         |
+| 10 | Discussão sobre estrutura              |                                 |                                 | <p align="center"> &#9744; </p> |                                 |         |         |
+| 11 | Discussão sobre pobreza e desigualdade |                                 |                                 | <p align="center"> &#9744; </p> |                                 |         |         |
+| 12 | Refazer Revisão de Literatura          |                                 |                                 |                                 | <p align="center"> &#9744; </p> |         |         |
+| 13 | Refazer Metodologia e Dados            |                                 |                                 |                                 | <p align="center"> &#9744; </p> |         |         |
+| 14 | Refazer Resultados                     |                                 |                                 |                                 |         | <p align="center"> &#9744; </p> |         |
+| 15 | Refazer Considerações Finais           |                                 |                                 |                                 |         | <p align="center"> &#9744; </p> |         |
+| 16 | Defesa da Dissertação                  |                                 |                                 |                                 |         |         | <p align="center"> &#9744; </p> |
 
 
 
