@@ -25,31 +25,22 @@ options(scipen=999)
 
 #--- CRIAR TABELAS -----------------------
 
-# setores por percentil de renda:
-renda = pnad_clean %>%
-  group_by(id_fam, peso, SCN68, rpc) %>%
+# setores por percentil de renda e qualificação:
+renda_qualif = pnad_clean %>%
+  group_by(id_fam, peso, SCN68, qualif, rpc) %>%
   reframe(renda  = sum(renda)) %>%
   mutate(quantil = cut(rpc, breaks = quantile(unique(rpc), probs = seq(0,1,0.01), na.rm = T),
                         labels = F,
                         include.lowest = T)) %>%
-  group_by(SCN68, quantil) %>%
+  group_by(SCN68, quantil, qualif) %>%
   reframe(renda = sum(renda * 12, weights = peso)) %>%
-  arrange(quantil) %>%
-  pivot_wider(names_from = quantil, values_from = renda)
-
-# setores por qualificação:
-qualificacao = pnad_clean %>%
-  group_by(SCN68) %>%
-  reframe("não qualificado"  = sum(renda[nqualif    == 1] * 12, weights = peso[nqualif    == 1]),
-          "semi-qualificado" = sum(renda[semiqualif == 1] * 12, weights = peso[semiqualif == 1]),
-          "qualificado"      = sum(renda[qualif     == 1] * 12, weights = peso[qualif     == 1]),
-          "total"            = sum(renda                  * 12, weights = peso)) %>%
-  ungroup() %>%
+  arrange(quantil, qualif) %>%
+  pivot_wider(names_from = c(quantil, qualif), values_from = renda) %>%
   arrange(SCN68)
 
 
 
 #--- EXPORTAR PARA O EXCEL -----------------------
-write_xlsx(list("qualificação" = qualificacao), "output/raw/tabelas.xlsx")
+write_xlsx(list("PNAD 2015 | renda e qualif." = renda_qualif), "output/raw/tabelas.xlsx")
 
 

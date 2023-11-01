@@ -42,25 +42,21 @@ pnad_clean = pnad %>%
          renda = v4719,
          rpc   = v4750) %>%
   filter(!v0401 %in% c(6:8)) %>%
-  filter(!is.na(renda)) %>%
-  filter(!is.na(rpc)) %>%
-  filter(renda != 999999999999) %>%
-  filter(rpc   != 999999999999) %>%
-  mutate(id_fam    = paste0(v0101, uf, v0102, v0103),
-         nqualif    = (v4803 %in% 0:4),
-         semiqualif = (v4803 %in% 5:12),
-         qualif     = (v4803 >= 13),
-         across(where(is.logical), as.numeric)) %>%
+  filter(!is.na(renda) & !is.na(rpc)) %>%
+  filter(renda != 999999999999, rpc != 999999999999) %>%
+  mutate(id_fam = paste0(v0101, uf, v0102, v0103),
+         qualif = case_when(v4803 %in% 0:4  ~ 1,
+                            v4803 %in% 5:12 ~ 2,
+                            v4803   >= 13   ~ 3)) %>%
   ungroup() %>%
   select(peso, SCN68, renda, rpc, id_fam:qualif)
 
 
 #--- LIMPAR RESÍDUO ---
 rm(dicpes, end_pes, SCN68, pnad)
-gc()
 
 
-#--- LIMPAR RESÍDUO ---
+#--- SALVAR BASE ---
 save.image("dados/base.RData")
 
 

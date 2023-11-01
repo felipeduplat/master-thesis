@@ -4,7 +4,7 @@
 !CoPS 2013 version!
  
 !Brazilian data!
-!N households!
+!100 households!
 !Dynamic extension - ORANIGRD!
  
 !-------------------------------------------------------------------!
@@ -14,48 +14,53 @@
 File  BASEDATA  # Input data file #;
  (new) SUMMARY  # Output for summary and checking data #;
  
-Set                                                                     !Index!
- COM # Commodities# read elements from file BASEDATA header "COM";        ! c !
- SRC # Source of commodities # (dom,imp);                                 ! s !
- IND # Industries # read elements from file BASEDATA header "IND";        ! i !
- OCC # Occupations # read elements from file BASEDATA header "OCC";       ! o !
- HOU # Households # read elements from file BASEDATA header "HOU";        ! h !
- MAR # Margin commodities # read elements from file BASEDATA header "MAR";! m !
+Set                                                                              !Index!
+ COM  # Commodities# read elements from file BASEDATA header "COM";              ! c !
+ SRC  # Source of commodities  # (dom,imp);                                      ! s !
+ IND  # Industries             # read elements from file BASEDATA header "IND";  ! i !
+ OCC  # Occupations            # read elements from file BASEDATA header "OCC";  ! o !
+ HOU  # Households             # read elements from file BASEDATA header "HOU";  ! h !
+ MAR  # Margin commodities     # read elements from file BASEDATA header "MAR";  ! m !
+ PTNR # Partner of trade flows # read elements from file BASEDATA header "PTNR"; ! p ! ! FDL ! 
+
 Subset MAR is subset of COM;
-Set NONMAR   # Non-margin commodities # = COM - MAR;                      ! n !
+Set NONMAR   # Non-margin commodities # = COM - MAR;                             ! n !
  
 ! Excerpt 2 of TABLO input file: !
 ! Data coefficients and variables relating to basic commodity flows !
  
 Coefficient  ! Basic flows of commodities (excluding margin demands)!
- (all,c,COM)(all,s,SRC)(all,i,IND)  V1BAS(c,s,i)  # Intermediate basic flows #;
- (all,c,COM)(all,s,SRC)(all,i,IND)  V2BAS(c,s,i)  # Investment basic flows #;
- (all,c,COM)(all,s,SRC)(all,h,HOU)  V3BAS(c,s,h)  # Household basic flows #;
- (all,c,COM)                        V4BAS(c)      # Export basic flows #;
- (all,c,COM)(all,s,SRC)             V5BAS(c,s)    # Government basic flows #;
- (all,c,COM)(all,s,SRC)             V6BAS(c,s)    # Inventories basic flows #;
+ (all,c,COM)(all,s,SRC)(all,i,IND)  V1BAS(c,s,i)  # Intermediate basic flows            #;
+ (all,c,COM)(all,s,SRC)(all,i,IND)  V2BAS(c,s,i)  # Investment basic flows              #;
+ (all,c,COM)(all,s,SRC)(all,h,HOU)  V3BAS(c,s,h)  # Household basic flows               #;
+ (all,c,COM)(all,p,PTNR)            V4BAS(c,p)    # Export basic flows by trade partner #;
+ (all,c,COM)(all,s,SRC)             V5BAS(c,s)    # Government basic flows              #;
+ (all,c,COM)(all,s,SRC)             V6BAS(c,s)    # Inventories basic flows             #;
+
 Read
  V1BAS from file BASEDATA header "1BAS";
  V2BAS from file BASEDATA header "2BAS";
  V3BAS from file BASEDATA header "3BAH";
- V4BAS from file BASEDATA header "4BAS";
+ V4BAS from file BASEDATA header "4BAP";
  V5BAS from file BASEDATA header "5BAS";
  V6BAS from file BASEDATA header "6BAS";
+
 Variable  ! Variables used to update above flows !
- (all,c,COM)(all,s,SRC)(all,i,IND)  x1(c,s,i)  # Intermediate basic demands #;
- (all,c,COM)(all,s,SRC)(all,i,IND)  x2(c,s,i)  # Investment basic demands #;
- (all,c,COM)(all,s,SRC)(all,h,HOU)  x3(c,s,h)  # Household basic demands #;
- (all,c,COM)                        x4(c)      # Export basic demands #;
- (all,c,COM)(all,s,SRC)             x5(c,s)    # Government basic demands #;
- (change) (all,c,COM)(all,s,SRC)    delx6(c,s) # Inventories demands #;
- (all,c,COM)(all,s,SRC)             p0(c,s)    # Basic prices for local users #;
- (all,c,COM)                        pe(c)      # Basic price of exportables #;
- (change)(all,c,COM)(all,s,SRC)  delV6(c,s)    # Value of inventories #;
+ (all,c,COM)(all,s,SRC)(all,i,IND)  x1(c,s,i)   # Intermediate basic demands                  #;
+ (all,c,COM)(all,s,SRC)(all,i,IND)  x2(c,s,i)   # Investment basic demands                    #;
+ (all,c,COM)(all,s,SRC)(all,h,HOU)  x3(c,s,h)   # Household basic demands                     #;
+ (all,c,COM)(all,p,PTNR)            x4(c,p)     # Export basic demands by trade partner       #; ! FDL !
+ (all,c,COM)(all,s,SRC)             x5(c,s)     # Government basic demands                    #;
+ (change)(all,c,COM)(all,s,SRC)     delx6(c,s)  # Inventories demands                         #;
+ (all,c,COM)(all,s,SRC)             p0(c,s)     # Basic prices for local users                #;
+ (all,c,COM)(all,p,PTNR)            pe(c,p)     # Basic price of exportables by trade partner #; ! FDL !
+ (change)(all,c,COM)(all,s,SRC)     delV6(c,s)  # Value of inventories                        #;
+
 Update
  (all,c,COM)(all,s,SRC)(all,i,IND)  V1BAS(c,s,i)  = p0(c,s)*x1(c,s,i);
  (all,c,COM)(all,s,SRC)(all,i,IND)  V2BAS(c,s,i)  = p0(c,s)*x2(c,s,i);
  (all,c,COM)(all,s,SRC)(all,h,HOU)  V3BAS(c,s,h)  = p0(c,s)*x3(c,s,h);
- (all,c,COM)                        V4BAS(c)      = pe(c)*x4(c);
+ (all,c,COM)(all,p,PTNR)            V4BAS(c,p)    = pe(c,p)*x4(c,p);   ! FDL !
  (all,c,COM)(all,s,SRC)             V5BAS(c,s)    = p0(c,s)*x5(c,s);
  (change)(all,c,COM)(all,s,SRC)     V6BAS(c,s)    = delV6(c,s);
  
@@ -66,27 +71,30 @@ Coefficient
  (all,c,COM)(all,s,SRC)(all,i,IND)(all,m,MAR)
                                     V1MAR(c,s,i,m)  # Intermediate margins #;
  (all,c,COM)(all,s,SRC)(all,i,IND)(all,m,MAR)
-                                    V2MAR(c,s,i,m)  # Investment margins #;
+                                    V2MAR(c,s,i,m)  # Investment margins   #;
 (all,c,COM)(all,s,SRC)(all,m,MAR)(all,h,HOU)
-                                    V3MAR(c,s,m,h)  # Households margins #;
- (all,c,COM)(all,m,MAR)             V4MAR(c,m)      # Export margins #;
- (all,c,COM)(all,s,SRC)(all,m,MAR)  V5MAR(c,s,m)    # Government margins #;
+                                    V3MAR(c,s,m,h)  # Households margins   #;
+ (all,c,COM)(all,m,MAR)             V4MAR(c,m)      # Export margins       #;
+ (all,c,COM)(all,s,SRC)(all,m,MAR)  V5MAR(c,s,m)    # Government margins   #;
+
 Read
  V1MAR from file BASEDATA header "1MAR";
  V2MAR from file BASEDATA header "2MAR";
  V3MAR from file BASEDATA header "3MAH";
  V4MAR from file BASEDATA header "4MAR";
  V5MAR from file BASEDATA header "5MAR";
+
 Variable ! Variables used to update above flows !
  (all,c,COM)(all,s,SRC)(all,i,IND)(all,m,MAR)
-                                   x1mar(c,s,i,m)# Intermediate margin demand #;
+                                   x1mar(c,s,i,m)   # Intermediate margin demand                  #;
  (all,c,COM)(all,s,SRC)(all,i,IND)(all,m,MAR)
-                                   x2mar(c,s,i,m)# Investment margin demands #;
+                                   x2mar(c,s,i,m)   # Investment margin demands                   #;
  (all,c,COM)(all,s,SRC)(all,m,MAR)(all,h,HOU)
-                                   x3mar(c,s,m,h)  # Household margin demands #;
- (all,c,COM)(all,m,MAR)            x4mar(c,m)    # Export margin demands #;
- (all,c,COM)(all,s,SRC)(all,m,MAR) x5mar(c,s,m)  # Government margin demands #;
- (all,c,COM)           p0dom(c) # Basic price of domestic goods = p0(c,"dom") #;
+                                   x3mar(c,s,m,h)   # Household margin demands                    #;
+ (all,c,COM)(all,m,MAR)            x4mar(c,m)       # Export margin demands                       #;
+ (all,c,COM)(all,s,SRC)(all,m,MAR) x5mar(c,s,m)     # Government margin demands                   #;
+ (all,c,COM)           p0dom(c)                     # Basic price of domestic goods = p0(c,"dom") #;
+
 Update
  (all,c,COM)(all,s,SRC)(all,i,IND)(all,m,MAR)
                                    V1MAR(c,s,i,m)  = p0dom(m)*x1mar(c,s,i,m);
@@ -102,22 +110,25 @@ Update
  
 Coefficient  ! Taxes on Basic Flows!
  (all,c,COM)(all,s,SRC)(all,i,IND)  V1TAX(c,s,i) # Taxes on intermediate #;
- (all,c,COM)(all,s,SRC)(all,i,IND)  V2TAX(c,s,i) # Taxes on investment #;
- (all,c,COM)(all,s,SRC)(all,h,HOU)  V3TAX(c,s,h)   # Taxes on households #;
- (all,c,COM)                        V4TAX(c)     # Taxes on export #;
- (all,c,COM)(all,s,SRC)             V5TAX(c,s)   # Taxes on government #;
+ (all,c,COM)(all,s,SRC)(all,i,IND)  V2TAX(c,s,i) # Taxes on investment   #;
+ (all,c,COM)(all,s,SRC)(all,h,HOU)  V3TAX(c,s,h) # Taxes on households   #;
+ (all,c,COM)                        V4TAX(c)     # Taxes on export       #;
+ (all,c,COM)(all,s,SRC)             V5TAX(c,s)   # Taxes on government   #;
+
 Read
  V1TAX from file BASEDATA header "1TAX";
  V2TAX from file BASEDATA header "2TAX";
  V3TAX from file BASEDATA header "3TAH";
  V4TAX from file BASEDATA header "4TAX";
  V5TAX from file BASEDATA header "5TAX";
+
 Variable
- (change)(all,c,COM)(all,s,SRC)(all,i,IND) delV1TAX(c,s,i) # Interm tax rev #;
- (change)(all,c,COM)(all,s,SRC)(all,i,IND) delV2TAX(c,s,i) # Invest tax rev #;
+ (change)(all,c,COM)(all,s,SRC)(all,i,IND) delV1TAX(c,s,i) # Interm tax rev    #;
+ (change)(all,c,COM)(all,s,SRC)(all,i,IND) delV2TAX(c,s,i) # Invest tax rev    #;
  (change)(all,c,COM)(all,s,SRC)(all,h,HOU) delV3TAX(c,s,h) # Household tax rev #;
- (change)(all,c,COM)                       delV4TAX(c)     # Export tax rev #;
- (change)(all,c,COM)(all,s,SRC)            delV5TAX(c,s)   # Govmnt tax rev #;
+ (change)(all,c,COM)                       delV4TAX(c)     # Export tax rev    #;
+ (change)(all,c,COM)(all,s,SRC)            delV5TAX(c,s)   # Govmnt tax rev    #;
+
 Update
  (change)(all,c,COM)(all,s,SRC)(all,i,IND)  V1TAX(c,s,i) = delV1TAX(c,s,i);
  (change)(all,c,COM)(all,s,SRC)(all,i,IND)  V2TAX(c,s,i) = delV2TAX(c,s,i);
@@ -129,27 +140,30 @@ Update
 ! Data coefficients for primary-factor flows, other industry costs, and tariffs!
  
 Coefficient
- (all,i,IND)(all,o,OCC)  V1LAB(i,o)  # Wage bill matrix #;
- (all,i,IND)             V1CAP(i)    # Capital rentals #;
- (all,i,IND)             V1LND(i)    # Land rentals #;
- (all,i,IND)             V1PTX(i)    # Production tax #;
+ (all,i,IND)(all,o,OCC)  V1LAB(i,o)  # Wage bill matrix   #;
+ (all,i,IND)             V1CAP(i)    # Capital rentals    #;
+ (all,i,IND)             V1LND(i)    # Land rentals       #;
+ (all,i,IND)             V1PTX(i)    # Production tax     #;
  (all,i,IND)             V1OCT(i)    # Other cost tickets #;
+
 Read
  V1LAB from file BASEDATA header "1LAB";
  V1CAP from file BASEDATA header "1CAP";
  V1LND from file BASEDATA header "1LND";
  V1PTX from file BASEDATA header "1PTX";
  V1OCT from file BASEDATA header "1OCT";
+
 Variable
- (all,i,IND)(all,o,OCC)   x1lab(i,o)  # Employment by industry and occupation #;
- (all,i,IND)(all,o,OCC)   p1lab(i,o)  # Wages by industry and occupation #;
- (all,i,IND)  x1cap(i)        # Current capital stock #;
- (all,i,IND)  p1cap(i)        # Rental price of capital #;
- (all,i,IND)  x1lnd(i)        # Use of land #;
- (all,i,IND)  p1lnd(i)        # Rental price of land #;
- (change)(all,i,IND) delV1PTX(i) # Ordinary change in production tax revenue #;
- (all,i,IND)  x1oct(i)        # Demand for "other cost" tickets #;
- (all,i,IND)  p1oct(i)        # Price of "other cost" tickets #;
+ (all,i,IND)(all,o,OCC)   x1lab(i,o)  # Employment by industry and occupation     #;
+ (all,i,IND)(all,o,OCC)   p1lab(i,o)  # Wages by industry and occupation          #;
+ (all,i,IND)  x1cap(i)                # Current capital stock                     #;
+ (all,i,IND)  p1cap(i)                # Rental price of capital                   #;
+ (all,i,IND)  x1lnd(i)                # Use of land                               #;
+ (all,i,IND)  p1lnd(i)                # Rental price of land                      #;
+ (change)(all,i,IND) delV1PTX(i)      # Ordinary change in production tax revenue #;
+ (all,i,IND)  x1oct(i)                # Demand for "other cost" tickets           #;
+ (all,i,IND)  p1oct(i)                # Price of "other cost" tickets             #;
+
 Update
  (all,i,IND)(all,o,OCC)  V1LAB(i,o)  = p1lab(i,o)*x1lab(i,o);
  (all,i,IND)             V1CAP(i)    = p1cap(i)*x1cap(i);
@@ -158,9 +172,9 @@ Update
  (all,i,IND)             V1OCT(i)    = p1oct(i)*x1oct(i);
  
 ! Data coefficients relating to import duties !
-Coefficient (all,c,COM) V0TAR(c)  # Tariff revenue #;
+Coefficient (all,c,COM) V0TAR(c)              # Tariff revenue #;
 Read V0TAR from file BASEDATA header "0TAR";
-Variable (all,c,COM) (change) delV0TAR(c) # Ordinary change in tariff revenue #;
+Variable (all,c,COM) (change) delV0TAR(c)     # Ordinary change in tariff revenue #;
 Update (change)  (all,c,COM) V0TAR(c) = delV0TAR(c);
  
 ! Excerpt 6 of TABLO input file: !
@@ -168,27 +182,29 @@ Update (change)  (all,c,COM) V0TAR(c) = delV0TAR(c);
  
 Coefficient ! Flows at purchasers prices !
  (all,c,COM)(all,s,SRC)(all,i,IND)  V1PUR(c,s,i)  # Intermediate purch. value #;
- (all,c,COM)(all,s,SRC)(all,i,IND)  V2PUR(c,s,i)  # Investment purch. value #;
- (all,c,COM)(all,s,SRC)(all,h,HOU)  V3PUR(c,s,h)  # Households purch. value #;
- (all,c,COM)                        V4PUR(c)      # Export purch. value #;
- (all,c,COM)(all,s,SRC)             V5PUR(c,s)    # Government purch. value #;
+ (all,c,COM)(all,s,SRC)(all,i,IND)  V2PUR(c,s,i)  # Investment purch. value   #;
+ (all,c,COM)(all,s,SRC)(all,h,HOU)  V3PUR(c,s,h)  # Households purch. value   #;
+ (all,c,COM)                        V4PUR(c)      # Export purch. value       #;
+ (all,c,COM)(all,s,SRC)             V5PUR(c,s)    # Government purch. value   #;
+
 Formula
  (all,c,COM)(all,s,SRC)(all,i,IND)
-   V1PUR(c,s,i)  = V1BAS(c,s,i) + V1TAX(c,s,i) + sum{m,MAR, V1MAR(c,s,i,m)};
+   V1PUR(c,s,i)  = V1BAS(c,s,i) + V1TAX(c,s,i)             + sum{m,MAR, V1MAR(c,s,i,m)};
  (all,c,COM)(all,s,SRC)(all,i,IND)
-   V2PUR(c,s,i)  = V2BAS(c,s,i) + V2TAX(c,s,i) + sum{m,MAR, V2MAR(c,s,i,m)};
+   V2PUR(c,s,i)  = V2BAS(c,s,i) + V2TAX(c,s,i)             + sum{m,MAR, V2MAR(c,s,i,m)};
  (all,c,COM)(all,s,SRC)(all,h,HOU)
-   V3PUR(c,s,h)  = V3BAS(c,s,h) + V3TAX(c,s,h) + sum{m,MAR, V3MAR(c,s,m,h)};
+   V3PUR(c,s,h)  = V3BAS(c,s,h) + V3TAX(c,s,h)             + sum{m,MAR, V3MAR(c,s,m,h)};
  (all,c,COM)
-   V4PUR(c)      = V4BAS(c)     + V4TAX(c)     + sum{m,MAR, V4MAR(c,m)};
+   V4PUR(c)      = V4TAX(c)     + sum{p,PTNR, V4BAS(c,p)}  + sum{m,MAR, V4MAR(c,m)}; ! FDL !
  (all,c,COM)(all,s,SRC)
-   V5PUR(c,s)    = V5BAS(c,s)   + V5TAX(c,s)   + sum{m,MAR, V5MAR(c,s,m)};
+   V5PUR(c,s)    = V5BAS(c,s)   + V5TAX(c,s)               + sum{m,MAR, V5MAR(c,s,m)};
+
 Variable ! Purchasers prices !
  (all,c,COM)(all,s,SRC)(all,i,IND) p1(c,s,i)# Purchaser's price, intermediate #;
- (all,c,COM)(all,s,SRC)(all,i,IND) p2(c,s,i)# Purchaser's price, investment #;
- (all,c,COM)(all,s,SRC)(all,h,HOU) p3(c,s,h)# Purchaser's price, household #;
+ (all,c,COM)(all,s,SRC)(all,i,IND) p2(c,s,i)# Purchaser's price, investment   #;
+ (all,c,COM)(all,s,SRC)(all,h,HOU) p3(c,s,h)# Purchaser's price, household    #;
  (all,c,COM)                       p4(c)    # Purchaser's price, exports,loc$ #;
- (all,c,COM)(all,s,SRC)            p5(c,s)  # Purchaser's price, government #;
+ (all,c,COM)(all,s,SRC)            p5(c,s)  # Purchaser's price, government   #;
  
 ! Excerpt 7 of TABLO input file: !
 ! Occupational composition of labour demand !
@@ -197,21 +213,23 @@ Variable ! Purchasers prices !
 !$   such that  X1LAB_O(i) = CES( All,o,OCC: X1LAB(i,o) ) !
  
 Coefficient
- (parameter)(all,i,IND) SIGMA1LAB(i) # CES substitution between skill types #;
- (all,i,IND) V1LAB_O(i)   # Total labour bill in industry i #;
+ (parameter)(all,i,IND) SIGMA1LAB(i) # CES substitution between skill types   #;
+ (all,i,IND) V1LAB_O(i)   # Total labour bill in industry i                   #;
              TINY    # Small number to prevent zerodivides or singular matrix #;
 Read SIGMA1LAB from file BASEDATA header "SLAB";
+
 Formula
  (all,i,IND) V1LAB_O(i) = sum{o,OCC, V1LAB(i,o)};
              TINY       = 0.000000000001; !NB TINY+NUM=NUM, if NUM significant!
 Variable
  (all,i,IND) p1lab_o(i) # Price to each industry of labour composite #;
- (all,i,IND) x1lab_o(i) # Effective labour input #;
+ (all,i,IND) x1lab_o(i) # Effective labour input                     #;
+
 Equation
- E_x1lab   # Demand for labour by industry and skill group #
+ E_x1lab                                                             # Demand for labour by industry and skill group #
   (all,i,IND)(all,o,OCC)
    x1lab(i,o) = x1lab_o(i) - SIGMA1LAB(i)*[p1lab(i,o) - p1lab_o(i)];
- E_p1lab_o # Price to each industry of labour composite #
+ E_p1lab_o                                                           # Price to each industry of labour composite #
   (all,i,IND) [TINY+V1LAB_O(i)]*p1lab_o(i) = sum{o,OCC, V1LAB(i,o)*p1lab(i,o)};
  
 ! Excerpt 8 of TABLO input file: !
@@ -220,36 +238,40 @@ Equation
 !$    CES( X1LAB_O(i)/A1LAB_O(i), X1CAP(i)/A1CAP(i), X1LND(i)/A1LND(i) ) !
  
 Coefficient
-(parameter)(all,i,IND) SIGMA1PRIM(i) # CES substitution, primary factors #;
+(parameter)(all,i,IND) SIGMA1PRIM(i)              # CES substitution, primary factors #;
+
 Read SIGMA1PRIM from file BASEDATA header "P028";
-Coefficient (all,i,IND) V1PRIM(i) # Total factor input to industry i#;
+
+Coefficient (all,i,IND) V1PRIM(i)                 # Total factor input to industry i#;
+
 Formula     (all,i,IND) V1PRIM(i) = TINY + V1LAB_O(i)+ V1CAP(i) + V1LND(i);
+
 Variable
- (all,i,IND) p1prim(i)  # Effective price of primary factor composite #;
- (all,i,IND) x1prim(i)  # Primary factor composite #;
- (all,i,IND) a1lab_o(i) # Labor-augmenting technical change #;
- (all,i,IND) a1cap(i)   # Capital-augmenting technical change #;
- (all,i,IND) a1lnd(i)   # Land-augmenting technical change #;
-(change)(all,i,IND) delV1PRIM(i)# Ordinary change in cost of primary factors #;
+ (all,i,IND) p1prim(i)           # Effective price of primary factor composite #;
+ (all,i,IND) x1prim(i)           # Primary factor composite #;
+ (all,i,IND) a1lab_o(i)          # Labor-augmenting technical change #;
+ (all,i,IND) a1cap(i)            # Capital-augmenting technical change #;
+ (all,i,IND) a1lnd(i)            # Land-augmenting technical change #;
+(change)(all,i,IND) delV1PRIM(i) # Ordinary change in cost of primary factors #;
  
 Equation
- E_x1lab_o  # Industry demands for effective labour #
+ E_x1lab_o                                  # Industry demands for effective labour #
   (all,i,IND)  x1lab_o(i) - a1lab_o(i) =
    x1prim(i) - SIGMA1PRIM(i)*[p1lab_o(i) + a1lab_o(i) - p1prim(i)];
  
- E_p1cap  # Industry demands for capital #
+ E_p1cap                                    # Industry demands for capital #
   (all,i,IND)  x1cap(i) - a1cap(i) =
    x1prim(i) - SIGMA1PRIM(i)*[p1cap(i) + a1cap(i) - p1prim(i)];
  
- E_p1lnd  # Industry demands for land #
+ E_p1lnd                                    # Industry demands for land #
   (all,i,IND)  x1lnd(i) - a1lnd(i) =
    x1prim(i) - SIGMA1PRIM(i)*[p1lnd(i) + a1lnd(i) - p1prim(i)];
  
- E_p1prim  # Effective price term for factor demand equations #
+ E_p1prim                                   # Effective price term for factor demand equations #
   (all,i,IND)  V1PRIM(i)*p1prim(i) = V1LAB_O(i)*[p1lab_o(i) + a1lab_o(i)]
     + V1CAP(i)*[p1cap(i) + a1cap(i)] + V1LND(i)*[p1lnd(i) + a1lnd(i)];
  
- E_delV1PRIM  # Ordinary change in total cost of primary factors #
+ E_delV1PRIM                                # Ordinary change in total cost of primary factors #
   (all,i,IND) 100*delV1PRIM(i) = V1CAP(i)  * [p1cap(i) + x1cap(i)]
                               +  V1LND(i)  * [p1lnd(i) + x1lnd(i)]
                     + sum{o,OCC, V1LAB(i,o)* [p1lab(i,o) + x1lab(i,o)]};
@@ -260,18 +282,21 @@ Equation
  
 Variable
  (all,c,COM)(all,s,SRC)(all,i,IND) a1(c,s,i) # Intermediate basic tech change #;
- (all,c,COM)(all,i,IND) x1_s(c,i)    # Intermediate use of imp/dom composite #;
- (all,c,COM)(all,i,IND) p1_s(c,i)    # Price, intermediate imp/dom composite #;
- (all,i,IND)            p1mat(i)     # Intermediate cost price index #;
- (all,i,IND)            p1var(i)     # Short-run variable cost price index #;
+ (all,c,COM)(all,i,IND) x1_s(c,i)            # Intermediate use of imp/dom composite #;
+ (all,c,COM)(all,i,IND) p1_s(c,i)            # Price, intermediate imp/dom composite #;
+ (all,i,IND)            p1mat(i)             # Intermediate cost price index #;
+ (all,i,IND)            p1var(i)             # Short-run variable cost price index #;
+
 Coefficient
- (parameter)(all,c,COM) SIGMA1(c)    # Armington elasticities: intermediate #;
- (all,c,COM)(all,i,IND) V1PUR_S(c,i) # Dom+imp intermediate purch. value #;
- (all,c,COM)(all,s,SRC)(all,i,IND) S1(c,s,i) # Intermediate source shares #;
- (all,i,IND)            V1MAT(i)     # Total intermediate cost for industry i #;
- (all,i,IND)            V1VAR(i)     # Short-run variable cost for industry i #;
+ (parameter)(all,c,COM) SIGMA1(c)             # Armington elasticities: intermediate #;
+ (all,c,COM)(all,i,IND) V1PUR_S(c,i)          # Dom+imp intermediate purch. value #;
+ (all,c,COM)(all,s,SRC)(all,i,IND) S1(c,s,i)  # Intermediate source shares #;
+ (all,i,IND)            V1MAT(i)              # Total intermediate cost for industry i #;
+ (all,i,IND)            V1VAR(i)              # Short-run variable cost for industry i #;
 Read SIGMA1 from file BASEDATA header "1ARM";
+
 Zerodivide default 0.5;
+
 Formula
  (all,c,COM)(all,i,IND)            V1PUR_S(c,i) = sum{s,SRC, V1PUR(c,s,i)};
  (all,c,COM)(all,s,SRC)(all,i,IND) S1(c,s,i)    = V1PUR(c,s,i) / V1PUR_S(c,i);
@@ -301,21 +326,21 @@ Equation E_p1var  # Short-run variable cost price index #
 !$                            X1PRIM(i)/[A1PRIM(i)*A1TOT(i)],     !
 !$                            X1OCT(i)/[A1OCT(i)*A1TOT(i)] )   !
 Variable
- (all,i,IND)  x1tot(i)        # Activity level or value-added #;
- (all,i,IND)  a1prim(i)       # All factor augmenting technical change #;
- (all,i,IND)  a1tot(i)        # All input augmenting technical change #;
- (all,i,IND)  p1tot(i)        # Average input/output price #;
- (all,i,IND)  a1oct(i)        # "Other cost" ticket augmenting techncal change#;
+ (all,i,IND)  x1tot(i)            # Activity level or value-added #;
+ (all,i,IND)  a1prim(i)           # All factor augmenting technical change #;
+ (all,i,IND)  a1tot(i)            # All input augmenting technical change #;
+ (all,i,IND)  p1tot(i)            # Average input/output price #;
+ (all,i,IND)  a1oct(i)            # "Other cost" ticket augmenting techncal change#;
  (all,c,COM)(all,i,IND) a1_s(c,i) # Tech change, int'mdiate imp/dom composite #;
-              aprimtot # general factor augmenting technical change #;
+              aprimtot            # general factor augmenting technical change #;
  
-Equation E_x1_s  # Demands for commodity composites #
+Equation E_x1_s    # Demands for commodity composites #
  (all,c,COM)(all,i,IND)  x1_s(c,i) - [a1_s(c,i) + a1tot(i)] = x1tot(i);
  
 Equation E_x1prim  # Demands for primary factor composite #
  (all,i,IND)  x1prim(i) - [a1prim(i) + a1tot(i)] = x1tot(i);
  
-Equation E_x1oct  # Demands for other cost tickets #
+Equation E_x1oct   # Demands for other cost tickets #
  (all,i,IND)  x1oct(i) - [a1oct(i) + a1tot(i)] = x1tot(i);
  
 Equation E_a1prim  # a1primtot #
@@ -364,22 +389,22 @@ Equation E_p1cst  (all,i,IND) p1cst(i) =  [1/V1CST(i)]*[
  
 Coefficient (all,c,COM)(all,i,IND) MAKE(c,i) # Multiproduction matrix #;
 Variable
- (all,c,COM)(all,i,IND)  q1(c,i)   # Output by commodity and industry #;
- (all,c,COM)(all,i,IND)  pq1(c,i)  # Price of com c produced by ind i #;
- (all,c,COM)  p0com(c)   # General output price of locally-produced commodity #;
+ (all,c,COM)(all,i,IND)  q1(c,i)     # Output by commodity and industry #;
+ (all,c,COM)(all,i,IND)  pq1(c,i)    # Price of com c produced by ind i #;
+ (all,c,COM)  p0com(c)               # General output price of locally-produced commodity #;
 Read MAKE from file BASEDATA header "MAKE";
 Update (all,c,COM)(all,i,IND) MAKE(c,i)= pq1(c,i)*q1(c,i);
 Variable
- (all,c,COM)  x0com(c)        # Output of commodities #;
+ (all,c,COM)  x0com(c)               # Output of commodities #;
 Coefficient
  (parameter)(all,i,IND) SIGMA1OUT(i) # CET transformation elasticities #;
 Read SIGMA1OUT from file BASEDATA header "SCET";
-Equation E_q1  # Supplies of commodities by industries #
+Equation E_q1                        # Supplies of commodities by industries #
  (all,c,COM)(all,i,IND)
   q1(c,i) = x1tot(i) + SIGMA1OUT(i)*[pq1(c,i) - p1tot(i)];
 Coefficient
- (all,i,IND) MAKE_C(i) # All production by industry i #;
- (all,c,COM) MAKE_I(c) # Total production of commodities #;
+ (all,i,IND) MAKE_C(i)               # All production by industry i #;
+ (all,c,COM) MAKE_I(c)               # Total production of commodities #;
 Formula
  (all,i,IND) MAKE_C(i) = sum{c,COM, MAKE(c,i)};
  (all,c,COM) MAKE_I(c) = sum{i,IND, MAKE(c,i)};
@@ -421,19 +446,19 @@ Equation E_x0com # Total output of commodities (as CES quantity index) #
 Variable
  (all,c,COM)  x0dom(c)  # Output of commodities for local market #;
 Coefficient
- (all, c,COM) EXPSHR(c) # Share going to exports #;
- (all, c,COM) TAU(c)    # 1/Elast. of transformation, exportable/locally used #;
+ (all,c,COM)(all,p,PTNR) EXPSHR(c,p) # Share going to exports #; ! FDL !
+ (all,c,COM) TAU(c)    # 1/Elast. of transformation, exportable/locally used #;
 Zerodivide default 0.5;
 Formula
- (all,c,COM) EXPSHR(c) = V4BAS(c)/MAKE_I(c);
+ (all,c,COM)(all,p,PTNR) EXPSHR(c,p) = V4BAS(c,p)/MAKE_I(c); ! FDL !
  (all,c,COM) TAU(c) = 0.0; ! if zero, p0dom = pe, and CET is nullified !
 Zerodivide off;
 Equation E_x0dom  # Supply of commodities to export market #
- (all,c,COM) TAU(c)*[x0dom(c) - x4(c)] = p0dom(c) - pe(c);
+ (all,c,COM)(all,p,PTNR) TAU(c)*[x0dom(c) - x4(c,p)] = p0dom(c) - pe(c,p); ! FDL !
 Equation E_pe     # Supply of commodities to domestic market #
- (all,c,COM) x0com(c) = [1.0-EXPSHR(c)]*x0dom(c) + EXPSHR(c)*x4(c);
+ (all,c,COM)(all,p,PTNR) x0com(c) = [1.0-EXPSHR(c,p)]*x0dom(c) + EXPSHR(c,p)*x4(c,p); ! FDL !
 Equation E_p0com  # Zero pure profits in transformation #
- (all,c,COM) p0com(c) = [1.0-EXPSHR(c)]*p0dom(c) + EXPSHR(c)*pe(c);
+ (all,c,COM)(all,p,PTNR) p0com(c) = [1.0-EXPSHR(c,p)]*p0dom(c) + EXPSHR(c,p)*pe(c,p); ! FDL !
  
 ! Excerpt 14 of TABLO input file: !
 ! Investment demands !
@@ -651,7 +676,7 @@ Read EXP_ELAST from file BASEDATA header "P018";
 Equation
  E_pf4 (all,c,COM) pf4(c) = p4(c) - phi;
  E_x4A  # Individual export demand functions #
-(all,c,TRADEXP) x4(c) - f4q(c) = -ABS[EXP_ELAST(c)]*[pf4(c) - f4p(c)];
+(all,c,TRADEXP)(all,p,PTNR) x4(c,p) - f4q(c) = -ABS[EXP_ELAST(c)]*[pf4(c) - f4p(c)]; ! FDL !
 ! note: ABS function above fixes common mistake: positive EXP_ELAST values !
 ! To simulate exogenous export prices, exogenize pf4 instead of f4p !
  
@@ -667,7 +692,7 @@ Coefficient V4NTRADEXP # Total collective export earnings #;
 Formula     V4NTRADEXP = sum{c,NTRADEXP, V4PUR(c)};
  
 Equation E_X4B  # Collective export demand functions #
- (all,c,NTRADEXP) x4(c) - f4q(c) = x4_ntrad;
+ (all,c,NTRADEXP)(all,p,PTNR) x4(c,p) - f4q(c) = x4_ntrad; ! FDL !
 !NB: if f4q(c) shocked, x4_ntrad is not total of the collective x4 !
  
 Equation E_p4_ntrad  # Average price of collective exports #
@@ -721,8 +746,8 @@ Equation
   x2mar(c,s,i,m) = x2(c,s,i) + a2mar(c,s,i,m);
  E_x3mar  # Margins to households # (all,c,COM)(all,s,SRC)(all,m,MAR)(all,h,HOU)
   x3mar(c,s,m,h)   = x3(c,s,h) + a3mar(c,s,m,h);
- E_x4mar  # Margins to exports #    (all,c,COM)(all,m,MAR)
-  x4mar(c,m)     = x4(c) + a4mar(c,m);
+ E_x4mar  # Margins to exports #    (all,c,COM)(all,m,MAR)(all,p,PTNR) ! FDL !
+  x4mar(c,m)     = x4(c,p) + a4mar(c,m); ! FDL !
  E_x5mar  # Margins to government # (all,c,COM)(all,s,SRC)(all,m,MAR)
   x5mar(c,s,m)   = x5(c,s) + a5mar(c,s,m);
  
@@ -740,16 +765,18 @@ Set DEST # Sale Categories #
 (Interm, Invest, HouseH, Export, GovGE, Stocks, Margins);
  
 Coefficient (all,c,COM)(all,s,SRC)(all,d,DEST) SALE(c,s,d) # Sales aggregates #;
+
 Formula
- (all,c,COM)(all,s,SRC) SALE(c,s,"Interm")      = sum{i,IND, V1BAS(c,s,i)};
- (all,c,COM)(all,s,SRC) SALE(c,s,"Invest")      = sum{i,IND, V2BAS(c,s,i)};
- (all,c,COM)(all,s,SRC) SALE(c,s,"HouseH")      = sum{h,HOU, V3BAS(c,s,h)};
- (all,c,COM)            SALE(c,"dom","Export")  = V4BAS(c);
- (all,c,COM)            SALE(c,"imp","Export")  = 0;
- (all,c,COM)(all,s,SRC) SALE(c,s,"GovGE")       = V5BAS(c,s);
- (all,c,COM)(all,s,SRC) SALE(c,s,"Stocks")      = V6BAS(c,s);
- (all,c,COM)            SALE(c,"dom","Margins") = MARSALES(c);
- (all,c,COM)            SALE(c,"imp","Margins") = 0;
+ (all,c,COM)(all,s,SRC)  SALE(c,s,"Interm")      = sum{i,IND,  V1BAS(c,s,i)};
+ (all,c,COM)(all,s,SRC)  SALE(c,s,"Invest")      = sum{i,IND,  V2BAS(c,s,i)};
+ (all,c,COM)(all,s,SRC)  SALE(c,s,"HouseH")      = sum{h,HOU,  V3BAS(c,s,h)};
+ (all,c,COM)             SALE(c,"dom","Export")  = sum{p,PTNR, V4BAS(c,p)}; ! FDL !
+ (all,c,COM)             SALE(c,"imp","Export")  = 0;
+ (all,c,COM)(all,s,SRC)  SALE(c,s,"GovGE")       = V5BAS(c,s);
+ (all,c,COM)(all,s,SRC)  SALE(c,s,"Stocks")      = V6BAS(c,s);
+ (all,c,COM)             SALE(c,"dom","Margins") = MARSALES(c);
+ (all,c,COM)             SALE(c,"imp","Margins") = 0;
+
 Write SALE to file SUMMARY header "SALE";
  
 Coefficient (all,c,COM) V0IMP(c) # Total basic-value imports of good c #;
@@ -757,7 +784,7 @@ Formula     (all,c,COM) V0IMP(c) = sum{d,DEST, SALE(c,"imp",d)}+ TINY;
 Coefficient (all,c,COM) SALES(c) # Total sales of domestic commodities #;
 Formula     (all,c,COM) SALES(c) = sum{d,DEST, SALE(c,"dom",d)}+ TINY;
 Coefficient (all,c,COM) DOMSALES(c) # Total sales to local market #;
-Formula     (all,c,COM) DOMSALES(c) = SALES(c) - V4BAS(c);
+Formula     (all,c,COM) DOMSALES(c) = SALES(c) - sum{p,PTNR, V4BAS(c,p)}; ! FDL !
  
 ! Excerpt 21 of TABLO input file: !
 ! Market clearing equations !
@@ -765,20 +792,20 @@ Formula     (all,c,COM) DOMSALES(c) = SALES(c) - V4BAS(c);
 Variable (change)
  (all,c,COM)(all,s,SRC)(all,d,DEST) delSale(c,s,d) # Sales aggregates #;
 Equation
-E_delSaleA (all,c,COM)(all,s,SRC) delSale(c,s,"Interm") =
-                   0.01*sum{i,IND,V1BAS(c,s,i)*x1(c,s,i)};
-E_delSaleB (all,c,COM)(all,s,SRC) delSale(c,s,"Invest") =
-                   0.01*sum{i,IND,V2BAS(c,s,i)*x2(c,s,i)};
-E_delSaleC (all,c,COM)(all,s,SRC) delSale(c,s,"HouseH")=
+E_delSaleA (all,c,COM)(all,s,SRC)  delSale(c,s,"Interm") =
+                   0.01*sum{i,IND, V1BAS(c,s,i)*x1(c,s,i)};
+E_delSaleB (all,c,COM)(all,s,SRC)  delSale(c,s,"Invest") =
+                   0.01*sum{i,IND, V2BAS(c,s,i)*x2(c,s,i)};
+E_delSaleC (all,c,COM)(all,s,SRC)  delSale(c,s,"HouseH")=
                    0.01*sum{h,HOU, V3BAS(c,s,h)*x3(c,s,h)};
-E_delSaleD (all,c,COM)            delSale(c,"dom","Export")=0.01*V4BAS(c)*x4(c);
-E_delSaleE (all,c,COM)            delSale(c,"imp","Export")=   0;
-E_delSaleF (all,c,COM)(all,s,SRC) delSale(c,s,"GovGE") =0.01*V5BAS(c,s)*x5(c,s);
-E_delSaleG (all,c,COM)(all,s,SRC) delSale(c,s,"Stocks") = LEVP0(c,s)*delx6(c,s);
-E_delSaleH (all,m,MAR)            delSale(m,"dom","Margins") = 0.01*
+E_delSaleD (all,c,COM)(all,p,PTNR) delSale(c,"dom","Export")=0.01 * V4BAS(c,p) * x4(c,p); ! FDL !
+E_delSaleE (all,c,COM)             delSale(c,"imp","Export")=   0;
+E_delSaleF (all,c,COM)(all,s,SRC)  delSale(c,s,"GovGE") =0.01 * V5BAS(c,s) * x5(c,s);
+E_delSaleG (all,c,COM)(all,s,SRC)  delSale(c,s,"Stocks") = LEVP0(c,s) * delx6(c,s);
+E_delSaleH (all,m,MAR)             delSale(m,"dom","Margins") = 0.01*
   sum{c,COM, V4MAR(c,m)*x4mar(c,m)   ! note nesting of sum parentheses !
- + sum{s,SRC, sum{h,HOU,V3MAR(c,s,m,h)*x3mar(c,s,m,h)} + V5MAR(c,s,m)*x5mar(c,s,m)
- + sum{i,IND, V1MAR(c,s,i,m)*x1mar(c,s,i,m) + V2MAR(c,s,i,m)*x2mar(c,s,i,m)}}};
+ + sum{s,SRC, sum{h,HOU,V3MAR(c,s,m,h) * x3mar(c,s,m,h)} + V5MAR(c,s,m)*x5mar(c,s,m)
+ + sum{i,IND, V1MAR(c,s,i,m) * x1mar(c,s,i,m) + V2MAR(c,s,i,m) * x2mar(c,s,i,m)}}};
 E_delSaleI (all,n,NONMAR)         delSale(n,"dom","Margins") = 0;
 E_delSaleJ (all,c,COM)            delSale(c,"imp","Margins") = 0;
  
@@ -821,9 +848,9 @@ Equation E_p3 # Purchasers prices - households #
     + sum{m,MAR, V3MAR(c,s,m,h)*[p0dom(m)+a3mar(c,s,m,h)]};
  
 Equation E_p4 # Zero pure profits in exporting #
- (all,c,COM)
+ (all,c,COM)(all,p,PTNR) ! FDL !
   [V4PUR(c)+TINY]*p4(c) =
-   [V4BAS(c)+V4TAX(c)]*[pe(c)+ t4(c)]
+   [V4BAS(c,p)+V4TAX(c)]*[pe(c,p)+ t4(c)] ! FDL !
     + sum{m,MAR, V4MAR(c,m)*[p0dom(m)+a4mar(c,m)]};
 ! note that we refer to export taxes,not subsidies !
  
@@ -874,20 +901,20 @@ E_t5  # Power of tax on sales to government #
  
 Equation
  E_delV1TAX (all,c,COM)(all,s,SRC)(all,i,IND)
-   delV1TAX(c,s,i) = 0.01*V1TAX(c,s,i)* [x1(c,s,i) + p0(c,s)] +
-     0.01*[V1BAS(c,s,i)+V1TAX(c,s,i)]*t1(c,s,i);
+   delV1TAX(c,s,i) = 0.01 * V1TAX(c,s,i) * [x1(c,s,i) + p0(c,s)] +
+     0.01 * [V1BAS(c,s,i)+V1TAX(c,s,i)] * t1(c,s,i);
  E_delV2TAX (all,c,COM)(all,s,SRC)(all,i,IND)
-   delV2TAX(c,s,i)=  0.01*V2TAX(c,s,i)* [x2(c,s,i) + p0(c,s)] +
-     0.01*[V2BAS(c,s,i)+V2TAX(c,s,i)]*t2(c,s,i);
+   delV2TAX(c,s,i) = 0.01 * V2TAX(c,s,i) * [x2(c,s,i) + p0(c,s)] +
+     0.01 * [V2BAS(c,s,i) + V2TAX(c,s,i)] * t2(c,s,i);
  E_delV3TAX (all,c,COM)(all,s,SRC)(all,h,HOU)
-   delV3TAX(c,s,h)= 0.01*V3TAX(c,s,h)* [x3(c,s,h) + p0(c,s)] +
-     0.01*[V3BAS(c,s,h)+V3TAX(c,s,h)]*t3(c,s,h);
- E_delV4TAX (all,c,COM)
-   delV4TAX(c) = 0.01*V4TAX(c)* [x4(c) + pe(c)] +
-     0.01*[V4BAS(c)+V4TAX(c)]*t4(c);
+   delV3TAX(c,s,h) = 0.01 * V3TAX(c,s,h)  * [x3(c,s,h) + p0(c,s)] +
+     0.01 * [V3BAS(c,s,h) + V3TAX(c,s,h)] * t3(c,s,h);
+ E_delV4TAX (all,c,COM)(all,p,PTNR)                      ! FDL !
+   delV4TAX(c) = 0.01 * V4TAX(c) * [x4(c,p) + pe(c,p)] + ! FDL !
+     0.01 * [V4BAS(c,p)+V4TAX(c)] * t4(c);               ! FDL !
  E_delV5TAX (all,c,COM)(all,s,SRC)
-   delV5TAX(c,s) = 0.01*V5TAX(c,s)*[x5(c,s) + p0(c,s)] +
-     0.01*[V5BAS(c,s)+V5TAX(c,s)]*t5(c,s);
+   delV5TAX(c,s) = 0.01 * V5TAX(c,s) * [x5(c,s) + p0(c,s)] +
+     0.01 * [V5BAS(c,s)+V5TAX(c,s)] * t5(c,s);
  
 ! alternate form
 E_delV5TAX (all,c,COM)(all,s,SRC)
@@ -1012,34 +1039,34 @@ Formula
  
 Variable
  x2tot_i    # Aggregate real investment expenditure #;
- p2tot_i    # Aggregate investment price index #;
- w2tot_i    # Aggregate nominal investment #;
+ p2tot_i    # Aggregate investment price index      #;
+ w2tot_i    # Aggregate nominal investment          #;
 Equation
- E_x2tot_i  V2TOT_I*x2tot_i = sum{i,IND, V2TOT(i)*x2tot(i)};
- E_p2tot_i  V2TOT_I*p2tot_i = sum{i,IND, V2TOT(i)*p2tot(i)};
- E_w2tot_i  w2tot_i = x2tot_i + p2tot_i;
+ E_x2tot_i  V2TOT_I * x2tot_i = sum{i,IND, V2TOT(i) * x2tot(i)};
+ E_p2tot_i  V2TOT_I * p2tot_i = sum{i,IND, V2TOT(i) * p2tot(i)};
+ E_w2tot_i  w2tot_i           = x2tot_i + p2tot_i;
  
 Variable
- x4tot      # Export volume index #;
- p4tot      # Exports price index, local currency #;
+ x4tot      # Export volume index                    #;
+ p4tot      # Exports price index, local currency    #;
  w4tot      # Local currency border value of exports #;
 Equation
- E_x4tot    V4TOT*x4tot = sum{c,COM, V4PUR(c)*x4(c)};
- E_p4tot    V4TOT*p4tot = sum{c,COM, V4PUR(c)*p4(c)};
- E_w4tot    w4tot = x4tot + p4tot;
+ E_x4tot    V4TOT * x4tot = sum{c,COM, V4PUR(c) * x4(c,p)}; ! FDL !
+ E_p4tot    V4TOT * p4tot = sum{c,COM, V4PUR(c) * p4(c)};
+ E_w4tot    w4tot         = x4tot + p4tot;
  
 Variable
- x5tot      # Aggregate real government demands #;
- p5tot      # Government price index #;
+ x5tot      # Aggregate real government demands             #;
+ p5tot      # Government price index                        #;
  w5tot      # Aggregate nominal value of government demands #;
 Equation
- E_x5tot    V5TOT*x5tot = sum{c,COM, sum{s,SRC, V5PUR(c,s)*x5(c,s)}};
- E_p5tot    V5TOT*p5tot = sum{c,COM, sum{s,SRC, V5PUR(c,s)*p5(c,s)}};
- E_w5tot    w5tot = x5tot + p5tot;
+ E_x5tot    V5TOT * x5tot = sum{c,COM, sum{s,SRC, V5PUR(c,s) * x5(c,s)}};
+ E_p5tot    V5TOT * p5tot = sum{c,COM, sum{s,SRC, V5PUR(c,s) * p5(c,s)}};
+ E_w5tot    w5tot         = x5tot + p5tot;
  
 Variable
- x6tot      # Aggregate real inventories #;
- p6tot      # Inventories price index #;
+ x6tot      # Aggregate real inventories             #;
+ p6tot      # Inventories price index                #;
  w6tot      # Aggregate nominal value of inventories #;
 Equation
  E_x6tot    [TINY+V6TOT]*x6tot =100*sum{c,COM,sum{s,SRC,LEVP0(c,s)*delx6(c,s)}};
@@ -1056,9 +1083,9 @@ Equation
  E_w0cif_c  w0cif_c = x0cif_c + p0cif_c;
  
 Variable  !section added Oct 2002!
- x0gne   # Real GNE #;
+ x0gne   # Real GNE        #;
  p0gne   # GNE price index #;
- w0gne   # Nominal GNE #;
+ w0gne   # Nominal GNE     #;
 Equation
  E_x0gne V0GNE*x0gne = V3TOT*x3tot + V2TOT_I*x2tot_i + V5TOT*x5tot +V6TOT*x6tot;
  E_p0gne V0GNE*p0gne = V3TOT*p3tot + V2TOT_I*p2tot_i + V5TOT*p5tot +V6TOT*p6tot;
