@@ -1,0 +1,106 @@
+!===============================================================================
+! Command file for ORANIG model: real homogeneity test (short-run closure)
+!===============================================================================
+
+!-------------------------------------------------------------------------------
+!(1) Set Options
+!-------------------------------------------------------------------------------
+check-on-read elements = warn; ! very often needed
+cpu=yes ;                      ! (optional) Reports CPU times for various stages
+log file = yes;                ! optional
+auxiliary files = ORANI;       ! needed by GEMSIM
+
+! Solution method
+method = GRAGG ;
+steps = 2 4 6 ;
+!start with MMNZ = 100000;     ! idk
+
+
+
+!-------------------------------------------------------------------------------
+!(2) Data and summary files 
+!-------------------------------------------------------------------------------
+file         basedata = BASEDATA2015.har ;
+updated file basedata = <cmf>.upd;
+file         summary  = summary.har;
+
+Extrapolation Accuracy file = yes;
+
+
+
+!-------------------------------------------------------------------------------
+!(3) Closure 
+!-------------------------------------------------------------------------------
+!                   Variable     Size 
+Exogenous              a1cap ; ! IND   Capital-augmenting technical change
+Exogenous            a1lab_o ; ! IND   Labor-augmenting technical change
+Exogenous              a1lnd ; ! IND   Land-augmenting technical change
+Exogenous              a1tot ; ! IND   All input augmenting technical change
+Exogenous              a2tot ; ! IND   Neutral technical change - investment
+Exogenous               a3_s ; ! COM*HOU   Taste change, hhold imp/dom composite
+Exogenous           aprimtot ; ! 1   general factor augmenting technical change
+Exogenous           capslack ; ! 1   Slack variable to allow fixing aggregate capital
+Exogenous         delPTXRATE ; ! IND   Change in rate of production tax
+Exogenous            f0tax_s ; ! COM   General sales tax shifter
+Exogenous           f1lab_io ; ! 1   Overall wage shifter
+Exogenous              f1oct ; ! IND   Shift in price of "other cost" tickets
+Exogenous          f1tax_csi ; ! 1   Uniform % change in powers of taxes on intermediate usage
+Exogenous          f2tax_csi ; ! 1   Uniform % change in powers of taxes on investment
+Exogenous          f3tax_csh ; ! 1   Uniform % change in powers of taxes on household usage
+Exogenous            f3tax_s ; ! COM   Source-specific tax shifter for households
+Exogenous                f4p ; ! COM*PTNR   Price (upward) shift in export demand schedule
+Exogenous          f4p_ntrad ; ! 1   Uniform upward (price) demand shift for collective exports
+Exogenous                f4q ; ! COM*PTNR   Quantity (right) shift in export demands
+Exogenous          f4q_ntrad ; ! 1   Uniform right (quantity) demand shift for collective exports
+Exogenous        f4tax_ntrad ; ! 1   Uniform % change in powers of taxes on nontradtnl exports
+Exogenous         f4tax_trad ; ! 1   Uniform % change in powers of taxes on tradtnl exports
+Exogenous                 f5 ; ! COM*SRC   Government demand shift
+Exogenous           f5tax_cs ; ! 1   Uniform % change in powers of taxes on government usage
+Exogenous             f5tot2 ; ! 1   Ratio between f5tot and x3tot
+Exogenous             fntrad ; ! NTRADEXP   Shift in composition of non-traditional export aggregate
+Exogenous                fx6 ; ! COM*SRC   Shifter on rule for stocks
+Exogenous           invslack ; ! 1   Investment slack variable for exogenizing aggregate investment
+Exogenous             pf0cif ; ! COM   C.I.F. foreign currency import prices
+Exogenous                phi ; ! 1   Exchange rate, local currency/$world
+Exogenous                  q ; ! HOU   Number of households
+Exogenous              t0imp ; ! COM   Power of tariff
+Exogenous              w3lux ; ! HOU   Nominal luxury consumption
+Exogenous              x1cap ; ! IND   Current capital stock
+Exogenous              x1lnd ; ! IND   Use of land
+Exogenous              x2tot ; ! IND   Investment by using industry
+Exogenous              x3tot ; ! 
+Rest endogenous;
+
+
+
+!-------------------------------------------------------------------------------
+!(4) Swap variables 
+!-------------------------------------------------------------------------------
+!      old exogenous   new exogenous
+!swap   invslack     = f2tot;    ! link investment to household consumption
+!swap   w3lux        = contBOT;  ! consumption adjust to fix real trade balance 
+!swap   f1lab_io     = employ_i; ! wage adjusts to fix employment
+!swap   x2tot        = finv3;    ! investment in each sector follows capital stock
+!swap   fx6          = delx6;    ! fix inventory changes
+swap   delx6        =  fx6;     !  inventory changes follow sales
+
+
+!-------------------------------------------------------------------------------
+!(5) Shocks
+!-------------------------------------------------------------------------------
+Verbal description = real homogeneity test;
+shock x1cap        = uniform 10; ! all sectoral capital
+shock x1lnd        = uniform 10; ! all sectoral agricultural land
+shock x3tot        = 10;         ! real private consumption expenditure
+shock x2tot_i      = 10;         ! real investment expenditure
+shock x5tot        = 10;         ! real governemnt expenditure
+shock f4q(TRADEXP) = uniform 10; ! individual exports
+shock f4q_ntrad    = 10;         ! collective exports
+shock qh           = uniform 10; ! no. of households
+    
+!Check: 
+! (1) All real values should increase by 10%; 
+! (2) All nominal prices should not change;        
+
+
+

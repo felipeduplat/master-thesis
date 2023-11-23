@@ -41,6 +41,6 @@ renda_qualif = pnad_clean %>%
 
 
 #--- EXPORTAR PARA O EXCEL -----------------------
-write_xlsx(list("PNAD 2015 | renda e qualif." = renda_qualif), "output/raw/tabelas.xlsx")
+write_xlsx(list("PNAD 2015 | qualificação" = renda_qualif), "output/raw/tabelas.xlsx")
 
 
