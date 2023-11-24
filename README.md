@@ -49,8 +49,8 @@ Contém o arquivo TeX da dissertação.
 
 | #  |              Tarefas                   |             set/22              |              out/22             |              nov/22             |              dez/22             | jan/23  | fev/23  | 
 | -  |              -------                   |             ------              |              ------             |              ------             |              ------             | ------  | ------  |
-| 1  | Calibragem do ORANIG-BR                | <p align="center"> &#9744; </p> |                                 |                                 |                                 |         |         |
-| 2  | Fechamento do ORANIG-BR                | <p align="center"> &#9744; </p> |                                 |                                 |                                 |         |         |
+| 1  | Calibragem do ORANIG-BR                | <p align="center"> &#10004;</p> |                                 |                                 |                                 |         |         |
+| 2  | Fechamento do ORANIG-BR                | <p align="center"> &#10004;</p> |                                 |                                 |                                 |         |         |
 | 3  | Simulações                             | <p align="center"> &#9744; </p> |                                 |                                 |                                 |         |         |
 | 4  | Tabular resultados do ORANIG-BR        | <p align="center"> &#9744; </p> |                                 |                                 |                                 |         |         |
 | 5  | Forma funcional da microssimulação     |                                 | <p align="center"> &#9744; </p> |                                 |                                 |         |         |
