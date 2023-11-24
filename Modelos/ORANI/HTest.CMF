@@ -1,0 +1,86 @@
+!===============================================================================
+! Command file for ORANIG model: nominal homogeneity test
+!===============================================================================
+
+!-------------------------------------------------------------------------------
+!(1) Set Options
+!-------------------------------------------------------------------------------
+check-on-read elements = warn; ! very often needed
+cpu=yes ;                      ! (optional) Reports CPU times for various stages
+log file = yes;                ! optional
+auxiliary files = ORANI;       ! needed by GEMSIM
+
+! Solution method
+method = GRAGG ;
+steps = 2 4 6 ;
+!start with MMNZ = 100000;     ! idk
+
+
+
+!-------------------------------------------------------------------------------
+!(2) Data and summary files 
+!-------------------------------------------------------------------------------
+file         basedata = BASEDATA2015.har ;
+updated file basedata = <cmf>.upd;
+file         summary  = summary.har;
+
+Extrapolation Accuracy file = yes;
+
+
+
+!-------------------------------------------------------------------------------
+!(3) Closure 
+!-------------------------------------------------------------------------------
+!                   Variable     Size 
+Exogenous              a1cap   ! IND       Capital-augmenting technical change
+                     a1lab_o   ! IND       Labor-augmenting technical change
+                       a1lnd   ! IND       Land-augmenting technical change
+                       a1tot   ! IND       All input augmenting technical change
+                       a2tot   ! IND       Neutral technical change - investment
+                        a3_s   ! COM*HOU   Taste change, hhold imp/dom composite
+                    aprimtot   ! 1         general factor augmenting technical change
+                    capslack   ! 1         Slack variable to allow fixing aggregate capital
+                  delPTXRATE   ! IND       Change in rate of production tax
+                     f0tax_s   ! COM       General sales tax shifter
+                    f1lab_io   ! 1         Overall wage shifter
+                       f1oct   ! IND       Shift in price of "other cost" tickets
+                   f1tax_csi   ! 1         Uniform % change in powers of taxes on intermediate usage
+                   f2tax_csi   ! 1         Uniform % change in powers of taxes on investment
+                   f3tax_csh   ! 1         Uniform % change in powers of taxes on household usage
+                     f3tax_s   ! COM       Source-specific tax shifter for households
+                         f4p   ! COM*PTNR  Price (upward) shift in export demand schedule
+                   f4p_ntrad   ! 1         Uniform upward (price) demand shift for collective exports
+                         f4q   ! COM*PTNR  Quantity (right) shift in export demands
+                   f4q_ntrad   ! 1         Uniform right (quantity) demand shift for collective exports
+                 f4tax_ntrad   ! 1         Uniform % change in powers of taxes on nontradtnl exports
+                  f4tax_trad   ! 1         Uniform % change in powers of taxes on tradtnl exports
+                          f5   ! COM*SRC   Government demand shift
+                    f5tax_cs   ! 1         Uniform % change in powers of taxes on government usage
+                      f5tot2   ! 1         Ratio between f5tot and x3tot
+                      fntrad   ! NTRADEXP  Shift in composition of non-traditional export aggregate
+                         fx6   ! COM*SRC   Shifter on rule for stocks
+                    invslack   ! 1         Investment slack variable for exogenizing aggregate investment
+                      pf0cif   ! COM       C.I.F. foreign currency import prices
+                         phi   ! 1         Exchange rate, local currency/$world
+                           q   ! HOU       Number of households
+                       t0imp   ! COM       Power of tariff
+                       w3lux   ! HOU       Nominal luxury consumption
+                       x1cap   ! IND       Current capital stock
+                       x1lnd   ! IND       Use of land
+                       x2tot ; ! IND       Investment by using industry
+Rest endogenous;
+
+
+
+!-------------------------------------------------------------------------------
+!(4) Shocks
+!-------------------------------------------------------------------------------
+verbal description = nominal homogeneous test;
+shock   phi =  10;
+
+!Check: 
+! (1) All nominal values should increase by 10%; 
+! (2) All real values should not change;  
+
+
+

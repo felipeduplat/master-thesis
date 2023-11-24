@@ -32,107 +32,115 @@ Extrapolation Accuracy file = yes;
 !(3) Closure 
 !-------------------------------------------------------------------------------
 
-! Exogenous variables constraining real GDP from the supply side
-exogenous  x1cap            ! IND          Current capital stock
-           x1lnd            ! IND          Use of land
-           a1cap            ! IND          Capital-augmenting technical change
-           a1lab_o          ! IND          Labor-augmenting technical change
-           a1lnd            ! IND          Land-augmenting technical change
-           aprimtot         ! 1            General factor augmenting technical change
-           a1tot            ! IND          All input augmenting technical change
-           a2tot            ! IND          Neutral technical change - investment
-           f1lab_io ;       ! 1            Overall wage shifter
-
-! Exogenous settings of real GDP from the expenditure side
-exogenous  x3tot            ! 1            Real private consumption expenditure
-           x2tot_i          ! 1            Aggregate real investment expenditure
-           x5tot            ! 1            Aggregate real government demands 
-           delx6 ;          ! COM*SRC      Real demands for inventories by commodity
-
-! The demand curves of exports are fixed in both quantity and price axes
-exogenous  f4p              ! COM          Price (upward) shift in export demand schedule - individual exports
-           f4q              ! COM          Quantity (right) shift in export demands - individual exports
-           f4p_ntrad        ! 1            Uniform upward (price) demand shift for collective exports
-           f4q_ntrad        ! 1            Uniform right (quantity) demand shift for collective exports
-           fntrad ;         ! NTRADEXP     Shift in composition of non-traditional export aggregate              ! FDL !
-
-! Exogenous foreign prices of imports ;
-exogenous  pf0cif ;         ! COM          C.I.F. foreign currency import prices
-
-! All tax rates are exogenous 
-exogenous  delPTXRATE       ! IND          Change in rate of production tax
-           f0tax_s          ! COM*IMP      General sales tax shifter
-           f1tax_csi        ! 1            Uniform % change in powers of taxes on intermediate usage
-           f2tax_csi        ! 1            Uniform % change in powers of taxes on investment
-           !f3tax_csh        ! 1            Uniform % change in powers of taxes on household usage
-           f3tax_s          ! COM          Source-specific tax shifter for households
-           f5tax_cs         ! GOV          Uniform % change in powers of taxes on government usage
-           t0imp            ! COM          Power of tariff
-           f4tax_trad       ! 1            Uniform % change in powers of taxes on tradtnl exports
-           f4tax_ntrad      ! 1            Uniform % change in powers of taxes on nontradtnl exports
-           f1oct ;          ! IND          Shift in price of "other cost" tickets
-
-! distribution of government demands !
-exogenous  f5 ;             ! COM*SRC*GOV  Government demand shift
-
-! The nominal exchange rate is the numeraire
-exogenous phi ;             ! 1            Exchange rate, local currency/$world
-
-! Number of households and their consumption preferences are exogenous
-exogenous q                 ! 100          Number of households
-          a3_s              ! COM          Taste change, household imp/dom composite
-          w3lux ;           ! COM          Nominal luxury consumption
-
-exogenous capslack;         ! 1            Slack variable to allow fixing aggregate capital - switch off aggregate capital constraint
+!                   Variable     Size 
+Exogenous              a1cap   ! IND       Capital-augmenting technical change
+                     a1lab_o   ! IND       Labor-augmenting technical change
+                       a1lnd   ! IND       Land-augmenting technical change
+                       a1tot   ! IND       All input augmenting technical change
+                       a2tot   ! IND       Neutral technical change - investment
+                        a3_s   ! COM*HOU   Taste change, hhold imp/dom composite
+                    aprimtot   ! 1         general factor augmenting technical change
+                    capslack   ! 1         Slack variable to allow fixing aggregate capital
+                  delPTXRATE   ! IND       Change in rate of production tax
+                     f0tax_s   ! COM       General sales tax shifter
+                    f1lab_io   ! 1         Overall wage shifter
+                       f1oct   ! IND       Shift in price of "other cost" tickets
+                   f1tax_csi   ! 1         Uniform % change in powers of taxes on intermediate usage
+                   f2tax_csi   ! 1         Uniform % change in powers of taxes on investment
+                   f3tax_csh   ! 1         Uniform % change in powers of taxes on household usage
+                     f3tax_s   ! COM       Source-specific tax shifter for households
+                         f4p   ! COM*PTNR  Price (upward) shift in export demand schedule
+                   f4p_ntrad   ! 1         Uniform upward (price) demand shift for collective exports
+                         f4q   ! COM*PTNR  Quantity (right) shift in export demands
+                   f4q_ntrad   ! 1         Uniform right (quantity) demand shift for collective exports
+                 f4tax_ntrad   ! 1         Uniform % change in powers of taxes on nontradtnl exports
+                  f4tax_trad   ! 1         Uniform % change in powers of taxes on tradtnl exports
+                          f5   ! COM*SRC   Government demand shift
+                    f5tax_cs   ! 1         Uniform % change in powers of taxes on government usage
+                      f5tot2   ! 1         Ratio between f5tot and x3tot
+                      fntrad   ! NTRADEXP  Shift in composition of non-traditional export aggregate
+                         fx6   ! COM*SRC   Shifter on rule for stocks
+                    invslack   ! 1         Investment slack variable for exogenizing aggregate investment
+                      pf0cif   ! COM       C.I.F. foreign currency import prices
+                         phi   ! 1         Exchange rate, local currency/$world
+                           q   ! HOU       Number of households
+                       t0imp   ! COM       Power of tariff
+                       w3lux   ! HOU       Nominal luxury consumption
+                       x1cap   ! IND       Current capital stock
+                       x1lnd   ! IND       Use of land
+                       x2tot ; ! IND       Investment by using industry
 
 ! Distribution of investment between industries
-xSet EXOGINV  # 'exogenous' investment industries #
- (EnerEleGasN, AguaEsgResid, Construcao, AdmPublica, EducPublica, SauPublica, ServDomes);
-xSubset EXOGINV is subset of IND;
-xSet ENDOGINV # 'endogenous' investment industries # = IND - EXOGINV;
-exogenous finv1(ENDOGINV); !              investment linked to profits
-exogenous finv2(EXOGINV);  !              investment follows aggregate investment
+!# 'exogenous' investment industries #
+!xSet EXOGINV (EnerEleGasN, AguaEsgResid, Construcao, AdmPublica, EducPublica, SauPublica, ServDomes);
 
-! end of closure 
-rest endogenous ;
+!# 'endogenous' investment industries #
+!xSubset EXOGINV is subset of IND;
+!xSet    ENDOGINV = IND - EXOGINV;
+
+!exogenous finv1(ENDOGINV);                ! investment linked to profits
+!exogenous finv2(EXOGINV) ;                ! investment follows aggregate investment
+
+! end of closure
+Rest endogenous;
 
 
 
 !-------------------------------------------------------------------------------
-!(4) Swap variables 
+!(4) Swap variables to create the short-run closure
 !-------------------------------------------------------------------------------
-!         old exogenous   new exogenous
+!      old exogenous         new exogenous
+swap   f1lab_io         =    realwage;  ! National average real wage fixed for all OCC; national labour supply elastic
+swap   x2tot            =    finv1   ;  ! 
+swap   f5tot2           =    x5tot   ;  ! 
+swap   invslack         =    x2tot_i ;  ! 
+
 ! potential exogenous variables:
-!f5tot2   ; ! 1   Ratio between f5tot and x3tot
+!f5tot2   ; ! 1          Ratio between f5tot and x3tot
 !fntrad   ; ! NTRADEXP   Shift in composition of non-traditional export aggregate
-!fx6      ; ! COM*SRC   Shifter on rule for stocks
-!invslack ; ! 1   Investment slack variable for exogenizing aggregate investment
-!x2tot    ; ! IND   Investment by using industry
+!fx6      ; ! COM*SRC    Shifter on rule for stocks
+!invslack ; ! 1          Investment slack variable for exogenizing aggregate investment
+!x2tot    ; ! IND        Investment by using industry
 
 
 
 !-------------------------------------------------------------------------------
 !(5) Shocks
 !-------------------------------------------------------------------------------
-verbal description = effect of 10% tariff decrease, short-run closure;
-shock t0imp = uniform -10; ! power of tariff
+verbal description = effect of productivity, import prices, exchange rate, tariff, exports and FTAs, short-run closure;
 
-!verbal description = 
-!shock 
+! Primeiro choque: aumento em 10% da produtividade da economia
+shock aprimtot = uniform -10;
 
-!verbal description = 
-!shock 
+! Segundo choque: aumento em 10% dos preços das importações mundiais
+shock pf0cif   = uniform  10;
 
-!verbal description = 
-!shock 
+! Terceiro choque: desvalorização em 10% da taxa de câmbio
+shock phi      = uniform  10;
 
-!verbal description = 
-!shock 
+! Quarto choque: redução em 10% do poder da tarifa
+shock t0imp    = uniform -10;
+
+! Quinto choque: aumento em 10% da demanda por eportações
+shock f4q      = uniform  10; ! (f4q_ntrad, f4tax_trad, f4tax_ntrad?)
+
+! Sexto choque: expansão do Mercosul
+shock t0imp("Argentina","Uruguai","Paraguai") = uniform -100;
+! ou shock t0imp("Argentina","Uruguai","Paraguai","Chile",) = uniform -100;?
+shock p0toft   = uniform    ; !(phi, pf0cif, pf4, pf0cif + pf4?)
+
+! Sétimo choque: acordo UE-Mercosul
+shock t0imp    = uniform -91;
+shock t0imp("Texteis","Vestuario","FabCCalcado","FabQuiOrlno",
+            "FabFarmoFar","FabMaqEqEle","FabMaqEqMec","FabAutoCam","FabPecAcVei") = - 100;
+shock p0toft   = uniform    ; !(phi, pf0cif, pf4, pf0cif + pf4?)
 
 ! Expect:
-! (1)
-! (2)
-! (3)
-
-
+! (1) investigar as ligações interindustriais e de emprego a partir de um choque de produtividade; 
+! (2) investigar os efeitos sobre as variáveis macroeconômicas, além dos índices de desigualdade de renda e pobreza;
+! (3) investigar como as variáveis macroeconômicas reagem à mudança dos preços relativos;
+! (4) investigar os efeitos de uma política orientada para a abertura comercial;
+! (5) investigar os efeitos de uma política de incentivo à exportação (export-led);
+! (6) tentar avaliar os efeitos de um acordo mais amplo do Mercosul;
+! (7) tentar avaliar os efeitos da concretização do acordo UE-Mercosul.
 

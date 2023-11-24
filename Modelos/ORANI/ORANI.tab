@@ -1076,16 +1076,17 @@ Coefficient
 
 Formula
               V1CAP_I      = sum{i,IND, V1CAP(i)};
-  (all,h,HOU) V1LAB_IO(h)  = sum{i,IND, V1LAB_O(i,h)};                    ! FDL !
+  (all,h,HOU) V1LAB_IO(h)  = sum{i,IND, V1LAB_O(i,h)};                                ! FDL !
               V1LND_I      = sum{i,IND, V1LND(i)};
               V1PTX_I      = sum{i,IND, V1PTX(i)};
               V1OCT_I      = sum{i,IND, V1OCT(i)};
-              V1PRIM_I     = sum{h,HOU, V1LAB_IO(h)} + V1CAP_I + V1LND_I; ! FDL !
+              V1PRIM_I     = sum{h,HOU, V1LAB_IO(h)} + V1CAP_I + V1LND_I;             ! FDL !
               V0TAX_CSI    = V1TAX_CSI + V2TAX_CSI + V3TAX_CSH + V4TAX_C + V5TAX_CS + V0TAR_C + V1OCT_I + V1PTX_I;
               V0GDPINC     = V1PRIM_I + V0TAX_CSI;
  
 Variable
              w1lab_io     # Aggregate payments to labour                           #;
+ (all,o,OCC) w1lab_i(o)   # Aggregate payments to labour by occupation             #; ! FDL !
              w1cap_i      # Aggregate payments to capital                          #;
              w1lnd_i      # Aggregate payments to land                             #;
              w1prim_i     # Aggregate primary factor payments                      #;
@@ -1096,15 +1097,16 @@ Variable
              w0gdpinc     # Nominal GDP from income side                           #;
 
 Equation
- E_w1lab_io             sum{h,HOU, V1LAB_IO(h)} * w1lab_io  = sum{i,IND, sum{o,OCC, V1LAB_H(i,o) * [x1lab(i,o)  + p1lab(i,o)]}};                         ! FDL !
- E_w1cap_i              V1CAP_I                 * w1cap_i   = sum{i,IND, V1CAP(i)                * [x1cap(i)    + p1cap(i)]};
- E_w1lnd_i              ID01[V1LND_I]           * w1lnd_i   = sum{i,IND, V1LND(i)                * [x1lnd(i)    + p1lnd(i)]};
- E_w1prim_i             V1PRIM_I                * w1prim_i  = sum{h,HOU, V1LAB_IO(h)}            * w1lab_io     + V1CAP_I * w1cap_i + V1LND_I * w1lnd_i; ! FDL !
- E_w1oct_i              ID01[V1OCT_I]           * w1oct_i   = sum{i,IND, V1OCT(i)                * [x1oct(i)    + p1oct(i)]};
- E_delV1PTX_i           delV1PTX_i                          = sum{i,IND,delV1PTX(i)};
- E_delV0tax_csi         delV0tax_csi                        = delV1tax_csi + delV2tax_csi + delV3tax_csh + delV4tax_c + delV5tax_cs + delV0tar_c + delV1PTX_i + 0.01 * V1OCT_I * w1oct_i;
- E_w0tax_csi            [TINY + V0TAX_CSI]      * w0tax_csi = 100          * delV0tax_csi;
- E_w0gdpinc             V0GDPINC                * w0gdpinc  = V1PRIM_I     * w1prim_i + 100 * delV0tax_csi;
+ E_w1lab_io             sum{h,HOU, V1LAB_IO(h)} * w1lab_io   = sum{i,IND, sum{o,OCC, V1LAB_H(i,o) * [x1lab(i,o)  + p1lab(i,o)]}};                         ! FDL !
+ E_w1lab_i (all,o,OCC)  sum{h,HOU, V1LAB_IO(h)} * w1lab_i(o) = sum{i,IND, V1LAB_H(i,o)            * [x1lab(i,o)  + p1lab(i,o)]};                          ! FDL !
+ E_w1cap_i              V1CAP_I                 * w1cap_i    = sum{i,IND, V1CAP(i)                * [x1cap(i)    + p1cap(i)]};
+ E_w1lnd_i              ID01[V1LND_I]           * w1lnd_i    = sum{i,IND, V1LND(i)                * [x1lnd(i)    + p1lnd(i)]};
+ E_w1prim_i             V1PRIM_I                * w1prim_i   = sum{h,HOU, V1LAB_IO(h)}            * w1lab_io     + V1CAP_I * w1cap_i + V1LND_I * w1lnd_i; ! FDL !
+ E_w1oct_i              ID01[V1OCT_I]           * w1oct_i    = sum{i,IND, V1OCT(i)                * [x1oct(i)    + p1oct(i)]};
+ E_delV1PTX_i           delV1PTX_i                           = sum{i,IND,delV1PTX(i)};
+ E_delV0tax_csi         delV0tax_csi                         = delV1tax_csi + delV2tax_csi + delV3tax_csh + delV4tax_c + delV5tax_cs + delV0tar_c + delV1PTX_i + 0.01 * V1OCT_I * w1oct_i;
+ E_w0tax_csi            [TINY + V0TAX_CSI]      * w0tax_csi  = 100          * delV0tax_csi;
+ E_w0gdpinc             V0GDPINC                * w0gdpinc   = V1PRIM_I     * w1prim_i + 100 * delV0tax_csi;
 
 
 
@@ -1392,7 +1394,7 @@ Variable
 (all,h,HOU) w1labh(h) # Total wage bill by household #;
 
 Equation
- E_w1labh (all,h,HOU) sum{o,OCC, V1LAB_I(o,h) * [w1lab_io - w1labh(h)]} = 0;
+ E_w1labh (all,h,HOU) sum{o,OCC, V1LAB_I(o,h) * [w1lab_i(o) - w1labh(h)]} = 0;
 
 !===============================================================================!
 !===============================================================================!
