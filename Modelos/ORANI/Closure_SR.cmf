@@ -13,7 +13,6 @@ auxiliary files = ORANI;       ! needed by GEMSIM
 ! Solution method
 method = GRAGG ;
 steps = 2 4 6 ;
-!start with MMNZ = 100000;     ! idk
 
 
 
@@ -69,18 +68,6 @@ Exogenous              a1cap   ! IND       Capital-augmenting technical change
                        x1cap   ! IND       Current capital stock
                        x1lnd   ! IND       Use of land
                        x2tot ; ! IND       Investment by using industry
-
-! Distribution of investment between industries
-!# 'exogenous' investment industries #
-!xSet EXOGINV (EnerEleGasN, AguaEsgResid, Construcao, AdmPublica, EducPublica, SauPublica, ServDomes);
-
-!# 'endogenous' investment industries #
-!xSubset EXOGINV is subset of IND;
-!xSet    ENDOGINV = IND - EXOGINV;
-
-!exogenous finv1(ENDOGINV);                ! investment linked to profits
-!exogenous finv2(EXOGINV) ;                ! investment follows aggregate investment
-
 ! end of closure
 Rest endogenous;
 
@@ -90,57 +77,28 @@ Rest endogenous;
 !(4) Swap variables to create the short-run closure
 !-------------------------------------------------------------------------------
 !      old exogenous         new exogenous
-swap   f1lab_io         =    realwage;  ! National average real wage fixed for all OCC; national labour supply elastic
-swap   x2tot            =    finv1   ;  ! 
-swap   f5tot2           =    x5tot   ;  ! 
-swap   invslack         =    x2tot_i ;  ! 
-
-! potential exogenous variables:
-!f5tot2   ; ! 1          Ratio between f5tot and x3tot
-!fntrad   ; ! NTRADEXP   Shift in composition of non-traditional export aggregate
-!fx6      ; ! COM*SRC    Shifter on rule for stocks
-!invslack ; ! 1          Investment slack variable for exogenizing aggregate investment
-!x2tot    ; ! IND        Investment by using industry
+swap   f1lab_io         =    realwage;     ! Emprego agregado se ajusta para ajustar salário real;
+swap   x2tot            =    finv1   ;     ! 
+swap   f5tot2           =    x5tot   ;     ! Linkar demanda do governo com consumo das famílias;
+swap   invslack         =    x2tot_i ;     ! Linkar investimento com consumo das famílias.
 
 
 
 !-------------------------------------------------------------------------------
 !(5) Shocks
 !-------------------------------------------------------------------------------
-verbal description = effect of productivity, import prices, exchange rate, tariff, exports and FTAs, short-run closure;
+verbal description = effect of import prices, exchange rate and tariff, short-run closure;
 
-! Primeiro choque: aumento em 10% da produtividade da economia
-shock aprimtot = uniform -10;
+! Primeiro choque - redução em 10% dos preços das importações mundiais:
+shock pf0cif = uniform -10;
 
-! Segundo choque: aumento em 10% dos preços das importações mundiais
-shock pf0cif   = uniform  10;
+! Segundo choque - aumento em 10% da demanda por exportações:
+shock f4q    = uniform  10;
 
-! Terceiro choque: desvalorização em 10% da taxa de câmbio
-shock phi      = uniform  10;
-
-! Quarto choque: redução em 10% do poder da tarifa
-shock t0imp    = uniform -10;
-
-! Quinto choque: aumento em 10% da demanda por eportações
-shock f4q      = uniform  10; ! (f4q_ntrad, f4tax_trad, f4tax_ntrad?)
-
-! Sexto choque: expansão do Mercosul
-shock t0imp("Argentina","Uruguai","Paraguai") = uniform -100;
-! ou shock t0imp("Argentina","Uruguai","Paraguai","Chile",) = uniform -100;?
-shock p0toft   = uniform    ; !(phi, pf0cif, pf4, pf0cif + pf4?)
-
-! Sétimo choque: acordo UE-Mercosul
-shock t0imp    = uniform -91;
-shock t0imp("Texteis","Vestuario","FabCCalcado","FabQuiOrlno",
-            "FabFarmoFar","FabMaqEqEle","FabMaqEqMec","FabAutoCam","FabPecAcVei") = - 100;
-shock p0toft   = uniform    ; !(phi, pf0cif, pf4, pf0cif + pf4?)
+! Terceiro choque - redução em 10% do poder da tarifa:
+shock t0imp  = select from file TARIFFCUT.har header "TCUT";
 
 ! Expect:
-! (1) investigar as ligações interindustriais e de emprego a partir de um choque de produtividade; 
-! (2) investigar os efeitos sobre as variáveis macroeconômicas, além dos índices de desigualdade de renda e pobreza;
-! (3) investigar como as variáveis macroeconômicas reagem à mudança dos preços relativos;
-! (4) investigar os efeitos de uma política orientada para a abertura comercial;
-! (5) investigar os efeitos de uma política de incentivo à exportação (export-led);
-! (6) tentar avaliar os efeitos de um acordo mais amplo do Mercosul;
-! (7) tentar avaliar os efeitos da concretização do acordo UE-Mercosul.
-
+! (1) investigar os efeitos da mudança dos preços relativos sobre as variáveis macroeconômicas, além dos índices de desigualdade de renda e pobreza;
+! (2) investigar os efeitos de uma política de incentivo à exportação (export-led);
+! (3) investigar os efeitos de uma política orientada para a abertura comercial.

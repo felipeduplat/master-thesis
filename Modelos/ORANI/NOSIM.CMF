@@ -12,8 +12,8 @@ Auxiliary files = ORANI;
 !-------------------------------------------------------------------------------
 !(2) Outputs
 !-------------------------------------------------------------------------------
-File BASEDATA = BASEDATA2015.har;
-File SUMMARY = SUMMARY.HAR;
+File basedata = BASEDATA2015.har;
+File summary  = summary.har;
 
 
 

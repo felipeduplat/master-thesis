@@ -485,14 +485,14 @@ Variable
 
 Coefficient
  (all, c,COM)(all,p,PTNR) EXPSHR(c,p) # Share going to exports                              #; ! FDL !
- (all, c,COM)             DOMSHR(c)   # Share going to exports #;                              ! FDL - CONFERIR !
+ (all, c,COM)             DOMSHR(c)   # Share going to exports #;                              ! FDL !
  (all, c,COM)             TAU(c)      # 1/Elast. of transformation, exportable/locally used #;
 
 Zerodivide default 0.5;
 Formula
  (all,c,COM)(all,p,PTNR) EXPSHR(c,p) = V4BAS(c,p) / MAKE_I(c);                                 ! FDL !
  (all,c,COM)             TAU(c)      = 0.0; ! if zero, p0dom = pe, and CET is nullified !
- (all, c,COM)            DOMSHR(c)   = 1.0 - sum{p,PTNR, EXPSHR(c,p)};                         ! FDL - CONFERIR !
+ (all, c,COM)            DOMSHR(c)   = 1.0 - sum{p,PTNR, EXPSHR(c,p)};                         ! FDL !
 
 Zerodivide off;
 Equation E_x0dom        # Supply of commodities to domestic market #
@@ -723,7 +723,7 @@ Write (Set) TRADEXP  to file SUMMARY header "TEXP";
 Variable
                           phi       # Exchange rate, local currency/$world           #;
                           x4_trad   # Volume of traditional exports                  #; ! FDL !
- (all,c,COM)              pf4(c)    # Foreign currency export prices                 #;
+ (all,c,COM)(all,p,PTNR)  pf4(c,p)  # Foreign currency export prices                 #; ! FDL !
  (all,c,COM)(all,p,PTNR)  f4p(c,p)  # Price (upward) shift in export demand schedule #; ! FDL !
  (all,c,COM)(all,p,PTNR)  f4q(c,p)  # Quantity (right) shift in export demands       #; ! FDL !
 Coefficient (parameter)(all,c,COM) EXP_ELAST(c)
@@ -731,9 +731,9 @@ Coefficient (parameter)(all,c,COM) EXP_ELAST(c)
 
 Read EXP_ELAST from file BASEDATA header "P018";
 Equation
- E_pf4 (all,c,COM)          pf4(c)             = sum{p,PTNR, p4(c,p)} - phi;                           ! FDL - CONFERIR !
+ E_pf4 (all,c,COM)(all,p,PTNR) pf4(c,p)           = p4(c,p) - phi;                                        ! FDL !
  E_x4A  # Individual export demand functions #
-(all,c,TRADEXP)(all,p,PTNR) x4(c,p) - f4q(c,p) = -ABS[EXP_ELAST(c)] * [p4(c,p) - phi - f4p(c,p)];      ! FDL - CONFERIR !
+(all,c,TRADEXP)(all,p,PTNR) x4(c,p) - f4q(c,p)    = -ABS[EXP_ELAST(c)] * [p4(c,p) - phi - f4p(c,p)];      ! FDL !
 
 ! note: ABS function above fixes common mistake: positive EXP_ELAST values !
 ! To simulate exogenous export prices, exogenize pf4 instead of f4p !
@@ -1323,9 +1323,9 @@ Equation
   Iff aggregate investment x2tot_i is exogenous, invslack must be endogenous. !
 
 Variable
- (all,i,IND)  finv1(i)# Shifter to enforce DPSV investment rule #;
- (all,i,IND)  finv2(i)# Shifter for "exogenous" investment rule #;
- (all,i,IND)  finv3(i)# Shifter for longrun investment rule #;
+ (all,i,IND)  finv1(i) # Shifter to enforce DPSV investment rule #;
+ (all,i,IND)  finv2(i) # Shifter for "exogenous" investment rule #;
+ (all,i,IND)  finv3(i) # Shifter for longrun investment rule     #;
 ! invslack # Investment slack variable for exogenizing aggregate investment #;!
  
 ! Rule 1: Follows Section 19 of DPSV. The ratios Q and G are treated as
@@ -1334,21 +1334,26 @@ Variable
   occasionally lead to perversely signed coefficients !
 
 Equation E_finv1 # DPSV investment rule #
- (all,i,IND) ggro(i) = finv1(i) + 0.33*[2.0*gret(i) - invslack];
+ (all,i,IND) ggro(i) = finv1(i) + 0.33 * [2.0 * gret(i) - invslack];
 ! Note: above equation comes from substituting together DPSV
   equations 19.7-9. The value 0.33 and 2.0 correspond to the DPSV ratios
   [1/G.Beta] and Q (= ratio, gross to net rate of return) and are typical
   values of this ratio. In DPSV invslack was called "omega" and was interpreted
   as the "economy-wide rate of return" !
+
  
 ! Rule 2: For industries where investment is not mainly driven by current
   profits (eg, Education) make investment follow aggregate investment. !
+
+
 Equation E_finv2 # Alternative rule for "exogenous" investment industries #
  (all,i,IND) x2tot(i) = x2tot_i + finv2(i);
 ! NB: you must not set ALL of finv2 exogenous else above would conflict with
   Equation E_x2tot_i !
+
  
 ! Rule 3: longrun investment rule: investment/capital ratios are exogenous !
+
 Equation E_finv3 # Alternative long-run investment rule #
  (all,i,IND) ggro(i) = finv3(i) + invslack;
  
@@ -1804,15 +1809,15 @@ Formula     (all,c,COM) V1PUR_SI(c)  = sum{i,IND, V1PUR_S(c,i)};
             (all,c,COM) V5PUR_S(c)   = sum{s,SRC, V5PUR(c,s)};
             (all,c,COM) V6BAS_S(c)   = sum{s,SRC, V6BAS(c,s)};
  
-Write                                   ! weight to aggregate: !
- V1TOT    to file SUMMARY header "1TOT";!MAKE CET elasticities at SCET !
- V4PUR    to file SUMMARY header "4PUR";!export elasticities at header P018!
- V1LAB_O  to file SUMMARY header "LAB1";!CES inter-skill elasticities at SLAB!
- V1PRIM   to file SUMMARY header "VLAD";!CES primary-factor elasts at P028!
- V1PUR_SI to file SUMMARY header "1PUR";!Armington elasticities at 1ARM !
- V2PUR_SI to file SUMMARY header "2PUR";!Armington elasticities at 2ARM !
- V3PUR_S  to file SUMMARY header "3PUR";!Armington[3ARM] & Engel[XPEL] !
- MAKE_I   to file SUMMARY header "OCOM";!IsLoccom[LCOM]!
+Write                                    ! weight to aggregate:                 !
+ V1TOT    to file SUMMARY header "1TOT"; ! MAKE CET elasticities at SCET        !
+ V4PUR    to file SUMMARY header "4PUR"; ! export elasticities at header P018   !
+ V1LAB_O  to file SUMMARY header "LAB1"; ! CES inter-skill elasticities at SLAB !
+ V1PRIM   to file SUMMARY header "VLAD"; ! CES primary-factor elasts at P028    !
+ V1PUR_SI to file SUMMARY header "1PUR"; ! Armington elasticities at 1ARM       !
+ V2PUR_SI to file SUMMARY header "2PUR"; ! Armington elasticities at 2ARM       !
+ V3PUR_S  to file SUMMARY header "3PUR"; ! Armington[3ARM] & Engel[XPEL]        !
+ MAKE_I   to file SUMMARY header "OCOM"; ! IsLoccom[LCOM]                       !
  
 Set WAGGSET # Instructions to AGGHAR for weighted aggregation of params # (
     SCET@@@@1TOT,
@@ -2452,8 +2457,8 @@ Assertion ! Check that margins on zero flows are also zero !
    (all,m,MAR) V2MAR(c,s,i,m) = 0;
 (initial) # 3MAR zero # (all,c,COM)(all,h,HOU)(all,s,SRC:V3BAS(c,s,h) = 0)
    (all,m,MAR) V3MAR(c,s,m,h) = 0;
-(initial) # 4MAR zero # (all,p,PTNR)(all,c,COM:V4BAS(c,p) = 0)                   ! FDL - CONFERIR !
-   (all,m,MAR) V4MAR(c,m,p) = 0;                                                 ! FDL - CONFERIR !
+(initial) # 4MAR zero # (all,p,PTNR)(all,c,COM:V4BAS(c,p) = 0)                   ! FDL !
+   (all,m,MAR) V4MAR(c,m,p) = 0;                                                 ! FDL !
 (initial) # 5MAR zero # (all,c,COM)(all,s,SRC:V5BAS(c,s) = 0)
    (all,m,MAR) V5MAR(c,s,m) = 0;
  
@@ -2464,7 +2469,7 @@ Assertion ! Check that taxes on zero flows are also zero !
   (all,c,COM)(all,s,SRC)(all,i,IND:V2BAS(c,s,i)=0) V2TAX(c,s,i) = 0;
 (initial) # 3TAX zero # (all,c,COM)(all,h,HOU)
                                    (all,s,SRC:V3BAS(c,s,h) = 0) V3TAX(c,s,h) = 0;
-(initial) # 4TAX zero # (all,p,PTNR)(all,c,COM:V4BAS(c,p) = 0)  V4TAX(c,p)   = 0; ! FDL - CONFERIR !
+(initial) # 4TAX zero # (all,p,PTNR)(all,c,COM:V4BAS(c,p) = 0)  V4TAX(c,p)   = 0; ! FDL !
 (initial) # 5TAX zero # (all,c,COM)(all,s,SRC:V5BAS(c,s) = 0)   V5TAX(c,s)   = 0;
  
 Assertion ! Sign checks on input data !

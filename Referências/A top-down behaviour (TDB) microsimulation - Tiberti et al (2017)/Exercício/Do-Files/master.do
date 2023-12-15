@@ -9,11 +9,11 @@ clear all
 set more off
 
 * set path
-cd "C:\TDBmicrosim\Do-Files"
+cd "D:\Documentos\Universidade\UFPR\- Dissertação\Referências\A top-down behaviour (TDB) microsimulation - Tiberti et al (2017)\Exercício\Do-Files"
 
 * open log file
 capture log close
-log using "..\Output\PEP-Microsimulations.log", replace
+log using "D:\Documentos\Universidade\UFPR\- Dissertação\Referências\A top-down behaviour (TDB) microsimulation - Tiberti et al (2017)\Exercício\Output\PEP-Microsimulations.log", replace
 
 /*
 notation:

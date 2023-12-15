@@ -2,7 +2,7 @@ REM Delete unnecessary files to save space
 
 del *.bak
 del *.log
-del *.sl?
+del *.slc
 del *.gs?
 del *.min
 del *.cvl
@@ -12,7 +12,8 @@ del *.mnc
 del *.ud?
 del *.clo
 del *.upd
-del *sum.har
+del *summary.har
+del *ORANI-ceqexplen.har
 del *.SOL
 del *assert-arith-fail.har   
 del *.cdk                     
