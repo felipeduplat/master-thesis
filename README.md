@@ -51,10 +51,10 @@ Contém o arquivo TeX da dissertação.
 | -  |              -------                   |             ------              |              ------             |              ------             |              ------             | ------  | ------  |
 | 1  | Calibragem do ORANIG-BR                | <p align="center"> &#10004;</p> |                                 |                                 |                                 |         |         |
 | 2  | Fechamento do ORANIG-BR                | <p align="center"> &#10004;</p> |                                 |                                 |                                 |         |         |
-| 3  | Simulações                             | <p align="center"> &#9744; </p> |                                 |                                 |                                 |         |         |
+| 3  | Simulações                             | <p align="center"> &#10004;</p> |                                 |                                 |                                 |         |         |
 | 4  | Tabular resultados do ORANIG-BR        | <p align="center"> &#9744; </p> |                                 |                                 |                                 |         |         |
-| 5  | Forma funcional da microssimulação     |                                 | <p align="center"> &#9744; </p> |                                 |                                 |         |         |
-| 6  | Estratégia empírica da microssimulação |                                 | <p align="center"> &#9744; </p> |                                 |                                 |         |         |
+| 5  | Forma funcional da microssimulação     |                                 | <p align="center"> &#10004;</p> |                                 |                                 |         |         |
+| 6  | Estratégia empírica da microssimulação |                                 | <p align="center"> &#10004;</p> |                                 |                                 |         |         |
 | 7  | Integração _top-down_                  |                                 | <p align="center"> &#9744; </p> |                                 |                                 |         |         |
 | 8  | Tabular resultados da microssimulação  |                                 | <p align="center"> &#9744; </p> |                                 |                                 |         |         |
 | 9  | Corrigir pontos da qualificação        |                                 |                                 | <p align="center"> &#9744; </p> |                                 |         |         |
