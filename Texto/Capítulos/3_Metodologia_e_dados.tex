@@ -10,7 +10,7 @@ Este capítulo descreve os modelos de Equilíbrio Geral Computável e microssimu
 
 \section{O modelo de Equilíbrio Geral Computável} \label{sec:egc}
 
-Utiliza-se o modelo nacional estático de Equilíbrio Geral Computável para o Brasil, o ORANIG-BR, adaptado para cumprir os objetivos propostos nesta dissertação. Esse modelo partiu da estrutura teórica do ORANI \cite{dixit80} e a extensão do PHILGEM \cite{corong12, corong14}. O modelo é da tradição australiana do tipo Johansen, na qual o escopo matemático é concebido a partir de um conjunto de equações linearizadas e as soluções são apresentadas como elasticidades, representando as taxas de crescimento, sendo possível diversos tipos de fechamento.
+Utiliza-se o modelo nacional estático de Equilíbrio Geral Computável para o Brasil, o ORANIG-BR, adaptado para cumprir os objetivos propostos nesta dissertação. Esse modelo partiu da estrutura teórica do ORANI \cite{dixit80}, de tradição australiana do tipo Johansen\footnote{Caracteriza-se por ter um escopo matemático concebido a partir de um conjunto de equações linearizadas e as soluções são apresentadas como elasticidades, representando as taxas de crescimento, sendo possível diversos tipos de fechamento.}.
 
 Sua especificação teórica é composta por blocos de equações que determinam as relações de oferta a partir das hipóteses de otimização e \textit{market clearing}. O modelo incorpora os pressupostos neoclássicos das firmas minimizadoras de custos, famílias maximizadoras de utilidade e equilíbrio dos mercados - esta sendo garantida desde que a oferta e demanda se igualem para o mercado de produtos e serviços domésticos, importados, margens e para o mercado de trabalho.
 
@@ -42,7 +42,7 @@ No qual $X_{(is)j}$ se refere ao insumo $i$ da fonte $s$ pertencente ao setor $j
 	\begin{figure}
 		\centering
 		\includegraphics[width=0.8\linewidth]{Imagens/002.ai}
-		\caption{estrutura de produção do modelo ORANIG-BR}
+		\caption{Estrutura de produção do modelo ORANIG-BR}
 		\label{fig:estrutura_producao}
 		\footnotesize
 		Fonte: elaboração própria (2023)
@@ -98,7 +98,7 @@ Sujeito a:
 	\begin{figure}
 		\centering
 		\includegraphics[width=0.8\linewidth]{Imagens/003.ai}
-		\caption{estrutura da demanda das famílias do modelo ORANIG-BR}
+		\caption{Estrutura da demanda das famílias do modelo ORANIG-BR}
 		\label{fig:estrutura_familia}
 		\footnotesize
 		Fonte: elaboração própria (2023)
@@ -134,9 +134,9 @@ Foram utilizados os dados da PNAD 2015 \cite{pnad} para desagregar o fator traba
 
 \section{Modelo de microssimulação comportamental} \label{sec:microssimulacao}
 
-Como discutido anteriormente, os modelos de equilíbrio geral são utilizados para capturar os efeitos setoriais de variações nos preços relativos e emprego, permitindo focar nos grupos beneficiados e prejudicados a partir de choques exógenos que simulem políticas comerciais, econômicas ou até eventos históricos. Entretanto, sua eficiência é dirimida ao tentar analisar choques distributivos a nível microeconômico \cite{tiberti17}.
+Como discutido anteriormente, os modelos de equilíbrio geral são utilizados para capturar os efeitos setoriais de variações nos preços relativos e emprego, permitindo focar nos grupos beneficiados e prejudicados a partir de choques exógenos que simulem políticas comerciais, econômicas ou até eventos históricos. Entretanto, não são uma ferramenta adequada para realizar análises distributivas dada a falta de resultados a nível individual \cite{tiberti17}.
 
-Essa limitação está diretamente associada ao pressuposto da Família Representativa dos modelos de equilíbrio geral. Isso implica que o modelo deve assumir uma distribuição relativa de renda intra-grupo constante para todos - o que não é refletido na realidade. A evidência empírica mostra que componente intra-grupo das mudanças observadas na distribuição de renda é, pelo menos, tão importante quanto o componente entre grupos dessas mudanças \cite{colombo08}.
+Essa limitação está diretamente associada ao pressuposto da Família Representativa\footnote{Nos modelos EGC, o agrupamento familiar é um agregado familiar e não um agregado familiar médio \cite{tiberti17}.} dos modelos de equilíbrio geral. Isso implica que o modelo deve assumir uma distribuição relativa de renda intra-grupo constante para todos - o que não é refletido na realidade. A evidência empírica mostra que componente intra-grupo das mudanças observadas na distribuição de renda é, pelo menos, tão importante quanto o componente entre grupos dessas mudanças \cite{colombo08}.
 
 Por essa razão, os modelos de equilíbrio geral, ao não conseguirem captar esses efeitos a nível microeconômico, podem gerar resultados errôneos - sobretudo se tratando de estudos sobre pobreza. Ao não conseguir capturar a heterogeneidade de uma família, o pressuposto da Família Representativa pode acabar por subestimar o efeito dos choques exógenos \cite{colombo08}. 
 

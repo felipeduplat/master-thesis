@@ -13,7 +13,8 @@ setwd("D:/Documentos/Universidade/UFPR/- Dissertação/Modelos/Microssimulação
 #--- CARREGAR OS PACOTES ---
 if (!require("pacman")) install.packages("pacman")
 pacman::p_load(tidyverse,
-               sampleSelection)
+               survey,
+               stargazer)
 
 
 
@@ -30,11 +31,13 @@ options(scipen=999)
 #--- SIMULAÇÃO DE BENCHMARK ---
 
 ## ESTIMADORES:
-probit = as.formula(paste0("trab     ~ educ + experp + I(experp^2) + metro + rural + negro + mulher + rdpc +
-                    nea + nfilhos + casado + ", paste0("setor_", c(1:2,4:6,8,12:13), collapse = " + "), " + ",
+probit = as.formula(paste0("trab     ~ educ + experp + I(experp^2) + metro + rural + negro + mulher +
+                    pea + rdpc + nfilhos + educ_cc + sexo_cc + idade_cc + casado_cc + ",
+                    paste0("setor_", c(1:2,4:6,8,12:13), collapse = " + "), " + ",
                     paste0("uf_", c(11:17, 21:29, 31:33, 41:43, 50:53), collapse = " + ")))
 
-mqo    = as.formula(paste0("lnrendah ~ educ + experp + I(experp^2) + metro + rural + negro + mulher + ",
+mqo    = as.formula(paste0("lnrendah ~ educ + experp + I(experp^2) + metro + rural + negro + mulher +
+                    mills +",
                     paste0("setor_", c(1:2,4:6,8,12:13), collapse = " + "), " + ",
                     paste0("uf_", c(11:17, 21:29, 31:33, 41:43, 50:53), collapse = " + ")))
 
@@ -45,13 +48,21 @@ logit  = as.formula(paste0("trab     ~ educ + experp + I(experp^2) + metro + rur
 ## EQUAÇÕES:
 
 # Correção de Heckman:
-heckman = selection(selection = probit, outcome = mqo, data = sys.frame(sys.parent(design)), method = "2step") # EQUAÇÃO 01
+    ## 1ª etapa (probit):
+step_1      = svyglm(probit, family = quasibinomial(link = "probit"), design = pnad_design)
+mills       = dnorm(step_1$linear.predictors) / pnorm(step_1$linear.predictors)
+if (length(mills) < nrow(pnad_design)) {
+  mills     = c(mills, rep(NA, length.out = nrow(pnad_design) - length(mills)))
+}
+pnad_design = update(pnad_design, mills = mills)
 
-# Renda familiar:
-renda_fam = rendah + out_renda                                                                               # EQUAÇÃO 02
+    ## 2ª etapa (MQO com inversa de mills):
+step_2 = svyglm(mqo, design = pnad_design, subset = !is.na(pea), na.action = na.omit)
+
+#---
 
 # Occupational Choice Model:
-logit = glm(formula = discrete, data = pnad_clean, weights = peso)                                           # EQUAÇÃO 03
+ocm = svyglm(logit, family = quasibinomial(), design = pnad_design)
 
 
 #--- INTEGRAÇÃO TOP-DOWN ---
@@ -59,15 +70,12 @@ logit = glm(formula = discrete, data = pnad_clean, weights = peso)              
 
 
 
-#--- EXPORTAR PARA EXCEL-----------------------------------
-
+#--- EXPORTAR TABELAS (provisório) -----------------------------------
+stargazer(step_1, step_2, type = "text", title =  "Correção de Heckman", align = T, out = "Correção de Heckman.txt")
+stargazer(ocm, type = "text", title =  "Occupational Choice Model", align = T, out = "Occupational Choice Model.txt")
 
 
 #--- DROPAR RESÍDUO ---
-rm(discrete, mincer)
-
-
-#--- SALVAR BASE ---
-save.image()
+rm(probit, mqo, logit, mills)
 
 

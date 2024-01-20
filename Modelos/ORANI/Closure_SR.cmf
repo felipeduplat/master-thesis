@@ -5,25 +5,29 @@
 !-------------------------------------------------------------------------------
 !(1) Set Options
 !-------------------------------------------------------------------------------
-check-on-read elements = warn; ! very often needed
-cpu=yes ;                      ! (optional) Reports CPU times for various stages
-log file = yes;                ! optional
-auxiliary files = ORANI;       ! needed by GEMSIM
+check-on-read elements = warn ; ! very often needed
+cpu                    = yes  ; ! (optional) Reports CPU times for various stages
+log file               = yes  ; ! optional
+auxiliary files        = ORANI; ! needed by GEMSIM
 
 ! Solution method
-method = GRAGG ;
-steps = 2 4 6 ;
+method = GRAGG  ;
+steps = 2 4 6   ;
+subintervals = 1;
 
 
 
 !-------------------------------------------------------------------------------
 !(2) Data and summary files 
 !-------------------------------------------------------------------------------
-file         basedata = BASEDATA2015.har ;
-updated file basedata = <cmf>.upd;
-file         summary  = summary.har;
-
-Extrapolation Accuracy file = yes;
+file            basedata    = BASEDATA2015.har      ;
+updated file    basedata    = <cmf>.upd             ;
+file            summary     = summary.har           ;
+!solution file               = "output/Simulation_1" ;
+!solution file               = "output/Simulation_2" ;
+solution file               = "output/Simulation_3" ;
+Extrapolation Accuracy file = yes                   ;
+dpn                         = yes                   ;
 
 
 
@@ -88,15 +92,16 @@ swap   invslack         =    x2tot_i ;     ! Linkar investimento com consumo das
 !(5) Shocks
 !-------------------------------------------------------------------------------
 verbal description = effect of import prices, exchange rate and tariff, short-run closure;
+automatic accuracy = no;
 
 ! Primeiro choque - redução em 10% dos preços das importações mundiais:
-shock pf0cif = uniform -10;
+!shock pf0cif = uniform -10;
 
 ! Segundo choque - aumento em 10% da demanda por exportações:
-shock f4q    = uniform  10;
+!shock f4q    = uniform  10;
 
 ! Terceiro choque - redução em 10% do poder da tarifa:
-shock t0imp  = select from file TARIFFCUT.har header "TCUT";
+shock t0imp  = select from file SHOCK_3.har header "TCUT";
 
 ! Expect:
 ! (1) investigar os efeitos da mudança dos preços relativos sobre as variáveis macroeconômicas, além dos índices de desigualdade de renda e pobreza;

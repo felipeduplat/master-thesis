@@ -31,4 +31,6 @@ del *.axs
 del *.axt
 del *.exe
 del opt*
+del *.mdf
+del *.ou1
 dir/w
