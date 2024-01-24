@@ -16,7 +16,16 @@ Sua especificação teórica é composta por blocos de equações que determinam
 
 O uso do modelo de EGC para estudos de análise política, sobretudo sobre impactos e efeitos de algum determinado fenômeno econômico, político ou histórico se tornou cada vez mais frequente na literatura econômica. Há diversos benefícios em trabalhar com esse modelo: é possível operar com altos níveis de desagregação setorial e regional; considerar as relações de interdependência entre os setores e os agentes econômicos; e capturar o efeito-renda e efeito-preço, que estão diretamente relacionados com os canais de transmissão entre comércio internacional e desigualdade de renda e pobreza \cite{anderson20}.
 
-Para esta dissertação, foram realizadas duas principais modificações no modelo ORANIG-BR: 1- o fator trabalho foi dividido em três categorias que refletem os diferentes tipos de força de trabalho a partir do nível de escolaridade; e 2- as famílias são divididas em cem categorias de acordo com a renda. Essa desagregação captura os diferentes impactos que as reformas econômicas têm no mercado de trabalho e na distribuição de renda, assim como as diferentes fontes de renda, respectivamente \cite{carneiro06}.
+Para esta dissertação, foram realizadas três principais modificações no modelo ORANIG-BR: 1- o fator trabalho foi dividido em três categorias que refletem os diferentes tipos de força de trabalho a partir do nível de escolaridade; 2- as famílias foram divididas em cem categorias de acordo com a renda; e 3- o fluxo das exportações foi dividido entre vinte e seis parceiros comerciais. Essas estratégias de desagregação capturam os diferentes impactos que as reformas econômicas têm no mercado de trabalho e na distribuição de renda, assim como as diferentes fontes de renda, respectivamente \cite{carneiro06}. A Figura~\ref{fig:estrutura_orani} apresenta a estrutura esquemática da base de dados do modelo.
+
+\begin{figure}
+	\centering
+	\caption{Estrutura esquemática da base de dados do modelo ORANIG-BR} \label{fig:estrutura_orani}
+	\includegraphics[width=\textwidth]{Imagens/002.ai}
+	\footnotesize
+	Fonte: elaboração própria (2024) a partir de \textcite{horridge00}
+\end{figure}
+
 
 \subsection{Produção} \label{subsec:producao}
 
@@ -41,11 +50,10 @@ No qual $X_{(is)j}$ se refere ao insumo $i$ da fonte $s$ pertencente ao setor $j
 \begin{landscape}
 	\begin{figure}
 		\centering
-		\includegraphics[width=0.8\linewidth]{Imagens/002.ai}
-		\caption{Estrutura de produção do modelo ORANIG-BR}
-		\label{fig:estrutura_producao}
-		\footnotesize
-		Fonte: elaboração própria (2023)
+		\caption{Estrutura de produção do modelo ORANIG-BR} \label{fig:estrutura_producao}
+		\includegraphics[width=0.9\linewidth]{Imagens/003.ai}
+		\footnotesize \\
+		Fonte: elaboração própria (2024) a partir de \textcite{horridge00}
 	\end{figure}
 \end{landscape}
 
@@ -58,19 +66,18 @@ Essa habilidade é representada por anos de educação. O Quadro \ref{quad:categ
 \begin{quadro}[h]
 	\centering
 	\begin{threeparttable}
-		\caption{Categorização do fator trabalho}
+		\caption{Categorização do fator trabalho} \label{quad:categoria_trabalho}
 		\footnotesize
-		\label{quad:categoria_trabalho}
 		\begin{tabular}{|| m{3cm} | m{9cm} ||}
 			\hline \hline
 			\multicolumn{1}{||c|}{\textbf{variável}} & \multicolumn{1}{c||}{\textbf{descrição}} \\ \hline
-			não qualificado  & até Ensino Fundamental completo (até quatro anos de estudo) \\ \hline 
-			semi-qualificado & até Ensino Médio completo (cinco a doze anos de estudo) \\ \hline
-			qualificado      & Ensino Superior (treze anos ou mais de estudo) \\ \hline \hline
+			não qualificado  & até Ensino Fundamental completo (até onze anos de estudo) \\ \hline 
+			semi-qualificado & até Ensino Médio completo (doze a quinze anos de estudo) \\ \hline
+			qualificado      & Ensino Superior (dezesseis anos ou mais de estudo) \\ \hline \hline
 		\end{tabular}
 		\begin{tablenotes}
 			\scriptsize
-			\item Fonte: elaboração própria (2023).
+			\item Fonte: elaboração própria (2024) a partir do \textcite{inep04}
 		\end{tablenotes}
 	\end{threeparttable}
 \end{quadro}
@@ -97,11 +104,10 @@ Sujeito a:
 \begin{landscape}
 	\begin{figure}
 		\centering
-		\includegraphics[width=0.8\linewidth]{Imagens/003.ai}
-		\caption{Estrutura da demanda das famílias do modelo ORANIG-BR}
-		\label{fig:estrutura_familia}
-		\footnotesize
-		Fonte: elaboração própria (2023)
+		\caption{Estrutura da demanda das famílias do modelo ORANIG-BR} \label{fig:estrutura_familia}
+		\includegraphics[width=0.6\linewidth]{Imagens/004.ai}
+		\footnotesize \\
+		Fonte: elaboração própria (2024) a partir de \textcite{horridge00}
 	\end{figure}
 \end{landscape}
 
@@ -109,27 +115,41 @@ Sujeito a:
 
 Utiliza-se a versão estática do modelo ORANIG-BR porque as vantagens da dinâmica recursiva não seriam aproveitadas neste exercício empírico. O efeito da estrutura produtiva e da distribuição funcional da renda composição que se espera observar pode ser integralmente captado em um modelo estático.
 
-A Figura \ref{fig:fechamento} apresenta o fechamento de curto-prazo adotado no modelo, seguindo as especificações de \textcite{horridge03}. Ou seja, tornou-se exógeno: 1- as variáveis do PIB real - exceto a balança comercial; os fatores produtivos; e 3- as taxas de impostos e distribuição dos investimentos entre as indústrias.
+A Figura~\ref{quad:fechamento} apresenta o fechamento de curto-prazo adotado no modelo, seguindo as especificações de \textcite{horridge03}. Ou seja, tornou-se exógeno: 1- as variáveis do PIB real - exceto a balança comercial; os fatores produtivos; e 3- as taxas de impostos e distribuição dos investimentos entre as indústrias.
 
 Esse fechamento emula o seguinte comportamento econômico. No curto-prazo, o estoque de capital, a tecnologia e o salário real são exógenos. Isso permite ao modelo determinar o emprego real e, consequentemente, o PIB real. Pelo fato do PIB ser determinado pelo lado da oferta, tendo sua absorção doméstica praticamente formada, a balança comercial, no curto-prazo, ganha a função de ser uma variável de ajuste para a identidade do PIB. Ou seja, o movimento do PIB é determinado pelo movimento da balança comercial.
 
-\begin{landscape}
-	\begin{figure}
-		\centering
-		\includegraphics[width=0.9\linewidth]{Imagens/004.ai}
-		\caption{Fechamento de curto-prazo do modelo ORANIG-BR}
-		\label{fig:fechamento}
+A lista com todas as variáveis exógenas do modelo se encontra no Apêndice~\ref{ap:a}.
+
+
+\begin{quadro}[h]
+	\centering
+	\begin{threeparttable}
+		\caption{Variáveis de \textit{swap} no fechamento de curto-prazo} \label{quad:fechamento}
 		\footnotesize
-		Fonte: elaboração própria (2023)
-	\end{figure}
-\end{landscape}
+		\begin{tabular}{||l m{6.5cm} |l m{5.5cm} ||}
+			\hline \hline
+			\multicolumn{2}{||c|}{\textbf{Antiga exógena}}                     & \multicolumn{2}{c||}{\textbf{Nova exógena}} \\ \hline
+			\textbf{Variáveis} & \multicolumn{1}{c|}{\textbf{Descrição}}      & \textbf{Variáveis} & \multicolumn{1}{c||}{\textbf{Descrição}} \\ \hline
+			\textit{f1lab\_io}  & mudança geral dos salários                  & \textit{realwage}  & salário real \\
+			\textit{x2tot}     & investimento setorial                        & \textit{finv1}     & deslocamento da regra de investimento \\
+			\textit{f5tot2}    & desloc. entre demandas do governo e famílias & \textit{x5tot}     & demanda agregada do governo \\
+			\textit{invslack}  & var. para tornar o invest. agregado exógeno  & \textit{x2tot\_i}  & investimento agregado por setor \\ \hline \hline
+		\end{tabular}
+		\begin{tablenotes}
+			\scriptsize
+			\item Fonte: elaboração própria (2024)
+		\end{tablenotes}
+	\end{threeparttable}
+\end{quadro}
 
 
 \section{Base de dados e calibragem} \label{sec:dados}
 
-A base de dados do modelo foi calibrada a partir da matriz de insumo-produto do sistema de contas nacionais disponível no Instituto Brasileiro de Geografia e Estatística \cite{scn}, contendo 128 produtos e 68 setores econômicos para o ano de 2015. Para esta dissertação, os setores foram agregados em 65 atividades econômicas que produzem 124 produtos. O modelo conta com 114 componentes da demanda final (cem famílias, governo, investimento, exportações e estoque), dois fatores primários (capital e trabalho agregado), três tipos de trabalho (não qualificado, semi-qualificado e qualificado), dois setores de margens (comércio e transporte), e importações por produto para cada um dos 124 produtos.
+A base de dados do modelo foi calibrada a partir da Matriz de Insumo-Produto do \Citetitle*{scn} do Instituto Brasileiro de Geografia e Estatística (IBGE), contendo 128 produtos e 68 setores econômicos para o ano de 2015. Para esta dissertação, os setores foram agregados em 65 atividades econômicas que produzem 124 produtos. O modelo conta com 114 componentes da demanda final (cem famílias, governo, investimento, exportações e estoque), dois fatores primários (capital e trabalho agregado), três tipos de trabalho (não qualificado, semi-qualificado e qualificado), dois setores de margens (comércio e transporte), e importações por produto para cada um dos 124 produtos.
 
-Foram utilizados os dados da PNAD 2015 \cite{pnad} para desagregar o fator trabalho por anos de educação e os dados da POF 2009 \cite{pof} para detalhar as famílias em cem classes, divididas por percentis da renda total da família. A escolha por essas edições das bases foi motivada pelo fato do modelo ter sido calibrado com esses dados.
+Para desagregar o fator trabalho e detalhar as famílias em cem classes divididas por percecntis de renda total familiar, utilizou-se, respectivamente, os dados da \Citetitle*{pnad}, do ano de 2015, e da \Citetitle*{pof}, do ano 2008-2009, ambos do IBGE. A escolha por essas edições da PNAD e POF, e não uma mais recente, foi motivada pelo fato do modelo ORANIG-BR ter sido calibrado com os dados desses anos.
+
 
 
 \section{Modelo de microssimulação comportamental} \label{sec:microssimulacao}
@@ -152,11 +172,10 @@ A Figura \ref{fig:microssimulacao} apresenta a estrutura da abordagem do modelo 
 \begin{landscape}
 	\begin{figure}
 		\centering
-		\includegraphics[width=\linewidth]{Imagens/005.ai}
-		\caption{Fechamento de curto-prazo do modelo ORANIG-BR}
-		\label{fig:microssimulacao}
+		\caption{Estrutura esquemática da integração \textit{top-down}} \label{fig:microssimulacao}
+		\includegraphics[width=\linewidth]{Imagens/006.ai}
 		\footnotesize
-		Fonte: elaboração própria (2023)
+		Fonte: elaboração própria (2024)
 	\end{figure}
 \end{landscape}
 

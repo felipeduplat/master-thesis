@@ -9,7 +9,7 @@ Este capítulo apresenta os resultados da simulação realizada no modelo ORANIG
 
 
 
-\section{Simulação} \label{sec:simulacao}
+\section{Simulação e mecanismos de transmissão} \label{sec:simulacao}
 
 Propõe-se simular uma política de abertura comercial para avaliar seus efeitos de curto-prazo sobre os indicadores macroeconômicos e setoriais. Essa simulação possibilita mensurar o comportamento das variáveis econômicas frente a uma maior exposição ao comércio internacional, avaliando quais seriam os efeitos de uma política comercial liberalizante.
 
@@ -17,13 +17,32 @@ Desse modo, impõe-se uma redução tarifária no valor de 10\% sobre todas as \
 
 Para fins de facilitar a interpretação dos resultados, optou-se por agregar os setores em seis grandes categorias: 1- Agropecuária; 2- Extrativa; 3- Agroindústria; 4- Indústria; 5- Comércio; e 6- Serviços. A descrição completa dessas categorias, bem como os valores utilizados para realizar o choque da simulação, estão disponíveis no Apêndice~\ref{ap:a} deste trabalho.
 
+A Figura~\ref{fig:mecanismos} exibe os mecanismos de transmissão de uma simulação de redução tarifária no modelo ORANIG-BR. Como citado anteriormente, o comércio internacional pode ser entendido enquanto um choque sobre os preços relativos de uma economia. Aqui, isso ocorre através da tarifa de importação: em geral, os bens de uma economia possuem uma tarifa de importação \textit{ad valorem} que afeta diretamente seu preço. Uma mudança sobre essa tarifa torna por alterar o preço do produto. Essa alteração, por conseguinte, varia os preços relativos do produto no mercado mundial.
+
+O efeito esperado é de queda no preço dos produtos e um consequente aumento das importações, uma vez que se tornou mais barato importar. Isso faz com que o produto internacional se torne mais atrativo frente aos produtos do mercado doméstico, havendo uma pressão interna pelo seu consumo. Além disso, pode-se esperar mudança nos retornos dos fatores produtivos dado os novos preços relativos -- como visto no modelo H-O. Como consequência, impõe-se algum nível de reestruturação produtiva a partir dos novos preços e retornos dos fatores produtivos, ajustando-se de acordo com os incentivos.
+
+Sobre as firmas, espera-se um ganho de produtividade das empresas que sejam beneficiadas pela redução tarifária, aumentando sua competitividade no cenário doméstico. Isso fará com que haja uma variação positiva na produção e negativa no índice de preços da economia. Esse novo cenário afeta a renda real de todos os agentes econômicos, beneficiando ou prejudicando os grupos de acordo com a distribuição funcional da renda.
+
+Também é possível esperar um efeito substituição como consequência de uma redução tarifária. Isso pode ocorrer por conta da variação dos preços relativos, que pode tornar mais atrativo importar determinados insumos que consumir sua opção doméstica. Dado esse efeito, espera-se uma variação no produto final, produzido domesticamente, já que houve uma variação no custo de produção. Como último estágio, o efeito substituição gera uma variação na intensidade do comércio internacional, dado a mudança na composição de bens domésticos e importados para produção dos bens nacionais.
+
+Vale a pena ressaltar que também é esperado alguns efeitos \textit{feedback} sempre que há alguma alteração sobre os preços e índice de preços da economia, sendo captados pelo modelo de equilíbrio geral.
+
+
+\begin{figure}[H]
+	\centering
+	\caption{Mecanismos de transmissão de uma redução tarifária no modelo ORANIG-BR} \label{fig:mecanismos}
+	\includegraphics[width=\textwidth]{Imagens/007.ai}
+	\footnotesize
+	Fonte: elaboração própria (2024) a partir de \textcite{vinicius18}.
+\end{figure}
+
 
 
 \section{Resultados do modelo ORANIG-BR} \label{sec:resultados}
 
 A Tabela~\ref{tab:result} apresenta os resultados macroeconômicos do modelo. Percebe-se que a redução tarifária afetou negativamente todos os indicadores de preços, com destaque para o índice preço do consumidor (-0,1156\%), do investimento (-0,1999) e das importações -- que registrou a maior queda: -0,4623\%. A queda conjunta dos preços das exportações e importações incentivaram o aumento da corrente de comércio, sendo liderado pela variação positiva do volume importado (0,1909\%). Esse aumento, largamente composto por insumos voltados à atividade industrial, como apresentado na Tabela~\ref{tab:import}, tornou por baratear os custos da produção nacional, resultando em um aumento do emprego real (0,0358\%) e do PIB real (0,0256\%) -- ainda que em valores diminutos. A expansão do volume importado também favoreceu as famílias, que experimentaram um aumendo do consumo real no valor de 0,0555\%.
 
-O deflator do PIB, entendido enquanto um índice de preços implícito que mede a evolução média de preços numa economia, reduziu em 0,1416\%. Esse resultado, em conjunto com o aumento do PIB e emprego real, permite afirmar que a redução tarifária trouxe efeitos positivos sobre os indicadores macroeconômicos, uma vez que se experimentou aumento da atividade econômica e redução dos preços da economia em geral. Entretanto, a variação negativa dos termos de troca (-0,0973), ainda que tímida, aponta que esse cenário não é sustentável no longo-prazo, já que as exportações estão perdendo sua capacidade de financiar as importações.
+O deflator do PIB, entendido enquanto um índice de preços implícito que mede a evolução média de preços numa economia, reduziu em 0,1416\%. Esse resultado, em conjunto com o aumento do PIB e emprego real, permite afirmar que a redução tarifária trouxe efeitos positivos sobre os indicadores macroeconômicos, uma vez que se experimentou aumento da atividade econômica e redução dos preços da economia em geral. Entretanto, a variação negativa dos termos de troca (-0,0973), ainda que tímida, aponta que esse cenário não é sustentável no longo-prazo, já que as exportações estão perdendo sua capacidade de financiar as importações. 
 
 
 \begin{table}[h]
@@ -52,7 +71,7 @@ O deflator do PIB, entendido enquanto um índice de preços implícito que mede 
 			\hspace{0.2cm} Volume importado & 0,1909 \\
 			\hspace{0.2cm} PIB real & 0,0256 \\
 			\hspace{0.2cm} Emprego real & 0,0358 \\ \hline
-			\end{tabular}
+		\end{tabular}
 	\begin{tablenotes}
 		\footnotesize
 		\item Fonte: elaboração própria (2024) com base nas simulações feitas no ORANIG-BR.

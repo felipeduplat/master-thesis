@@ -45,9 +45,9 @@ pnad_clean = pnad %>%
   filter(!is.na(renda) & !is.na(rpc)) %>%
   filter(renda != 999999999999, rpc != 999999999999) %>%
   mutate(id_fam = paste0(v0101, uf, v0102, v0103),
-         qualif = case_when(v4803 %in% 0:4  ~ 1,
-                            v4803 %in% 5:12 ~ 2,
-                            v4803   >= 13   ~ 3)) %>%
+         qualif = case_when(v4803 %in%  0:11 ~ 1,
+                            v4803 %in% 12:15 ~ 2,
+                            v4803   >= 16    ~ 3)) %>%
   ungroup() %>%
   select(peso, SCN68, renda, rpc, id_fam:qualif)
 
