@@ -61,35 +61,27 @@ pnad = merge(pnad_pes, pnad_dom,
 #--- ARRUMAR BASE ---
 pnad_clean = pnad %>%
        rename(peso_pes = v4729, peso_fam = v4732, peso_dom = v4611,
-              projpop  = v4609, strat = v4617, psu = v4618, rfpc = v4742) %>%
-       mutate(v4718    = case_when(v4718 >= 999999999 ~ NA_real_, T ~ v4718),
-              v4720    = case_when(v4720 >= 999999999 ~ NA_real_, T ~ v4720),
-              rfpc     = case_when(rfpc  >= 999999999 ~ NA_real_, T ~ rfpc)) 
+              projpop = v4609, strat = v4617, psu = v4618, rfpc = v4742) %>%
+       mutate(v4718 = case_when(v4718 >= 999999999 ~ NA_real_, T ~ v4718),
+              v4720 = case_when(v4720 >= 999999999 ~ NA_real_, T ~ v4720),
+              rfpc  = case_when(rfpc  >= 999999999 ~ NA_real_, T ~ rfpc)) 
 
 
 
 #--- PARÂMETROS UTILIZADOS ---
 
-# Taxa de desemprego (PNAD contínua Anual 2015):
-#https://sidra.ibge.gov.br/tabela/4562#resultado 
-desemprego = 0.089
-
 # Simulação 03:
-salario_egc  = -0.0797 # salário diminuiu;
-desemp_egc_1 = -0.0365 # emprego aumentou;
-desemp_egc_2 = -0.0383
-desemp_egc_3 = -0.0333
+salario_egc = -0.0797
+emprego_egc =  0.0358
 
-# taxa de desemprego após o choque:
-desemp_1    = desemprego * (1 + desemp_egc_1 / 100)
-desemp_2    = desemprego * (1 + desemp_egc_2 / 100)
-desemp_3    = desemprego * (1 + desemp_egc_3 / 100)
+# Desemprego (PNAD contínua Anual 2015):
+#https://sidra.ibge.gov.br/tabela/4562#resultado
+desemprego  =  0.089
 
 
 #--- CRIAR VARIÁVEIS ---
 pnad_clean = pnad_clean %>%
-  mutate(id                 = row_number(),                                              # identificador;
-         id_fam             = paste0(v0101, uf, v0102, v0103),                           # id das famílias;
+  mutate(id_fam             = paste0(v0101, uf, v0102, v0103),                           # id das famílias;
          qualif             = case_when(v4803  %in% 0:11  ~ 1,                           # =1 se não tem qualificação;
                                         v4803  %in% 12:15 ~ 2,                           # =2 se tem ensino médio;
                                         v4803    >= 16    ~ 3),                          # =3 se tem ensino superior ou mais;
@@ -111,22 +103,18 @@ pnad_clean = pnad_clean %>%
          lnrendah           = case_when(is.na(lnrendah) ~ 0, T ~ lnrendah),              # transformar todos os NAs em zero;
          lnrendah           = case_when(trab == 0 ~ lnrendah == NA_real_, T ~ lnrendah), # transformar log da renda-hora dos desempregados em NA;
          lnrendah_sim3      = lnrendah * (1 + salario_egc / 100),                        # Log da renda-hora após o choque da terceira simulação do ORANIG-BR (w1lab_io);
-         out_renda = case_when(v4720 - v4718 < 0 ~ 0,                                    # renda de todas as outras fontes, exceto trabalho;
-                               is.na(v4720)      ~ v4718,
-                               is.na(v4718)      ~ v4720,
-                               T                 ~ v4720 - v4718),
+         out_renda          = case_when(v4720 - 4718 < 0 ~ 0, T ~ v4720 - 4718),         # renda de outras fontes (exceto trabalho);
          setor              = case_when(v4816 %in% c(7,9:11) ~ 6, T ~ v4816)) %>%        # criando setor de serviços;
   dummy_cols(select_columns = "uf") %>%                                                  # dummy para cada estado brasileiro (SP como default);
   dummy_cols(select_columns = "setor") %>%                                               # dummy para cada setor produtivo (ind. de transf. como default);
   group_by(id_fam) %>%
-  mutate(nfam = n(),
-         nfilhos = sum(filhos, na.rm = F)) %>%
+  mutate(nfilhos = sum(filhos, na.rm = F)) %>%
   ungroup() %>%
   mutate(nfilhos = if_else(v0402 %in% c(1,2), nfilhos, 0),                               # quantidade de filhos por chefe de família.
          filtro  = as.integer(if_all(c(trab, educ, experp, metro, rural, negro, mulher,
                                        chefe_fam, rfpc, nfilhos, setor, uf), ~ !is.na(.)))) %>%
-  select(peso_pes, peso_fam, peso_dom, projpop, strat, psu, SCN68,
-         v4718, v4720, rfpc, id:filtro, -setor_3, -setor_NA, -uf_35)
+  select(peso_pes, peso_fam, peso_dom, projpop, strat, psu,
+         SCN68, rfpc, id_fam:filtro, -setor_3, -setor_NA, -uf_35)
 
 
 #--- CRIAR QUANTIS DE RENDA ---
@@ -148,10 +136,28 @@ pnad_filter = pnad_clean %>%
        ungroup()
 
 
+#--- CRIAR DESENHO AMOSTRAL ---
+
+# configuraçãoes:
+options(survey.adjust.domain.lonely=TRUE)
+options(survey.lonely.psu = "adjust")
+
+# função do desenho amostral:
+desenho = function(df) {
+       pop        = df %>% group_by(projpop) %>% summarise(Freq = n())
+       pre_design = svydesign(id = ~psu, strata = ~strat, data = df, weights = ~peso_dom, nest = T)
+       design     = postStratify(design = pre_design, strata = ~projpop, population = pop)
+       return(design)
+}
+
+# aplicar desenho amostral:
+pnad_design = desenho(pnad_filter)
+#pnad_design = desenho(pnad_clean)
+
+
 #--- DROPAR RESÍDUO ---
 rm(dicpes, end_pes, dicdom, end_dom, SCN68,
-   desemp_egc_1, desemp_egc_2, desemp_egc_3,
-   salario_egc, pnad_pes, pnad_dom, quantil, pnad)
+salario_egc, pnad_pes, pnad_dom, quantil, pnad)
 
 
 #--- SALVAR BASE ---

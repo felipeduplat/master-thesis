@@ -16,12 +16,23 @@ Sua especificação teórica é composta por blocos de equações que determinam
 
 O uso do modelo de EGC para estudos de análise política, sobretudo sobre impactos e efeitos de algum determinado fenômeno econômico, político ou histórico se tornou cada vez mais frequente na literatura econômica. Há diversos benefícios em trabalhar com esse modelo: é possível operar com altos níveis de desagregação setorial e regional; considerar as relações de interdependência entre os setores e os agentes econômicos; e capturar o efeito-renda e efeito-preço, que estão diretamente relacionados com os canais de transmissão entre comércio internacional e desigualdade de renda e pobreza \cite{anderson20}.
 
-Para esta dissertação, foram realizadas três principais modificações no modelo ORANIG-BR: 1- o fator trabalho foi dividido em três categorias que refletem os diferentes tipos de força de trabalho a partir do nível de escolaridade; 2- as famílias foram divididas em cem categorias de acordo com a renda; e 3- o fluxo das exportações foi dividido entre vinte e seis parceiros comerciais. Essas estratégias de desagregação capturam os diferentes impactos que as reformas econômicas têm no mercado de trabalho e na distribuição de renda, assim como as diferentes fontes de renda, respectivamente \cite{carneiro06}. A Figura~\ref{fig:estrutura_orani} apresenta a estrutura esquemática da base de dados do modelo.
+Para esta dissertação, foram realizadas três principais modificações no modelo ORANIG-BR: 1- o fator trabalho foi dividido em três categorias que refletem os diferentes tipos de força de trabalho a partir do nível de escolaridade; 2- as famílias foram divididas em cem categorias de acordo com a renda; e 3- o fluxo das exportações foi dividido entre vinte e seis parceiros comerciais. A Figura~\ref{fig:estrutura_orani} apresenta a estrutura esquemática do modelo ORANIG-BR com as referidas modificações e a Figura~\ref{fig:dados_orani} apresenta a base de dados.
 
-\begin{figure}
+
+\begin{landscape}
+	\begin{figure}
+		\centering
+		\caption{Representação esquemática do modelo ORANIG-BR} \label{fig:estrutura_orani}
+		\includegraphics[width=0.95\linewidth]{Imagens/002.ai}
+		\footnotesize \\
+		Fonte: elaboração própria (2024) a partir de \textcite{souza15}
+	\end{figure}
+\end{landscape}
+
+\begin{figure}[H]
 	\centering
-	\caption{Estrutura esquemática da base de dados do modelo ORANIG-BR} \label{fig:estrutura_orani}
-	\includegraphics[width=\textwidth]{Imagens/002.ai}
+	\caption{Base de dados do modelo ORANIG-BR} \label{fig:dados_orani}
+	\includegraphics[width=\textwidth]{Imagens/003.ai}
 	\footnotesize
 	Fonte: elaboração própria (2024) a partir de \textcite{horridge00}
 \end{figure}
@@ -51,7 +62,7 @@ No qual $X_{(is)j}$ se refere ao insumo $i$ da fonte $s$ pertencente ao setor $j
 	\begin{figure}
 		\centering
 		\caption{Estrutura de produção do modelo ORANIG-BR} \label{fig:estrutura_producao}
-		\includegraphics[width=0.9\linewidth]{Imagens/003.ai}
+		\includegraphics[width=0.9\linewidth]{Imagens/004.ai}
 		\footnotesize \\
 		Fonte: elaboração própria (2024) a partir de \textcite{horridge00}
 	\end{figure}
@@ -84,6 +95,8 @@ Essa habilidade é representada por anos de educação. O Quadro \ref{quad:categ
 
 \subsection{Demanda das famílias} \label{subsec:demanda_familias}
 
+
+
 A demanda é composta por cem famílias representativas, distribuídas por percentis da renda total. Cada família determina uma composição ótima de sua cesta de consumo, escolhendo os insumos de tal maneira a maximizar uma função de utilidade Klein-Rubin sujeita a restrição do orçamento familiar \cite{horridge03}. A Figura \ref{fig:estrutura_familia} apresenta a estrutura da demanda das famílias no modelo ORANIG-BR.
 
 A função Klein-Rubin é não-homotética; ou seja, o aumento da renda altera as participações orçamentárias, mesmo com taxas de preço fixas. O consumo é dividido entre dois bens, "subsistência" e "luxo", de tal maneira que o primeiro detém um consumo fixo e o segundo, residual. Diferentemente da função Leontief, a composição das \textit{commodities} é dado por um LES \cite{horridge03}.
@@ -105,7 +118,7 @@ Sujeito a:
 	\begin{figure}
 		\centering
 		\caption{Estrutura da demanda das famílias do modelo ORANIG-BR} \label{fig:estrutura_familia}
-		\includegraphics[width=0.6\linewidth]{Imagens/004.ai}
+		\includegraphics[width=0.6\linewidth]{Imagens/005.ai}
 		\footnotesize \\
 		Fonte: elaboração própria (2024) a partir de \textcite{horridge00}
 	\end{figure}
@@ -144,7 +157,7 @@ A lista com todas as variáveis exógenas do modelo se encontra no Apêndice~\re
 \end{quadro}
 
 
-\section{Base de dados e calibragem} \label{sec:dados}
+\section{Base de dados e calibragem} \label{sec:dados_egc}
 
 A base de dados do modelo foi calibrada a partir da Matriz de Insumo-Produto do \Citetitle*{scn} do Instituto Brasileiro de Geografia e Estatística (IBGE), contendo 128 produtos e 68 setores econômicos para o ano de 2015. Para esta dissertação, os setores foram agregados em 65 atividades econômicas que produzem 124 produtos. O modelo conta com 114 componentes da demanda final (cem famílias, governo, investimento, exportações e estoque), dois fatores primários (capital e trabalho agregado), três tipos de trabalho (não qualificado, semi-qualificado e qualificado), dois setores de margens (comércio e transporte), e importações por produto para cada um dos 124 produtos.
 
@@ -152,22 +165,27 @@ Para desagregar o fator trabalho e detalhar as famílias em cem classes dividida
 
 
 
-\section{Modelo de microssimulação comportamental} \label{sec:microssimulacao}
+\section{Modelo de microssimulação} \label{sec:microssimulacao}
 
-Como discutido anteriormente, os modelos de equilíbrio geral são utilizados para capturar os efeitos setoriais de variações nos preços relativos e emprego, permitindo focar nos grupos beneficiados e prejudicados a partir de choques exógenos que simulem políticas comerciais, econômicas ou até eventos históricos. Entretanto, não são uma ferramenta adequada para realizar análises distributivas dada a falta de resultados a nível individual \cite{tiberti17}.
+Como discutido anteriormente, os modelos de equilíbrio geral são utilizados para capturar os efeitos setoriais de variações nos preços relativos e emprego, permitindo focar nos grupos beneficiados e prejudicados a partir de choques exógenos que simulem políticas comerciais, econômicas ou eventos históricos. Entretanto, não são uma ferramenta adequada para realizar análises distributivas dada a falta de resultados a nível individual \cite{tiberti17}.
 
-Essa limitação está diretamente associada ao pressuposto da Família Representativa\footnote{Nos modelos EGC, o agrupamento familiar é um agregado familiar e não um agregado familiar médio \cite{tiberti17}.} dos modelos de equilíbrio geral. Isso implica que o modelo deve assumir uma distribuição relativa de renda intra-grupo constante para todos - o que não é refletido na realidade. A evidência empírica mostra que componente intra-grupo das mudanças observadas na distribuição de renda é, pelo menos, tão importante quanto o componente entre grupos dessas mudanças \cite{colombo08}.
+Essa limitação está diretamente associada ao pressuposto da Família Representativa\footnote{Nos modelos EGC, o agrupamento familiar é um agregado familiar e não um agregado familiar médio \cite{tiberti17}.} dos modelos de equilíbrio geral. Isso implica que o modelo deve assumir uma distribuição relativa de renda intra-grupo constante para todos. A evidência empírica mostra que componente intra-grupo das mudanças observadas na distribuição de renda é, pelo menos, tão importante quanto o componente entre grupos dessas mudanças \cite{colombo08}.
 
 Por essa razão, os modelos de equilíbrio geral, ao não conseguirem captar esses efeitos a nível microeconômico, podem gerar resultados errôneos - sobretudo se tratando de estudos sobre pobreza. Ao não conseguir capturar a heterogeneidade de uma família, o pressuposto da Família Representativa pode acabar por subestimar o efeito dos choques exógenos \cite{colombo08}. 
 
 Uma alternativa é utilizar os modelos de microssimulação integrados ao modelo de equilíbrio geral. Essa combinação é particularmente útil para estudos sobre desigualdade e pobreza em países em desenvolvimento, uma vez que que tanto o foco micro quanto macroeconômico é requerido: o primeiro para ter um cenário detalhado das rendas e despesas a nível individual, além das reações dos indivíduos frente a choques e outras políticas econômicas; o segundo para poder simular os efeitos diretos e indiretos desses choques sobre toda a estrutura econômica \cite{tiberti17, klevmarken22}.
 
-O modelo de microssimulação pode ser entendido enquanto uma grande variedade de técnicas de modelagem por meio das quais o comportamento ou estado dos indivíduos são estimados ou determinados \cite{figari15}. Na literatura econômica, essa integração macro-micro é amplamente utilizada para avaliar os impactos distributivos de choques e políticas macroeconômicos, particularmente
-na área de liberalização comercial \cite{carneiro06, ferreira06, raihan10, cicowiez16, mbanda21}.
+O modelo de microssimulação pode ser entendido enquanto uma grande variedade de técnicas de modelagem por meio das quais o comportamento ou estado dos indivíduos são estimados ou determinados \cite{figari15}. Em geral, é um modelo sobre o comportamento dos agentes econômicos -- sejam indivíduos, firmas ou famílias. Através dele, é possível estimar os efeitos de políticas econômicas ou quaisquer outros tipos de choque sobre esses agentes.
 
-Desse modo, para estimar os efeitos do comércio internacional sobre a desigualdade de renda e pobreza ao nível microeconômico, deve-se usar os parâmetros obtidos do modelo de equilíbrio geral em uma nova rodada de microssimulações para investigar os prováveis impactos de choques de demanda de exportação, desvalorização cambial, promoção de exportações, choques de produtividade e liberalização comercial sobre o grau de desigualdade de renda no domicílio e nos níveis de pobreza.
+As microssimulações podem ser paramétricas ou não-paramétricas. A primeira consiste em um sistema de equações que determina um conjunto de comportamentos individuais, como, por exemplo, a decisão de ingressar no mercado de trabalho e a magnitude do retorno do fator trabalho e capital humano. A segunda acontece a partir de um procedimento de seleção aleatória que agrupa indivíduos com características semelhantes a fim de simular certas mudanças \cite{tiberti17m}. Os modelos também podem ser determinísticos ou estocásticos -- comumente chamados na literatura de comportamentais. A diferença reside, respectivamente, na ausência (ou presença) de estimações econométricas sobre o comportamento dos indivíduos.
 
-A Figura \ref{fig:microssimulacao} apresenta a estrutura da abordagem do modelo integrado.
+É interessante integrar o modelo EGC com uma microssimulação porque esses modelos acabam por corrigir suas limitações. Ao passo em que a microssimulação permite analisar os efeitos distributivos a nível individual, dado seu foco no comportamento individual,acaba por não ser uma ferramenta adequada para captar um choque macroeconômico, como choque de comércio internacional, gastos públicos, política fiscal -- além de carecer de efeitos de equilíbrio geral. Ademais, são modelos altamente compatíveis, uma vez que ambos utilizam estática comparativa e são usados em larga medida para avaliar efeitos e impactos de políticas macroeconômicas em geral \cite{tiberti17m}.
+
+Essa integração surgiu na literatura econômica ao fim dos anos 1970 a partir do artigo seminal de \textcite{adelman78}. A partir de então, esse método integrado é amplamente utilizado para avaliar impactos tanto distributivos quanto sobre a eficiência produtiva. Também é bastante requerido para analisar os impactos distributivos de políticas comerciais liberalizantes \cite{carneiro06, ferreira06, raihan10, cicowiez16, mbanda21}.
+
+Há diversas formas de associar os dois modelos. As três abordagens mais tradicionais são: 1- \textit{top-down}; 2- \textit{bottom-up}; e 3- iterativa. A primeira abordagem consiste em obter resultados macroeconômicos e setoriais de um modelo EGC para depois inseri-los num modelo de microssimulação para analisar os impactos distributivos. A segunda, faz o movimento reverso: o resultado da microssimulação é utilizado como base para realizar os choques exógenos no modelo EGC. O terceiro une os dois últimos, realiza-se a integração \textit{top-down} e \textit{bottom-up} repetidas vezes até que se obtenha convergência das variáveis agregadas nos dois modelos.
+
+Para a presente dissertação, utiliza-se a integração \textit{top-down} a partir de um modelo de microssimulação paramétrica com duas equações comportamentais, uma que estima os determinantes da renda e uma que calcula a escolha ocupacional dos indivíduos. Essa escolha se justifica por ser, respectivamente, o tipo de abordagem e modelagem mais aderentes à proposta temática do trabalho. A Figura \ref{fig:microssimulacao} apresenta a estrutura da abordagem do modelo integrado \textit{top-down}.
 
 \begin{landscape}
 	\begin{figure}
@@ -179,57 +197,95 @@ A Figura \ref{fig:microssimulacao} apresenta a estrutura da abordagem do modelo 
 	\end{figure}
 \end{landscape}
 
+
 \subsection{Forma funcional} \label{subsec:forma_funcional}
- 
-Baseado na abordagem de \textcite{ganuza07}, utiliza-se dois tipos de microssimulação. O primeiro envolve estimar um modelo de equilíbrio parcial de geração de renda familiar por meio de um sistema de equações que determinam a escolha ocupacional, o retorno do trabalho e do capital humano, os preços ao consumidor e outros componentes da renda familiar e individual. A renda total per capita é definida como:
+
+Esta subseção apresenta o modelo de geração da renda familiar (\textit{Household Income Generation Model}) empregado para especificar a microssimulação comportamental utilizada neste trabalho, baseado em \textcite{bourguignon05}. Esse modelo consiste no conjunto de equações a seguir:
 
 \begin{align}
-	ypc_{hi} = \frac{1}{n_h} \left[ \sum_{i = 1}^{n_h} yp_{hi} + yq_h \right] \label{eq:renda}
+	\Log \mathcal{w}_{mi}  &= \alpha_{g(mi)} + \beta_{g(mi)} \mathcal{x}_{mi} + \upsilon_{mi} \hspace{3cm} i = 1, \ldots, k_m \label{eq:renda} \\[0.5cm]
+	IW_{mi}                &= \mathbbm{1} \left[\alpha_{h(mi)} + \beta_{h(mi)} z_{mi} + \mu_{mi} \right] \label{eq:ocm} \\[0.1cm]
+	\text{Y}_{m}           &= \sum_{i = 1}^{k_{m}} \mathcal{w}_{mi} IW_{mi} + y_{0m} \label{eq:renda_media}
 \end{align}
 
-No qual:
+A equação~\eqref{eq:renda} apresenta os determinantes da renda $\mathcal{w}$ do indivíduo $\mathcal{i}$ da família $\mathcal{m}$ como função de suas características individuais, $\mathcal{x}$. A função $g()$ indica o segmento do mercado de trabalho\footnote{Por exemplo: gênero, habilidade ou área do domicílio. Para este trabalho, a função $g()$ representa o segmento de habilidade dos indivíduos -- não qualificado, semi-qualificado e qualificado.} ao qual pertence o indivíduo $\mathcal{i}$ da família $\mathcal{m}$.
 
-\vspace{0.5cm}
+A equação~\eqref{eq:ocm} representa a escolha ocupacional do indivíduo $\mathcal{i}$ da família $\mathcal{m}$. Todos os indivíduos são confrontados com uma escolha discreta: trabalhar ou não trabalhar. Desse modo, $IW_{mi}$ é uma variável \textit{dummy} na qual zero representa o indivíduo inativo e um, trabalhador assalariado, sendo função de suas características individuais e familiares, $z$. Isto implica que o modelo não atribui a todos os indivíduos uma escolha particular, mas dá as probabilidades individuais de estar numa condição e não na outra. Ou seja, o modelo gera uma distribuição de probabilidade sobre as duas diferentes alternativas \cite{colombo08}.
 
-$
-\begin{cases}
-	n_h     = \text{tamanho da família $h$;} \\
-	yp_{hi} = \text{renda do trabalho do indivíduo $i$ da família $h$} \\
-	yq_h    = \text{soma de todas os rendimentos familiares não advindos do trabalho}
-\end{cases}
-$
+Seguindo a lógica da equação anterior, a função $h()$ indica o grupo demográfico\footnote{As características individuais, e seus coeficientes, podem variar de acordo com a posição do indivíduo na família.} ao qual pertence o indivíduo $\mathcal{i}$ da família $\mathcal{m}$. Por simplicidade, assume-se aqui que todos os assalariados têm jornadas integrais de trabalho.
 
-\vspace{0.5cm}
+A equação~\eqref{eq:renda_media} é uma identidade contábil que define o rendimento da família $Y_m$ como a soma da renda advinda do trabalho e de todos os outros rendimentos que não venham do mercado de trabalho, $y_{0m}$. A \textit{dummy} da escolha ocupacional garante que os salários que forem somados sejam apenas dos indivíduos realmente engajados no mercado de trabalho.
 
-E o $yq_h$ é definido como:
+Ou seja, o modelo de geração da renda familiar define o rendimento total de uma dada família $\mathcal{m}$ como uma função das características observadas ($\mathcal{x_{mi}}$, $z_{mi}$) e não observadas ($\upsilon_{mi}$, $\mu_{mi}$) dos indivíduos e dos familiares. Essa função depende de dois blocos de parâmetros: 1- dos determinantes de renda ($\alpha_g$, $\beta_g$) para os segmentos do mercado de trabalho; e 2- da escolha ocupacional ($\alpha_h$, $\beta_h$) para os grupos sociodemográficos. Com essas informações, tem-se o modelo completo.
+
+
+\subsection{Integração com o modelo EGC}\label{subsec:integracao}
+
+O link entre um modelo EGC e uma microssimulação se dá pelos parâmetros. É a partir deles que os resultados do primeiro podem ser transmitidos para a o segundo. Ou seja, a integração macro-micro consiste em associar choques macroeconômicos e alterações em políticas simuladas no modelo EGC com alterações no conjunto de parâmetros do modelo de microssimulação.
+
+O primeiro passo para a integração é criar a simulação de \textit{benchmarking}, necessária para se obter um conjunto inicial de parâmetros da microssimulação. A partir disso, o choque macroeconômico pauta a magnitude da variação desses parâmetros para que haja a integração entre os dois modelos.
+
+Entretanto, essa associação deve ser feita de maneira consistente. Para o modelo de microssimulação proposto nesta dissertação, deve-se garantir: 1- variações nos rendimentos médios da microssimulação devem ser iguais às alterações na taxa salarial obtida com o modelo EGC; e 2- as mudanças no número de trabalhadores assalariados no modelo de microssimulação devem corresponder às observadas no modelo EGC \cite{bourguignon05, colombo08}.
+
+Isso significa que o modelo EGC determina o nível de emprego da economia após a simulação e o modelo de microssimulação seleciona quais indivíduos entre as pessoas inativas têm a maior probabilidade de se ingressarem no mercado de trabalho -- supondo aumento do nível de emprego a partir do resultado do EGC. Ou quem, entre os trabalhadores assalariados, tem a menor probabilidade de estar empregado após a simulação -- supondo redução do nível de emprego. O indivíduo que ingresse no mercado ou seja realocado tem seu salário estimado pela equação dos determinantes de renda. 
+
+Seja $E_G$ o nível de emprego no segmento G e $w_G$, o salário. A notação \^{} indica que é uma variável estimada a partir do modelo de geração da renda familiar. A consistência pode ser formalizada a partir deste conjunto de restrições \cite{bourguignon05}:
 
 \begin{align}
-	yq_h = \sum_{i = 1}^{n_h} yqp_{hi} + yqt_h 
+	E_G &= \left\langle \sum_{mi}^{3} \mathbbm{1} \left[ \hat{\alpha}_{h(mi)} + \hat{\beta}_{h(mi)} z_{mi} + \hat{\mu}_{mi} \right] \right\rangle_{G} \label{eq:emprego_ag} \\
+	\mathcal{w}_G &= \left\langle \sum_{mi}^{3} \text{Exp} \left( \hat{\alpha}_G + \hat{\beta}_G x_{mi} + \hat{\upsilon}_{mi} \right) \cdot \mathbbm{1} \left[ \hat{\alpha}_{h(mi)} + \hat{\beta}_{h(mi)} z_{mi} + \hat{\mu}_{mi} \right] \right\rangle_{G} \label{eq:renda_ag}
 \end{align}
 
-No qual:
+A equação~\eqref{eq:emprego_ag} representa a soma do nível de emprego assalariado para cada um dos segmentos do mercado de trabalho -- neste trabalho, às três categorias do fator trabalho: não qualificado, semi-qualificado e qualificado. A equação~\eqref{eq:renda_ag} representa a massa salarial para cada um dos segmentos do mercado de trabalho.
 
-\vspace{0.5cm}
+Supõe-se agora um choque exógeno do modelo EGC que altera as variáveis ($E_G$, $w_G$) para ($E_G^*$, $w_G^*$). Buscando garantir a consistência da integração macro-micro, deve-se encontrar um novo conjunto de parâmetros $C^*$ = ($\alpha_g^*$, $\beta_g^*$, $\alpha_h^*$, $\beta_h^*$) que mantenha a mesma validade do conjunto C = ($\alpha_g$, $\beta_g$, $\alpha_h$, $\beta_h$). 
 
-$
-\begin{cases}
-	yqp_{hi} = \text{rendimento individual não laboral do membro $i$ da família $h$} \\
-	yqt_h    = \text{outras rendas familiares}
-\end{cases}
-$
+Para isso, é necessário novas restrições. Há diversas maneiras de garantir a mesma validade para o conjunto $C^*$. A estratégia adotada neste trabalho segue a escolha de \textcite{bourguignon05} em restringir a variação apenas aos interceptos $a_g$ e $a_h$. A vantagem dessa estratégia é que implica em uma neutralidade nas mudanças feitas no que diz respeito às características individuais ou familiares. Ou seja, a alteração no intercepto $a_g$ gera uma mudança proporcional em todas as rendas do trabalho dentro do mesmo segmento, independentemente das características individuais e familiares -- desde que essas não sejam definidoras dos próprios segmentos.
 
-\vspace{0.5cm}
+Também há um semelhante argumento para os modelos de escolha discreta. De acordo com \textcite{bourguignon05}, uma mudança no intercepto $a_h$ implica na referida propriedade de neutralidade. A mudança relativa na probabilidade ex-ante de um indivíduo ter alguma ocupação depende apenas das probabilidades ex-ante iniciais das diversas escolhas ocupacionais, e não das características individuais.
 
-A segunda equação é baseada no modelo de \textcite{ganuza02}, conhecida na literatura como \textit{occupational choice model}, estimando a probabilidade do indivíduo permanecer ou ingressar no mercado de trabalho após um determinado choque exógeno.
+Portanto, o link entre os modelos EGC e de geração da renda familiar é obtido através da resolução do seguinte sistema de equações:
 
 \begin{align}
-	\pi = \pi \left( P, U, S, O, W_1, W_2, M \right) \label{eq:mercado_trabalho}
+	E_G^* &= \left\langle \sum_{mi}^{3} \mathbbm{1} \left[ \hat{\alpha}_{h(mi)}^* + \hat{\beta}_{h(mi)}^* z_{mi} + \hat{\mu}_{mi} \right] \right\rangle_{G} \label{eq:emprego_ag*} \\
+	\mathcal{w}_G^* &= \left\langle \sum_{mi}^{3} \text{Exp} \left( \hat{\alpha}_G^* + \hat{\beta}_G x_{mi} + \hat{\upsilon}_{mi} \right) \cdot \mathbbm{1} \left[ \hat{\alpha}_{h(mi)}^* + \hat{\beta}_{h(mi)} z_{mi} + \hat{\mu}_{mi} \right] \right\rangle_{G} \label{eq:renda_ag}
 \end{align}
 
-No qual a estrutura do mercado de trabalho é definido em termos de taxas de participação econômica ($P_j$) e desemprego ($U_j$) entre diferentes grupos $j$ da população em idade ativa definida de acordo com sexo e qualificação, a estrutura de emprego (definido por setor de atividade $S$ e categoria profissional $O$) e remuneração $W_1$, bem como nível global de remuneração $W_2$. A composição de habilidades da população é representada pela variável $M$ \cite{ganuza07}.
+Uma vez solucionado esse sistema de equações, deve-se calcular a nova renda de cada família da amostra, conforme indicam as equações~\eqref{eq:renda} --~\eqref{eq:renda_media}, usando o conjunto $C^*$. Depois, resta por analisar o novo cenário da distribuição de renda e os efeitos dos novos parâmetros.
 
-\subsection{Abordagem empírica} \label{abordagem_empirica}
 
-A estimação da equação \ref{eq:renda} é realizada através do modelo de duas etapas de Heckman \cite{heckman79} para corrigir o viés de seleção implícito numa regressão de salários\footnote{Só tem salário maior que zero aqueles que estão empregados durante o momento da pesquisa.}. Já a estimação da equação \ref{eq:mercado_trabalho} é feita a partir do estimador de máxima verossimilhança, baseado em \textcite{colombo08}.
+\subsection{Abordagem empírica} \label{subsec:abordagem_empirica}
+
+Uma vez definida a forma funcional da microssimulação e o processo de integração com o modelo EGC, deve-se estimar o modelo de geração da renda familiar. Para este trabalho, optou-se por utilizar a Correção de Heckman para a equação~\eqref{eq:renda} dos determinantes de renda \cite{heckman79}. Desse modo, pode-se corrigir um viés de seleção implícito a uma regressão salarial\footnote{Só é observado uma renda do trabalho positiva para os indivíduos que estão empregados no momento da pesquisa amostral.}.
+
+A Correção de Heckman é dividida em duas etapas: na primeira, executa-se um modelo de escolha discreta, que tem o objetivo de estimar a probabilidade ingressar no mercado de trabalho para se poder calcular a Inversa de Mills. A equação~\eqref{eq:step1} apresenta a especificação dessa primeira etapa.
+
+\begin{align}
+	\textbf{Trab}_{g(mi)}        &= \mathbf{X}_{g(mi)} \ \boldsymbol{\hat{\beta}} + \boldsymbol{\varepsilon}_{g(mi)} \label{eq:step1} \\
+	\boldsymbol{\Lambda}_{g(mi)} &= \frac{\phi(x)}{1 - \Phi(x)} \label{eq:mills}
+\end{align}
+
+Na qual $\text{Trab}_{g(mi)}$ é uma variável \textit{dummy} de participação no mercado de trabalho. $\mathbf{X}_{g(mi)}$ é uma matriz formada pelas seguintes variáveis independentes: anos de estudo, experiência potencial e experiência potencial quadrática, renda domiciliar per capita. Também é formada por variáveis de controle para gênero, raça, situação do domicílio, setor, unidade federativa e características do chefe de família -- como idade, sexo, anos de estudo, se é casado e o número de filhos.
+
+A equação~\eqref{eq:mills} exibe o cálculo da Inversa de Mills, no qual $\phi(x)$ representa função de densidade normal padrão, e $\Phi(x)$ a função de distribuição cumulativa normal padrão. Seu valor é usado na segunda etapa da Correção para corrigir o viés de seleção. A equação~\eqref{eq:step2} apresenta sua especificação.
+
+\begin{align}
+	\mathbf{\Log \mathcal{w}}_{g(mi)} = \mathbf{Z}_{g(mi)} \ \boldsymbol{\hat{\beta}} + \boldsymbol{\Lambda}_{g(mi)} + \boldsymbol{\varepsilon}_{g(mi)} \label{eq:step2}
+\end{align}
+
+Na qual $\mathbf{\Log \mathcal{w}}_{g(mi)}$ é o logaritmo da renda-hora do indivíduo $i$ da família $m$. $\mathbf{Z}_{g(mi)}$ é uma matriz de variáveis independentes que contém: anos de estudo, experiência potencial e experiência potencial quadrática, situação do domicílio e variáveis de controle por gênero, raça, setor e unidade federativa. Como citado anteriormente, $\boldsymbol{\Lambda}_{g(mi)}$ representa a Inversa de Mills.
+
+Para estimar a equação~\eqref{eq:ocm} da escolha ocupacional, optou-se por um modelo de regressão logística, assumindo que o termo residual está distribuído de acordo com a Lei Exponencial Dupla -- ou Distribuição de Laplace \cite{bourguignon05}. Segue abaixo sua especificação:
+
+\begin{align}
+	\textbf{Trab}_{g(mi)} &= \mathbf{X}_{g(mi)} \ \boldsymbol{\hat{\beta}} + \boldsymbol{\varepsilon}_{g(mi)} \label{eq:logit}
+\end{align}
+
+Na qual $\mathbf{X}_{g(mi)}$ é a mesma matriz de variáveis independentes utilizada na primeira etapa da Correção de Heckman. Para todas as equações estimadas, $\boldsymbol{\varepsilon}_{g(mi)}$ representa o termo de erro, também chamado de resíduo, que captura fatores não observados, erros de mensuração e outras influências que não são explicadas pelas variáveis incluídas no modelo.. A tabela com a descrição completa de todas as variáveis independentes está disponível no Apêndice~\ref{ap:a}.
+
+
+\subsection{Base de dados} \label{subsec:dados_microssimulacao}
+
+Para estimar o modelo de geração da renda familiar, optou-se por utilizar os dados \citetitle*{pnad} referente ao ano de 2015. Essa base contém informações	sobre os domicílios brasileiros e as características pessoais e socioeconômicas de seus indivíduos por setor produtivo e região geográfica, totalizando cerca de 356.904 observações. Sua escolha se baseia na necessidade de garantir compatibilidade entre os resultados dos dois modelos utilizados neste trabalho. Ao usar a PNAD 2015 para calibrar o modelo ORANIG-BR e substanciar o modelo de geração de renda familiar, abre-se espaço para que os resultados sejam compatíveis e, por conseguinte, possam dialogar entre si.
 
 
