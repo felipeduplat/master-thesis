@@ -25,7 +25,7 @@ updated file    basedata    = <cmf>.upd             ;
 file            summary     = summary.har           ;
 !solution file               = "output/Simulation_1" ;
 !solution file               = "output/Simulation_2" ;
-solution file               = "output/Simulation_3" ;
+solution file               = "output/Simulation_3_05" ;
 Extrapolation Accuracy file = yes                   ;
 dpn                         = yes                   ;
 
@@ -100,10 +100,26 @@ automatic accuracy = no;
 ! Segundo choque - aumento em 10% da demanda por exportações:
 !shock f4q    = uniform  10;
 
-! Terceiro choque - redução em 10% do poder da tarifa:
-shock t0imp  = select from file SHOCK_3.har header "TCUT";
+! Terceiro choque (3.0) - redução em 05% do poder da tarifa:
+shock t0imp  = select from file SHOCK_3.har header "TC05";
+
+! Terceiro choque (3.1) - redução em 10% do poder da tarifa:
+!shock t0imp  = select from file SHOCK_3.har header "TC10";
+
+! Terceiro choque (3.2) - redução em 15% do poder da tarifa:
+!shock t0imp  = select from file SHOCK_3.har header "TC15";
+
+! Terceiro choque (3.3) - redução em 20% do poder da tarifa:
+!shock t0imp  = select from file SHOCK_3.har header "TC20";
+
+! Terceiro choque (3.4) - redução em 25% do poder da tarifa:
+!shock t0imp  = select from file SHOCK_3.har header "TC25";
+
+! Terceiro choque (3.5) - redução em 50% do poder da tarifa:
+!shock t0imp  = select from file SHOCK_3.har header "TC50";
 
 ! Expect:
 ! (1) investigar os efeitos da mudança dos preços relativos sobre as variáveis macroeconômicas, além dos índices de desigualdade de renda e pobreza;
 ! (2) investigar os efeitos de uma política de incentivo à exportação (export-led);
 ! (3) investigar os efeitos de uma política orientada para a abertura comercial.
+! (3.10-3.12) teste de sensibilidade.

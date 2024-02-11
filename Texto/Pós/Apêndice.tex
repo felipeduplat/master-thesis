@@ -303,6 +303,64 @@
 	\end{small}
 
 
+	\newpage
+
+
+	\begin{quadro}[h]
+		\centering
+		\small
+		\begin{adjustwidth}{-1.5cm}{}
+		\begin{threeparttable}
+			\caption{Descrição das variáveis explicativas utilizadas na microssimulação comportamental}
+			\begin{tabular}{|lll|}
+				\hline
+				\multirow{2}{*}{\textbf{Variáveis}} & \multicolumn{1}{c}{\multirow{2}{*}{\textbf{Descrição}}} & \multicolumn{1}{c|}{\multirow{2}{*}{\textbf{Cálculo}}} \\
+				 & \multicolumn{1}{c}{} & \multicolumn{1}{c|}{} \\ \hline
+				\textit{educ}           & anos de estudo ajustado                               & anos de estudo - 1                                                       \\[10pt] \hline
+				\textit{experp}         & experiência potencial                                 & \makecell[l]{idade - idade que começou \\ a trabalhar - 6}               \\[10pt] \hline
+				\textit{metro}          & \textit{dummy} de região metropolitana                & =1 se reside na região metropolitana                                     \\[10pt] \hline
+				\textit{rural}          & \textit{dummy} de zona rural                          & ==1 se reside na zona rural                                              \\[10pt] \hline
+				\textit{negro}          & \textit{dummy} de raça                                & ==1 se negro                                                             \\[10pt] \hline
+				\textit{mulher}         & \textit{dummy} de gênero                              & ==1 se mulher                                                            \\[10pt] \hline
+				\textit{chefe\_fam}     & \textit{dummy} de chefe de família                    & ==1 se chefe de família                                                  \\[10pt] \hline
+				\textit{rfpc}           & renda familiar per capita                             & rendimetnos  de todas as fontes                                          \\[10pt] \hline
+				\textit{nfilhos}        & número de filhos                                      & \makecell[l]{quantidade de filhos de chefes \\ de família ou cônjuges}   \\[10pt] \hline
+				\textit{uf}             & Unidade Federativa                                    & \makecell[l]{uf == 11 se Rondônia            \\
+																											   uf == 12 se Acre                \\
+																											   uf == 13 se Amazonas            \\
+																											   uf == 14 se Roraima             \\
+																											   uf == 15 se Pará                \\
+																											   uf == 16 se Amapá               \\
+																											   uf == 17 se Tocantins           \\
+																											   ...                             \\
+																											   uf == 41 se Paraná              \\
+																											   uf == 42 se Santa Catarina      \\
+																											   uf == 43 se Rio Grande do Sul   \\
+																											   uf == 50 se Mato Grosso do Sul  \\
+																											   uf == 51 se Mato Grosso         \\
+																											   uf == 52 se Goiás               \\
+																											   uf == 53 se Distrito Federal    \\}                         \\[10pt] \hline
+				\textit{setor}          & Setores produtivos                                    & \makecell[l]{setor == 1 se agrícola                        \\
+																											   setor == 2 se outras atividades industriais   \\
+																											   setor == 3 se indústria de transformação      \\
+																											   setor == 4 se construção                      \\
+																											   setor == 5 se comércio e reparação            \\
+																											   setor == 6 se serviços                        \\
+																											   setor == 8 se administração pública           \\
+																											   setor == 12 se outras atividades              \\
+																											   setor == 13 se atividades maldefinidas        \\}           \\[10pt] \hline
+				\textit{lnrendah}       & logaritmo natural da renda-hora do trabalho principal & $lnrendah = \log(\frac{\text{renda}}{\text{horas trabalhadas no mês}})$  \\[10pt] \hline
+				\textit{lnrendah\_sim3} & lnrendah com variação do modelo EGC                   & $lnrendah\_sim3 = lnrendah \times \frac{1 + (-0.0797)}{100}$             \\[10pt] \hline
+				\end{tabular}
+			\begin{tablenotes}
+				\footnotesize
+				\item Fonte: elaboração própria (2024).
+			\end{tablenotes}
+			\end{threeparttable}
+		\end{adjustwidth}
+	\end{quadro}
+
+
 
 	\chapter{Tabelas de dados} \label{ap:b}
 
@@ -454,6 +512,588 @@
 	\end{small}
 
 	\newpage
+
+	  \begin{longtable}{@{\extracolsep{5pt}}lD{.}{.}{-3} D{.}{.}{-3} D{.}{.}{-3} }
+		\caption{Escolha Ocupacional e Correção de Heckman para os não qualificados}
+
+	  \\ \hline 
+	  \hline \\[-1.8ex] 
+	   & \multicolumn{2}{c}{\textit{\textit{Benchmarking}}} & \multicolumn{1}{c}{\textit{Integração}} \\ 
+	  \cline{2-4} 
+	  \\[-1.8ex] & \multicolumn{1}{c}{Escolha ocupacional} & \multicolumn{1}{c}{Heckman} & \multicolumn{1}{c}{Heckman} \\ 
+	  \\[-1.8ex] & \multicolumn{1}{c}{($trab$)} & \multicolumn{1}{c}{($lnrendah$)} & \multicolumn{1}{c}{($lnrendah\_sim3$)}\\ 
+	  \hline \\[-1.8ex] \endfirsthead
+	  
+	  \multicolumn{4}{c}{{\tablename\ \thetable{} -- continuação da página anterior}} \\
+
+	  \\[-1.8ex]\hline 
+	  \hline \\[-1.8ex] 
+	   & \multicolumn{2}{c}{\textit{\textit{Benchmarking}}} & \multicolumn{1}{c}{\textit{Integração}} \\ 
+	  \cline{2-4} 
+	  \\[-1.8ex] & \multicolumn{1}{c}{Escolha ocupacional} & \multicolumn{1}{c}{Heckman} & \multicolumn{1}{c}{Heckman} \\ 
+	  \\[-1.8ex] & \multicolumn{1}{c}{($trab$)} & \multicolumn{1}{c}{($lnrendah$)} & \multicolumn{1}{c}{($lnrendah\_sim3$)}\\ 
+	  \hline \\[-1.8ex] \endhead
+
+	  \hline \multicolumn{4}{r}{{Continua na próxima página}} \\ \hline
+	  \endfoot
+
+	  \endlastfoot
+ 
+	   $educ$       & -0.025^{***} & 0.030^{***} & 0.030^{***} \\ 
+		            & (0.004) & (0.001) & (0.001) \\ 
+		            & & & \\ 
+	   $experp$ & 0.021^{***} & 0.013^{***} & 0.013^{***} \\ 
+		& (0.001) & (0.001) & (0.001) \\ 
+		& & & \\ 
+		$experp^{2}$ & -0.0002^{***} & -0.0003^{***} & -0.0003^{***} \\ 
+		& (0.00003) & (0.00001) & (0.00001) \\ 
+		& & & \\ 
+	   $metro$ & -0.102^{***} & 0.159^{***} & 0.159^{***} \\ 
+		& (0.024) & (0.010) & (0.010) \\ 
+		& & & \\ 
+	   $rural$ & 0.688^{***} & -0.367^{***} & -0.366^{***} \\ 
+		& (0.037) & (0.012) & (0.012) \\ 
+		& & & \\ 
+	   $negro$ & -0.044^{**} & -0.029^{***} & -0.029^{***} \\ 
+		& (0.020) & (0.007) & (0.007) \\ 
+		& & & \\ 
+	   $mulher$ & -0.028 & -0.390^{***} & -0.389^{***} \\ 
+		& (0.019) & (0.007) & (0.007) \\ 
+		& & & \\ 
+	   $chefe\_fam$ & 0.061^{***} &  &  \\ 
+		& (0.020) &  &  \\ 
+		& & & \\ 
+	   $rfpc$ & 0.001^{***} &  &  \\ 
+		& (0.0001) &  &  \\ 
+		& & & \\ 
+	   $nfilhos$ & 0.148^{***} &  &  \\ 
+		& (0.017) &  &  \\ 
+		& & & \\ 
+	   $mills$ &  & -2.806^{***} & -2.805^{***} \\ 
+		&  & (0.046) & (0.046) \\ 
+		& & & \\ 
+	   $setor\_1$ &  & -0.528^{***} & -0.528^{***} \\ 
+		&  & (0.015) & (0.015) \\ 
+		& & & \\ 
+	   $setor\_2$ &  & 0.194^{***} & 0.194^{***} \\ 
+		&  & (0.030) & (0.030) \\
+		& & & \\
+	   $setor\_4$ &  & 0.039^{***} & 0.039^{***} \\
+		&  & (0.011) & (0.011) \\
+		& & & \\
+	   $setor\_5$ &  & -0.015 & -0.015 \\
+		&  & (0.010) & (0.010) \\
+		& & & \\
+	   $setor\_6$ &  & 0.137^{***} & 0.137^{***} \\
+		&  & (0.010) & (0.010) \\ 
+		& & & \\
+	   $setor\_8$ &  & 0.285^{***} & 0.285^{***} \\
+		&  & (0.018) & (0.018) \\
+		& & & \\
+	   $setor\_12$ &  & 0.084^{***} & 0.084^{***} \\
+		&  & (0.015) & (0.015) \\
+		& & & \\
+	   $setor\_13$ &  & -0.127^{**} & -0.127^{**} \\
+		&  & (0.059) & (0.059) \\
+		& & & \\
+	   $uf\_11$ & 0.515^{***} & -0.177^{***} & -0.177^{***} \\ 
+		& (0.086) & (0.022) & (0.022) \\
+		& & & \\
+	   $uf\_12$ & 0.729^{***} & -0.533^{***} & -0.533^{***} \\
+		& (0.120) & (0.033) & (0.033) \\
+		& & & \\
+	   $uf\_13$ & 0.398^{***} & -0.443^{***} & -0.443^{***} \\
+		& (0.062) & (0.024) & (0.024) \\
+		& & & \\
+	   $uf\_14$ & 0.202^{*} & -0.189^{***} & -0.189^{***} \\
+		& (0.118) & (0.047) & (0.047) \\ 
+		& & & \\
+	   $uf\_15$ & 0.669^{***} & -0.504^{***} & -0.504^{***} \\
+		& (0.056) & (0.022) & (0.022) \\
+		& & & \\
+	   $uf\_16$ & 0.582^{***} & -0.231^{***} & -0.231^{***} \\
+		& (0.176) & (0.036) & (0.036) \\
+		& & & \\
+	   $uf\_17$ & 0.261^{***} & -0.125^{***} & -0.125^{***} \\
+		& (0.075) & (0.046) & (0.046) \\ 
+		& & & \\
+	   $uf\_21$ & 0.756^{***} & -0.706^{***} & -0.706^{***} \\
+		& (0.090) & (0.034) & (0.034) \\
+		& & & \\
+	   $uf\_22$ & 0.573^{***} & -0.651^{***} & -0.651^{***} \\ 
+		& (0.084) & (0.029) & (0.029) \\
+		& & & \\
+	   $uf\_23$ & 0.571^{***} & -0.646^{***} & -0.646^{***} \\
+		& (0.057) & (0.022) & (0.022) \\
+		& & & \\
+	   $uf\_24$ & 0.282^{***} & -0.472^{***} & -0.472^{***} \\ 
+		& (0.082) & (0.023) & (0.023) \\
+		& & & \\
+	   $uf\_25$ & 0.395^{***} & -0.578^{***} & -0.578^{***} \\
+		& (0.081) & (0.022) & (0.022) \\
+		& & & \\
+	   $uf\_26$ & 0.395^{***} & -0.510^{***} & -0.510^{***} \\
+		& (0.052) & (0.021) & (0.021) \\
+		& & & \\
+	   $uf\_27$ & 0.201^{***} & -0.275^{***} & -0.275^{***} \\ 
+		& (0.071) & (0.047) & (0.047) \\
+		& & & \\
+	   $uf\_28$ & 0.480^{***} & -0.470^{***} & -0.470^{***} \\
+		& (0.078) & (0.034) & (0.034) \\
+		& & & \\
+	   $uf\_29$ & 0.308^{***} & -0.438^{***} & -0.438^{***} \\
+		& (0.044) & (0.021) & (0.021) \\
+		& & & \\
+	   $uf\_31$ & 0.128^{***} & -0.232^{***} & -0.232^{***} \\ 
+		& (0.041) & (0.017) & (0.017) \\
+		& & & \\
+	   $uf\_32$ & 0.091 & -0.055^{**} & -0.055^{**} \\
+		& (0.084) & (0.026) & (0.026) \\
+		& & & \\
+	   $uf\_33$ & 0.285^{***} & -0.145^{***} & -0.145^{***} \\
+		& (0.048) & (0.027) & (0.027) \\
+		& & & \\
+	   $uf\_41$ & 0.112^{**} & -0.061^{***} & -0.061^{***} \\ 
+		& (0.050) & (0.020) & (0.020) \\
+		& & & \\
+	   $uf\_42$ & 0.135 & 0.044 & 0.044 \\
+		& (0.089) & (0.030) & (0.030) \\
+		& & & \\
+	   $uf\_43$ & 0.122^{***} & -0.184^{***} & -0.184^{***} \\
+		& (0.042) & (0.022) & (0.022) \\
+		& & & \\
+	   $uf\_50$ & 0.123 & -0.040^{*} & -0.040^{*} \\ 
+		& (0.083) & (0.024) & (0.024) \\
+		& & & \\
+	   $uf\_51$ & 0.245^{***} & 0.009 & 0.009 \\
+		& (0.071) & (0.032) & (0.032) \\
+		& & & \\
+	   $uf\_52$ & 0.180^{***} & -0.058^{***} & -0.058^{***} \\
+		& (0.055) & (0.020) & (0.020) \\
+		& & & \\
+	   $uf\_53$ & 0.209^{***} & -0.107^{***} & -0.107^{***} \\ 
+		& (0.076) & (0.028) & (0.028) \\
+		& & & \\
+	   $Intercepto$ & 0.481^{***} & 2.159^{***} & 2.159^{***} \\
+		& (0.066) & (0.020) & (0.020) \\
+		& & & \\
+	  \hline \\[-1.8ex]
+	  Observações & \multicolumn{1}{c}{81.258} & \multicolumn{1}{c}{77.832} & \multicolumn{1}{c}{77.832} \\
+	  Probabilidade do log &  & \multicolumn{1}{c}{-81.698,450} & \multicolumn{1}{c}{-81.691,600} \\
+	  Critério de Informação de Akaike &  & \multicolumn{1}{c}{163.482,900} & \multicolumn{1}{c}{163.469,200} \\ 
+	  \hline
+	  \hline \\[-2.5ex]
+	  \textit{Nota:}  & \multicolumn{3}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\
+	  \end{longtable}
+
+
+	\newpage
+
+
+	\begin{longtable}{@{\extracolsep{5pt}}lD{.}{.}{-3} D{.}{.}{-3} D{.}{.}{-3} }
+		\caption{Escolha Ocupacional e Correção de Heckman para os semi-qualificados}
+
+	  \\ \hline 
+	  \hline \\[-1.8ex] 
+	   & \multicolumn{2}{c}{\textit{\textit{Benchmarking}}} & \multicolumn{1}{c}{\textit{Integração}} \\ 
+	  \cline{2-4} 
+	  \\[-1.8ex] & \multicolumn{1}{c}{Escolha ocupacional} & \multicolumn{1}{c}{Heckman} & \multicolumn{1}{c}{Heckman} \\ 
+	  \\[-1.8ex] & \multicolumn{1}{c}{($trab$)} & \multicolumn{1}{c}{($lnrendah$)} & \multicolumn{1}{c}{($lnrendah\_sim3$)}\\ 
+	  \hline \\[-1.8ex] \endfirsthead
+	  
+	  \multicolumn{4}{c}{{\tablename\ \thetable{} -- continuação da página anterior}} \\
+
+	  \\[-1.8ex]\hline 
+	  \hline \\[-1.8ex] 
+	   & \multicolumn{2}{c}{\textit{\textit{Benchmarking}}} & \multicolumn{1}{c}{\textit{Integração}} \\ 
+	  \cline{2-4} 
+	  \\[-1.8ex] & \multicolumn{1}{c}{Escolha ocupacional} & \multicolumn{1}{c}{Heckman} & \multicolumn{1}{c}{Heckman} \\ 
+	  \\[-1.8ex] & \multicolumn{1}{c}{($trab$)} & \multicolumn{1}{c}{($lnrendah$)} & \multicolumn{1}{c}{($lnrendah\_sim3$)}\\ 
+	  \hline \\[-1.8ex] \endhead
+
+	  \hline \multicolumn{4}{r}{{Continua na próxima página}} \\ \hline
+	  \endfoot
+
+	  \endlastfoot
+ 
+	  $educ$ & -0.053^{***} & 0.106^{***} & 0.106^{***} \\ 
+	  & (0.012) & (0.004) & (0.004) \\ 
+	  & & & \\ 
+	 $experp$ & 0.029^{***} & -0.004^{***} & -0.004^{***} \\ 
+	  & (0.002) & (0.001) & (0.001) \\ 
+	  & & & \\ 
+	 $experp^{2}$ & -0.0004^{***} & 0.0001^{***} & 0.0001^{***} \\ 
+	  & (0.0001) & (0.00002) & (0.00002) \\ 
+	  & & & \\ 
+	 $metro$ & -0.108^{***} & 0.189^{***} & 0.189^{***} \\ 
+	  & (0.026) & (0.009) & (0.009) \\ 
+	  & & & \\ 
+	 $rural$ & 0.352^{***} & -0.353^{***} & -0.353^{***} \\ 
+	  & (0.043) & (0.015) & (0.015) \\ 
+	  & & & \\ 
+	 $negro$ & -0.026 & -0.033^{***} & -0.033^{***} \\ 
+	  & (0.021) & (0.007) & (0.007) \\ 
+	  & & & \\ 
+	 $mulher$ & -0.003 & -0.245^{***} & -0.245^{***} \\ 
+	  & (0.018) & (0.006) & (0.006) \\ 
+	  & & & \\ 
+	 $chefe\_fam$ & 0.068^{***} &  &  \\ 
+	  & (0.021) &  &  \\ 
+	  & & & \\ 
+	 $rfpc$ & 0.001^{***} &  &  \\ 
+	  & (0.0001) &  &  \\ 
+	  & & & \\ 
+	 $nfilhos$ & 0.199^{***} &  &  \\ 
+	  & (0.022) &  &  \\ 
+	  & & & \\ 
+	 $mills$ &  & -4.154^{***} & -4.154^{***} \\ 
+	  &  & (0.057) & (0.057) \\ 
+	  & & & \\ 
+	 $setor\_1$ &  & -0.618^{***} & -0.618^{***} \\ 
+	  &  & (0.028) & (0.028) \\ 
+	  & & & \\ 
+	 $setor\_2$ &  & 0.287^{***} & 0.287^{***} \\ 
+	  &  & (0.027) & (0.027) \\ 
+	  & & & \\ 
+	 $setor\_4$ &  & -0.023^{*} & -0.023^{*} \\ 
+	  &  & (0.014) & (0.014) \\
+	  & & & \\
+	 $setor\_5$ &  & -0.050^{***} & -0.050^{***} \\
+	  &  & (0.009) & (0.009) \\
+	  & & & \\ 
+	 $setor\_6$ &  & 0.032^{***} & 0.032^{***} \\
+	  &  & (0.009) & (0.009) \\
+	  & & & \\
+	 $setor\_8$ &  & 0.299^{***} & 0.299^{***} \\
+	  &  & (0.013) & (0.013) \\
+	  & & & \\
+	 $setor\_12$ &  & 0.085^{***} & 0.085^{***} \\ 
+	  &  & (0.012) & (0.012) \\
+	  & & & \\
+	 $setor\_13$ &  & -0.217 & -0.217 \\
+	  &  & (0.172) & (0.172) \\
+	  & & & \\
+	 $uf\_11$ & 0.464^{***} & -0.280^{***} & -0.280^{***} \\
+	  & (0.097) & (0.031) & (0.031) \\
+	  & & & \\
+	 $uf\_12$ & 0.200^{**} & -0.220^{***} & -0.220^{***} \\
+	  & (0.087) & (0.031) & (0.031) \\
+	  & & & \\ 
+	 $uf\_13$ & 0.078 & -0.160^{***} & -0.160^{***} \\
+	  & (0.056) & (0.023) & (0.023) \\
+	  & & & \\
+	 $uf\_14$ & 0.168 & -0.149^{***} & -0.149^{***} \\
+	  & (0.117) & (0.036) & (0.036) \\
+	  & & & \\
+	 $uf\_15$ & 0.418^{***} & -0.469^{***} & -0.469^{***} \\
+	  & (0.053) & (0.019) & (0.019) \\
+	  & & & \\ 
+	 $uf\_16$ & 0.259^{**} & -0.237^{***} & -0.237^{***} \\
+	  & (0.102) & (0.040) & (0.040) \\
+	  & & & \\
+	 $uf\_17$ & 0.343^{***} & -0.117 & -0.117 \\
+	  & (0.092) & (0.080) & (0.080) \\
+	  & & & \\
+	 $uf\_21$ & 0.376^{***} & -0.423^{***} & -0.423^{***} \\ 
+	  & (0.080) & (0.029) & (0.029) \\
+	  & & & \\
+	 $uf\_22$ & 0.148^{**} & -0.361^{***} & -0.361^{***} \\
+	  & (0.072) & (0.030) & (0.030) \\
+	  & & & \\
+	 $uf\_23$ & 0.332^{***} & -0.480^{***} & -0.480^{***} \\
+	  & (0.047) & (0.022) & (0.022) \\ 
+	  & & & \\
+	 $uf\_24$ & 0.106 & -0.228^{***} & -0.228^{***} \\
+	  & (0.091) & (0.027) & (0.027) \\
+	  & & & \\
+	 $uf\_25$ & 0.196^{**} & -0.346^{***} & -0.346^{***} \\
+	  & (0.091) & (0.031) & (0.031) \\
+	  & & & \\
+	 $uf\_26$ & 0.207^{***} & -0.374^{***} & -0.374^{***} \\ 
+	  & (0.048) & (0.018) & (0.018) \\
+	  & & & \\
+	 $uf\_27$ & 0.267^{**} & -0.321^{***} & -0.321^{***} \\
+	  & (0.110) & (0.031) & (0.031) \\
+	  & & & \\
+	 $uf\_28$ & 0.260^{***} & -0.339^{***} & -0.339^{***} \\ 
+	  & (0.086) & (0.031) & (0.031) \\
+	  & & & \\
+	 $uf\_29$ & 0.111^{**} & -0.288^{***} & -0.288^{***} \\
+	  & (0.043) & (0.019) & (0.019) \\
+	  & & & \\
+	 $uf\_31$ & 0.021 & -0.141^{***} & -0.141^{***} \\ 
+	  & (0.038) & (0.016) & (0.016) \\
+	  & & & \\
+	 $uf\_32$ & -0.057 & 0.009 & 0.009 \\ 
+	  & (0.074) & (0.027) & (0.027) \\
+	  & & & \\
+	 $uf\_33$ & 0.279^{***} & -0.173^{***} & -0.173^{***} \\
+	  & (0.050) & (0.024) & (0.024) \\
+	  & & & \\ 
+	 $uf\_41$ & 0.207^{***} & -0.167^{***} & -0.167^{***} \\
+	  & (0.048) & (0.018) & (0.018) \\
+	  & & & \\
+	 $uf\_42$ & 0.095 & -0.058^{***} & -0.058^{***} \\
+	  & (0.074) & (0.020) & (0.020) \\
+	  & & & \\ 
+	 $uf\_43$ & 0.104^{***} & -0.188^{***} & -0.188^{***} \\
+	  & (0.040) & (0.021) & (0.021) \\
+	  & & & \\
+	 $uf\_50$ & 0.229^{**} & -0.160^{***} & -0.160^{***} \\
+	  & (0.098) & (0.028) & (0.028) \\
+	  & & & \\ 
+	 $uf\_51$ & 0.427^{***} & -0.208^{***} & -0.208^{***} \\
+	  & (0.087) & (0.029) & (0.029) \\
+	  & & & \\
+	 $uf\_52$ & 0.097^{*} & -0.093^{***} & -0.093^{***} \\
+	  & (0.054) & (0.022) & (0.022) \\
+	  & & & \\
+	 $uf\_53$ & 0.251^{***} & -0.101^{***} & -0.101^{***} \\ 
+	  & (0.075) & (0.036) & (0.036) \\
+	  & & & \\
+	 $Intercepto$ & 1.231^{***} & 1.585^{***} & 1.584^{***} \\
+	  & (0.142) & (0.045) & (0.045) \\
+	  & & & \\
+	\hline \\[-1.8ex]
+	Observações & \multicolumn{1}{c}{62,694} & \multicolumn{1}{c}{59,601} & \multicolumn{1}{c}{59,601} \\
+	Probabilidade do Log &  & \multicolumn{1}{c}{-59,766.770} & \multicolumn{1}{c}{-59,758.410} \\ 
+	Critério de Informação de Akaike &  & \multicolumn{1}{c}{119,619.500} & \multicolumn{1}{c}{119,602.800} \\ 
+	  \hline
+	  \hline \\[-2.5ex]
+	  \textit{Nota:}  & \multicolumn{3}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\
+	  \end{longtable}
+
+	\newpage
+
+	
+	\begin{longtable}{@{\extracolsep{5pt}}lD{.}{.}{-3} D{.}{.}{-3} D{.}{.}{-3} }
+		\caption{Escolha Ocupacional e Correção de Heckman para os qualificados}
+
+	  \\ \hline 
+	  \hline \\[-1.8ex] 
+	   & \multicolumn{2}{c}{\textit{\textit{Benchmarking}}} & \multicolumn{1}{c}{\textit{Integração}} \\ 
+	  \cline{2-4} 
+	  \\[-1.8ex] & \multicolumn{1}{c}{Escolha ocupacional} & \multicolumn{1}{c}{Heckman} & \multicolumn{1}{c}{Heckman} \\ 
+	  \\[-1.8ex] & \multicolumn{1}{c}{($trab$)} & \multicolumn{1}{c}{($lnrendah$)} & \multicolumn{1}{c}{($lnrendah\_sim3$)}\\ 
+	  \hline \\[-1.8ex] \endfirsthead
+	  
+	  \multicolumn{4}{c}{{\tablename\ \thetable{} -- continuação da página anterior}} \\
+
+	  \\[-1.8ex]\hline 
+	  \hline \\[-1.8ex] 
+	   & \multicolumn{2}{c}{\textit{\textit{Benchmarking}}} & \multicolumn{1}{c}{\textit{Integração}} \\ 
+	  \cline{2-4} 
+	  \\[-1.8ex] & \multicolumn{1}{c}{Escolha ocupacional} & \multicolumn{1}{c}{Heckman} & \multicolumn{1}{c}{Heckman} \\ 
+	  \\[-1.8ex] & \multicolumn{1}{c}{($trab$)} & \multicolumn{1}{c}{($lnrendah$)} & \multicolumn{1}{c}{($lnrendah\_sim3$)}\\ 
+	  \hline \\[-1.8ex] \endhead
+
+	  \hline \multicolumn{4}{r}{{Continua na próxima página}} \\ \hline
+	  \endfoot
+
+	  \endlastfoot
+ 
+	  $educ$ & -0.184^{*} & -0.017 & -0.017 \\ 
+  & (0.096) & (0.043) & (0.043) \\ 
+  & & & \\ 
+ $experp$ & 0.032^{***} & -0.022^{***} & -0.022^{***} \\ 
+  & (0.004) & (0.002) & (0.002) \\ 
+  & & & \\ 
+ $experp^{2}$ & -0.0004^{***} & 0.0003^{***} & 0.0003^{***} \\ 
+  & (0.0001) & (0.00004) & (0.00004) \\ 
+  & & & \\ 
+ $metro$ & -0.183^{***} & 0.380^{***} & 0.380^{***} \\ 
+  & (0.052) & (0.016) & (0.016) \\ 
+  & & & \\ 
+ $rural$ & 0.473^{***} & -0.720^{***} & -0.720^{***} \\ 
+  & (0.135) & (0.032) & (0.032) \\ 
+  & & & \\ 
+ $negro$ & -0.016 & -0.095^{***} & -0.094^{***} \\ 
+  & (0.044) & (0.013) & (0.013) \\ 
+  & & & \\ 
+ $mulher$ & -0.034 & -0.213^{***} & -0.213^{***} \\ 
+  & (0.041) & (0.011) & (0.011) \\ 
+  & & & \\ 
+ $chefe\_fam$ & -0.021 &  &  \\ 
+  & (0.042) &  &  \\ 
+  & & & \\ 
+ $rfpc$ & 0.0003^{***} &  &  \\ 
+  & (0.0001) &  &  \\ 
+  & & & \\ 
+ $nfilhos$ & 0.099^{**} &  &  \\ 
+  & (0.042) &  &  \\ 
+  & & & \\ 
+ $mills$ &  & -11.913^{***} & -11.911^{***} \\ 
+  &  & (0.183) & (0.183) \\ 
+  & & & \\ 
+ $setor\_1$ &  & -0.639^{***} & -0.639^{***} \\ 
+  &  & (0.071) & (0.071) \\ 
+  & & & \\ 
+ $setor\_2$ &  & 0.299^{***} & 0.298^{***} \\ 
+  &  & (0.045) & (0.045) \\ 
+  & & & \\ 
+ $setor\_4$ &  & 0.049 & 0.049 \\ 
+  &  & (0.039) & (0.039) \\
+  & & & \\
+ $setor\_5$ &  & -0.172^{***} & -0.172^{***} \\
+  &  & (0.024) & (0.024) \\
+  & & & \\
+ $setor\_6$ &  & 0.114^{***} & 0.114^{***} \\
+  &  & (0.020) & (0.020) \\
+  & & & \\
+ $setor\_8$ &  & 0.317^{***} & 0.317^{***} \\
+  &  & (0.024) & (0.024) \\
+  & & & \\
+ $setor\_12$ &  & 0.113^{***} & 0.113^{***} \\
+  &  & (0.023) & (0.023) \\ 
+  & & & \\
+ $setor\_13$ &  & -0.014 & -0.014 \\
+  &  & (0.465) & (0.465) \\
+  & & & \\
+ $uf\_11$ & 0.481^{**} & -0.502^{***} & -0.502^{***} \\
+  & (0.213) & (0.044) & (0.044) \\
+  & & & \\
+ $uf\_12$ & 0.367 & -0.383^{***} & -0.383^{***} \\
+  & (0.229) & (0.052) & (0.052) \\
+  & & & \\ 
+ $uf\_13$ & 0.172 & -0.193^{***} & -0.193^{***} \\
+  & (0.119) & (0.032) & (0.032) \\
+  & & & \\
+ $uf\_14$ & 0.456 & -0.356^{***} & -0.356^{***} \\
+  & (0.286) & (0.073) & (0.073) \\
+  & & & \\
+ $uf\_15$ & 0.166^{*} & -0.198^{***} & -0.198^{***} \\
+  & (0.099) & (0.032) & (0.032) \\
+  & & & \\ 
+ $uf\_16$ & 0.273 & -0.299^{***} & -0.299^{***} \\
+  & (0.253) & (0.051) & (0.051) \\
+  & & & \\
+ $uf\_17$ & 0.946^{***} & -0.397^{***} & -0.397^{***} \\
+  & (0.346) & (0.098) & (0.098) \\
+  & & & \\
+ $uf\_21$ & 0.198 & -0.168^{**} & -0.168^{**} \\
+  & (0.184) & (0.066) & (0.066) \\
+  & & & \\
+ $uf\_22$ & 0.072 & -0.118^{***} & -0.118^{***} \\ 
+  & (0.166) & (0.042) & (0.042) \\
+  & & & \\
+ $uf\_23$ & 0.525^{***} & -0.776^{***} & -0.775^{***} \\
+  & (0.137) & (0.034) & (0.034) \\
+  & & & \\
+ $uf\_24$ & 0.428^{**} & -0.490^{***} & -0.490^{***} \\
+  & (0.199) & (0.058) & (0.058) \\
+  & & & \\ 
+ $uf\_25$ & 0.284 & -0.337^{***} & -0.337^{***} \\
+  & (0.175) & (0.076) & (0.076) \\
+  & & & \\
+ $uf\_26$ & 0.313^{***} & -0.581^{***} & -0.581^{***} \\
+  & (0.095) & (0.033) & (0.033) \\
+  & & & \\
+ $uf\_27$ & 0.085 & -0.011 & -0.011 \\
+  & (0.208) & (0.066) & (0.066) \\
+  & & & \\
+ $uf\_28$ & -0.117 & 0.271^{***} & 0.271^{***} \\ 
+  & (0.194) & (0.058) & (0.058) \\
+  & & & \\
+ $uf\_29$ & 0.401^{***} & -0.549^{***} & -0.549^{***} \\
+  & (0.103) & (0.033) & (0.033) \\
+  & & & \\
+ $uf\_31$ & 0.101 & -0.204^{***} & -0.204^{***} \\
+  & (0.077) & (0.023) & (0.023) \\ 
+  & & & \\
+ $uf\_32$ & -0.086 & 0.092^{**} & 0.092^{**} \\
+  & (0.124) & (0.042) & (0.042) \\
+  & & & \\
+ $uf\_33$ & 0.287^{***} & -0.252^{***} & -0.252^{***} \\
+  & (0.097) & (0.043) & (0.043) \\
+  & & & \\
+ $uf\_41$ & 0.219^{**} & -0.293^{***} & -0.293^{***} \\
+  & (0.093) & (0.025) & (0.025) \\ 
+  & & & \\
+ $uf\_42$ & 0.265^{*} & -0.288^{***} & -0.288^{***} \\
+  & (0.137) & (0.032) & (0.032) \\
+  & & & \\
+ $uf\_43$ & 0.158^{*} & -0.298^{***} & -0.298^{***} \\
+  & (0.081) & (0.029) & (0.029) \\
+  & & & \\
+ $uf\_50$ & 0.351^{*} & -0.357^{***} & -0.357^{***} \\
+  & (0.199) & (0.052) & (0.052) \\ 
+  & & & \\
+ $uf\_51$ & 0.229 & -0.198^{***} & -0.198^{***} \\
+  & (0.158) & (0.039) & (0.039) \\
+  & & & \\
+ $uf\_52$ & 0.332^{***} & -0.358^{***} & -0.358^{***} \\
+  & (0.114) & (0.038) & (0.038) \\
+  & & & \\
+ $uf\_53$ & 0.096 & 0.167^{*} & 0.166^{*} \\ 
+  & (0.113) & (0.089) & (0.089) \\
+  & & & \\
+ $Intercepto$ & 3.865^{***} & 4.164^{***} & 4.163^{***} \\
+  & (1.493) & (0.641) & (0.641) \\
+	  & & & \\
+	\hline \\[-1.8ex]
+	Observações & \multicolumn{1}{c}{23,930} & \multicolumn{1}{c}{23,404} & \multicolumn{1}{c}{23,404} \\
+	Probabilidade do log &  & \multicolumn{1}{c}{-27,277.290} & \multicolumn{1}{c}{-27,273.300} \\
+	Critério de Informação de Akaike &  & \multicolumn{1}{c}{54,640.570} & \multicolumn{1}{c}{54,632.610} \\
+	  \hline
+	  \hline \\[-2.5ex]
+	  \textit{Nota:}  & \multicolumn{3}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\
+	  \end{longtable}
+
+
+	  \newpage
+
+
+	  \begin{table}[h]
+		\centering
+		\small
+		\begin{threeparttable}
+			\caption{Microssimulação dos efeitos da redução tarifária sobre desigualdade de renda e pobreza por qualificação} \label{tab:result_microssimulacao}
+			\begin{tabular}{lccc}
+				\hline
+				\multirow{2}{*}{\textbf{}} & \multicolumn{3}{c}{\textit{\textbf{Benchmarking}}} \\ \cline{2-4} 
+				 & \textbf{Não qualificado} & \textbf{Semi-qualificado} & \textbf{Qualificado} \\ \hline
+				\textbf{Pobreza$^{\dag}$} &  &  &  \\
+				\hspace{0.2cm} $\text{FGT}_0$ & 39,13 & 19,48 & 8,16 \\
+				\hspace{0.2cm} $\text{FGT}_1$ & 17,94 & 8,40 & 4,74 \\
+				\hspace{0.2cm} $\text{FGT}_2$ & 11,14 & 5,39 & 3,70 \\ \hline
+				\textbf{Extrema pobreza$^{\ddagger}$} &  &  &  \\
+				\hspace{0.2cm} $\text{FGT}_0$ & 10,60 & 5,21 & 3,93 \\
+				\hspace{0.2cm} $\text{FGT}_1$ & 5,02 & 3,00 & 2,74 \\
+				\hspace{0.2cm} $\text{FGT}_2$ & 3,21 & 2,21 & 2,31 \\ \hline
+				\textbf{Desigualdade de renda} &  &  &  \\
+				\hspace{0.2cm} Gini & 0,457 & 0,442 & 0,487 \\ \hline
+				\end{tabular}
+		\begin{tablenotes}
+			\footnotesize
+			\item Fonte: elaboração própria (2024) com base nos dados da PNAD 2015.
+			\item \textit{Nota:}
+			\item \hspace{0.2cm} $^{\dag}$     Indivíduos com renda familiar per capita abaixo de R\$367,02.
+			\item \hspace{0.2cm} $^{\ddagger}$ Indivíduos com renda familiar per capita abaixo de R\$126,79.
+		\end{tablenotes}
+		\end{threeparttable}
+	\end{table}
+
+	\begin{table}[h]
+		\centering
+		\begin{threeparttable}
+		\caption{Parâmetros estimados no modelo ORANIG-BR para emprego e salários}
+		\begin{tabular}{m{5.5cm} >{\centering\arraybackslash}m{3.5cm} >{\centering\arraybackslash}m{3.5cm}}
+			\hline
+			\multirow{2}{*}{} & \multicolumn{2}{c}{\textbf{Variação (\%)}} \\ \cline{2-3} 
+			 & \textbf{Emprego} & \textbf{Salários} \\ \hline
+			Total & 0,035848 & -0,07975 \\
+			Não qualificado & 0,036463 & -0,017606 \\
+			Semi-qualificado & 0,038327 & -0,028079 \\
+			Qualificado & 0,033344 & -0,034081 \\ \hline
+			\end{tabular}
+			\begin{tablenotes}
+				\footnotesize
+				\item Fonte: elaboração própria (2024) com base nas simulações do ORANIG-BR.
+			\end{tablenotes}
+			\end{threeparttable}
+	\end{table}
+
+
 
 	\chapter{Arquivos da dissertação} \label{ap:c}
 

@@ -71,19 +71,17 @@ pnad_clean = pnad %>%
 #--- PARÂMETROS UTILIZADOS ---
 
 # Taxa de desemprego (PNAD contínua Anual 2015):
-#https://sidra.ibge.gov.br/tabela/4562#resultado 
+#https://sidra.ibge.gov.br/tabela/4562#resultado
 desemprego = 0.089
 
 # Simulação 03:
-salario_egc  = -0.0797 # salário diminuiu;
-desemp_egc_1 = -0.0365 # emprego aumentou;
-desemp_egc_2 = -0.0383
-desemp_egc_3 = -0.0333
+sal_sim3 = read_excel("dados/auxiliares/sim3.xlsx", sheet = 1)
+emp_sim3 = read_excel("dados/auxiliares/sim3.xlsx", sheet = 2)
 
 # taxa de desemprego após o choque:
-desemp_1    = desemprego * (1 + desemp_egc_1 / 100)
-desemp_2    = desemprego * (1 + desemp_egc_2 / 100)
-desemp_3    = desemprego * (1 + desemp_egc_3 / 100)
+desemp_1 = desemprego * (1 + emp_sim3$sim3_05[1] / 100)
+desemp_2 = desemprego * (1 + emp_sim3$sim3_05[2] / 100)
+desemp_3 = desemprego * (1 + emp_sim3$sim3_05[3] / 100)
 
 
 #--- CRIAR VARIÁVEIS ---
@@ -110,7 +108,9 @@ pnad_clean = pnad_clean %>%
          lnrendah           = case_when(lnrendah < 0 ~ NA_real_, T ~ lnrendah),          # transformar <= 0 em NA;
          lnrendah           = case_when(is.na(lnrendah) ~ 0, T ~ lnrendah),              # transformar todos os NAs em zero;
          lnrendah           = case_when(trab == 0 ~ lnrendah == NA_real_, T ~ lnrendah), # transformar log da renda-hora dos desempregados em NA;
-         lnrendah_sim3      = lnrendah * (1 + salario_egc / 100),                        # Log da renda-hora após o choque da terceira simulação do ORANIG-BR (w1lab_io);
+         lnrendah_sim3_1    = lnrendah * (1 + sal_sim3$sim3_05[1] / 100),                        # Log da renda-hora após o choque da terceira simulação do ORANIG-BR (w1lab_io);
+         lnrendah_sim3_2    = lnrendah * (1 + sal_sim3$sim3_05[2] / 100),                        # Log da renda-hora após o choque da terceira simulação do ORANIG-BR (w1lab_io);
+         lnrendah_sim3_3    = lnrendah * (1 + sal_sim3$sim3_05[3] / 100),                        # Log da renda-hora após o choque da terceira simulação do ORANIG-BR (w1lab_io);
          out_renda = case_when(v4720 - v4718 < 0 ~ 0,                                    # renda de todas as outras fontes, exceto trabalho;
                                is.na(v4720)      ~ v4718,
                                is.na(v4718)      ~ v4720,
@@ -150,8 +150,8 @@ pnad_filter = pnad_clean %>%
 
 #--- DROPAR RESÍDUO ---
 rm(dicpes, end_pes, dicdom, end_dom, SCN68,
-   desemp_egc_1, desemp_egc_2, desemp_egc_3,
-   salario_egc, pnad_pes, pnad_dom, quantil, pnad)
+   emp_sim3, sal_sim3, pnad_pes, pnad_dom,
+   quantil, pnad)
 
 
 #--- SALVAR BASE ---

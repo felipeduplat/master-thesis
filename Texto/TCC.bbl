@@ -1,0 +1,2351 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.2 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nty/global//global/global}
+    \entry{adelman78}{article}{}
+      \true{moreauthor}
+      \true{morelabelname}
+      \name{author}{2}{}{%
+        {{hash=837b39c0c4b13d37847c7a62dd925de7}{%
+           family={Adelman},
+           familyi={A\bibinitperiod},
+           given={Irma},
+           giveni={I\bibinitperiod}}}%
+        {{hash=0383c94e9a7e1a50afd56047c49cc09b}{%
+           family={Robinson},
+           familyi={R\bibinitperiod},
+           given={Sherman},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{d0ed422b4e231b86eb4e798ba055b5bf}
+      \strng{fullhash}{d0ed422b4e231b86eb4e798ba055b5bf}
+      \strng{bibnamehash}{d0ed422b4e231b86eb4e798ba055b5bf}
+      \strng{authorbibnamehash}{d0ed422b4e231b86eb4e798ba055b5bf}
+      \strng{authornamehash}{d0ed422b4e231b86eb4e798ba055b5bf}
+      \strng{authorfullhash}{d0ed422b4e231b86eb4e798ba055b5bf}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{(No Title)}
+      \field{title}{Income distribution policy in developing countries: A case study of Korea}
+      \field{year}{1978}
+    \endentry
+    \entry{anderson20}{article}{}
+      \name{author}{1}{}{%
+        {{hash=6d116d9dc680a2fa66a8490eeb3d25fc}{%
+           family={Anderson},
+           familyi={A\bibinitperiod},
+           given={Edward},
+           giveni={E\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier}%
+      }
+      \strng{namehash}{6d116d9dc680a2fa66a8490eeb3d25fc}
+      \strng{fullhash}{6d116d9dc680a2fa66a8490eeb3d25fc}
+      \strng{bibnamehash}{6d116d9dc680a2fa66a8490eeb3d25fc}
+      \strng{authorbibnamehash}{6d116d9dc680a2fa66a8490eeb3d25fc}
+      \strng{authornamehash}{6d116d9dc680a2fa66a8490eeb3d25fc}
+      \strng{authorfullhash}{6d116d9dc680a2fa66a8490eeb3d25fc}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Policy Modeling}
+      \field{number}{6}
+      \field{title}{The impact of trade liberalisation on poverty and inequality: Evidence from CGE models}
+      \field{volume}{42}
+      \field{year}{2020}
+      \field{pages}{1208\bibrangedash 1227}
+      \range{pages}{20}
+    \endentry
+    \entry{anderson16}{article}{}
+      \name{author}{3}{}{%
+        {{hash=698a0bb775e87a0470cd7b92a0a5cd24}{%
+           family={Anderson},
+           familyi={A\bibinitperiod},
+           given={James\bibnamedelima E},
+           giveni={J\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
+        {{hash=3aea6858aaf09891dd1a058e5336b20a}{%
+           family={Larch},
+           familyi={L\bibinitperiod},
+           given={Mario},
+           giveni={M\bibinitperiod}}}%
+        {{hash=ec316c108e8808001ef50f84438ca9cb}{%
+           family={Yotov},
+           familyi={Y\bibinitperiod},
+           given={Yoto\bibnamedelima V},
+           giveni={Y\bibinitperiod\bibinitdelim V\bibinitperiod}}}%
+      }
+      \strng{namehash}{d744bc6e288d7b7638479cb6f810635d}
+      \strng{fullhash}{d744bc6e288d7b7638479cb6f810635d}
+      \strng{bibnamehash}{d744bc6e288d7b7638479cb6f810635d}
+      \strng{authorbibnamehash}{d744bc6e288d7b7638479cb6f810635d}
+      \strng{authornamehash}{d744bc6e288d7b7638479cb6f810635d}
+      \strng{authorfullhash}{d744bc6e288d7b7638479cb6f810635d}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Boston College and NBER}
+      \field{title}{Trade liberalization, growth, and FDI: A structural estimation framework}
+      \field{volume}{77}
+      \field{year}{2016}
+      \field{pages}{2016}
+      \range{pages}{1}
+    \endentry
+    \entry{arkolakis21}{article}{}
+      \name{author}{3}{}{%
+        {{hash=0c99d9d323f323ffc11adc74acb24b4f}{%
+           family={Arkolakis},
+           familyi={A\bibinitperiod},
+           given={Costas},
+           giveni={C\bibinitperiod}}}%
+        {{hash=b1dc24423c99ae873091803ac18c0577}{%
+           family={Costinot},
+           familyi={C\bibinitperiod},
+           given={Arnaud},
+           giveni={A\bibinitperiod}}}%
+        {{hash=8f369a3d29c2023d1d03833c045904d3}{%
+           family={Rodríguez-Clare},
+           familyi={R\bibinithyphendelim C\bibinitperiod},
+           given={Andrés},
+           giveni={A\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {American Economic Association}%
+      }
+      \strng{namehash}{2fecb44548aa9517c3a4a498e56b7e71}
+      \strng{fullhash}{2fecb44548aa9517c3a4a498e56b7e71}
+      \strng{bibnamehash}{2fecb44548aa9517c3a4a498e56b7e71}
+      \strng{authorbibnamehash}{2fecb44548aa9517c3a4a498e56b7e71}
+      \strng{authornamehash}{2fecb44548aa9517c3a4a498e56b7e71}
+      \strng{authorfullhash}{2fecb44548aa9517c3a4a498e56b7e71}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{American Economic Review}
+      \field{number}{1}
+      \field{title}{New trade models, same old gains?}
+      \field{volume}{102}
+      \field{year}{2012}
+      \field{pages}{94\bibrangedash 130}
+      \range{pages}{37}
+    \endentry
+    \entry{armington69}{article}{}
+      \name{author}{1}{}{%
+        {{hash=19b1bb2d11afd9418f48e868ea1c76ae}{%
+           family={Armington},
+           familyi={A\bibinitperiod},
+           given={Paul\bibnamedelima S},
+           giveni={P\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {JSTOR}%
+      }
+      \strng{namehash}{19b1bb2d11afd9418f48e868ea1c76ae}
+      \strng{fullhash}{19b1bb2d11afd9418f48e868ea1c76ae}
+      \strng{bibnamehash}{19b1bb2d11afd9418f48e868ea1c76ae}
+      \strng{authorbibnamehash}{19b1bb2d11afd9418f48e868ea1c76ae}
+      \strng{authornamehash}{19b1bb2d11afd9418f48e868ea1c76ae}
+      \strng{authorfullhash}{19b1bb2d11afd9418f48e868ea1c76ae}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Staff Papers-International Monetary Fund}
+      \field{title}{A Theory of Demand for Products Distinguished by Place of Production (Une théorie de la demande de produits différenciés d'après leur origine)(Una teoría de la demanda de productos distinguiéndolos según el lugar de producción)}
+      \field{year}{1969}
+      \field{pages}{159\bibrangedash 178}
+      \range{pages}{20}
+    \endentry
+    \entry{atkin22}{incollection}{}
+      \name{author}{2}{}{%
+        {{hash=f673f9090cb4a1f7275c7106b927c6e0}{%
+           family={Atkin},
+           familyi={A\bibinitperiod},
+           given={David},
+           giveni={D\bibinitperiod}}}%
+        {{hash=ebaa25e63560bd4b55d707322b3b0128}{%
+           family={Donaldson},
+           familyi={D\bibinitperiod},
+           given={Dave},
+           giveni={D\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier}%
+      }
+      \strng{namehash}{02edba24972a6235c3eb4451998cce71}
+      \strng{fullhash}{02edba24972a6235c3eb4451998cce71}
+      \strng{bibnamehash}{02edba24972a6235c3eb4451998cce71}
+      \strng{authorbibnamehash}{02edba24972a6235c3eb4451998cce71}
+      \strng{authornamehash}{02edba24972a6235c3eb4451998cce71}
+      \strng{authorfullhash}{02edba24972a6235c3eb4451998cce71}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Handbook of International Economics}
+      \field{title}{The role of trade in economic development}
+      \field{volume}{5}
+      \field{year}{2022}
+      \field{pages}{1\bibrangedash 59}
+      \range{pages}{59}
+    \endentry
+    \entry{banerjee04}{article}{}
+      \name{author}{2}{}{%
+        {{hash=027abafc894615db04e1c3f3dc5931c4}{%
+           family={Banerjee},
+           familyi={B\bibinitperiod},
+           given={Abhijit},
+           giveni={A\bibinitperiod}}}%
+        {{hash=ad9ab0374059ce643368d5942c308107}{%
+           family={Newman},
+           familyi={N\bibinitperiod},
+           given={Andrew},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{0a0db2260b49b8f032a50dbc2036e40b}
+      \strng{fullhash}{0a0db2260b49b8f032a50dbc2036e40b}
+      \strng{bibnamehash}{0a0db2260b49b8f032a50dbc2036e40b}
+      \strng{authorbibnamehash}{0a0db2260b49b8f032a50dbc2036e40b}
+      \strng{authornamehash}{0a0db2260b49b8f032a50dbc2036e40b}
+      \strng{authorfullhash}{0a0db2260b49b8f032a50dbc2036e40b}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Growth and Trade Policy. mimeo: MIT}
+      \field{title}{Inequality}
+      \field{year}{2004}
+    \endentry
+    \entry{bannisterthugge01}{article}{}
+      \name{author}{2}{}{%
+        {{hash=7af286495b00dd6bf27967484d64426d}{%
+           family={Bannister},
+           familyi={B\bibinitperiod},
+           given={Geoffrey\bibnamedelima J.},
+           giveni={G\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+        {{hash=96781d34fa6a4e36b14564460f85bd0f}{%
+           family={Thugge},
+           familyi={T\bibinitperiod},
+           given={Kamau},
+           giveni={K\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {International Monetary Fund}%
+      }
+      \strng{namehash}{e97908b957e2de689390ea703640f259}
+      \strng{fullhash}{e97908b957e2de689390ea703640f259}
+      \strng{bibnamehash}{e97908b957e2de689390ea703640f259}
+      \strng{authorbibnamehash}{e97908b957e2de689390ea703640f259}
+      \strng{authornamehash}{e97908b957e2de689390ea703640f259}
+      \strng{authorfullhash}{e97908b957e2de689390ea703640f259}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{IMF Working Paper}
+      \field{title}{International trade and poverty alleviation}
+      \field{volume}{54}
+      \field{year}{2001}
+    \endentry
+    \entry{bargain14}{article}{}
+      \name{author}{2}{}{%
+        {{hash=91731d8ff91626a9ef60e7492b03c0de}{%
+           family={Bargain},
+           familyi={B\bibinitperiod},
+           given={Olivier},
+           giveni={O\bibinitperiod}}}%
+        {{hash=df63f826e65995491233bb5166679915}{%
+           family={Kwenda},
+           familyi={K\bibinitperiod},
+           given={Prudence},
+           giveni={P\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {University of Chicago Press Chicago, IL}%
+      }
+      \strng{namehash}{6ea8c0ddf84b9f906c6bcb85d3b07735}
+      \strng{fullhash}{6ea8c0ddf84b9f906c6bcb85d3b07735}
+      \strng{bibnamehash}{6ea8c0ddf84b9f906c6bcb85d3b07735}
+      \strng{authorbibnamehash}{6ea8c0ddf84b9f906c6bcb85d3b07735}
+      \strng{authornamehash}{6ea8c0ddf84b9f906c6bcb85d3b07735}
+      \strng{authorfullhash}{6ea8c0ddf84b9f906c6bcb85d3b07735}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Economic Development and Cultural Change}
+      \field{number}{1}
+      \field{title}{The informal sector wage gap: New evidence using quantile estimations on panel data}
+      \field{volume}{63}
+      \field{year}{2014}
+      \field{pages}{117\bibrangedash 153}
+      \range{pages}{37}
+    \endentry
+    \entry{bayar17}{article}{}
+      \name{author}{2}{}{%
+        {{hash=bca32ac6d55853fdcd1feb8ee808f94e}{%
+           family={Bayar},
+           familyi={B\bibinitperiod},
+           given={Yilmaz},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=b1441f8eeb899491e91d48ac5a980965}{%
+           family={Sezgin},
+           familyi={S\bibinitperiod},
+           given={H\bibnamedelima Funda},
+           giveni={H\bibinitperiod\bibinitdelim F\bibinitperiod}}}%
+      }
+      \strng{namehash}{e2aee39f9dff9a13ed6da94539bc53ea}
+      \strng{fullhash}{e2aee39f9dff9a13ed6da94539bc53ea}
+      \strng{bibnamehash}{e2aee39f9dff9a13ed6da94539bc53ea}
+      \strng{authorbibnamehash}{e2aee39f9dff9a13ed6da94539bc53ea}
+      \strng{authornamehash}{e2aee39f9dff9a13ed6da94539bc53ea}
+      \strng{authorfullhash}{e2aee39f9dff9a13ed6da94539bc53ea}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Ekonomika}
+      \field{number}{1}
+      \field{title}{Trade openness, inequality and poverty in Latin American countries}
+      \field{volume}{96}
+      \field{year}{2017}
+      \field{pages}{47\bibrangedash 57}
+      \range{pages}{11}
+    \endentry
+    \entry{borjas94}{incollection}{}
+      \name{author}{2}{}{%
+        {{hash=2bbc4693cc6e25946b1ae21cf51483a4}{%
+           family={Borjas},
+           familyi={B\bibinitperiod},
+           given={George\bibnamedelima J},
+           giveni={G\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+        {{hash=034b2cb93928873885c91989e9dcfe3b}{%
+           family={Ramey},
+           familyi={R\bibinitperiod},
+           given={Valerie\bibnamedelima A},
+           giveni={V\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier}%
+      }
+      \strng{namehash}{507e1d885f943ae760ee5387c6701b6b}
+      \strng{fullhash}{507e1d885f943ae760ee5387c6701b6b}
+      \strng{bibnamehash}{507e1d885f943ae760ee5387c6701b6b}
+      \strng{authorbibnamehash}{507e1d885f943ae760ee5387c6701b6b}
+      \strng{authornamehash}{507e1d885f943ae760ee5387c6701b6b}
+      \strng{authorfullhash}{507e1d885f943ae760ee5387c6701b6b}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Contributions to Economic Analysis}
+      \field{title}{The relationship between wage inequality and international trade}
+      \field{volume}{223}
+      \field{year}{1994}
+      \field{pages}{217\bibrangedash 241}
+      \range{pages}{25}
+    \endentry
+    \entry{borrazetal12}{article}{}
+      \name{author}{3}{}{%
+        {{hash=ad45f870d0fa8034ab761d8bfc75b508}{%
+           family={Borraz},
+           familyi={B\bibinitperiod},
+           given={Fernando},
+           giveni={F\bibinitperiod}}}%
+        {{hash=96f657ac71be490c6fa787191d5a9fb2}{%
+           family={Rossi},
+           familyi={R\bibinitperiod},
+           given={Máximo},
+           giveni={M\bibinitperiod}}}%
+        {{hash=66bfd0a70a873c21f22838cad313410a}{%
+           family={Ferres},
+           familyi={F\bibinitperiod},
+           given={Daniel},
+           giveni={D\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Taylor \& Francis}%
+      }
+      \strng{namehash}{bbcb1b338e676366740fd683366cb451}
+      \strng{fullhash}{bbcb1b338e676366740fd683366cb451}
+      \strng{bibnamehash}{bbcb1b338e676366740fd683366cb451}
+      \strng{authorbibnamehash}{bbcb1b338e676366740fd683366cb451}
+      \strng{authornamehash}{bbcb1b338e676366740fd683366cb451}
+      \strng{authorfullhash}{bbcb1b338e676366740fd683366cb451}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{The Journal of Development Studies}
+      \field{number}{12}
+      \field{title}{Distributive effects of regional trade agreements on the ‘small trading partners’: Mercosur and the case of Uruguay and Paraguay}
+      \field{volume}{48}
+      \field{year}{2012}
+      \field{pages}{1828\bibrangedash 1843}
+      \range{pages}{16}
+    \endentry
+    \entry{bourguignon05}{article}{}
+      \name{author}{3}{}{%
+        {{hash=90636e48d954d6002dea3279a88ad5bd}{%
+           family={Bourguignon},
+           familyi={B\bibinitperiod},
+           given={François},
+           giveni={F\bibinitperiod}}}%
+        {{hash=2ca0898c1ee6fb843637a535993d827b}{%
+           family={Robilliard},
+           familyi={R\bibinitperiod},
+           given={Anne-Sophie},
+           giveni={A\bibinithyphendelim S\bibinitperiod}}}%
+        {{hash=0383c94e9a7e1a50afd56047c49cc09b}{%
+           family={Robinson},
+           familyi={R\bibinitperiod},
+           given={Sherman},
+           giveni={S\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Cambridge University Press Cambridge}%
+      }
+      \strng{namehash}{9ae76fd34fd9b1864b72693eed811b7c}
+      \strng{fullhash}{9ae76fd34fd9b1864b72693eed811b7c}
+      \strng{bibnamehash}{9ae76fd34fd9b1864b72693eed811b7c}
+      \strng{authorbibnamehash}{9ae76fd34fd9b1864b72693eed811b7c}
+      \strng{authornamehash}{9ae76fd34fd9b1864b72693eed811b7c}
+      \strng{authorfullhash}{9ae76fd34fd9b1864b72693eed811b7c}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Frontiers in Applied General Equilibrium Modeling: In Honor of Herbert Scarf}
+      \field{title}{Representative versus real households in the macroeconomic modeling of inequality}
+      \field{year}{2005}
+      \field{pages}{219\bibrangedash 254}
+      \range{pages}{36}
+    \endentry
+    \entry{campostimini22}{article}{}
+      \name{author}{2}{}{%
+        {{hash=3a9ae2c3eef6e3ce55e01d7661f45bc4}{%
+           family={Campos},
+           familyi={C\bibinitperiod},
+           given={Rodolfo\bibnamedelima G},
+           giveni={R\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
+        {{hash=334034f6825924f4a5a3aa8ecdac20ce}{%
+           family={Timini},
+           familyi={T\bibinitperiod},
+           given={Jacopo},
+           giveni={J\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Taylor \& Francis}%
+      }
+      \strng{namehash}{73e85adb0c277637afa82b4306fe6aad}
+      \strng{fullhash}{73e85adb0c277637afa82b4306fe6aad}
+      \strng{bibnamehash}{73e85adb0c277637afa82b4306fe6aad}
+      \strng{authorbibnamehash}{73e85adb0c277637afa82b4306fe6aad}
+      \strng{authornamehash}{73e85adb0c277637afa82b4306fe6aad}
+      \strng{authorfullhash}{73e85adb0c277637afa82b4306fe6aad}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Applied Economics}
+      \field{title}{Unequal trade, unequal gains: the heterogeneous impact of MERCOSUR}
+      \field{year}{2022}
+      \field{pages}{1\bibrangedash 15}
+      \range{pages}{15}
+    \endentry
+    \entry{carneiro06}{incollection}{}
+      \name{author}{2}{}{%
+        {{hash=98cc58b75e086c49a186ff70ee82fff2}{%
+           family={Carneiro},
+           familyi={C\bibinitperiod},
+           given={Francisco\bibnamedelima Galrão},
+           giveni={F\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
+        {{hash=46023917a6285490cb4bd2ba654509a8}{%
+           family={Arbache},
+           familyi={A\bibinitperiod},
+           given={Jorge\bibnamedelima Saba},
+           giveni={J\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+      }
+      \name{editor}{4}{}{%
+        {{hash=701d69d5d7c75d1ee5b0f40ccd1433c9}{%
+           family={Vos},
+           familyi={V\bibinitperiod},
+           given={Rob},
+           giveni={R\bibinitperiod}}}%
+        {{hash=834ab11b9c59357a1e4f924e39626e48}{%
+           family={Ganuza},
+           familyi={G\bibinitperiod},
+           given={Enrique},
+           giveni={E\bibinitperiod}}}%
+        {{hash=e43f7d3540302f6936717e44311361ae}{%
+           family={Morley},
+           familyi={M\bibinitperiod},
+           given={Samuel},
+           giveni={S\bibinitperiod}}}%
+        {{hash=0383c94e9a7e1a50afd56047c49cc09b}{%
+           family={Robinson},
+           familyi={R\bibinitperiod},
+           given={Sherman},
+           giveni={S\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Routledge}%
+      }
+      \strng{namehash}{efa18540a3154ee803a389efb337ff3d}
+      \strng{fullhash}{efa18540a3154ee803a389efb337ff3d}
+      \strng{bibnamehash}{efa18540a3154ee803a389efb337ff3d}
+      \strng{authorbibnamehash}{efa18540a3154ee803a389efb337ff3d}
+      \strng{authornamehash}{efa18540a3154ee803a389efb337ff3d}
+      \strng{authorfullhash}{efa18540a3154ee803a389efb337ff3d}
+      \strng{editorbibnamehash}{cc6231c2ffd4693fc38f172cb4b85122}
+      \strng{editornamehash}{20c06c1cff48dcba65dc828c999d0c64}
+      \strng{editorfullhash}{cc6231c2ffd4693fc38f172cb4b85122}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Who Gains from Free Trade? Export-led growth, inequality and poverty in Latin America}
+      \field{title}{The impact of trade openness on employment, poverty and inequality}
+      \field{volume}{1}
+      \field{year}{2006}
+      \field{pages}{184\bibrangedash 203}
+      \range{pages}{20}
+    \endentry
+    \entry{castilho12}{article}{}
+      \name{author}{3}{}{%
+        {{hash=517bed5c050a810941c1d0db4fa9dac7}{%
+           family={Castilho},
+           familyi={C\bibinitperiod},
+           given={Marta},
+           giveni={M\bibinitperiod}}}%
+        {{hash=9c6a64c84503e755f8a4139bd69f05a7}{%
+           family={Menéndez},
+           familyi={M\bibinitperiod},
+           given={Marta},
+           giveni={M\bibinitperiod}}}%
+        {{hash=f5707ee70f41b7c793af78a7594cb5e9}{%
+           family={Sztulman},
+           familyi={S\bibinitperiod},
+           given={Aude},
+           giveni={A\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier}%
+      }
+      \strng{namehash}{bd5161cb38d9b2ae1cbd2edf5523f826}
+      \strng{fullhash}{bd5161cb38d9b2ae1cbd2edf5523f826}
+      \strng{bibnamehash}{bd5161cb38d9b2ae1cbd2edf5523f826}
+      \strng{authorbibnamehash}{bd5161cb38d9b2ae1cbd2edf5523f826}
+      \strng{authornamehash}{bd5161cb38d9b2ae1cbd2edf5523f826}
+      \strng{authorfullhash}{bd5161cb38d9b2ae1cbd2edf5523f826}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{World Development}
+      \field{number}{4}
+      \field{title}{Trade liberalization, inequality, and poverty in Brazilian states}
+      \field{volume}{40}
+      \field{year}{2012}
+      \field{pages}{821\bibrangedash 835}
+      \range{pages}{15}
+    \endentry
+    \entry{cicowiez16}{article}{}
+      \name{author}{5}{}{%
+        {{hash=78de13818e5588de20bd061504325177}{%
+           family={Cicowiez},
+           familyi={C\bibinitperiod},
+           given={Martín},
+           giveni={M\bibinitperiod}}}%
+        {{hash=2f3d6649be2464103ad500f0aa37fecc}{%
+           family={Alejo},
+           familyi={A\bibinitperiod},
+           given={Osvaldo\bibnamedelima Javier},
+           giveni={O\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+        {{hash=87bc49dc7fe97f8e84fbae51fdd827b8}{%
+           family={Di\bibnamedelima Gresia},
+           familyi={D\bibinitperiod\bibinitdelim G\bibinitperiod},
+           given={Luciano},
+           giveni={L\bibinitperiod}}}%
+        {{hash=0c837a9a0fbc54056619af114ab8591d}{%
+           family={Olivieri},
+           familyi={O\bibinitperiod},
+           given={Sergio},
+           giveni={S\bibinitperiod}}}%
+        {{hash=e36bcd7afc02f43bc9c5a0bfbf727a41}{%
+           family={Pachecho},
+           familyi={P\bibinitperiod},
+           given={Ana},
+           giveni={A\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {International Microsimulation Association}%
+      }
+      \strng{namehash}{9df7df4724da304b6d36a7fa0d158ee2}
+      \strng{fullhash}{acb52d001697d08d91fa5d1a568bdfad}
+      \strng{bibnamehash}{acb52d001697d08d91fa5d1a568bdfad}
+      \strng{authorbibnamehash}{acb52d001697d08d91fa5d1a568bdfad}
+      \strng{authornamehash}{9df7df4724da304b6d36a7fa0d158ee2}
+      \strng{authorfullhash}{acb52d001697d08d91fa5d1a568bdfad}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Export Taxes, World Prices, and Poverty in Argentina: A Dynamic CGE-Microsimulation Analysis}
+      \field{year}{2016}
+    \endentry
+    \entry{colombo08}{article}{}
+      \name{author}{1}{}{%
+        {{hash=85f01a580822d5ed430f065a09dad544}{%
+           family={Colombo},
+           familyi={C\bibinitperiod},
+           given={Giulia},
+           giveni={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{85f01a580822d5ed430f065a09dad544}
+      \strng{fullhash}{85f01a580822d5ed430f065a09dad544}
+      \strng{bibnamehash}{85f01a580822d5ed430f065a09dad544}
+      \strng{authorbibnamehash}{85f01a580822d5ed430f065a09dad544}
+      \strng{authornamehash}{85f01a580822d5ed430f065a09dad544}
+      \strng{authorfullhash}{85f01a580822d5ed430f065a09dad544}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{ZEW-Centre for European Economic Research Discussion Paper}
+      \field{number}{08-054}
+      \field{title}{Linking CGE and Microsimulation Models: A Comparison of Different Approaches}
+      \field{year}{2008}
+    \endentry
+    \entry{cury16}{article}{}
+      \name{author}{3}{}{%
+        {{hash=8a1bf98d306fa483e2f6152c21080815}{%
+           family={Cury},
+           familyi={C\bibinitperiod},
+           given={Samir},
+           giveni={S\bibinitperiod}}}%
+        {{hash=cacfa643fc6ee06a33665fcb5e612176}{%
+           family={Pedrozo\bibnamedelima Junior},
+           familyi={P\bibinitperiod\bibinitdelim J\bibinitperiod},
+           given={Euclides},
+           giveni={E\bibinitperiod}}}%
+        {{hash=b6de010d78c5befcbf26d6b52427b480}{%
+           family={Coelho},
+           familyi={C\bibinitperiod},
+           given={Allexandro\bibnamedelima Mori},
+           giveni={A\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {International Microsimulation Association}%
+      }
+      \strng{namehash}{73cc61bbe4a409e5f8a6df9901d9b274}
+      \strng{fullhash}{73cc61bbe4a409e5f8a6df9901d9b274}
+      \strng{bibnamehash}{73cc61bbe4a409e5f8a6df9901d9b274}
+      \strng{authorbibnamehash}{73cc61bbe4a409e5f8a6df9901d9b274}
+      \strng{authornamehash}{73cc61bbe4a409e5f8a6df9901d9b274}
+      \strng{authorfullhash}{73cc61bbe4a409e5f8a6df9901d9b274}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Cash transfer policies, taxation and the fall in inequality in Brazil an integrated microsimulation-CGE analysis}
+      \field{year}{2016}
+    \endentry
+    \entry{dix17}{article}{}
+      \name{author}{2}{}{%
+        {{hash=e14b3be0e610d4b9cb46222a17bf3ed4}{%
+           family={Dix-Carneiro},
+           familyi={D\bibinithyphendelim C\bibinitperiod},
+           given={Rafael},
+           giveni={R\bibinitperiod}}}%
+        {{hash=95d75e9e7556b93ab8587e825f40b6ce}{%
+           family={Kovak},
+           familyi={K\bibinitperiod},
+           given={Brian\bibnamedelima K},
+           giveni={B\bibinitperiod\bibinitdelim K\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {American Economic Association 2014 Broadway, Suite 305, Nashville, TN 37203}%
+      }
+      \strng{namehash}{53d082052d536895a1f620799fd65230}
+      \strng{fullhash}{53d082052d536895a1f620799fd65230}
+      \strng{bibnamehash}{53d082052d536895a1f620799fd65230}
+      \strng{authorbibnamehash}{53d082052d536895a1f620799fd65230}
+      \strng{authornamehash}{53d082052d536895a1f620799fd65230}
+      \strng{authorfullhash}{53d082052d536895a1f620799fd65230}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{American Economic Review}
+      \field{number}{10}
+      \field{title}{Trade liberalization and regional dynamics}
+      \field{volume}{107}
+      \field{year}{2017}
+      \field{pages}{2908\bibrangedash 2946}
+      \range{pages}{39}
+    \endentry
+    \entry{dixit80}{book}{}
+      \name{author}{2}{}{%
+        {{hash=f84da1f0789e9be1355e60ec6c608482}{%
+           family={Dixit},
+           familyi={D\bibinitperiod},
+           given={Avinash},
+           giveni={A\bibinitperiod}}}%
+        {{hash=6e7b890a3208260aaffb5056d66f6763}{%
+           family={Norman},
+           familyi={N\bibinitperiod},
+           given={Victor},
+           giveni={V\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Cambridge University Press}%
+      }
+      \strng{namehash}{599e1b80ac15980bf3ccbea83fd24226}
+      \strng{fullhash}{599e1b80ac15980bf3ccbea83fd24226}
+      \strng{bibnamehash}{599e1b80ac15980bf3ccbea83fd24226}
+      \strng{authorbibnamehash}{599e1b80ac15980bf3ccbea83fd24226}
+      \strng{authornamehash}{599e1b80ac15980bf3ccbea83fd24226}
+      \strng{authorfullhash}{599e1b80ac15980bf3ccbea83fd24226}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Theory of international trade: A dual, general equilibrium approach}
+      \field{year}{1980}
+    \endentry
+    \entry{domingues08}{article}{}
+      \name{author}{3}{}{%
+        {{hash=d72029d4c86e9968cbee8defae17c734}{%
+           family={Domingues},
+           familyi={D\bibinitperiod},
+           given={Edson\bibnamedelima P},
+           giveni={E\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
+        {{hash=f086d802868bdbae52efcb42f63bd011}{%
+           family={Haddad},
+           familyi={H\bibinitperiod},
+           given={Eduardo\bibnamedelima A},
+           giveni={E\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=b680df81995442e9a3943437f2dd4fdb}{%
+           family={Hewings},
+           familyi={H\bibinitperiod},
+           given={Geoffrey},
+           giveni={G\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier}%
+      }
+      \strng{namehash}{4f920085afdbbd95e70ba67dbd6ec358}
+      \strng{fullhash}{4f920085afdbbd95e70ba67dbd6ec358}
+      \strng{bibnamehash}{4f920085afdbbd95e70ba67dbd6ec358}
+      \strng{authorbibnamehash}{4f920085afdbbd95e70ba67dbd6ec358}
+      \strng{authornamehash}{4f920085afdbbd95e70ba67dbd6ec358}
+      \strng{authorfullhash}{4f920085afdbbd95e70ba67dbd6ec358}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{The Quarterly Review of Economics and Finance}
+      \field{number}{2}
+      \field{title}{Sensitivity analysis in applied general equilibrium models: An empirical assessment for MERCOSUR free trade areas agreements}
+      \field{volume}{48}
+      \field{year}{2008}
+      \field{pages}{287\bibrangedash 306}
+      \range{pages}{20}
+    \endentry
+    \entry{haddad05}{article}{}
+      \name{author}{2}{}{%
+        {{hash=0e8eb1b4b9848c351d0b4982f579d575}{%
+           family={Domingues},
+           familyi={D\bibinitperiod},
+           given={Edson\bibnamedelima Paulo},
+           giveni={E\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
+        {{hash=2d68a1483d71555be2be574f2e4e1e0c}{%
+           family={Haddad},
+           familyi={H\bibinitperiod},
+           given={Eduardo\bibnamedelima Amaral},
+           giveni={E\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+      }
+      \strng{namehash}{b81dd661de45ee2ea7cccf0579de83e2}
+      \strng{fullhash}{b81dd661de45ee2ea7cccf0579de83e2}
+      \strng{bibnamehash}{b81dd661de45ee2ea7cccf0579de83e2}
+      \strng{authorbibnamehash}{b81dd661de45ee2ea7cccf0579de83e2}
+      \strng{authornamehash}{b81dd661de45ee2ea7cccf0579de83e2}
+      \strng{authorfullhash}{b81dd661de45ee2ea7cccf0579de83e2}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Brazilian Review of Econometrics}
+      \field{number}{1}
+      \field{title}{Sensitivity analysis in computable general equilibrium models: An Application for the Regional Effects of the Free Trade Area of the Americas (FTAA)}
+      \field{volume}{25}
+      \field{year}{2005}
+      \field{pages}{115\bibrangedash 137}
+      \range{pages}{23}
+    \endentry
+    \entry{estrades12}{article}{}
+      \name{author}{1}{}{%
+        {{hash=257b7d46cfdf86897fe352d3ed79db86}{%
+           family={Estrades},
+           familyi={E\bibinitperiod},
+           given={Carmen},
+           giveni={C\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {IFPRI Discussion Paper 01219}%
+      }
+      \strng{namehash}{257b7d46cfdf86897fe352d3ed79db86}
+      \strng{fullhash}{257b7d46cfdf86897fe352d3ed79db86}
+      \strng{bibnamehash}{257b7d46cfdf86897fe352d3ed79db86}
+      \strng{authorbibnamehash}{257b7d46cfdf86897fe352d3ed79db86}
+      \strng{authornamehash}{257b7d46cfdf86897fe352d3ed79db86}
+      \strng{authorfullhash}{257b7d46cfdf86897fe352d3ed79db86}
+      \field{sortinit}{E}
+      \field{sortinithash}{8da8a182d344d5b9047633dfc0cc9131}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Is MERCOSUR's External Agenda Pro-Poor? An Assessment of the European Union-MERCOSUR Free-Trade Agreement on Poverty in Uruguay Applying MIRAGE}
+      \field{year}{2012}
+    \endentry
+    \entry{ferreira06}{article}{}
+      \name{author}{2}{}{%
+        {{hash=66e0eaa8e3e5f4fbdfb5aabeaade37b9}{%
+           family={Ferreira\bibnamedelima Filho},
+           familyi={F\bibinitperiod\bibinitdelim F\bibinitperiod},
+           given={Joaquim\bibnamedelimb Bento\bibnamedelimb de\bibnamedelima Souza},
+           giveni={J\bibinitperiod\bibinitdelim B\bibinitperiod\bibinitdelim d\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+        {{hash=10186e97a7071d872cc8ac25e9d25846}{%
+           family={Horridge},
+           familyi={H\bibinitperiod},
+           given={Mark\bibnamedelima Jonathan},
+           giveni={M\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {SciELO Brasil}%
+      }
+      \strng{namehash}{e31ef2d721e559e8b37db0705b84bca8}
+      \strng{fullhash}{e31ef2d721e559e8b37db0705b84bca8}
+      \strng{bibnamehash}{e31ef2d721e559e8b37db0705b84bca8}
+      \strng{authorbibnamehash}{e31ef2d721e559e8b37db0705b84bca8}
+      \strng{authornamehash}{e31ef2d721e559e8b37db0705b84bca8}
+      \strng{authorfullhash}{e31ef2d721e559e8b37db0705b84bca8}
+      \field{sortinit}{F}
+      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Revista Brasileira de Economia}
+      \field{title}{Economic integration, poverty and regional inequality in Brazil}
+      \field{volume}{60}
+      \field{year}{2006}
+      \field{pages}{363\bibrangedash 387}
+      \range{pages}{25}
+    \endentry
+    \entry{figari15}{incollection}{}
+      \name{author}{3}{}{%
+        {{hash=ebf8eb6b8a5dc5efe87339f2ca8ff895}{%
+           family={Figari},
+           familyi={F\bibinitperiod},
+           given={Francesco},
+           giveni={F\bibinitperiod}}}%
+        {{hash=27412126090cafd041d843207597bb4c}{%
+           family={Paulus},
+           familyi={P\bibinitperiod},
+           given={Alari},
+           giveni={A\bibinitperiod}}}%
+        {{hash=7a1fada5ef5a7a775b481b5988f3f1ff}{%
+           family={Sutherland},
+           familyi={S\bibinitperiod},
+           given={Holly},
+           giveni={H\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier}%
+      }
+      \strng{namehash}{a93fb451e5a8fbfc158db12671849693}
+      \strng{fullhash}{a93fb451e5a8fbfc158db12671849693}
+      \strng{bibnamehash}{a93fb451e5a8fbfc158db12671849693}
+      \strng{authorbibnamehash}{a93fb451e5a8fbfc158db12671849693}
+      \strng{authornamehash}{a93fb451e5a8fbfc158db12671849693}
+      \strng{authorfullhash}{a93fb451e5a8fbfc158db12671849693}
+      \field{sortinit}{F}
+      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Handbook of income distribution}
+      \field{title}{Microsimulation and policy analysis}
+      \field{volume}{2}
+      \field{year}{2015}
+      \field{pages}{2141\bibrangedash 2221}
+      \range{pages}{81}
+    \endentry
+    \entry{forbes01}{article}{}
+      \name{author}{1}{}{%
+        {{hash=f5dde46697707f4f99acec677c7bc564}{%
+           family={Forbes},
+           familyi={F\bibinitperiod},
+           given={Kristin\bibnamedelima J},
+           giveni={K\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Taylor \& Francis}%
+      }
+      \strng{namehash}{f5dde46697707f4f99acec677c7bc564}
+      \strng{fullhash}{f5dde46697707f4f99acec677c7bc564}
+      \strng{bibnamehash}{f5dde46697707f4f99acec677c7bc564}
+      \strng{authorbibnamehash}{f5dde46697707f4f99acec677c7bc564}
+      \strng{authornamehash}{f5dde46697707f4f99acec677c7bc564}
+      \strng{authorfullhash}{f5dde46697707f4f99acec677c7bc564}
+      \field{sortinit}{F}
+      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of International Trade \& Economic Development}
+      \field{number}{2}
+      \field{title}{Skill classification does matter: estimating the relationship between trade flows and wage inequality}
+      \field{volume}{10}
+      \field{year}{2001}
+      \field{pages}{175\bibrangedash 209}
+      \range{pages}{35}
+    \endentry
+    \entry{galianiporto11}{article}{}
+      \name{author}{2}{}{%
+        {{hash=c8987e575584fa683f88b2433efd92c3}{%
+           family={Galiani},
+           familyi={G\bibinitperiod},
+           given={Sebastian},
+           giveni={S\bibinitperiod}}}%
+        {{hash=6503c04e601be39417a551006c75b392}{%
+           family={Porto},
+           familyi={P\bibinitperiod},
+           given={Guido\bibnamedelima G},
+           giveni={G\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {The MIT Press}%
+      }
+      \strng{namehash}{d033474faa449364c2a2df55d84f5a58}
+      \strng{fullhash}{d033474faa449364c2a2df55d84f5a58}
+      \strng{bibnamehash}{d033474faa449364c2a2df55d84f5a58}
+      \strng{authorbibnamehash}{d033474faa449364c2a2df55d84f5a58}
+      \strng{authornamehash}{d033474faa449364c2a2df55d84f5a58}
+      \strng{authorfullhash}{d033474faa449364c2a2df55d84f5a58}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{The Review of Economics and Statistics}
+      \field{number}{3}
+      \field{title}{Trends in Tariff Reforms and in the Structure of Wages}
+      \field{volume}{92}
+      \field{year}{2011}
+      \field{pages}{482\bibrangedash 494}
+      \range{pages}{13}
+    \endentry
+    \entry{galianisanguinetti03}{article}{}
+      \name{author}{2}{}{%
+        {{hash=c8987e575584fa683f88b2433efd92c3}{%
+           family={Galiani},
+           familyi={G\bibinitperiod},
+           given={Sebastian},
+           giveni={S\bibinitperiod}}}%
+        {{hash=9f221feddae0c4b84ff99beb6e6d615e}{%
+           family={Sanguinetti},
+           familyi={S\bibinitperiod},
+           given={Pablo},
+           giveni={P\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier}%
+      }
+      \strng{namehash}{b8248a689fbc1ae39896f173e8b264c4}
+      \strng{fullhash}{b8248a689fbc1ae39896f173e8b264c4}
+      \strng{bibnamehash}{b8248a689fbc1ae39896f173e8b264c4}
+      \strng{authorbibnamehash}{b8248a689fbc1ae39896f173e8b264c4}
+      \strng{authornamehash}{b8248a689fbc1ae39896f173e8b264c4}
+      \strng{authorfullhash}{b8248a689fbc1ae39896f173e8b264c4}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of development Economics}
+      \field{number}{2}
+      \field{title}{The impact of trade liberalization on wage inequality: evidence from Argentina}
+      \field{volume}{72}
+      \field{year}{2003}
+      \field{pages}{497\bibrangedash 513}
+      \range{pages}{17}
+    \endentry
+    \entry{ganuza07}{incollection}{}
+      \name{author}{5}{}{%
+        {{hash=834ab11b9c59357a1e4f924e39626e48}{%
+           family={Ganuza},
+           familyi={G\bibinitperiod},
+           given={Enrique},
+           giveni={E\bibinitperiod}}}%
+        {{hash=e43f7d3540302f6936717e44311361ae}{%
+           family={Morley},
+           familyi={M\bibinitperiod},
+           given={Samuel},
+           giveni={S\bibinitperiod}}}%
+        {{hash=0383c94e9a7e1a50afd56047c49cc09b}{%
+           family={Robinson},
+           familyi={R\bibinitperiod},
+           given={Sherman},
+           giveni={S\bibinitperiod}}}%
+        {{hash=f7721073461edbc8d7ff606ed33d5224}{%
+           family={Pineiro},
+           familyi={P\bibinitperiod},
+           given={Valeria},
+           giveni={V\bibinitperiod}}}%
+        {{hash=701d69d5d7c75d1ee5b0f40ccd1433c9}{%
+           family={Vos},
+           familyi={V\bibinitperiod},
+           given={Rob},
+           giveni={R\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Routledge}%
+      }
+      \strng{namehash}{149c1131ba1e0ef48b4b7b6dd186f4cc}
+      \strng{fullhash}{227f536f5bad5297dc572188b612904b}
+      \strng{bibnamehash}{227f536f5bad5297dc572188b612904b}
+      \strng{authorbibnamehash}{227f536f5bad5297dc572188b612904b}
+      \strng{authornamehash}{149c1131ba1e0ef48b4b7b6dd186f4cc}
+      \strng{authorfullhash}{227f536f5bad5297dc572188b612904b}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Who Gains from Free Trade? Export-led growth, inequality and poverty in Latin America}
+      \field{title}{Are export promotion and trade liberalization good for Latin America's poor?: A comparative macro--micro CGE analysis}
+      \field{year}{2006}
+      \field{pages}{55\bibrangedash 124}
+      \range{pages}{70}
+    \endentry
+    \entry{gnangnon18}{article}{}
+      \name{author}{1}{}{%
+        {{hash=2e8bfd470d70f1f031dba113040a6a26}{%
+           family={Gnangnon},
+           familyi={G\bibinitperiod},
+           given={Sèna\bibnamedelima Kimm},
+           giveni={S\bibinitperiod\bibinitdelim K\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {JSTOR}%
+      }
+      \strng{namehash}{2e8bfd470d70f1f031dba113040a6a26}
+      \strng{fullhash}{2e8bfd470d70f1f031dba113040a6a26}
+      \strng{bibnamehash}{2e8bfd470d70f1f031dba113040a6a26}
+      \strng{authorbibnamehash}{2e8bfd470d70f1f031dba113040a6a26}
+      \strng{authornamehash}{2e8bfd470d70f1f031dba113040a6a26}
+      \strng{authorfullhash}{2e8bfd470d70f1f031dba113040a6a26}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Economic Integration}
+      \field{number}{2}
+      \field{title}{Multilateral trade liberalization and economic growth}
+      \field{volume}{33}
+      \field{year}{2018}
+      \field{pages}{1261\bibrangedash 1301}
+      \range{pages}{41}
+    \endentry
+    \entry{goldbergpavcnik04}{misc}{}
+      \name{author}{2}{}{%
+        {{hash=ada12cfabb615fef57f9211c52cece45}{%
+           family={Goldberg},
+           familyi={G\bibinitperiod},
+           given={Pinelopi\bibnamedelima K},
+           giveni={P\bibinitperiod\bibinitdelim K\bibinitperiod}}}%
+        {{hash=166f940f04565f3e492cf1f11b547864}{%
+           family={Pavcnik},
+           familyi={P\bibinitperiod},
+           given={Nina},
+           giveni={N\bibinitperiod}}}%
+      }
+      \list{publisher}{2}{%
+        {Brookings Trade Forum, Globalization, Poverty,}%
+        {Inequality}%
+      }
+      \strng{namehash}{a0f81379d56374df4bcce357b383460e}
+      \strng{fullhash}{a0f81379d56374df4bcce357b383460e}
+      \strng{bibnamehash}{a0f81379d56374df4bcce357b383460e}
+      \strng{authorbibnamehash}{a0f81379d56374df4bcce357b383460e}
+      \strng{authornamehash}{a0f81379d56374df4bcce357b383460e}
+      \strng{authorfullhash}{a0f81379d56374df4bcce357b383460e}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Brookings Institution Press}
+      \field{title}{Trade, inequality, and poverty: What do we know? Evidence from recent trade liberalization episodes in developing countries}
+      \field{year}{2004}
+      \field{pages}{223\bibrangedash 269}
+      \range{pages}{47}
+    \endentry
+    \entry{heckman79}{article}{}
+      \name{author}{1}{}{%
+        {{hash=b70b920520f54634a1f03f9312707db2}{%
+           family={Heckman},
+           familyi={H\bibinitperiod},
+           given={James\bibnamedelima J},
+           giveni={J\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {JSTOR}%
+      }
+      \strng{namehash}{b70b920520f54634a1f03f9312707db2}
+      \strng{fullhash}{b70b920520f54634a1f03f9312707db2}
+      \strng{bibnamehash}{b70b920520f54634a1f03f9312707db2}
+      \strng{authorbibnamehash}{b70b920520f54634a1f03f9312707db2}
+      \strng{authornamehash}{b70b920520f54634a1f03f9312707db2}
+      \strng{authorfullhash}{b70b920520f54634a1f03f9312707db2}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Econometrica: Journal of the econometric society}
+      \field{title}{Sample selection bias as a specification error}
+      \field{year}{1979}
+      \field{pages}{153\bibrangedash 161}
+      \range{pages}{9}
+    \endentry
+    \entry{heckscher49}{article}{}
+      \name{author}{1}{}{%
+        {{hash=71dbec6a4237ffb31f371aeef8782c4c}{%
+           family={Heckscher},
+           familyi={H\bibinitperiod},
+           given={Eli},
+           giveni={E\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Blakiston Filadelfia}%
+      }
+      \strng{namehash}{71dbec6a4237ffb31f371aeef8782c4c}
+      \strng{fullhash}{71dbec6a4237ffb31f371aeef8782c4c}
+      \strng{bibnamehash}{71dbec6a4237ffb31f371aeef8782c4c}
+      \strng{authorbibnamehash}{71dbec6a4237ffb31f371aeef8782c4c}
+      \strng{authornamehash}{71dbec6a4237ffb31f371aeef8782c4c}
+      \strng{authorfullhash}{71dbec6a4237ffb31f371aeef8782c4c}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Readings in the theory of international trade}
+      \field{title}{The effect of foreign trade on the distribution of income 1919}
+      \field{year}{1949}
+      \field{pages}{272\bibrangedash 300}
+      \range{pages}{29}
+    \endentry
+    \entry{hoffmann19}{book}{}
+      \name{author}{3}{}{%
+        {{hash=eb08e625d651cc5a6fcddad8bbb2fbc2}{%
+           family={Hoffmann},
+           familyi={H\bibinitperiod},
+           given={Rodolfo},
+           giveni={R\bibinitperiod}}}%
+        {{hash=b09b18a176f0bee520b2b6dc6358ff09}{%
+           family={Botassio},
+           familyi={B\bibinitperiod},
+           given={Diego\bibnamedelima Camargo},
+           giveni={D\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+        {{hash=cd54a30c0eea5cb234eaa23ccb5eaf93}{%
+           family={Jesus},
+           familyi={J\bibinitperiod},
+           given={Josimar\bibnamedelimb Gonçalves\bibnamedelima de},
+           giveni={J\bibinitperiod\bibinitdelim G\bibinitperiod\bibinitdelim d\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {São Paulo}%
+      }
+      \list{publisher}{1}{%
+        {Edusp}%
+      }
+      \strng{namehash}{67a4cc9ef3aa93b65d735c0618ee46fb}
+      \strng{fullhash}{67a4cc9ef3aa93b65d735c0618ee46fb}
+      \strng{bibnamehash}{67a4cc9ef3aa93b65d735c0618ee46fb}
+      \strng{authorbibnamehash}{67a4cc9ef3aa93b65d735c0618ee46fb}
+      \strng{authornamehash}{67a4cc9ef3aa93b65d735c0618ee46fb}
+      \strng{authorfullhash}{67a4cc9ef3aa93b65d735c0618ee46fb}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Distribuição de renda: medidas de desigualdade, pobreza, concentração, segregação e polarização}
+      \field{year}{2019}
+    \endentry
+    \entry{horridge00}{book}{}
+      \name{author}{1}{}{%
+        {{hash=76376fd39afc070c48db616a2dae032e}{%
+           family={Horridge},
+           familyi={H\bibinitperiod},
+           given={Mark},
+           giveni={M\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Centre of Policy Studies (CoPS)}%
+      }
+      \strng{namehash}{76376fd39afc070c48db616a2dae032e}
+      \strng{fullhash}{76376fd39afc070c48db616a2dae032e}
+      \strng{bibnamehash}{76376fd39afc070c48db616a2dae032e}
+      \strng{authorbibnamehash}{76376fd39afc070c48db616a2dae032e}
+      \strng{authornamehash}{76376fd39afc070c48db616a2dae032e}
+      \strng{authorfullhash}{76376fd39afc070c48db616a2dae032e}
+      \field{extraname}{1}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{ORANI-G: A general equilibrium model of the Australian economy}
+      \field{year}{2000}
+    \endentry
+    \entry{horridge03}{article}{}
+      \name{author}{1}{}{%
+        {{hash=76376fd39afc070c48db616a2dae032e}{%
+           family={Horridge},
+           familyi={H\bibinitperiod},
+           given={Mark},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{76376fd39afc070c48db616a2dae032e}
+      \strng{fullhash}{76376fd39afc070c48db616a2dae032e}
+      \strng{bibnamehash}{76376fd39afc070c48db616a2dae032e}
+      \strng{authorbibnamehash}{76376fd39afc070c48db616a2dae032e}
+      \strng{authornamehash}{76376fd39afc070c48db616a2dae032e}
+      \strng{authorfullhash}{76376fd39afc070c48db616a2dae032e}
+      \field{extraname}{2}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Centre of Policy Studies and Impact Project, Monash University, Australia}
+      \field{title}{ORANI-G: A generic single-country computable general equilibrium model}
+      \field{year}{2003}
+    \endentry
+    \entry{pof}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=638eed94c97a4776d2d0e13ee4adbf12}{%
+           family={{Instituto Brasileiro de Geografia e Estatística}},
+           familyi={I\bibinitperiod}}}%
+      }
+      \name{shortauthor}{1}{}{%
+        {{hash=3898f1ceb6fdd56f963db7f9326130e4}{%
+           family={IBGE},
+           familyi={I\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Brasília}%
+      }
+      \list{publisher}{1}{%
+        {Estatísticas}%
+      }
+      \strng{namehash}{3898f1ceb6fdd56f963db7f9326130e4}
+      \strng{fullhash}{638eed94c97a4776d2d0e13ee4adbf12}
+      \strng{bibnamehash}{3898f1ceb6fdd56f963db7f9326130e4}
+      \strng{authorbibnamehash}{638eed94c97a4776d2d0e13ee4adbf12}
+      \strng{authornamehash}{638eed94c97a4776d2d0e13ee4adbf12}
+      \strng{authorfullhash}{638eed94c97a4776d2d0e13ee4adbf12}
+      \strng{shortauthorbibnamehash}{3898f1ceb6fdd56f963db7f9326130e4}
+      \strng{shortauthornamehash}{3898f1ceb6fdd56f963db7f9326130e4}
+      \strng{shortauthorfullhash}{3898f1ceb6fdd56f963db7f9326130e4}
+      \field{extraname}{1}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{shortauthor}
+      \field{labeltitlesource}{title}
+      \field{note}{Acesso em: julho 2023. Disponível em: \url{https://www.ibge.gov.br/estatisticas/sociais/saude/24786-pesquisa-de-orcamentos-familiares-2.html}}
+      \field{title}{Pesquisa de Orçamento Familiar (POF)}
+      \field{year}{2009}
+    \endentry
+    \entry{pnad}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=638eed94c97a4776d2d0e13ee4adbf12}{%
+           family={{Instituto Brasileiro de Geografia e Estatística}},
+           familyi={I\bibinitperiod}}}%
+      }
+      \name{shortauthor}{1}{}{%
+        {{hash=3898f1ceb6fdd56f963db7f9326130e4}{%
+           family={IBGE},
+           familyi={I\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Brasília}%
+      }
+      \list{publisher}{1}{%
+        {Estatísticas}%
+      }
+      \strng{namehash}{3898f1ceb6fdd56f963db7f9326130e4}
+      \strng{fullhash}{638eed94c97a4776d2d0e13ee4adbf12}
+      \strng{bibnamehash}{3898f1ceb6fdd56f963db7f9326130e4}
+      \strng{authorbibnamehash}{638eed94c97a4776d2d0e13ee4adbf12}
+      \strng{authornamehash}{638eed94c97a4776d2d0e13ee4adbf12}
+      \strng{authorfullhash}{638eed94c97a4776d2d0e13ee4adbf12}
+      \strng{shortauthorbibnamehash}{3898f1ceb6fdd56f963db7f9326130e4}
+      \strng{shortauthornamehash}{3898f1ceb6fdd56f963db7f9326130e4}
+      \strng{shortauthorfullhash}{3898f1ceb6fdd56f963db7f9326130e4}
+      \field{extraname}{2}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{extradate}{1}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{shortauthor}
+      \field{labeltitlesource}{title}
+      \field{note}{Acesso em: julho 2023. Disponível em: \url{https://www.ibge.gov.br/estatisticas/sociais/populacao/9127-pesquisa-nacional-por-amostra-de-domicilios.html}}
+      \field{title}{Pesquisa Nacional por Amostragem de Domicílio (PNAD)}
+      \field{year}{2015}
+    \endentry
+    \entry{scn}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=638eed94c97a4776d2d0e13ee4adbf12}{%
+           family={{Instituto Brasileiro de Geografia e Estatística}},
+           familyi={I\bibinitperiod}}}%
+      }
+      \name{shortauthor}{1}{}{%
+        {{hash=3898f1ceb6fdd56f963db7f9326130e4}{%
+           family={IBGE},
+           familyi={I\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Brasília}%
+      }
+      \list{publisher}{1}{%
+        {Estatísticas}%
+      }
+      \strng{namehash}{3898f1ceb6fdd56f963db7f9326130e4}
+      \strng{fullhash}{638eed94c97a4776d2d0e13ee4adbf12}
+      \strng{bibnamehash}{3898f1ceb6fdd56f963db7f9326130e4}
+      \strng{authorbibnamehash}{638eed94c97a4776d2d0e13ee4adbf12}
+      \strng{authornamehash}{638eed94c97a4776d2d0e13ee4adbf12}
+      \strng{authorfullhash}{638eed94c97a4776d2d0e13ee4adbf12}
+      \strng{shortauthorbibnamehash}{3898f1ceb6fdd56f963db7f9326130e4}
+      \strng{shortauthornamehash}{3898f1ceb6fdd56f963db7f9326130e4}
+      \strng{shortauthorfullhash}{3898f1ceb6fdd56f963db7f9326130e4}
+      \field{extraname}{3}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{extradate}{2}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{shortauthor}
+      \field{labeltitlesource}{title}
+      \field{note}{Acesso em: julho 2023. Disponível em: \url{https://www.ibge.gov.br/estatisticas/economicas/contas-nacionais.html}}
+      \field{title}{Sistema de Contas Nacionais (SCN)}
+      \field{year}{2015}
+    \endentry
+    \entry{inep04}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=feacf8dc9e81bcf51022dab9fc0b88ec}{%
+           family={{Instituto Nacional de Estudos e Pesquisas Educacionais Anísio Teixeira}},
+           familyi={I\bibinitperiod}}}%
+      }
+      \name{shortauthor}{1}{}{%
+        {{hash=266e61b70f52ca64d6c99fddde80afb7}{%
+           family={INEP},
+           familyi={I\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Brasília}%
+      }
+      \list{publisher}{1}{%
+        {O Instituto}%
+      }
+      \strng{namehash}{266e61b70f52ca64d6c99fddde80afb7}
+      \strng{fullhash}{feacf8dc9e81bcf51022dab9fc0b88ec}
+      \strng{bibnamehash}{266e61b70f52ca64d6c99fddde80afb7}
+      \strng{authorbibnamehash}{feacf8dc9e81bcf51022dab9fc0b88ec}
+      \strng{authornamehash}{feacf8dc9e81bcf51022dab9fc0b88ec}
+      \strng{authorfullhash}{feacf8dc9e81bcf51022dab9fc0b88ec}
+      \strng{shortauthorbibnamehash}{266e61b70f52ca64d6c99fddde80afb7}
+      \strng{shortauthornamehash}{266e61b70f52ca64d6c99fddde80afb7}
+      \strng{shortauthorfullhash}{266e61b70f52ca64d6c99fddde80afb7}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{shortauthor}
+      \field{labeltitlesource}{title}
+      \field{title}{Dicionário de Indicadores Educacionais}
+      \field{year}{2004}
+    \endentry
+    \entry{irwin98}{book}{}
+      \name{author}{1}{}{%
+        {{hash=28205e0328008da39d6746eb1103c1c8}{%
+           family={Irwin},
+           familyi={I\bibinitperiod},
+           given={Douglas\bibnamedelima A},
+           giveni={D\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Princeton University Press}%
+      }
+      \strng{namehash}{28205e0328008da39d6746eb1103c1c8}
+      \strng{fullhash}{28205e0328008da39d6746eb1103c1c8}
+      \strng{bibnamehash}{28205e0328008da39d6746eb1103c1c8}
+      \strng{authorbibnamehash}{28205e0328008da39d6746eb1103c1c8}
+      \strng{authornamehash}{28205e0328008da39d6746eb1103c1c8}
+      \strng{authorfullhash}{28205e0328008da39d6746eb1103c1c8}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Against the tide: An intellectual history of free trade}
+      \field{year}{1998}
+    \endentry
+    \entry{klevmarken22}{article}{}
+      \name{author}{1}{}{%
+        {{hash=edc1ba388273fdf5487f85f271554fe0}{%
+           family={Klevmarken},
+           familyi={K\bibinitperiod},
+           given={Anders},
+           giveni={A\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {International Microsimulation Association}%
+      }
+      \strng{namehash}{edc1ba388273fdf5487f85f271554fe0}
+      \strng{fullhash}{edc1ba388273fdf5487f85f271554fe0}
+      \strng{bibnamehash}{edc1ba388273fdf5487f85f271554fe0}
+      \strng{authorbibnamehash}{edc1ba388273fdf5487f85f271554fe0}
+      \strng{authornamehash}{edc1ba388273fdf5487f85f271554fe0}
+      \strng{authorfullhash}{edc1ba388273fdf5487f85f271554fe0}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{International Journal of Microsimulation}
+      \field{number}{1}
+      \field{title}{Dynamic Microsimulation for Policy Analysis. Problems and Solutions}
+      \field{volume}{15}
+      \field{year}{2022}
+      \field{pages}{121\bibrangedash 134}
+      \range{pages}{14}
+    \endentry
+    \entry{kolben21}{article}{}
+      \name{author}{1}{}{%
+        {{hash=808d9e19433ee06492977ab04e359ea2}{%
+           family={Kolben},
+           familyi={K\bibinitperiod},
+           given={Kevin},
+           giveni={K\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Oxford University Press UK}%
+      }
+      \strng{namehash}{808d9e19433ee06492977ab04e359ea2}
+      \strng{fullhash}{808d9e19433ee06492977ab04e359ea2}
+      \strng{bibnamehash}{808d9e19433ee06492977ab04e359ea2}
+      \strng{authorbibnamehash}{808d9e19433ee06492977ab04e359ea2}
+      \strng{authornamehash}{808d9e19433ee06492977ab04e359ea2}
+      \strng{authorfullhash}{808d9e19433ee06492977ab04e359ea2}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of International Economic Law}
+      \field{number}{4}
+      \field{title}{Compensation and its Limits: Can Trade’s Losers be Made Whole?}
+      \field{volume}{24}
+      \field{year}{2021}
+      \field{pages}{683\bibrangedash 702}
+      \range{pages}{20}
+    \endentry
+    \entry{kraay04}{book}{}
+      \name{author}{1}{}{%
+        {{hash=87adfa606111f5f43ccb6cb20067919d}{%
+           family={Kraay},
+           familyi={K\bibinitperiod},
+           given={Aart},
+           giveni={A\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {World Bank Publications}%
+      }
+      \strng{namehash}{87adfa606111f5f43ccb6cb20067919d}
+      \strng{fullhash}{87adfa606111f5f43ccb6cb20067919d}
+      \strng{bibnamehash}{87adfa606111f5f43ccb6cb20067919d}
+      \strng{authorbibnamehash}{87adfa606111f5f43ccb6cb20067919d}
+      \strng{authornamehash}{87adfa606111f5f43ccb6cb20067919d}
+      \strng{authorfullhash}{87adfa606111f5f43ccb6cb20067919d}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{When is growth pro-poor?: cross-country evidence}
+      \field{volume}{3225}
+      \field{year}{2004}
+    \endentry
+    \entry{mbanda21}{article}{}
+      \name{author}{2}{}{%
+        {{hash=2137e9f7eafdb8e5fdd927e15f7a97c1}{%
+           family={Mbanda},
+           familyi={M\bibinitperiod},
+           given={Vandudzai},
+           giveni={V\bibinitperiod}}}%
+        {{hash=f7442bb01e69b89f85caa65e780398f6}{%
+           family={Ncube},
+           familyi={N\bibinitperiod},
+           given={Sinqobile},
+           giveni={S\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Partnership for Economic Policy (PEP)}%
+      }
+      \strng{namehash}{d46c77362e642c36001ecfedab4f2112}
+      \strng{fullhash}{d46c77362e642c36001ecfedab4f2112}
+      \strng{bibnamehash}{d46c77362e642c36001ecfedab4f2112}
+      \strng{authorbibnamehash}{d46c77362e642c36001ecfedab4f2112}
+      \strng{authornamehash}{d46c77362e642c36001ecfedab4f2112}
+      \strng{authorfullhash}{d46c77362e642c36001ecfedab4f2112}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{CGE Analysis of Rural Economic Development through Agriculture Policy in South Africa: A Focus on Poverty, Inequality, and Gender}
+      \field{year}{2021}
+    \endentry
+    \entry{neri06}{incollection}{}
+      \name{author}{1}{}{%
+        {{hash=597ffc2c306940c6872bfbf2ef3e9559}{%
+           family={Neri},
+           familyi={N\bibinitperiod},
+           given={Marcelo},
+           giveni={M\bibinitperiod}}}%
+      }
+      \name{editor}{3}{}{%
+        {{hash=c801d1ffd075d209b338dd4cc4997d97}{%
+           family={Barro},
+           familyi={B\bibinitperiod},
+           given={Ricardo\bibnamedelimb Paes\bibnamedelima de},
+           giveni={R\bibinitperiod\bibinitdelim P\bibinitperiod\bibinitdelim d\bibinitperiod}}}%
+        {{hash=4fabdfd79458ab31ce9101b6b620e64d}{%
+           family={Foguel},
+           familyi={F\bibinitperiod},
+           given={Miguel\bibnamedelima Nathan},
+           giveni={M\bibinitperiod\bibinitdelim N\bibinitperiod}}}%
+        {{hash=10fcf9d33b2def85076e7b1bce65e0d9}{%
+           family={Ulyssea},
+           familyi={U\bibinitperiod},
+           given={Gabriel},
+           giveni={G\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Brasília}%
+      }
+      \list{publisher}{1}{%
+        {Instituto de Pesquisa Econômica Aplicada (Ipea)}%
+      }
+      \strng{namehash}{597ffc2c306940c6872bfbf2ef3e9559}
+      \strng{fullhash}{597ffc2c306940c6872bfbf2ef3e9559}
+      \strng{bibnamehash}{597ffc2c306940c6872bfbf2ef3e9559}
+      \strng{authorbibnamehash}{597ffc2c306940c6872bfbf2ef3e9559}
+      \strng{authornamehash}{597ffc2c306940c6872bfbf2ef3e9559}
+      \strng{authorfullhash}{597ffc2c306940c6872bfbf2ef3e9559}
+      \strng{editorbibnamehash}{cd1b73da73c67e8a9536a26cbec7e3cb}
+      \strng{editornamehash}{cd1b73da73c67e8a9536a26cbec7e3cb}
+      \strng{editorfullhash}{cd1b73da73c67e8a9536a26cbec7e3cb}
+      \field{sortinit}{N}
+      \field{sortinithash}{22369a73d5f88983a108b63f07f37084}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Desigualdade de renda no Brasil: uma análise da queda recente}
+      \field{title}{Desigualdade, estabilidade e bem-estar social}
+      \field{volume}{1}
+      \field{year}{2006}
+      \field{pages}{129\bibrangedash 161}
+      \range{pages}{33}
+    \endentry
+    \entry{ocde15}{article}{}
+      \name{author}{1}{}{%
+        {{hash=bdbed435a416a918aa494017fda4c7fb}{%
+           family={OECD},
+           familyi={O\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {OECD Better Policies Series}%
+      }
+      \strng{namehash}{bdbed435a416a918aa494017fda4c7fb}
+      \strng{fullhash}{bdbed435a416a918aa494017fda4c7fb}
+      \strng{bibnamehash}{bdbed435a416a918aa494017fda4c7fb}
+      \strng{authorbibnamehash}{bdbed435a416a918aa494017fda4c7fb}
+      \strng{authornamehash}{bdbed435a416a918aa494017fda4c7fb}
+      \strng{authorfullhash}{bdbed435a416a918aa494017fda4c7fb}
+      \field{sortinit}{O}
+      \field{sortinithash}{2cd7140a07aea5341f9e2771efe90aae}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Brazil Policy Brief}
+      \field{subtitle}{Improving policies to reduce inequality and poverty}
+      \field{title}{Inequality}
+      \field{year}{2015}
+    \endentry
+    \entry{ohlin67}{article}{}
+      \name{author}{1}{}{%
+        {{hash=81d67bc95b6ba57e5d65c6ad78bd629c}{%
+           family={Ohlin},
+           familyi={O\bibinitperiod},
+           given={Bertil},
+           giveni={B\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Mass., Harvard University Press}%
+      }
+      \strng{namehash}{81d67bc95b6ba57e5d65c6ad78bd629c}
+      \strng{fullhash}{81d67bc95b6ba57e5d65c6ad78bd629c}
+      \strng{bibnamehash}{81d67bc95b6ba57e5d65c6ad78bd629c}
+      \strng{authorbibnamehash}{81d67bc95b6ba57e5d65c6ad78bd629c}
+      \strng{authornamehash}{81d67bc95b6ba57e5d65c6ad78bd629c}
+      \strng{authorfullhash}{81d67bc95b6ba57e5d65c6ad78bd629c}
+      \field{sortinit}{O}
+      \field{sortinithash}{2cd7140a07aea5341f9e2771efe90aae}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Interregional and international trade}
+      \field{year}{1967}
+    \endentry
+    \entry{pavcnik17}{report}{}
+      \name{author}{1}{}{%
+        {{hash=166f940f04565f3e492cf1f11b547864}{%
+           family={Pavcnik},
+           familyi={P\bibinitperiod},
+           given={Nina},
+           giveni={N\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {National Bureau of Economic Research}%
+      }
+      \strng{namehash}{166f940f04565f3e492cf1f11b547864}
+      \strng{fullhash}{166f940f04565f3e492cf1f11b547864}
+      \strng{bibnamehash}{166f940f04565f3e492cf1f11b547864}
+      \strng{authorbibnamehash}{166f940f04565f3e492cf1f11b547864}
+      \strng{authornamehash}{166f940f04565f3e492cf1f11b547864}
+      \strng{authorfullhash}{166f940f04565f3e492cf1f11b547864}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{The impact of trade on inequality in developing countries}
+      \field{type}{techreport}
+      \field{year}{2017}
+    \endentry
+    \entry{perobelli17}{article}{}
+      \name{author}{4}{}{%
+        {{hash=f70ccbd58f38e4dd1a1a2059f295e023}{%
+           family={Perobelli},
+           familyi={P\bibinitperiod},
+           given={Fernando\bibnamedelima Salgueiro},
+           giveni={F\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+        {{hash=60ecfc38fdab1052d3895f6a8353cb55}{%
+           family={Betarelli},
+           familyi={B\bibinitperiod},
+           given={Admir\bibnamedelima Antonio},
+           giveni={A\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=e11fbb71f04aab90d6112282d89f81cc}{%
+           family={Vale},
+           familyi={V\bibinitperiod},
+           given={Vinicius\bibnamedelimb de\bibnamedelima Almeida},
+           giveni={V\bibinitperiod\bibinitdelim d\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=1e8cfeb719ff871878146968cccf66af}{%
+           family={Cunha},
+           familyi={C\bibinitperiod},
+           given={Ramon\bibnamedelima Goulart},
+           giveni={R\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {SciELO Brasil}%
+      }
+      \strng{namehash}{edbae603a662e12024b66169e330bdb2}
+      \strng{fullhash}{e865abefc1509c2344d2160069e0787a}
+      \strng{bibnamehash}{e865abefc1509c2344d2160069e0787a}
+      \strng{authorbibnamehash}{e865abefc1509c2344d2160069e0787a}
+      \strng{authornamehash}{edbae603a662e12024b66169e330bdb2}
+      \strng{authorfullhash}{e865abefc1509c2344d2160069e0787a}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Revista de Economia e Sociologia Rural}
+      \field{title}{Impactos Econômicos do aumento das exportações brasileiras de produtos agrícolas e agroindustriais para diferentes destinos}
+      \field{volume}{55}
+      \field{year}{2017}
+      \field{pages}{343\bibrangedash 366}
+      \range{pages}{24}
+    \endentry
+    \entry{porto03}{book}{}
+      \name{author}{1}{}{%
+        {{hash=6503c04e601be39417a551006c75b392}{%
+           family={Porto},
+           familyi={P\bibinitperiod},
+           given={Guido\bibnamedelima G},
+           giveni={G\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {World Bank Publications}%
+      }
+      \strng{namehash}{6503c04e601be39417a551006c75b392}
+      \strng{fullhash}{6503c04e601be39417a551006c75b392}
+      \strng{bibnamehash}{6503c04e601be39417a551006c75b392}
+      \strng{authorbibnamehash}{6503c04e601be39417a551006c75b392}
+      \strng{authornamehash}{6503c04e601be39417a551006c75b392}
+      \strng{authorfullhash}{6503c04e601be39417a551006c75b392}
+      \field{extraname}{1}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Trade reforms, market access and poverty in Argentina}
+      \field{volume}{3135}
+      \field{year}{2003}
+    \endentry
+    \entry{porto06}{article}{}
+      \name{author}{1}{}{%
+        {{hash=6503c04e601be39417a551006c75b392}{%
+           family={Porto},
+           familyi={P\bibinitperiod},
+           given={Guido\bibnamedelima G},
+           giveni={G\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier}%
+      }
+      \strng{namehash}{6503c04e601be39417a551006c75b392}
+      \strng{fullhash}{6503c04e601be39417a551006c75b392}
+      \strng{bibnamehash}{6503c04e601be39417a551006c75b392}
+      \strng{authorbibnamehash}{6503c04e601be39417a551006c75b392}
+      \strng{authornamehash}{6503c04e601be39417a551006c75b392}
+      \strng{authorfullhash}{6503c04e601be39417a551006c75b392}
+      \field{extraname}{2}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of International Economics}
+      \field{number}{1}
+      \field{title}{Using survey data to assess the distributional effects of trade policy}
+      \field{volume}{70}
+      \field{year}{2006}
+      \field{pages}{140\bibrangedash 160}
+      \range{pages}{21}
+    \endentry
+    \entry{raihan10}{article}{}
+      \name{author}{1}{}{%
+        {{hash=c08d1e34cc237f568c6e65e9e01b7662}{%
+           family={Raihan},
+           familyi={R\bibinitperiod},
+           given={Selim},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{c08d1e34cc237f568c6e65e9e01b7662}
+      \strng{fullhash}{c08d1e34cc237f568c6e65e9e01b7662}
+      \strng{bibnamehash}{c08d1e34cc237f568c6e65e9e01b7662}
+      \strng{authorbibnamehash}{c08d1e34cc237f568c6e65e9e01b7662}
+      \strng{authornamehash}{c08d1e34cc237f568c6e65e9e01b7662}
+      \strng{authorfullhash}{c08d1e34cc237f568c6e65e9e01b7662}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{International journal of microsimulation}
+      \field{number}{1}
+      \field{title}{Welfare and poverty impacts of trade liberalization: a dynamic CGE microsimulation analysis}
+      \field{volume}{3}
+      \field{year}{2010}
+      \field{pages}{123\bibrangedash 126}
+      \range{pages}{4}
+    \endentry
+    \entry{ravallion04}{article}{}
+      \name{author}{1}{}{%
+        {{hash=431d48a8a273cfe31dd181ae8613fe49}{%
+           family={Ravallion},
+           familyi={R\bibinitperiod},
+           given={Martin},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{431d48a8a273cfe31dd181ae8613fe49}
+      \strng{fullhash}{431d48a8a273cfe31dd181ae8613fe49}
+      \strng{bibnamehash}{431d48a8a273cfe31dd181ae8613fe49}
+      \strng{authorbibnamehash}{431d48a8a273cfe31dd181ae8613fe49}
+      \strng{authornamehash}{431d48a8a273cfe31dd181ae8613fe49}
+      \strng{authorfullhash}{431d48a8a273cfe31dd181ae8613fe49}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{World Bank Policy Research Working Paper nº 3242}
+      \field{title}{Pro-poor growth: A primer}
+      \field{year}{2004}
+    \endentry
+    \entry{robinson99}{article}{}
+      \name{author}{5}{}{%
+        {{hash=0383c94e9a7e1a50afd56047c49cc09b}{%
+           family={Robinson},
+           familyi={R\bibinitperiod},
+           given={Sherman},
+           giveni={S\bibinitperiod}}}%
+        {{hash=7821c7f2476a3c1f4cc6e0c7cc5cde0d}{%
+           family={Yùnez-Naude},
+           familyi={Y\bibinithyphendelim N\bibinitperiod},
+           given={Antonio},
+           giveni={A\bibinitperiod}}}%
+        {{hash=bf850b52ae46dd5574fce7723f40f4c7}{%
+           family={Hinojosa-Ojeda},
+           familyi={H\bibinithyphendelim O\bibinitperiod},
+           given={Raùl},
+           giveni={R\bibinitperiod}}}%
+        {{hash=64053a6481b800ea2ceed966edb4ad86}{%
+           family={Lewis},
+           familyi={L\bibinitperiod},
+           given={Jeffrey\bibnamedelima D},
+           giveni={J\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+        {{hash=0ec645ddc703600b74daa14bd9d48bcb}{%
+           family={Devarajan},
+           familyi={D\bibinitperiod},
+           given={Shantayanan},
+           giveni={S\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier}%
+      }
+      \strng{namehash}{be34abe9a011bb96bae40f21a9f98012}
+      \strng{fullhash}{515b4fb9745f669569a57ebc27e24b96}
+      \strng{bibnamehash}{515b4fb9745f669569a57ebc27e24b96}
+      \strng{authorbibnamehash}{515b4fb9745f669569a57ebc27e24b96}
+      \strng{authornamehash}{be34abe9a011bb96bae40f21a9f98012}
+      \strng{authorfullhash}{515b4fb9745f669569a57ebc27e24b96}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{The North American Journal of Economics and Finance}
+      \field{number}{1}
+      \field{title}{From stylized to applied models:: Building multisector CGE models for policy analysis}
+      \field{volume}{10}
+      \field{year}{1999}
+      \field{pages}{5\bibrangedash 38}
+      \range{pages}{34}
+    \endentry
+    \entry{ourworldindata}{misc}{}
+      \name{author}{2}{}{%
+        {{hash=c0e5ce1b546c571edc443f6a4f166170}{%
+           family={Roser},
+           familyi={R\bibinitperiod},
+           given={Max},
+           giveni={M\bibinitperiod}}}%
+        {{hash=d628f02a81e173ec138360fd17e59cbf}{%
+           family={Ortiz-Ospina},
+           familyi={O\bibinithyphendelim O\bibinitperiod},
+           given={Esteban},
+           giveni={E\bibinitperiod}}}%
+      }
+      \strng{namehash}{21ac7e5aab2ec1142735e029d37b4f3a}
+      \strng{fullhash}{21ac7e5aab2ec1142735e029d37b4f3a}
+      \strng{bibnamehash}{21ac7e5aab2ec1142735e029d37b4f3a}
+      \strng{authorbibnamehash}{21ac7e5aab2ec1142735e029d37b4f3a}
+      \strng{authornamehash}{21ac7e5aab2ec1142735e029d37b4f3a}
+      \strng{authorfullhash}{21ac7e5aab2ec1142735e029d37b4f3a}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Disponível em: \url{https://ourworldindata.org/grapher/trade-openness}}
+      \field{title}{Trade openness}
+      \field{year}{2019}
+    \endentry
+    \entry{sen83}{article}{}
+      \name{author}{1}{}{%
+        {{hash=18688d43042a810cb6ae6bb19c167f1b}{%
+           family={Sen},
+           familyi={S\bibinitperiod},
+           given={Amartya},
+           giveni={A\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Oxford University Press}%
+      }
+      \strng{namehash}{18688d43042a810cb6ae6bb19c167f1b}
+      \strng{fullhash}{18688d43042a810cb6ae6bb19c167f1b}
+      \strng{bibnamehash}{18688d43042a810cb6ae6bb19c167f1b}
+      \strng{authorbibnamehash}{18688d43042a810cb6ae6bb19c167f1b}
+      \strng{authornamehash}{18688d43042a810cb6ae6bb19c167f1b}
+      \strng{authorfullhash}{18688d43042a810cb6ae6bb19c167f1b}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Oxford economic papers}
+      \field{number}{2}
+      \field{title}{Poor, relatively speaking}
+      \field{volume}{35}
+      \field{year}{1983}
+      \field{pages}{153\bibrangedash 169}
+      \range{pages}{17}
+    \endentry
+    \entry{soares09}{article}{}
+      \name{author}{1}{}{%
+        {{hash=2a8554608aa28f3faa653ef2001ff6e5}{%
+           family={Soares},
+           familyi={S\bibinitperiod},
+           given={Sergei\bibnamedelimb Suarez\bibnamedelima Dillon},
+           giveni={S\bibinitperiod\bibinitdelim S\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Instituto de Pesquisa Econômica Aplicada (Ipea)}%
+      }
+      \strng{namehash}{2a8554608aa28f3faa653ef2001ff6e5}
+      \strng{fullhash}{2a8554608aa28f3faa653ef2001ff6e5}
+      \strng{bibnamehash}{2a8554608aa28f3faa653ef2001ff6e5}
+      \strng{authorbibnamehash}{2a8554608aa28f3faa653ef2001ff6e5}
+      \strng{authornamehash}{2a8554608aa28f3faa653ef2001ff6e5}
+      \strng{authorfullhash}{2a8554608aa28f3faa653ef2001ff6e5}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Metodologias para estabelecer a linha de pobreza: objetivas, subjetivas, relativas e multidimensionais}
+      \field{year}{2009}
+    \endentry
+    \entry{souza15}{thesis}{}
+      \name{author}{1}{}{%
+        {{hash=dcbb2bd2b55ab8aed7e04bd9b08bcde2}{%
+           family={Souza},
+           familyi={S\bibinitperiod},
+           given={Kenia\bibnamedelima Barreiro},
+           giveni={K\bibinitperiod\bibinitdelim B\bibinitperiod},
+           prefix={de},
+           prefixi={d\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {Universidade Federal de Minas Gerais}%
+      }
+      \list{location}{1}{%
+        {Belo Horizonte, MG}%
+      }
+      \strng{namehash}{dcbb2bd2b55ab8aed7e04bd9b08bcde2}
+      \strng{fullhash}{dcbb2bd2b55ab8aed7e04bd9b08bcde2}
+      \strng{bibnamehash}{dcbb2bd2b55ab8aed7e04bd9b08bcde2}
+      \strng{authorbibnamehash}{dcbb2bd2b55ab8aed7e04bd9b08bcde2}
+      \strng{authornamehash}{dcbb2bd2b55ab8aed7e04bd9b08bcde2}
+      \strng{authorfullhash}{dcbb2bd2b55ab8aed7e04bd9b08bcde2}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{bookpagination}{sheet}
+      \field{title}{Impactos econômicos da participação da mulher no mercado detrabalho brasileiro: uma análise de equilíbrio geral}
+      \field{type}{phdthesis}
+      \field{year}{2015}
+    \endentry
+    \entry{stolper41}{article}{}
+      \name{author}{2}{}{%
+        {{hash=9b5b3ed9aa378bc3918263008bc7ab1f}{%
+           family={Stolper},
+           familyi={S\bibinitperiod},
+           given={Wolfgang\bibnamedelima F},
+           giveni={W\bibinitperiod\bibinitdelim F\bibinitperiod}}}%
+        {{hash=78270c793a8e0c5fa92c64dca4b6a2b8}{%
+           family={Samuelson},
+           familyi={S\bibinitperiod},
+           given={Paul\bibnamedelima A},
+           giveni={P\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Wiley-Blackwell}%
+      }
+      \strng{namehash}{6b979d4c3116abb17c068f310f4df914}
+      \strng{fullhash}{6b979d4c3116abb17c068f310f4df914}
+      \strng{bibnamehash}{6b979d4c3116abb17c068f310f4df914}
+      \strng{authorbibnamehash}{6b979d4c3116abb17c068f310f4df914}
+      \strng{authornamehash}{6b979d4c3116abb17c068f310f4df914}
+      \strng{authorfullhash}{6b979d4c3116abb17c068f310f4df914}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{The Review of Economic Studies}
+      \field{number}{1}
+      \field{title}{Protection and real wages}
+      \field{volume}{9}
+      \field{year}{1941}
+      \field{pages}{58\bibrangedash 73}
+      \range{pages}{16}
+    \endentry
+    \entry{thorbecke22}{article}{}
+      \name{author}{2}{}{%
+        {{hash=91b8d772ca33afe927a5bbb2a481034d}{%
+           family={Thorbecke},
+           familyi={T\bibinitperiod},
+           given={Erik},
+           giveni={E\bibinitperiod}}}%
+        {{hash=90cfd41f1f23d8fd39328b3e526f8ca4}{%
+           family={Ouyang},
+           familyi={O\bibinitperiod},
+           given={Yusi},
+           giveni={Y\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier}%
+      }
+      \strng{namehash}{5f3d2c2727eb4d1aace0e46ff320a996}
+      \strng{fullhash}{5f3d2c2727eb4d1aace0e46ff320a996}
+      \strng{bibnamehash}{5f3d2c2727eb4d1aace0e46ff320a996}
+      \strng{authorbibnamehash}{5f3d2c2727eb4d1aace0e46ff320a996}
+      \strng{authornamehash}{5f3d2c2727eb4d1aace0e46ff320a996}
+      \strng{authorfullhash}{5f3d2c2727eb4d1aace0e46ff320a996}
+      \field{sortinit}{T}
+      \field{sortinithash}{9af77f0292593c26bde9a56e688eaee9}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{World Development}
+      \field{title}{Towards a virtuous spiral between poverty reduction and growth: Comparing sub Saharan Africa with the developing world}
+      \field{volume}{152}
+      \field{year}{2022}
+      \field{pages}{105776}
+      \range{pages}{1}
+    \endentry
+    \entry{tiberti17m}{article}{}
+      \name{author}{3}{}{%
+        {{hash=27e4ca22154b237db6d1ff385685af71}{%
+           family={Tiberti},
+           familyi={T\bibinitperiod},
+           given={Luca},
+           giveni={L\bibinitperiod}}}%
+        {{hash=9e456bff60f898f7bf527af238453e3e}{%
+           family={Cicowiez},
+           familyi={C\bibinitperiod},
+           given={Martin},
+           giveni={M\bibinitperiod}}}%
+        {{hash=787ef656143ff9f4aba2e9b43f5823a4}{%
+           family={Cockburn},
+           familyi={C\bibinitperiod},
+           given={John},
+           giveni={J\bibinitperiod}}}%
+      }
+      \strng{namehash}{3598b07f996a5728b12f1127b0df45c4}
+      \strng{fullhash}{3598b07f996a5728b12f1127b0df45c4}
+      \strng{bibnamehash}{3598b07f996a5728b12f1127b0df45c4}
+      \strng{authorbibnamehash}{3598b07f996a5728b12f1127b0df45c4}
+      \strng{authornamehash}{3598b07f996a5728b12f1127b0df45c4}
+      \strng{authorfullhash}{3598b07f996a5728b12f1127b0df45c4}
+      \field{extraname}{1}
+      \field{sortinit}{T}
+      \field{sortinithash}{9af77f0292593c26bde9a56e688eaee9}
+      \field{extradate}{1}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Canada: Partnership for Economic Policy}
+      \field{title}{A Top-Down Behaviour (TB) Microsimulation Toolkit for Distributive Analysis: A Manual}
+      \field{year}{2017}
+    \endentry
+    \entry{tiberti17}{article}{}
+      \name{author}{3}{}{%
+        {{hash=27e4ca22154b237db6d1ff385685af71}{%
+           family={Tiberti},
+           familyi={T\bibinitperiod},
+           given={Luca},
+           giveni={L\bibinitperiod}}}%
+        {{hash=9e456bff60f898f7bf527af238453e3e}{%
+           family={Cicowiez},
+           familyi={C\bibinitperiod},
+           given={Martin},
+           giveni={M\bibinitperiod}}}%
+        {{hash=787ef656143ff9f4aba2e9b43f5823a4}{%
+           family={Cockburn},
+           familyi={C\bibinitperiod},
+           given={John},
+           giveni={J\bibinitperiod}}}%
+      }
+      \strng{namehash}{3598b07f996a5728b12f1127b0df45c4}
+      \strng{fullhash}{3598b07f996a5728b12f1127b0df45c4}
+      \strng{bibnamehash}{3598b07f996a5728b12f1127b0df45c4}
+      \strng{authorbibnamehash}{3598b07f996a5728b12f1127b0df45c4}
+      \strng{authornamehash}{3598b07f996a5728b12f1127b0df45c4}
+      \strng{authorfullhash}{3598b07f996a5728b12f1127b0df45c4}
+      \field{extraname}{2}
+      \field{sortinit}{T}
+      \field{sortinithash}{9af77f0292593c26bde9a56e688eaee9}
+      \field{extradate}{2}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Partnership for Economic Policy Working Paper}
+      \field{number}{2017-24}
+      \field{title}{A top-down behaviour (TDB) microsimulation toolkit for distributive analysis}
+      \field{year}{2017}
+    \endentry
+    \entry{vinicius18}{thesis}{}
+      \name{author}{1}{}{%
+        {{hash=55fdd7043101792089da539363f3c96a}{%
+           family={Vale},
+           familyi={V\bibinitperiod},
+           given={Vinícius\bibnamedelimb de\bibnamedelima Almeida},
+           giveni={V\bibinitperiod\bibinitdelim d\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {Universidade Federal de Juiz de Fora}%
+      }
+      \strng{namehash}{55fdd7043101792089da539363f3c96a}
+      \strng{fullhash}{55fdd7043101792089da539363f3c96a}
+      \strng{bibnamehash}{55fdd7043101792089da539363f3c96a}
+      \strng{authorbibnamehash}{55fdd7043101792089da539363f3c96a}
+      \strng{authornamehash}{55fdd7043101792089da539363f3c96a}
+      \strng{authorfullhash}{55fdd7043101792089da539363f3c96a}
+      \field{sortinit}{V}
+      \field{sortinithash}{afb52128e5b4dc4b843768c0113d673b}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{bookpagination}{sheet}
+      \field{title}{Comércio Internacional e Desigualdade de Renda no Brasil: Uma Análise a partir do Setor Agrícola}
+      \field{type}{phdthesis}
+      \field{year}{2018}
+    \endentry
+    \entry{winters04}{article}{}
+      \name{author}{3}{}{%
+        {{hash=7e4a555a16d2088c519befe98eccc805}{%
+           family={Winters},
+           familyi={W\bibinitperiod},
+           given={L\bibnamedelima Alan},
+           giveni={L\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=88c71edb25870f458a2645a8cf602503}{%
+           family={McCulloch},
+           familyi={M\bibinitperiod},
+           given={Neil},
+           giveni={N\bibinitperiod}}}%
+        {{hash=8799de1f91fdf7d027ca9ccd5df6bbbe}{%
+           family={McKay},
+           familyi={M\bibinitperiod},
+           given={Andrew},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{697a6c9917fa6668c0a33cbc5afa5997}
+      \strng{fullhash}{697a6c9917fa6668c0a33cbc5afa5997}
+      \strng{bibnamehash}{697a6c9917fa6668c0a33cbc5afa5997}
+      \strng{authorbibnamehash}{697a6c9917fa6668c0a33cbc5afa5997}
+      \strng{authornamehash}{697a6c9917fa6668c0a33cbc5afa5997}
+      \strng{authorfullhash}{697a6c9917fa6668c0a33cbc5afa5997}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of economic literature}
+      \field{number}{1}
+      \field{title}{Trade liberalization and poverty: the evidence so far}
+      \field{volume}{42}
+      \field{year}{2004}
+      \field{pages}{72\bibrangedash 115}
+      \range{pages}{44}
+    \endentry
+    \entry{winters02}{article}{}
+      \name{author}{1}{}{%
+        {{hash=122eae60bcc212f32836427ce784dd1a}{%
+           family={Winters},
+           familyi={W\bibinitperiod},
+           given={Leonard\bibnamedelima Alan},
+           giveni={L\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Wiley Online Library}%
+      }
+      \strng{namehash}{122eae60bcc212f32836427ce784dd1a}
+      \strng{fullhash}{122eae60bcc212f32836427ce784dd1a}
+      \strng{bibnamehash}{122eae60bcc212f32836427ce784dd1a}
+      \strng{authorbibnamehash}{122eae60bcc212f32836427ce784dd1a}
+      \strng{authornamehash}{122eae60bcc212f32836427ce784dd1a}
+      \strng{authorfullhash}{122eae60bcc212f32836427ce784dd1a}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{World Economy}
+      \field{number}{9}
+      \field{title}{Trade liberalisation and poverty: what are the links?}
+      \field{volume}{25}
+      \field{year}{2002}
+      \field{pages}{1339\bibrangedash 1367}
+      \range{pages}{29}
+    \endentry
+    \entry{xu03}{article}{}
+      \name{author}{1}{}{%
+        {{hash=535cdc7e4219cfbc80f6ba9afd8ae743}{%
+           family={Xu},
+           familyi={X\bibinitperiod},
+           given={Bin},
+           giveni={B\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier}%
+      }
+      \strng{namehash}{535cdc7e4219cfbc80f6ba9afd8ae743}
+      \strng{fullhash}{535cdc7e4219cfbc80f6ba9afd8ae743}
+      \strng{bibnamehash}{535cdc7e4219cfbc80f6ba9afd8ae743}
+      \strng{authorbibnamehash}{535cdc7e4219cfbc80f6ba9afd8ae743}
+      \strng{authornamehash}{535cdc7e4219cfbc80f6ba9afd8ae743}
+      \strng{authorfullhash}{535cdc7e4219cfbc80f6ba9afd8ae743}
+      \field{sortinit}{X}
+      \field{sortinithash}{1965c258adceecf23ce3d67b05113442}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of International Economics}
+      \field{number}{2}
+      \field{title}{Trade liberalization, wage inequality, and endogenously determined nontraded goods}
+      \field{volume}{60}
+      \field{year}{2003}
+      \field{pages}{417\bibrangedash 431}
+      \range{pages}{15}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

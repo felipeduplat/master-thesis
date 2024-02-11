@@ -37,10 +37,20 @@ mqo      = as.formula(paste0("lnrendah ~ educ + experp + I(experp^2) + metro + r
                              paste0("setor_", c(1:2,4:6,8,12:13), collapse = " + "), " + ",
                              paste0("uf_", c(11:17, 21:29, 31:33, 41:43, 50:53), collapse = " + ")))
 
-mqo_sim3 = as.formula(paste0("lnrendah_sim3 ~ educ + experp + I(experp^2) + metro + rural + negro + mulher +
-                             mills + ",
-                             paste0("setor_", c(1:2,4:6,8,12:13), collapse = " + "), " + ",
-                             paste0("uf_", c(11:17, 21:29, 31:33, 41:43, 50:53), collapse = " + ")))
+mqo_sim3_1 = as.formula(paste0("lnrendah_sim3_1 ~ educ + experp + I(experp^2) + metro + rural + negro + mulher +
+                               mills + ",
+                               paste0("setor_", c(1:2,4:6,8,12:13), collapse = " + "), " + ",
+                               paste0("uf_", c(11:17, 21:29, 31:33, 41:43, 50:53), collapse = " + ")))
+
+mqo_sim3_2 = as.formula(paste0("lnrendah_sim3_2 ~ educ + experp + I(experp^2) + metro + rural + negro + mulher +
+                               mills + ",
+                               paste0("setor_", c(1:2,4:6,8,12:13), collapse = " + "), " + ",
+                               paste0("uf_", c(11:17, 21:29, 31:33, 41:43, 50:53), collapse = " + ")))
+
+mqo_sim3_3 = as.formula(paste0("lnrendah_sim3_3 ~ educ + experp + I(experp^2) + metro + rural + negro + mulher +
+                               mills + ",
+                               paste0("setor_", c(1:2,4:6,8,12:13), collapse = " + "), " + ",
+                               paste0("uf_", c(11:17, 21:29, 31:33, 41:43, 50:53), collapse = " + ")))
 
 
 #--- CRIAR FUNÇÕES ---
@@ -157,8 +167,9 @@ benchmarking = retorno(bench_1, bench_2, bench_3)
 
 # Integração top-down:
 for (q in 1:3) {
-    integr = paste0("integr_",q)
-    assign(integr, microssimulacao(mqo_sim3, q, "integração", desemp_new))
+    mqo_sim = paste0("mqo_sim3_", q)
+    integr  = paste0("integr_",q)
+    assign(integr, microssimulacao(get(mqo_sim), q, "integração", desemp_new))
 }
 
     ## retornar à base original:

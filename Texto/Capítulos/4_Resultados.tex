@@ -13,7 +13,9 @@ Este capítulo apresenta os resultados da simulação realizada no modelo ORANIG
 
 Propõe-se simular uma política de abertura comercial para avaliar seus efeitos de curto-prazo sobre os indicadores macroeconômicos e setoriais. Essa simulação possibilita mensurar o comportamento das variáveis econômicas frente a uma maior exposição ao comércio internacional, avaliando quais seriam os efeitos de uma política comercial liberalizante.
 
-Desse modo, impõe-se uma redução tarifária no valor de 10\% sobre todas as \textit{commodities} existentes no modelo. Pela ausência de dados e estimativas mais adequados para esse parâmetro, optou-se por realizar uma análise de sensibilidade\footnote{Entende-se por análise de sensibilidade qualquer técnica utilizada para avaliar como variações nas variáveis-chave afetam determinados resultados ou indicadores em um modelo econômico.} -- essencial para situações como esta. Esse tipo de análise é bastante utilizado na literatura econômica, sobretudo em artigos que buscam mensurar impactos de políticas públicas e acordos comerciais \cite{haddad05, domingues08,perobelli17}.
+Por não haver estatísticas mais adequadas para definir a magnitude do choque exógeno desejado neste trabalho, optou-se por realizar uma análise de sensibilidade\footnote{Entende-se por análise de sensibilidade qualquer técnica utilizada para avaliar como variações nas variáveis-chave afetam determinados resultados ou indicadores em um modelo econômico.} -- essencial para situações como esta. Esse tipo de análise é bastante utilizado na literatura econômica, sobretudo em artigos que buscam mensurar impactos de políticas públicas e acordos comerciais \cite{haddad05, domingues08,perobelli17}.
+
+Desse modo, impõe-se aqui uma redução tarifária, através do poder da tarifa, no valor de 10\% sobre todas as \textit{commodities} do modelo. Esse valor foi escolhido após constatar que um aumento na magnitude do choque para além de 10\% não alterava a direção das variáveis macroeconômicos e setoriais. Ademais, ao analisar os resultados microeconômicos, percebe-se que seu comportamento, frente a um progressivo aumento da magnitude do choque, é em formato de U, tendo em 10\% o \textit{breaking point}.
 
 Para fins de facilitar a interpretação dos resultados, optou-se por agregar os setores em seis grandes categorias: 1- Agropecuária; 2- Extrativa; 3- Agroindústria; 4- Indústria; 5- Comércio; e 6- Serviços. A descrição completa dessas categorias, bem como os valores utilizados para realizar o choque da simulação, estão disponíveis, respectivamente, no Apêndice~\ref{ap:a} e~\ref{ap:b} deste trabalho.
 
@@ -25,7 +27,7 @@ Sobre as firmas, espera-se um ganho de produtividade das empresas que sejam bene
 
 Também é possível esperar um efeito substituição como consequência de uma redução tarifária. Isso pode ocorrer por conta da variação dos preços relativos, que pode tornar mais atrativo importar determinados insumos que consumir sua opção doméstica. Dado esse efeito, espera-se uma variação no produto final, produzido domesticamente, já que houve uma variação no custo de produção. Como último estágio, o efeito substituição gera uma variação na intensidade do comércio internacional, dado a mudança na composição de bens domésticos e importados para produção dos bens nacionais.
 
-Vale a pena ressaltar que também é esperado alguns efeitos \textit{feedback} sempre que há alguma alteração sobre os preços e índice de preços da economia, sendo captados pelo modelo de equilíbrio geral.
+Vale a pena ressaltar que também é esperado alguns efeitos \textit{feedback} sempre que haja alteração dos preços e do índice de preços da economia -- que são captados pelo modelo de equilíbrio geral, gerando novas rodadas de efeitos macroeconômicos e setoriais.
 
 
 \begin{figure}[H]
@@ -225,4 +227,58 @@ Esse resultado levanta discussões na literatura econômica relacionados com a t
 
 \section{Resultados da microssimulação comportamental} \label{sec:microssimulacao}
 
-Texto.
+Os resultados do modelo de geração da renda familiar estão expostos na Tabela~\ref{tab:result_microssimulacao}. Como descrito na subseção~\ref{subsec:integracao}, após estimar o cenário \textit{benchmarking} da microssimulação, usa-se os parâmetros de emprego e salários, obtidos no modelo ORANIG-BR, para estimar uma nova rodada de microssimulação, aqui chamada de cenário integração. Os índices de Gini e FGT são calculados em cima desses dois cenários, observando a variação desses indicadores entre o benchmarking e integração -- que expressa os efeitos do choque exógeno sobre a desigualdade de renda e pobreza.
+
+Os coeficientes da Correção de Heckman e da escolha ocupacional, bem como os resultados do cenário \textit{benchmarking} e os parâmetros de variação de salário e emprego estão disponíveis no Apêndice~\ref{ap:b}.
+
+\begin{table}[h]
+	\centering
+	\small
+	\begin{adjustwidth}{-1.5cm}{}
+	\begin{threeparttable}
+		\caption{Microssimulação dos efeitos da redução tarifária sobre desigualdade de renda e pobreza por qualificação} \label{tab:result_microssimulacao}
+	\begin{tabular}{lcccccc}
+	\hline
+	\multirow{4}{*}{\textbf{}} & \multicolumn{2}{c}{\multirow{2}{*}{\textbf{Não qualificado}}} & \multicolumn{2}{c}{\multirow{2}{*}{\textbf{Semi-qualificado}}} & \multicolumn{2}{c}{\multirow{2}{*}{\textbf{Qualificado}}} \\
+	 & \multicolumn{2}{c}{} & \multicolumn{2}{c}{} & \multicolumn{2}{c}{} \\ \cline{2-7} 
+	 & \multirow{2}{*}{\textbf{Simulado}} & \multirow{2}{*}{\textbf{Variação (\%)}} & \multirow{2}{*}{\textbf{Simulado}} & \multirow{2}{*}{\textbf{Variação (\%)}} & \multirow{2}{*}{\textbf{Simulado}} & \multirow{2}{*}{\textbf{Variação (\%)}} \\
+	 &  &  &  &  &  &  \\ \hline
+	\textbf{Pobreza$^{\dag}$}    		          &       &        &       &        &       &        \\[3pt]
+	\hspace{0.2cm} $\text{FGT}_0$   		  	  & 39,16 & 0,081  & 19,50 & 0,102  & 8,18  & 0,155  \\[3pt]
+	\hspace{0.2cm} $\text{FGT}_1$   	  		  & 17,96 & 0,092  & 8,41  & 0,124  & 4,75  & 0,066  \\[3pt]
+	\hspace{0.2cm} $\text{FGT}_2$   	   		  & 11,15 & 0,078  & 5,39  & 0,086  & 3,70  & 0,044  \\[3pt] \hline
+	\textbf{Extrema pobreza$^{\ddagger}$} &       &        &       &        &       &                \\[3pt]
+	\hspace{0.2cm} $\text{FGT}_0$   			  & 10,61 & 0,101  & 5,21  & 0,021  & 3,93  & --     \\[3pt]
+	\hspace{0.2cm} $\text{FGT}_1$   		  	  & 5,02  & 0,031  & 3,00  & 0,022  & 2,74  & 0,023  \\[3pt]
+	\hspace{0.2cm} $\text{FGT}_2$       		  & 3,21  & 0,022  & 2,21  & 0,019  & 2,31  & 0,019  \\[3pt] \hline
+	\textbf{Desigualdade de renda}                &       &        &       &        &       &        \\[3pt]
+	\hspace{0.2cm} Gini                           & 0,457 & -0,022 & 0,442 & -0,012 & 0,487 & -0,011 \\[3pt] \hline
+	\end{tabular}
+	\begin{tablenotes}
+		\footnotesize
+		\item Fonte: elaboração própria (2024) com base nos dados da PNAD 2015.
+		\item \textit{Nota:}
+		\item \hspace{0.2cm} $^{\dag}$     Indivíduos com renda familiar per capita abaixo de R\$367,02.
+		\item \hspace{0.2cm} $^{\ddagger}$ Indivíduos com renda familiar per capita abaixo de R\$126,79.
+	\end{tablenotes}
+	\end{threeparttable}
+	\end{adjustwidth}
+\end{table}
+
+Os resultados apontam que o potencial da abertura comercial para afetar a desigualdade de renda e pobreza é um tanto limitado, uma vez que seus índices variaram muito pouco. Mesmo assim, observou-se uma redução na desigualdade de renda para os três níveis de qualificação, ao passo em que se experimentou um aumento generalizado nos níveis de pobreza e de pobreza extrema.
+
+Olhando os indicadores de pobreza, as maiores variações foram na proporção de pobres para os semi-qualificados (0,102\%) e qualificados (0,155\%) e na intensidade da pobreza para os semi-qualificados (0,124\%). Ou seja, a redução tarifária realizou, para esses grupos, um aumento no quantitativo de pobres e os distanciou da linha de pobreza. Não houve variação relevante na severidade da pobreza.
+
+Sobre a extrema pobreza, a única variação relevante se deu na proporção de pobres para os não-qualificados (0,101\%). Todos os outros resultados foram bem limitados, com variações na segunda casa decimal. Isso chama atenção, particularmente, mostrando que, para níveis extremos de pobreza, o comércio internacional é praticamente nulo.
+
+O mesmo cenário se repete quando se analisa a desigualdade de renda. Para os três grupos observados, praticamente nada se alterou: todas as variações foram apenas na segunda casa decimal (-0,022\%, -,0012\% e -0,011\% respectivamente). Entretanto, é interessante destacar a direção dos efeitos. Em contraste com o comportamento da pobreza e extrema pobreza, a microssimulação registrou uma redução da desigualdade para os três grupos -- ainda que numa diminuta magnitude.
+
+Desse modo, pode-se afirmar que, de acordo com os resultados da microssimulação, uma redução tarifária no montante de 10\% levou ao aumento da pobreza absoluta e extrema para as três categorias de qualificação, ao passo em que se observou uma redução dos níveis de desigualdade. Para além disso, a microssimulação também constatou que o comércio internacional tem um potencial limitado para afetar esses indicadores de maneira expressiva, sobretudo para os extremamente pobres.
+
+Existem diversas evidências na literatura econômica que convergem para os resultados aqui encontrados. Tanto sobre a diminuta influência do comércio internacional \cite{carneiro06} quanto sobre os resultados divergentes entre desigualdade de renda e pobreza \cite{borrazetal12}.
+
+Por fim, várias razões podem explicar o comportamento dos indicadores de desigualdade de renda e pobreza encontrados. Sobre a diminuta influência, uma das razões pode ser que as barreiras tarifárias já não sejam altas o suficiente para que uma nova redução traga efeitos expressivos. Um possível teste para essa hipótese seria simular um aumento das barreiras tarifárias e observar seus efeitos sobre a desigualdade de renda e pobreza.
+
+Uma possível razão que explique o generalizado aumento da pobreza absoluta e extrema, ainda que parco, pode estar relacionado a estrutura produtiva brasileira e seu perfil de pauta exportadora. Como vimos anteriormente, a redução tarifária afetou proporcionalmente os setores da Agroindústria, pouco intensiva em trabalho, e prejudicando os setores industriais de produção têxtil, comparativamente mais intensivos em trabalho. Essa distribuição, somada a uma redução do salário nominal em 0,11\%, pode explicar o aumento da pobreza. Entretanto, não é possível testar quaisquer dessas suposições com a estratégia empírica aqui utilizada.
+
+
