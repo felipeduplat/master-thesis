@@ -4,7 +4,7 @@
 </p>
 
 # master-thesis
-Repositório contendo os materiais relacionados a minha dissertação.
+Repositório contendo todos os materiais da minha dissertação.
 
 
 
