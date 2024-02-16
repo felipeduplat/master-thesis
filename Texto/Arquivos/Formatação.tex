@@ -39,6 +39,8 @@
 \usepackage[cal=esstix]{mathalfa}    % fontes matemáticas.
 \usepackage{bbm}                     % símbolos matemáticos.
 \usepackage{dcolumn}                 % para tabelas das regressões.
+\usepackage{fancyhdr}				 % tirar cabeçalho.
+\usepackage{titlesec}
 
 % para equações matemáticas:
 \DeclareMathOperator\Log{Log}
@@ -54,6 +56,9 @@
 \captiondelim{-- }
 \captiontitlefont{\small}
 \captionnamefont{\small}
+
+% não resetar notas de rodapé:
+\counterwithout{footnote}{chapter}
 
 
 
@@ -157,7 +162,7 @@ uniquelist=false]{biblatex}
 \makeoddfoot{simplestextual}
   {}{}{}
 
-% Formatação dos capítulos póstextuais numerados:
+% Formatação dos capítulos pós-textuais numerados:
 %\newcommand{\refap}[1]{\hyperref[#1]{Apêndice~\ref{#1}}} 	% Referência apÊndices
 
 % uso do tikz e pgfplots:
@@ -189,5 +194,8 @@ uniquelist=false]{biblatex}
 
 \newcommand{\textcitenp}[1]{
 	\textcite{#1}\footnote{\fullcite{#1}}}
+
+% Tirar negrito do \citetitle:
+\DeclareFieldFormat{citetitle}{#1}
 
 

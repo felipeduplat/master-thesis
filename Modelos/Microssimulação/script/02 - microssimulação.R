@@ -188,13 +188,13 @@ integr_lista  = list()
 # Criar função:
 
     ## FGT:
-fgt = function(x, df, q, abs_thresh) {
-  return(svyfgt(~rfpc_new, design = subset(df, qualif == x), g = q, abs_thresh = abs_thresh, na.rm = TRUE))
+fgt = function(df, q, abs_thresh) {
+  return(svyfgt(~rfpc_new, design = df, g = q, abs_thresh = abs_thresh, na.rm = TRUE))
 }
 
     ## Gini:
-gini = function(g, df) {
-  return(svygini(~rfpc_new, design = subset(df, qualif == g), na.rm = TRUE))
+gini = function(df) {
+  return(svygini(~rfpc_new, design = df, na.rm = TRUE))
 }
 
 
@@ -206,42 +206,39 @@ abs = 367.02             # linha de pobreza absoluta (U$5,50 para valores de 12/
 # Aplicar função:
 
     ## Benchmarking:
-for (i in 1:3) {
 
-    ## FGT0 (headcount ratio)
-  bench_lista$fgt0_ext_[i] = fgt(i, bench_design, 0, ext)
-  bench_lista$fgt0_abs_[i] = fgt(i, bench_design, 0, abs)
+        ### FGT0 (headcount ratio)
+bench_lista$fgt0_ext = fgt(bench_design, 0, ext) * 100
+bench_lista$fgt0_abs = fgt(bench_design, 0, abs) * 100
   
-    ## FGT1 (poverty gap)
-  bench_lista$fgt1_ext_[i] = fgt(i, bench_design, 1, ext)
-  bench_lista$fgt1_abs_[i] = fgt(i, bench_design, 1, abs)
+        ### FGT1 (poverty gap)
+bench_lista$fgt1_ext = fgt(bench_design, 1, ext) * 100
+bench_lista$fgt1_abs = fgt(bench_design, 1, abs) * 100
   
-    ## FGT2 (squared poverty gap)
-  bench_lista$fgt2_ext_[i] = fgt(i, bench_design, 2, ext)
-  bench_lista$fgt2_abs_[i] = fgt(i, bench_design, 2, abs)
+        ### FGT2 (squared poverty gap)
+bench_lista$fgt2_ext = fgt(bench_design, 2, ext) * 100
+bench_lista$fgt2_abs = fgt(bench_design, 2, abs) * 100
   
-    ## índice de Gini:
-  bench_lista$gini_[i]     = gini(i, bench_design)
-}
+        ### índice de Gini:
+bench_lista$gini     = gini(bench_design)
+
 
     ## Integração:
-for (i in 1:3) {
 
-    ## FGT0 (headcount ratio)
-  integr_lista$fgt0_ext_[i] = fgt(i, integr_design, 0, ext)
-  integr_lista$fgt0_abs_[i] = fgt(i, integr_design, 0, abs)
+        ### FGT0 (headcount ratio)
+integr_lista$fgt0_ext = fgt(integr_design, 0, ext) * 100
+integr_lista$fgt0_abs = fgt(integr_design, 0, abs) * 100
   
-    ## FGT1 (poverty gap)
-  integr_lista$fgt1_ext_[i] = fgt(i, integr_design, 1, ext)
-  integr_lista$fgt1_abs_[i] = fgt(i, integr_design, 1, abs)
+        ### FGT1 (poverty gap)
+integr_lista$fgt1_ext = fgt(integr_design, 1, ext) * 100
+integr_lista$fgt1_abs = fgt(integr_design, 1, abs) * 100
   
-    ## FGT2 (squared poverty gap)
-  integr_lista$fgt2_ext_[i] = fgt(i, integr_design, 2, ext)
-  integr_lista$fgt2_abs_[i] = fgt(i, integr_design, 2, abs)
+        ### FGT2 (squared poverty gap)
+integr_lista$fgt2_ext = fgt(integr_design, 2, ext) * 100
+integr_lista$fgt2_abs = fgt(integr_design, 2, abs) * 100
   
-    ## índice de Gini:
-  integr_lista$gini_[i]     = gini(i, integr_design)
-}
+        ### índice de Gini:
+integr_lista$gini     = gini(integr_design)
 
 
 #--- EXPORTAR RESULTADOS ---
@@ -256,5 +253,6 @@ saveWorkbook(wb, file = "output/raw/resultados.xlsx", overwrite = T)
 #--- DROPAR RESÍDUO ---
 rm(list=setdiff(ls(), c("bench_design", "integr_design",
                         "bench_lista",  "integr_lista")))
+
 
 
