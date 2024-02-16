@@ -58,7 +58,7 @@ Contém o arquivo TeX da dissertação.
 | 7  | Integração _top-down_                  |                                 | <p align="center"> &#10004;</p> |                                 |                                 |         |         |
 | 8  | Tabular resultados da microssimulação  |                                 | <p align="center"> &#10004;</p> |                                 |                                 |         |         |
 | 9  | Corrigir pontos da qualificação        |                                 |                                 | <p align="center"> &#10004;</p> |                                 |         |         |
-| 10 | Discussão sobre pobreza e desigualdade |                                 |                                 | <p align="center"> &#10004;</p> |                                 |         |         |
+| 10 | Metodologia sobre pobreza e desigualdade |                                 |                                 | <p align="center"> &#10004;</p> |                                 |         |         |
 | 11 | Refazer Revisão de Literatura          |                                 |                                 |                                 | <p align="center"> &#10004;</p> |         |         |
 | 12 | Refazer Metodologia e Dados            |                                 |                                 |                                 | <p align="center"> &#10004;</p> |         |         |
 | 13 | Refazer Resultados                     |                                 |                                 |                                 |         | <p align="center"> &#10004;</p> |         |
