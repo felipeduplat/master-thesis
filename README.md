@@ -58,14 +58,13 @@ Contém o arquivo TeX da dissertação.
 | 7  | Integração _top-down_                  |                                 | <p align="center"> &#10004;</p> |                                 |                                 |         |         |
 | 8  | Tabular resultados da microssimulação  |                                 | <p align="center"> &#10004;</p> |                                 |                                 |         |         |
 | 9  | Corrigir pontos da qualificação        |                                 |                                 | <p align="center"> &#10004;</p> |                                 |         |         |
-| 10 | Discussão sobre estrutura produtiva    |                                 |                                 | <p align="center"> &#9744; </p> |                                 |         |         |
-| 11 | Discussão sobre pobreza e desigualdade |                                 |                                 | <p align="center"> &#9744; </p> |                                 |         |         |
-| 12 | Refazer Revisão de Literatura          |                                 |                                 |                                 | <p align="center"> &#9744; </p> |         |         |
-| 13 | Refazer Metodologia e Dados            |                                 |                                 |                                 | <p align="center"> &#10004;</p> |         |         |
-| 14 | Refazer Resultados                     |                                 |                                 |                                 |         | <p align="center"> &#10004;</p> |         |
-| 15 | Refazer Considerações Finais           |                                 |                                 |                                 |         | <p align="center"> &#10004;</p> |         |
-| 16 | Correção dos orientadores              |                                 |                                 |                                 |         |         | <p align="center"> &#9744; </p> |
-| 16 | Ajustes e polimento                    |                                 |                                 |                                 |         |         | <p align="center"> &#9744; </p> |
+| 10 | Metodologia sobre pobreza e desigualdade |                                 |                                 | <p align="center"> &#10004;</p> |                                 |         |         |
+| 11 | Refazer Revisão de Literatura          |                                 |                                 |                                 | <p align="center"> &#10004;</p> |         |         |
+| 12 | Refazer Metodologia e Dados            |                                 |                                 |                                 | <p align="center"> &#10004;</p> |         |         |
+| 13 | Refazer Resultados                     |                                 |                                 |                                 |         | <p align="center"> &#10004;</p> |         |
+| 14 | Refazer Considerações Finais           |                                 |                                 |                                 |         | <p align="center"> &#10004;</p> |         |
+| 15 | Correção dos orientadores              |                                 |                                 |                                 |         |         | <p align="center"> &#10004;</p> |
+| 16 | Ajustes e polimento                    |                                 |                                 |                                 |         |         | <p align="center"> &#10004;</p> |
 | 17 | Defesa da Dissertação                  |                                 |                                 |                                 |         |         | <p align="center"> &#9744; </p> |
 
 
