@@ -14,13 +14,24 @@
 \documentclass[10pt]{sintefbeamer}
 
 % Pacotes:
-\usepackage{multirow}     % quebrar célula na tabela.
-\usepackage[style = abnt, % manter formato ABNT.
-            giveninits,   % manter primeiros nomes abreviados.
-            scbib         % manter em versalete.
-]{biblatex}               % adicionar referências.
-\usepackage{amsmath}
-\usepackage{bbm}
+\usepackage{multirow}             % quebrar célula na tabela.
+\usepackage[style = abnt,         % manter formato ABNT.
+            giveninits,           % manter primeiros nomes abreviados.
+            scbib                 % manter em versalete.
+]{biblatex}                       % adicionar referências.
+\usepackage{amsmath}              % fontes matemáticas.
+\usepackage{threeparttable}       %
+\usepackage{multicol}             %
+\usepackage{tablefootnote}        %
+\usepackage[cal=esstix]{mathalfa} % fontes matemáticas.
+\usepackage{bbm}                  %
+\usepackage{changepage}           % 
+\usepackage{makecell}             %
+\usepackage{multirow}             %
+\usepackage{academicons}          % 
+
+% para equações matemáticas:
+\DeclareMathOperator\Log{Log}
 
 % Referências:
 \addbibresource{Referências.bib}
@@ -48,11 +59,41 @@
 % Primeira seção:
 \section{Introdução}
 
-\subsection{Motivações do projeto}
+\subsection{Motivações da dissertação}
 
-\begin{frame}{Motivações do projeto}
+\begin{frame}{Motivações da dissertação}
 	\begin{itemize}[<+->]
-		\item Texto.
+		\item Há uma extensa literatura que estuda os canais de transmissão entre o comércio internacional e a desigualdade de renda e pobreza:
+		
+		\begin{itemize}
+			\item crescente destaque da abertura comercial como um vetor para o crescimento econômico \cite{atkin22};
+			
+			\item crença que a abertura é capaz de gerar melhorias sobre a produtividade e renda com repercussões positivas nos indicadores de desigualdade e pobreza \cite{carneiro06}.
+		\end{itemize}
+		
+		\item Lastro na teoria econômica:
+		
+		\begin{itemize}
+			\item Modelo Heckscher-Ohlin;
+			\item Teorema Stolper-Samuelson;
+			\item Princípio da compensação.
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Motivações da dissertação}
+	\begin{itemize}[<+->]
+		\item Entretanto, as evidências empíricas apontam para distintos cenários \cite{winters04}.
+		
+		\item Para os países em desenvolvimento, em especial o Brasil, esse debate é ainda mais impreciso:
+		
+		\begin{itemize}
+			\item economias vulneráveis a choques externos \cite{bannisterthugge01}
+			
+			\item possível elevação do grau de incerteza \cite{winters02}
+		\end{itemize}
+		
+		\item Isso não indica, necessariamente, que os estudos sejam inconclusivos; mas sim a inexistência de uma única resposta.
 	\end{itemize}
 \end{frame}
 
@@ -61,119 +102,305 @@
 
 \begin{frame}{\textit{Gap} na literatura}
 	\begin{itemize}[<+->]
-		\item 
+		\item A grande maioria dos estudos focou em analisar o tema a partir das experiências históricas de abertura comercial -- utilizando modelos de equilíbrio parcial \cite{castilho12, bayar17}.
+		
+		\item Os estudos que utilizaram modelos de equilíbrio geral não focaram na questão estrutural \cite{borrazetal12, estrades12, campostimini22}.
 	\end{itemize}
 \end{frame}
 
 
-\subsection{Objetivo e possíveis contribuições}
+\subsection{Objetivo e contribuições à literatura}
 
 \begin{frame}{Objetivo}
 	\begin{itemize}[<+->]
-		\item 
+		\item Estimar os efeitos de uma maior abertura comercial sobre os índices de desigualdade de renda e pobreza no Brasil.
+		
+		\item utiliza-se um modelo nacional de equilíbrio geral integrado a uma abordagem de microssimulação contrafactual referentes ao ano de 2015.
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{Possíveis contribuições}
+\begin{frame}{Contribuições à literatura econômica}
 	\begin{itemize}
-		\item 
+		\item Até onde se tem conhecimento no presente momento, apenas \textcite{carneiro06, ferreira06} conduziram um estudo semelhante para o Brasil, entretanto, sem realizar o mesmo nível de desagregação das famílias por percentis de renda.
+		
+		\item Esta dissertação contribui para a literatura econômica ao incorporar os efeitos do comércio internacional sobre a estrutura de renda das diferentes classes de famílias brasileiras, tanto entre si quanto entre indivíduos da mesma família.
 	\end{itemize}
 \end{frame}
 
 
 
 % Segunda seção:
-\section{Revisão de literatura}
+%\section{Revisão de literatura}
 
-\subsection{Os canais de transmissão}
+%\subsection{Os canais de transmissão}
 
-\begin{frame}{Os canais de transmissão}
-	\begin{itemize}
-		\item
-	\end{itemize}
-\end{frame}
+%\begin{frame}{Os canais de transmissão}
+%	\begin{figure}
+%		\caption{canais de transmissão entre comércio internacional e desigualdade de renda e pobreza}
+%		\includegraphics[width=10.5cm]{Imagens/canais_transmissao.ai} \\
+%		\footnotesize
+%		Fonte: \textcite{bannisterthugge01, xu03, goldbergpavcnik04, banerjee04}.
+%	\end{figure}
+%\end{frame}
 
 
-\subsection{As evidências empíricas}
+%\subsection{As evidências empíricas}
 
-\begin{frame}{Equilíbrio parcial}
-	
-	Foco dos estudos:
-	
-	\begin{itemize}
-		\item 
-	\end{itemize}
-\end{frame}
-
-\begin{frame}{Equilíbrio geral}
-	
-	Foco dos estudos:
-	
-	\begin{itemize}
-		\item 
-	\end{itemize}
-\end{frame}
+%\begin{frame}{Foco nos estudos:}
+%	
+%	Equilíbrio parcial:
+%	
+%	\begin{itemize}
+%		\item \textbf{mercado de trabalho} \cite{borjas94, forbes01, galianisanguinetti03}.
+%		
+%		\item \textbf{experiências históricas} \cite{castilho12, borrazetal12, bayar17}.
+%	\end{itemize}
+%
+%	Equilíbrio geral:
+%
+%	\begin{itemize}
+%		\item \textbf{experiências históricas} \cite{porto03, estrades12}.
+%		
+%		\item \textbf{simulações} \cite{ferreira06,corong14}.
+%	\end{itemize}
+%\end{frame}
 
 
 
 % Terceira seção:
-\section{Metodologia e dados}
+\section{Metodologia}
 
-\subsection{O modelo de Equilíbro Geral Computável}
+\subsection{Modelo de Equilíbro Geral Computável}
 
 \begin{frame}{O modelo EGC}
 	\begin{itemize}[<+->]
-		\item 
+		\item Utilização do modelo nacional de Equilíbrio Geral Computável (ORANIG-BR) adaptado para cumprir os objetivos propostos:
+		\begin{itemize}
+			\item desagregação das famílias em percentis de renda (POF 08-09);
+			\item desagregação do fator trabalho por nível de qualificação (PNAD 2015).
+		\end{itemize}
+
+		\item Modelo de tradição australiana da classe Johansen, partindo da estrutura teórica do ORANI \cite{dixit80}.
+
+		\item Pode-se entender o modelo EGC enquanto um sistema de equações que objetivam descrever a dinâmica de uma economia a partir dos pressupostos walrasianos de equilíbrio geral \cite{horridge00}.
 	\end{itemize}
 \end{frame}
+
+{
+\setbeamertemplate{background canvas}{}
+\begin{frame}[plain]
+	\begin{figure}
+		\includegraphics[width=13cm]{Imagens/estrutura_orani.ai} \\
+		\footnotesize
+	\end{figure}
+\end{frame}
+}
 
 
 \subsection{Modelo de microssimulação}
 
-\begin{frame}{Metodologia}
+\begin{frame}{Modelo de microssimulação}
 	\begin{itemize}[<+->]
-		\item 
+		\item O modelo de microssimulação pode ser entendido como uma grande variedade de técnicas de modelagem por meio das quais o comportamento ou estado dos indivíduos são estimados ou determinados \cite{figari15}.
+		
+		\item Integração macro-micro como alternativa à limitação do pressuposto da Família Representativa \cite{colombo08}.
 	\end{itemize}
+\end{frame}
+
+\begin{frame}{Modelo de microssimulação}
+	\begin{itemize}[<+->]
+		\item Forma funcional \cite{bourguignon05}:
+		\begin{align}
+			\Log \mathcal{w}_{mi}  &= \alpha_{g} + \beta_{g} \mathcal{x}_{mi} + \upsilon_{mi} \hspace{3cm} i = 1, \ldots, k_m \label{eq:renda} \\[0.5cm]
+			IW_{mi}                &= \mathbbm{1} \left[\gamma_{g} + \delta_{g} z_{mi} + \mu_{mi} \right] \label{eq:ocm} \\[0.1cm]
+			\text{Y}_{m}           &= \sum_{i = 1}^{k_{m}} \mathcal{w}_{mi} IW_{mi} + y_{0m} \label{eq:renda_familiar}
+		\end{align}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Modelo de microssimulação}
+	\begin{itemize}[<+->]
+		\item Correção de Heckman \cite{heckman79}:
+		\begin{align}
+			\boldsymbol{\hat{Trab}}_{g(mi)} &= \hat{\gamma}_g + \mathbf{X}_{g(mi)} \ \boldsymbol{\hat{\beta}}_g \label{eq:step1} \\
+	\boldsymbol{\Lambda}_{g(mi)}    &= \frac{\phi(x)}{1 - \Phi(x)} \label{eq:mills} \\
+			\mathbf{\Log \mathcal{\hat{w}}}_{g(mi)} &= \hat{\alpha}_g + \mathbf{Z}_{g(mi)} \ \boldsymbol{\hat{\beta}}_g \label{eq:step2}
+		\end{align}
+
+		\item Modelo de Escolha Ocupacional:
+		\begin{align}
+			\boldsymbol{\hat{Trab}}_{g(mi)} &= \hat{\gamma}_g + \mathbf{X}_{g(mi)} \ \boldsymbol{\hat{\beta}}_g \tag{4} \label{eq:step1}
+		\end{align}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Modelo de microssimulação}
+	\begin{figure}
+		\caption{Estrutura esquemática da integração \textit{top-down}}
+		\includegraphics[width=12cm]{Imagens/integracao_topdown.ai} \\
+		\footnotesize
+		Fonte: elaboração própria (2024) a partir de \textcite{tiberti17}.
+	\end{figure}
 \end{frame}
 
 
 \subsection{Desigualdade de renda e pobreza}
 
-\begin{frame}{Metodologia}
-	\begin{itemize}[<+->]
-		\item 
+\begin{frame}{Desigualdade de renda e pobreza}
+	\begin{itemize}
+		\item Índice de Gini:
+		
+		\begin{align}
+			G = \frac{\sum_{i=1}^{n}\sum_{j=1}^{n} | x_i - x_j |}{2n^{2}\mu} \label{eq:gini}
+		\end{align}
+
+		\item Índices \textit{Foster-Greer-Thorbecke}:
+		
+		\begin{align}
+			\text{FGT}_\alpha = \frac{1}{N} \sum_{i=1}^{Q} \left( \frac{z - y_i}{z} \right)^{\alpha}
+		\end{align}
+
 	\end{itemize}
 \end{frame}
 
 
 
 % Quarta seção:
-\section{Simulação e resultados}
-
-\subsection{Simulação e mecanismos de tranmissão}
-
-\begin{frame}{Simulação}
-	\begin{itemize}[<+->]
-		\item 
-	\end{itemize}
-\end{frame}
-
+\section{Resultados}
 
 \subsection{Resultados do modelo ORANIG-BR}
 
-\begin{frame}{Simulação}
-	\begin{itemize}[<+->]
-		\item 
-	\end{itemize}
+\begin{frame}{Resultados do modelo ORANIG-BR}
+	\begin{table}[h]
+		\centering
+		\tiny
+		\begin{threeparttable}
+			\caption{Efeitos de curto-prazo da redução tarifária sobre as importações (var. \%)} \label{tab:import}
+			\begin{tabular}{m{3cm} >{\centering\arraybackslash}m{3cm} >{\centering\arraybackslash}m{3cm} >{\centering\arraybackslash}m{3cm}}
+				\hline
+				\multirow{2}{*}{\textit{\textbf{Commodities}}} & \multirow{2}{*}{\textbf{Setores agregados}} & \multicolumn{2}{c}{\textbf{Importações}} \\ \cline{3-4} 
+					  &               & \textbf{Volume} & \textbf{Preço} \\ \hline
+				 C38  & Indústria     &  2,7413         & -2,6082 \\
+				 C40  & Indústria     &  2,6257         & -2,4429 \\
+				 C39  & Indústria     &  1,9852         & -1,6339 \\
+				 C27  & Agroindústria &  1,4747         & -0,5882 \\
+				 C42  & Indústria     &  1,4279         & -0,8667 \\
+				 C6   & Agropecuária  &  1,2962         & -0,9169 \\
+				 C34  & Agroindústria &  1,2562         & -1,1298 \\
+				 C63  & Indústria     &  1,2292         & -1,1688 \\
+				 C37  & Agroindústria &  1,2211         & -1,7473 \\ \hline
+				 C90  & Serviços      & -0,1760         & 0       \\
+				 C87  & Serviços      & -0,1648         & 0       \\
+				 C92  & Serviços      & -0,1412         & 0       \\
+				 C102 & Serviços      & -0,0953         & 0       \\
+				 C96  & Comércio      & -0,0925         & 0       \\
+				 C111 & Serviços      & -0,0891         & 0       \\
+				 C112 & Serviços      & -0,0868         & 0       \\
+				 C23  & Extrativa     & -0,0798         & 0       \\
+				 C94  & Serviços      & -0,0618         & 0       \\ \hline
+				\end{tabular}
+			\end{threeparttable}
+	\end{table}
+\end{frame}
+
+\begin{frame}{Resultados do modelo ORANIG-BR}
+	\begin{table}[h]
+		\centering
+		\tiny
+		\begin{threeparttable}
+			\caption{Efeitos de curto-prazo da redução tarifária sobre o nível de atividade e emprego (var. \%)}\label{tab:ativ}
+			\begin{tabular}{m{2cm} >{\centering\arraybackslash}m{2cm} >{\centering\arraybackslash}m{2cm} >{\centering\arraybackslash}m{2cm} >{\centering\arraybackslash}m{2cm}}
+				\hline
+				\multirow{2}{*}{\textbf{Setores}} & \multirow{2}{*}{\textbf{Setores agregados}} & \multicolumn{2}{c}{\textbf{Indicadores}} \\ \cline{3-4} &  & \textbf{Nível de atividade} & \textbf{Emprego} \\ \hline
+				C15 & Indústria     & 0,1849  & 0,2483 \\
+				C35 & Indústria     & 0,1148  & 0,1379 \\
+				C44 & Serviços      & 0,0809  & 0,1079 \\
+				C37 & Serviços      & 0,0802  & 0,1472 \\
+				C07 & Extrativa     & 0,0743  & 0,1413 \\
+				C65 & Serviços      & 0,0661  & 0,0661 \\
+				C60 & Serviços      & 0,0636  & 0,0690 \\
+				C23 & Indústria     & 0,0618  & 0,0891 \\
+				C62 & Serviços      & 0,0531  & 0,1027 \\
+				C12 & Agroindústria & 0,0489  & 0,1476 \\ \hline
+				C13 & Indústria     & -0,6101 & -0,7916 \\
+				C14 & Indústria     & -0,1955 & -0,2686 \\
+				C25 & Indústria     & -0,1342 & -0,1652 \\
+				C36 & Indústria     & -0,1041 & -0,1985 \\
+				C29 & Indústria     & -0,0368 & -0,0543 \\
+				C33 & Indústria     & -0,0279 & -0,0298 \\
+				C26 & Indústria     & -0,0251 & -0,0339 \\
+				C16 & Indústria     & -0,0193 & -0,0314 \\
+				C21 & Indústria     & -0,0099 & -0,0215 \\
+				C27 & Indústria     & -0,0085 & -0,0149 \\ \hline
+				\end{tabular}
+			\end{threeparttable}
+	\end{table}
+\end{frame}
+
+\begin{frame}{Resultados do modelo ORANIG-BR}
+	\begin{table}[h]
+		\centering
+		\scriptsize
+		\begin{threeparttable}
+			\caption{Efeitos macroeconômicos de curto-prazo da redução tarifária} \label{tab:result}
+			\begin{tabular}{m{8cm}c}
+				\hline
+				\multirow{2}{*}{\textbf{Indicadores}} & \multirow{2}{*}{\textbf{Var. (\%)}} \\
+				 &  \\ \hline
+				\textbf{Preços} &  \\
+				\hspace{0.2cm} Índice de preços do consumidor & -0,1156 \\
+				\hspace{0.2cm} Índice de preços do investimento & -0,1999 \\
+				\hspace{0.2cm} Índice de preços do governo & -0,1103 \\
+				\hspace{0.2cm} Índice de preços das exportações & -0,0973 \\
+				\hspace{0.2cm} Índice de preços das importações & -0,4623 \\
+				\hspace{0.2cm} Índice de preços do PIB & -0,1416 \\
+				\hspace{0.2cm} Termos de troca & -0,0973 \\
+				\hspace{0.2cm} Custos dos fatores primários & -0,0617 \\
+				\hspace{0.2cm} Salário nominal & -0,1156 \\
+				\hspace{0.2cm} Desvalorização real & 0,1418 \\ \hline
+				\textbf{Volume} &  \\
+				\hspace{0.2cm} Consumo real das famílias & 0,0555 \\
+				\hspace{0.2cm} Volume exportado & 0,1009 \\
+				\hspace{0.2cm} Volume importado & 0,1909 \\
+				\hspace{0.2cm} PIB real & 0,0256 \\
+				\hspace{0.2cm} Emprego real & 0,0358 \\ \hline
+			\end{tabular}
+		\end{threeparttable}
+	\end{table}
 \end{frame}
 
 
 \subsection{Resultados da microssimulação comportamental}
 
-\begin{frame}{Simulação}
-	\begin{itemize}[<+->]
-		\item 
-	\end{itemize}
+\begin{frame}{Resultados da microssimulação comportamental}
+	\begin{table}[h]
+		\centering
+		\scriptsize
+		\begin{threeparttable}
+			\caption{Microssimulação dos efeitos da redução tarifária sobre desigualdade de renda e pobreza por qualificação} \label{tab:result_microssimulacao}
+			\begin{tabular}{m{5cm} >{\centering\arraybackslash}m{2cm} >{\centering\arraybackslash}m{2cm}}
+				\hline
+				\multirow{2}{*}{}                     & \multirow{2}{*}{\textbf{Simulado}} & \multirow{2}{*}{\textbf{Variação (\%)}} \\
+													  &                           &                                \\ \hline
+				\textbf{Pobreza$^{\dag}$}             &                           &                                \\
+				\hspace{0.2cm} $\text{FGT}_0$         & 31,39                     & 0,024                          \\
+				\hspace{0.2cm} $\text{FGT}_1$         & 14,34                     & 0,013                          \\
+				\hspace{0.2cm} $\text{FGT}_2$         & 9,02                      & 0,010                          \\ \hline
+				\textbf{Extrema pobreza$^{\ddagger}$} &                           &                                \\
+				\hspace{0.2cm} $\text{FGT}_0$         & 8,64                      & --                             \\
+				\hspace{0.2cm} $\text{FGT}_1$         & 4,30                      & 0,004                          \\
+				\hspace{0.2cm} $\text{FGT}_2$         & 2,87                      & 0,003                          \\ \hline
+				\textbf{Desigualdade de renda}        &                           &                                \\
+				\hspace{0.2cm} Gini                   & 0,521                     & -0,007                         \\ \hline
+				\end{tabular}
+		\begin{tablenotes}
+			\footnotesize
+			\item \textit{Nota:}
+			\item \hspace{0.2cm} $^{\dag}$     Indivíduos com renda familiar per capita abaixo de R\$367,02.
+			\item \hspace{0.2cm} $^{\ddagger}$ Indivíduos com renda familiar per capita abaixo de R\$126,79.
+		\end{tablenotes}
+		\end{threeparttable}
+	\end{table}
 \end{frame}
 
 
@@ -182,8 +409,27 @@
 \section{Considerações finais}
 
 \begin{frame}{Considerações finais}
+	\begin{itemize}[<+->]
+		\item Este trabalho tem como objetivo estimar os efeitos do comércio internacional sobre a distribuição de renda e pobreza no Brasil.
+
+		\item \textbf{Resultado setorial}: ganhos para os setores da Agroindústria e parte da Indústria, mais voltada para o setor de calçados; perdas para boa parte da Indústria, especialmente os setores têxteis.
+		
+		\item \textbf{Resultado macroeconômico:} ganhos superaram perdas, uma vez que houve aumento do PIB real, emprego agregado e consumo das famílias.
+		
+		\item \textbf{Microssimulação:} variações bastante modestas nos índices de Gini e FGT . Aumento nos indicadores de pobreza, havendo sua maior variação na proporção de pobres; redução do indicador de distribuição de renda.
+		
+		\item \textbf{Possível explicação:} barreiras tarifárias já não seriam altas o suficiente para sua redução ser significativa. 
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Considerações finais}
 	\begin{itemize}
-		\item 
+		\item Futuros trabalhos:
+		\begin{itemize}[<+->]
+			\item buscar novas desagregações do modelo ORANIG-BR;
+			\item utilizar outras simulações que levem em conta a heterogeneidade da pauta exportadora;
+			\item avançar na especificação do modelo ocupacional.
+		\end{itemize}
 	\end{itemize}
 \end{frame}
 
