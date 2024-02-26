@@ -65,7 +65,7 @@ Contém o arquivo TeX da dissertação.
 | 14 | Refazer Considerações Finais           |                                 |                                 |                                 |         | <p align="center"> &#10004;</p> |         |
 | 15 | Correção dos orientadores              |                                 |                                 |                                 |         |         | <p align="center"> &#10004;</p> |
 | 16 | Ajustes e polimento                    |                                 |                                 |                                 |         |         | <p align="center"> &#10004;</p> |
-| 17 | Defesa da Dissertação                  |                                 |                                 |                                 |         |         | <p align="center"> &#9744; </p> |
+| 17 | Defesa da Dissertação                  |                                 |                                 |                                 |         |         | <p align="center"> &#10004; </p>|
 
 
 
