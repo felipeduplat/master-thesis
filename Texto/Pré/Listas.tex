@@ -1,0 +1,91 @@
+
+%---------------------------------------------------------------------
+% LISTAS
+%---------------------------------------------------------------------
+
+% Lista de figuras:
+\pdfbookmark[0]{\listfigurename}{lof}
+\listoffigures*
+\cleardoublepage
+
+
+
+% Lista de quadros:
+\pdfbookmark[0]{Lista de quadros}{loq}
+\listofquadros*
+\cleardoublepage
+
+
+
+% Lista de tabelas:
+\pdfbookmark[0]{\listtablename}{lot}
+\listoftables*
+\cleardoublepage
+
+
+
+% Lista de abreviaturas e símbolos:
+\begin{siglas}
+	
+	\item[H-O]      Modelo Heckscher-Ohlin.
+	
+	\item[SS]       Teorema Stolper-Samuelson.
+	
+	\item[EGC]      Equilíbrio Geral Computável.
+	
+	\item[PNAD]     Pesquisa Nacional por Amostragem de Domicílio.
+	
+	\item[PNADc]    Pesquisa Nacional por Amostragem de Domicílio Contínua.
+	
+	\item[POF]      Pesquisa de Orçamentos Familiares.
+	
+	\item[ALCA]     Área de Livre-Comércio das Américas.
+	
+	\item[OMC]      Organização Mundial do Comércio.
+	
+	\item[SCN]      Sistema de Contas Nacionais.
+	
+	\item[Mercosul] Mercado Comum do Sul.
+	
+	\item[UE]       União Europeia.
+	
+	\item[CES]      \textit{Constant Elasticity of Substitution} -- Elasticidade de Substituição Constante.
+	
+	\item[LES]      \textit{Linear Expenditure System} -- Sistema de Despesa Linear.
+	
+	\item[FGT]      Foster-Greer-Thorbecke.
+\end{siglas}
+
+
+% Símbolos:
+%\begin{simbolos}
+%	\item[$\alpha$] Letra grega Alfa em minúsculo.
+%	\item[$\beta$]  Letra grega Beta em minúsculo.
+%	\item[$\gamma$] Letra grega gama em minúsculo.
+%\end{simbolos}
+
+
+
+% Sumário:
+
+% tamanho de fonte para sumário:
+\newcommand{\tocfont}{\normalsize}
+
+% Modifica o espaçamento:
+\setlength{\cftbeforechapterskip}{16pt}
+\setlength{\cftbeforesectionskip}{5pt}
+\setlength{\cftbeforesubsectionskip}{0pt}
+\setlength{\cftbeforesubsubsectionskip}{0pt}
+\setlength{\cftbeforeparagraphskip}{0pt}
+
+%% Altera a indentação:
+%\cftsetindents{chapter}{0pt}{42pt}
+%\cftsetindents{section}{0pt}{42pt}
+%\cftsetindents{subsection}{0pt}{42pt}
+%\cftsetindents{subsubsection}{0pt}{42pt}
+
+% Gerar sumário:
+\pdfbookmark[0]{\contentsname}{toc}
+\tableofcontents*
+
+

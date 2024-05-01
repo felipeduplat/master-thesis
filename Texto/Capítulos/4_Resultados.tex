@@ -1,0 +1,274 @@
+
+% ----------------------------------------------------------
+% CAPÍTULO 04 - RESULTADOS
+% ----------------------------------------------------------
+
+\chapter{Simulação e Resultados} \label{cha:resultados}
+
+Este capítulo, que apresenta os resultados da simulação realizada no modelo ORANIG-BR e da microssimulação comportamental para avaliar os efeitos do comércio internacional sobre a desigualdade de renda e pobreza no Brasil, está dividido em três seções. A primeira descreve a simulação realizada no modelo de equilíbrio geral. A segunda apresenta os resultados do modelo, analisando tanto os efeitos macroeconômicos quanto setoriais, sobre os agentes econômicos, buscando compreender quais foram os grupos beneficiados e prejudicados pela simulação - e a magnitude desse efeito. A terceira e última seção apresenta os resultados do modelo de microssimulação comportamental.
+
+
+
+\section{Simulação e mecanismos de transmissão} \label{sec:simulacao}
+
+Propõe-se simular uma política de abertura comercial para avaliar seus efeitos de curto-prazo sobre os indicadores macroeconômicos e setoriais. Essa simulação possibilita mensurar o comportamento das variáveis econômicas frente a uma maior exposição ao comércio internacional, avaliando quais seriam os efeitos de uma política comercial liberalizante.
+
+Por não haver estatísticas mais adequadas para definir a magnitude do choque exógeno desejado neste trabalho, optou-se por realizar uma análise de sensibilidade\footnote{Entende-se por análise de sensibilidade qualquer técnica utilizada para avaliar como variações nas variáveis-chave afetam determinados resultados ou indicadores em um modelo econômico.}. Esse tipo de análise é bastante utilizado na literatura econômica, sobretudo em artigos que buscam mensurar impactos de políticas públicas e acordos comerciais \cite{haddad05, domingues08,perobelli17}. Desse modo, impõe-se aqui uma redução tarifária, por meio do poder da tarifa, no valor de 10\% sobre todas as \textit{commodities} do modelo.
+
+A Figura~\ref{fig:mecanismos} exibe os mecanismos de transmissão de uma simulação de redução tarifária no modelo ORANIG-BR. Como citado anteriormente, o comércio internacional pode ser entendido enquanto um choque sobre os preços relativos de uma economia. Aqui, isso ocorre por meio da tarifa de importação: em geral, os bens de uma economia possuem uma tarifa de importação \textit{ad valorem} que afeta diretamente seu preço. Uma mudança sobre essa tarifa tornaria por alterar o preço do produto. Essa alteração, por conseguinte, variaria os preços relativos do produto no mercado mundial.
+
+O efeito esperado é de queda no preço dos produtos e um consequente aumento das importações. Isso faz com que o produto internacional se torne mais atrativo frente aos produtos do mercado doméstico, havendo uma pressão interna pelo seu consumo. Além disso, pode-se esperar mudança nos retornos dos fatores produtivos dados os novos preços relativos. Como consequência, impõe-se algum nível de reestruturação produtiva a partir dos novos preços e retornos dos fatores produtivos, ajustando-se de acordo com os incentivos.
+
+Sobre as firmas, espera-se um ganho de produtividade das empresas que sejam beneficiadas pela redução tarifária, aumentando sua competitividade no cenário doméstico. Isso fará com que haja uma variação positiva na produção e negativa no índice de preços da economia. Esse novo cenário afeta a renda real de todos os agentes econômicos, beneficiando ou prejudicando os grupos de acordo com a distribuição funcional da renda.
+
+Também é possível esperar um efeito substituição como consequência de uma redução tarifária. Isso pode ocorrer por conta da variação dos preços relativos, que pode tornar mais atrativo importar determinados insumos que consumir sua opção doméstica. Dado esse efeito, espera-se uma variação no produto final, produzido domesticamente, já que houve uma variação no custo de produção. Como último estágio, o efeito substituição gera uma variação na intensidade do comércio internacional, dada a mudança na composição de bens domésticos e importados para produção dos bens nacionais.
+
+Vale a pena ressaltar que também são esperados alguns efeitos \textit{feedback} sempre que haja alteração dos preços e do índice de preços da economia -- que são captados pelo modelo de equilíbrio geral, gerando novas rodadas de efeitos macroeconômicos e setoriais.
+
+
+\begin{figure}[H]
+	\centering
+	\caption{Mecanismos de transmissão de uma redução tarifária no modelo ORANIG-BR} \label{fig:mecanismos}
+	\includegraphics[width=\textwidth]{Imagens/mecanismos_transmissao.ai}
+	\footnotesize
+	Fonte: elaboração própria (2024) a partir de \textcite{vinicius18}.
+\end{figure}
+
+
+
+\section{Resultados do modelo ORANIG-BR} \label{sec:resultados}
+
+A Tabela~\ref{tab:result} apresenta os resultados macroeconômicos do modelo. Percebe-se que a redução tarifária afetaria negativamente todos os indicadores de preços, com destaque para o índice preço do consumidor (-0,1156\%), do investimento (-0,1999) e das importações -- que registrou a maior queda: -0,4623\%. A queda conjunta dos preços das exportações e importações incentivariam o aumento da corrente de comércio, sendo liderado pela variação positiva do volume importado (0,1909\%). Esse aumento, largamente composto por insumos voltados à atividade industrial, como apresentado na Tabela~\ref{tab:import}, baratearia os custos da produção nacional, resultando em um aumento do emprego real (0,0358\%) e do PIB real (0,0256\%) -- ainda que em valores diminutos. A expansão do volume importado também favoreceria as famílias, que experimentaram um aumendo do consumo real no valor de 0,0555\%.
+
+O deflator do PIB, entendido enquanto um índice de preços implícito que mede a evolução média de preços numa economia, reduziu em 0,1416\%. Esse resultado, em conjunto com o aumento do PIB e emprego real, permite afirmar que a redução tarifária traria efeitos positivos sobre os indicadores macroeconômicos, uma vez que se experimentou aumento da atividade econômica e redução dos preços da economia em geral. Entretanto, a variação negativa dos termos de troca (-0,0973), ainda que tímida, aponta que esse cenário não é sustentável, já que as exportações estão perdendo sua capacidade de financiar as importações. 
+
+
+\begin{table}[h]
+	\centering
+	\small
+	\begin{threeparttable}
+		\caption{Efeitos macroeconômicos de curto-prazo da redução tarifária} \label{tab:result}
+		\begin{tabular}{m{11cm}c}
+			\hline
+			\multirow{2}{*}{\textbf{Indicadores}} & \multirow{2}{*}{\textbf{Var. (\%)}} \\
+			 &  \\ \hline
+			\textbf{Preços} &  \\
+			\hspace{0.2cm} Índice de preços do consumidor & -0,1156 \\
+			\hspace{0.2cm} Índice de preços do investimento & -0,1999 \\
+			\hspace{0.2cm} Índice de preços do governo & -0,1103 \\
+			\hspace{0.2cm} Índice de preços das exportações & -0,0973 \\
+			\hspace{0.2cm} Índice de preços das importações & -0,4623 \\
+			\hspace{0.2cm} Índice de preços do PIB & -0,1416 \\
+			\hspace{0.2cm} Termos de troca & -0,0973 \\
+			\hspace{0.2cm} Custos dos fatores primários & -0,0617 \\
+			\hspace{0.2cm} Salário nominal & -0,1156 \\
+			\hspace{0.2cm} Desvalorização real & 0,1418 \\ \hline
+			\textbf{Volume} &  \\
+			\hspace{0.2cm} Consumo real das famílias & 0,0555 \\
+			\hspace{0.2cm} Volume exportado & 0,1009 \\
+			\hspace{0.2cm} Volume importado & 0,1909 \\
+			\hspace{0.2cm} PIB real & 0,0256 \\
+			\hspace{0.2cm} Emprego real & 0,0358 \\ \hline
+		\end{tabular}
+	\begin{tablenotes}
+		\footnotesize
+		\item Fonte: elaboração própria (2024) com base nas simulações feitas no ORANIG-BR.
+	\end{tablenotes}
+	\end{threeparttable}
+\end{table}
+
+A Tabela~\ref{tab:ativ} apresenta os resultados setoriais da redução tarifária sobre o nível de atividade econômica e emprego, selecionando os dez setores produtivos com as maiores e menores variações percentuais no nível de atividade. Os setores mais beneficiados seriam aqueles que utilizam os insumos importados que tiveram as maiores reduções em seus preços de importações. Seria o caso do setor de Fabricação de calçados e de artefatos de couro que experimentou a maior variação no nível de atividade econômica (0,1849\%) e emprego (0,2483\%).
+
+Como apresentado na Tabela~\ref{tab:import}, a \textit{commodity} Tecido foi a que registrou a maior variação negativa em seu preço de importação e, por conseguinte, maior variação positiva em seu volume importado. Essa \textit{commodity} representa, sozinha, quase 20\% dos produtos importados pelo setor de Fabricação de calçados. Desse modo, a redução tarifária funcionou como um corte de custos de produção, permitindo expandir seu nível de produção e emprego.
+
+É possível notar que as maiores variações positivas não se concentraram em nenhum dos setores agregados: quatro desses seis grandes setores estão entre aqueles com maior expansão do nível de atividade econômica. Entretanto, as maiores variações negativas estão concentradas no setor industrial, com destaque para Fabricação de produtos têxteis (C13) que registrou a maior retração de sua atividade econômica (-0,6101\%) e emprego (-0,7916\%). Essa concentração no setor industrial é explicada pela perda de competitividade desses setores frente a uma maior abertura comercial. Ou seja, a redução tarifária reduziu o \textit{market share} desses setores na economia doméstica.
+
+
+\begin{table}[h]
+	\centering
+	\small
+	\begin{threeparttable}
+		\caption{Efeitos de curto-prazo da redução tarifária sobre o nível de atividade e emprego (var. \%)}\label{tab:ativ}
+		\begin{tabular}{m{8.5cm} >{\centering\arraybackslash}m{3cm} >{\centering\arraybackslash}m{3cm}}
+			\hline
+			\multirow{2}{*}{\textbf{Setores}} & \multicolumn{2}{c}{\textbf{Indicadores}} \\ \cline{2-3} & \textbf{Nível de atividade} & \textbf{Emprego} \\ \hline
+			Fabricação de calçados e de artefatos de couro         & 0,1849  & 0,2483 \\
+			Fabricação de outros equipamentos de transporte        & 0,1148  & 0,1379 \\
+			Alojamento                                             & 0,0809  & 0,1079 \\
+			Manut., reparação e instalação de máquinas e equip.    & 0,0802  & 0,1472 \\
+			Extração de minerais metálicos não-ferrosos            & 0,0743  & 0,1413 \\
+			Serviços domésticos                                    & 0,0661  & 0,0661 \\
+			Educação privada                                       & 0,0636  & 0,0690 \\
+			Fabricação de produtos de limpeza                      & 0,0618  & 0,0891 \\
+			Saúde privada                                          & 0,0531  & 0,1027 \\
+			Fabricação de produtos do fumo                         & 0,0489  & 0,1476 \\ \hline
+			Fabricação de produtos têxteis                         & -0,6101 & -0,7916 \\
+			Confecção de artefatos do vestuário e acessórios       & -0,1955 & -0,2686 \\
+			Fabric. de produtos de borracha e de material plástico & -0,1342 & -0,1652 \\
+			Fabric. de móveis e de produtos de indústrias diversas & -0,1041 & -0,1985 \\
+			Fabric. de produtos de metal                           & -0,0368 & -0,0543 \\
+			Fabric. de automóveis, caminhões e ônibus              & -0,0279 & -0,0298 \\
+			Fabric. de produtos de minerais não-metálicos          & -0,0251 & -0,0339 \\
+			Fabricação de produtos da madeira 					   & -0,0193 & -0,0314 \\
+			Fabricação de químicos orgânicos e inorgânicos 		   & -0,0099 & -0,0215 \\
+			Produção de ferro-gusa/ferroligas					   & -0,0085 & -0,0149 \\ \hline
+		\end{tabular}
+		\begin{tablenotes}
+			\footnotesize
+			\item Fonte: elaboração própria (2024) com base nas simulações feitas no ORANIG-BR.
+		\end{tablenotes}
+	\end{threeparttable}
+\end{table}
+
+
+A Tabela~\ref{tab:fandecomp} apresenta a decomposição dos efeitos de curto-prazo da redução tarifária em quatro categorias: 1- Mercado Local; 2- Substituição; 3- Exportação; e 4- Total. A primeira deve ser entendida enquanto o nível de produção esperado dado uma mudança na demanda interna -- independentemente se doméstico ou importado. A segunda pode ser interpretada como a mudança na razão doméstico/importado. A terceira mostra a alteração na demanda por exportações. A quarta e última coluna é a soma dos valores das três outras categorias.
+
+O efeito Mercado Local foi o responsável pelas maiores variações positivas do efeito Total. Dentre essas, destacam-se as \textit{commodities} mais relacionadas com a Indústria: Calçados e artefatos de couro, Aeronaves, embarcações e outros equipamentos de transporte e Eletrodomésticos. Isso significa que a produção desses bens teria que ter aumentado na magnitude do efeito Mercado Local para poder ter atendido a pressão sobre a demanda realizada pelo corte tarifário.
+
+Por outro lado, o efeito Substituição foi dominante nas maiores variações negativas do efeito Total. Isso significa que esses produtos perderam competitividade no mercado doméstico frente a uma maior exposição ao mercado internacional. Dentre esses, pode-se destacar as \textit{commodities} Tecido, Fios e fibras têxteis beneficiadas e Art. têxteis de uso doméstico e outros têxteis.
+
+Desse modo, pode-se afirmar que a indústria seria o setor agregado mais afetado pela redução tarifária, havendo uma parcela de si por ela beneficiada -- como, por exemplo, os setores voltados para a fabricação de couro e calçado -- e outra parcela por ela prejudicada -- neste caso, os setores voltados para a fabricação têxtil. Como expõe a Tabela~\ref{tab:ativ}, os setores relacionados com Serviços, Extrativa e Agroindústria também seriam beneficiados pela abertura comercial, entretanto, gozando de um ganho mais diminuto.
+
+
+\begin{table}[H]
+	\centering
+	\small
+	\begin{threeparttable}
+		\caption{Decomposição dos efeitos de curto-prazo da redução tarifária (var. \%)} \label{tab:fandecomp}
+		\begin{tabular}{lcccc}
+		\hline
+		\multirow{2}{*}{\textit{\textbf{Commodities}}} &
+		\multicolumn{4}{c}{\textbf{Decomposição dos efeitos}} \\ \cline{2-5} 
+		&
+		\multicolumn{1}{c}{\textbf{Mercado local}} &
+		\multicolumn{1}{c}{\textbf{Substituição}} &
+		\multicolumn{1}{c}{\textbf{Exportação}} &
+		\multicolumn{1}{c}{\textbf{Total}} \\ \hline
+		Calçados e artefatos de couro             & 0,1275  &  0,0001 &	0,0514	&  0,1790	\\	
+        Aeronaves e embarcações                   & 0,0323  &  -0,006 &	0,0846	&  0,1109	\\	
+		Eletrodomésticos                          & 0,0974  &  -0,024 &	0,0053	&  0,0788	\\	
+		Serviços de alojamento em hotéis          & 0,0189  &  0,0354 &	0,0240	&  0,0783	\\	
+		Componentes eletrônicos                   & 0,0326  &  0,0059 &	0,0388	&  0,0774	\\	
+		Minerais metálicos não-ferrosos           & 0,0173  &  0,0057 &	0,0461	&  0,0691	\\	
+		Serviços domésticos                       & 0,0661  &  0      &	0	    &  0,0661	\\	
+		Máq. p/ extr. mineral e a construção      & 0,0093  & -0,0061 &	0,0610	&  0,0643	\\	
+		Manut., repar. e instal. de máq. e equip. & 0,0149  &  0,0424 &	0,0068	&  0,0641	\\	
+		Educação privada                          & 0,0608  &  0,0009 &	0,0001	&  0,0618	\\	\hline
+		Tecidos                                   & -0,1082 & -0,6980 &	0,0412	& -0,7650	\\	
+		Fios e fibras têxteis beneficiadas        & -0,3986 & -0,2799 &	0,0189	& -0,6596	\\	
+		Artigos têxteis                           & -0,0042 & -0,4037 &	0,0054	& -0,4025	\\	
+		Produtos de industrias diversas           & 0,0897	& -0,3485 &	0,0502	& -0,2086	\\	
+		Artigos do vestuário e acessórios         & 0,2318	& -0,4374 &	0,0057	& -0,1999	\\	
+		Artigos de borracha                       & 0,0319	& -0,3109 &	0,1234	& -0,1556	\\	
+		Artigos de plástico                       & -0,0032 & -0,1508 &	0,0261	& -0,1279	\\	
+		Algodão herbáceo                          & -0,1934 & -0,0012 &	0,1318	& -0,0627	\\	
+		Resinas, elastômeros e fibras             & -0,0772 & -0,0322 &	0,0521	& -0,0574	\\	
+		Pescado industrializado                   & 0,0705	& -0,1505 &	0,0276	& -0,0524	\\	\hline
+
+		\end{tabular}
+	\begin{tablenotes}
+		\footnotesize
+		\item Fonte: elaboração própria (2024) com base nas simulações feitas no ORANIG-BR.
+	\end{tablenotes}
+	\end{threeparttable}
+\end{table}
+
+
+
+A Tabela~\ref{tab:import} exibe os efeitos de curto-prazo da redução tarifária sobre o volume e preço das importações por \textit{commodity}. A maior exposição ao mercado internacional aumentaria a demanda pelos produtos dos setores da Indústria, Agroindústria e Agropecuária. Como citado anteriormente, a expansão nas importações desses produtos, em especial Tecido, Artigos do vestuário e acessórios e Artigos têxteis de uso doméstico e outros têxteis, é resultado da redução dos custos de produção proporcionada pelo corte tarifário, que baixaria o preço de importação desses bens. Os menores preços permitiram uma expansão no nível de atividade e emprego dos setores que tem esses bens como insumos.
+
+A segunda metade da Tabela apresenta as \textit{commodities} com as maiores variações negativas de volume importado. Isso ocorre pois esses bens já não contavam com nenhuma barreira tarifária, logo, seus preços de importações não foram afetados pelo corte tarifário. O volume importado tornou por reduzir por conta da mudança dos preços relativos que pressionaram a demanda por importações de outros produtos, esses sim, afetados pelo corte tarifário.
+
+
+\begin{table}[h]
+	\centering
+	\small
+	\begin{threeparttable}
+		\caption{Efeitos de curto-prazo da redução tarifária sobre as importações (var. \%)} \label{tab:import}
+		\begin{tabular}{m{8cm} >{\centering\arraybackslash}m{3cm} >{\centering\arraybackslash}m{3cm}}
+			\hline
+			\multirow{2}{*}{\textit{\textbf{Commodities}}} & \multicolumn{2}{c}{\textbf{Importações}} \\ \cline{2-3} 
+			      & \textbf{Volume} & \textbf{Preço} \\ \hline
+			 Tecidos                                          &  2,7413 & -2,6082 \\
+			 Artigos do vestuário e acessórios                &  2,6257 & -2,4429 \\
+			 Artigos têxteis                                  &  1,9852 & -1,6339 \\
+			 Açúcar                                           &  1,4747 & -0,5882 \\
+			 Produtos de madeira, exclusive móveis            &  1,4279 & -0,8667 \\
+			 Outros produtos e serviços da lavoura temporária &  1,2962 & -0,9169 \\
+			 Outros produtos alimentares                      &  1,2562 & -1,1298 \\
+			 Artigos de plástico                              &  1,2292 & -1,1688 \\
+			 Fios e fibras têxteis beneficiadas               &  1,2211 & -1,7473 \\ \hline
+			 Edificações                                      & -0,1760 & 0       \\
+			 Manut., repar. e instal. de máq. e equip.        & -0,1648 & 0       \\
+			 Serviços especializados para construção          & -0,1412 & 0       \\
+			 Desenvolv. de sist. e outros serv. de informação & -0,0953 & 0       \\
+			 Correio e outros serviços de entrega             & -0,0925 & 0       \\
+			 Condomínios e serviços para edifícios            & -0,0891 & 0       \\
+			 Outros serviços administrativos                  & -0,0868 & 0       \\
+			 Carne de aves                                    & -0,0798 & 0       \\
+			 Transporte                                       & -0,0618 & 0       \\ \hline
+			\end{tabular}
+		\begin{tablenotes}
+			\footnotesize
+			\item Fonte: elaboração própria (2024) com base nas simulações feitas no ORANIG-BR.
+		\end{tablenotes}
+		\end{threeparttable}
+\end{table}
+
+A literatura econômica afirma que o comércio internacional gera ganhadores e perdedores. Os resultados do modelo ORANIG-BR indicam que uma redução tarifária beneficiaria os setores da Agroindústria, Agropecuária e uma parte da Indústria -- mais relacionada com produção de tecidos e calçados. Por outro lado, haveria perda de \textit{market share} de uma outra parcela industrial brasileira, mais relacionada com a produção têxtil, reduzindo, por conseguinte, seu nível de atividade econômica. Entretanto, os indicadores macroeconômicos sugerem que os ganhos do primeiro grupo seriam capazes de superar as perdas do segundo grupo, levando a uma redução dos preços da economia e um aumento do PIB real, emprego agregado e consumo das famílias.
+
+
+
+\section{Resultados da microssimulação} \label{sec:result_microssimulacao}
+
+Os resultados do modelo de geração da renda familiar estão expostos na Tabela~\ref{tab:result_microssimulacao}. Como descrito na subseção~\ref{subsec:integracao}, após estimar o cenário \textit{benchmarking} da microssimulação, usa-se os parâmetros de emprego e salários, obtidos no modelo ORANIG-BR, para estimar uma nova rodada de microssimulação, aqui chamada de cenário integração. Os índices de Gini e FGT são calculados em cima desses dois cenários, observando a variação desses indicadores entre o benchmarking e integração -- que expressa os efeitos do choque exógeno sobre a desigualdade de renda e pobreza.
+
+Os coeficientes da Correção de Heckman e da escolha ocupacional, bem como os resultados do cenário \textit{benchmarking} e os parâmetros de variação de salário e emprego estão disponíveis no Apêndice~\ref{ap:b}.
+
+\begin{table}[h]
+	\centering
+	\small
+	\begin{threeparttable}
+		\caption{Microssimulação dos efeitos da redução tarifária sobre desigualdade de renda e pobreza por qualificação} \label{tab:result_microssimulacao}
+		\begin{tabular}{m{8cm} >{\centering\arraybackslash}m{2cm} >{\centering\arraybackslash}m{2cm}}
+			\hline
+			\multirow{2}{*}{}                     & \multirow{2}{*}{\textbf{Simulado}} & \multirow{2}{*}{\textbf{Variação (\%)}} \\
+			                                      &                           &                                \\ \hline
+			\textbf{Pobreza$^{\dag}$}             &                           &                                \\
+			\hspace{0.2cm} $\text{FGT}_0$         & 31,39                     & 0,024                          \\
+			\hspace{0.2cm} $\text{FGT}_1$         & 14,34                     & 0,013                          \\
+			\hspace{0.2cm} $\text{FGT}_2$         & 9,02                      & 0,010                          \\ \hline
+			\textbf{Extrema pobreza$^{\ddagger}$} &                           &                                \\
+			\hspace{0.2cm} $\text{FGT}_0$         & 8,64                      & --                             \\
+			\hspace{0.2cm} $\text{FGT}_1$         & 4,30                      & 0,004                          \\
+			\hspace{0.2cm} $\text{FGT}_2$         & 2,87                      & 0,003                          \\ \hline
+			\textbf{Desigualdade de renda}        &                           &                                \\
+			\hspace{0.2cm} Gini                   & 0,521                     & -0,007                         \\ \hline
+			\end{tabular}
+	\begin{tablenotes}
+		\footnotesize
+		\item Fonte: elaboração própria (2024) com base nos dados da PNAD 2015.
+		\item \textit{Nota:}
+		\item \hspace{0.2cm} $^{\dag}$     Indivíduos com renda familiar per capita abaixo de R\$367,02.
+		\item \hspace{0.2cm} $^{\ddagger}$ Indivíduos com renda familiar per capita abaixo de R\$126,79.
+	\end{tablenotes}
+	\end{threeparttable}
+\end{table}
+
+Os resultados apontam que o potencial da abertura comercial para afetar a desigualdade de renda e pobreza é praticamente nulo, uma vez que seus índices variaram muito pouco. Mesmo assim, observou-se uma redução na desigualdade de renda e elevação dos níveis de pobreza e pobreza extrema.
+
+As maiores variações foram na proporção de pobres (0,024\%), na intensidade (0,013\%) e na severidade da pobreza (0,010\%). Ou seja, a redução das tarifas de importação brasileiras gerou um aumento no quantitativo de pobres e os distanciou da linha de pobreza -- entretanto, numa ínfima magnitude. 
+
+Não se registrou variação na proporção de pobres para a pobreza extrema, mantendo-se estável frente a redução tarifária. Experimentou-se uma diminuta elevação na intensidade (0,004\%) e severidade da pobreza (0,003\%); entretanto, sem nenhum expressividade.
+
+Analisando o índice de Gini, percebe-se o efeito contrário. A redução tarifária engendrou uma redução na desigualdade de renda (-0,007\%). Apesar da variação ínfima, é interessante destacar a direção contrária dos efeitos de desigualdade e pobreza observados.
+
+Desse modo, pode-se afirmar que, de acordo com os resultados da microssimulação, uma redução tarifária no montante de 10\% levou ao aumento da pobreza absoluta e extrema, ao passo em que se observou uma redução dos níveis de desigualdade de renda. Para além disso, a microssimulação também constatou que o comércio internacional tem um potencial bastante limitado para afetar esses indicadores de maneira expressiva, sobretudo os indicadores de pobreza extrema e de desigualdade.
+
+Existem diversas evidências na literatura econômica que convergem para os resultados aqui encontrados. Tanto sobre a diminuta influência do comércio internacional \cite{carneiro06, anderson20} quanto sobre os resultados divergentes entre desigualdade de renda e pobreza \cite{borrazetal12,castilho12}.
+
+Por fim, várias razões podem explicar o comportamento dos indicadores de desigualdade de renda e pobreza encontrados. Sobre a diminuta influência, uma das razões pode ser que as barreiras tarifárias computadas no modelo ORANIG-BR não são altas o suficiente para que uma redução traga efeitos expressivos. Entretanto, isso não significa que as tarifas de importação brasileiras são baixas: há forte proteção tarifária efetiva para determinados setores, destacando-se o industrial \cite{bloch18}.
+
+Uma possível razão que explique o generalizado aumento da pobreza absoluta e extrema, ainda que parco, pode estar relacionado a estrutura produtiva brasileira e seu perfil de pauta exportadora. Como vimos anteriormente, a redução tarifária afetou proporcionalmente os setores da Agroindústria, pouco intensiva em trabalho, e prejudicando os setores industriais de produção têxtil, comparativamente mais intensivos em trabalho. Essa distribuição, somada a uma redução do salário nominal em 0,11\%, pode explicar o aumento da pobreza. Entretanto, não é possível testar quaisquer dessas suposições com a estratégia empírica aqui utilizada, deixando essas questões a serem exploradas em trabalhos futuros.
+
+

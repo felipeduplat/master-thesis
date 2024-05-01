@@ -1,0 +1,122 @@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% UNIVERSIDADE FEDERAL DO PARANÁ (UFPR)
+% SETOR DE CIÊNCIAS SOCIAIS APLICADAS
+% PÓS-GRADUAÇÃO EM DESENVOLVIMENTO ECONÔMICO (PPGDE)
+% DISCENTE: FELIPE DUPLAT LUZ
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%% TRABALHO DE CONCLUSÃO DE CURSO (MONOGRAFIA, DISSERTAÇÃO OU TESE) %%%%%%
+
+%----------------------------------------------------------------
+%% Classe abntex2.cls:
+%% abntex2.cls, v-1.9.5 laurocesar
+%% Copyright 2012-2015 by abnTeX2 group at https://www.abntex.net.br/ 
+%%
+%----------------------------------------------------------------
+
+% Classe:
+\documentclass[
+12pt,            % tamanho da fonte.
+openright,	     % capítulos começam em pág ímpar (insere página vazia caso preciso).
+oneside,         % para impressão em páginas separadas (somente anverso).
+%twoside,        % para impressão em anverso (frente) e verso.
+a4paper,         % tipo do papel.
+chapter=TITLE,   % títulos de capítulos convertidos em letras maiúsculas.
+section=TITLE,   % títulos de seções convertidos em letras maiúsculas.
+english,         % ENG para hifenização.
+spanish,         % ESP para hifenização.
+brazil,          % PT-BR para hifenização - o último idioma é o principal do documento
+dvipsnames       % cores adicionais.
+]{abntex2}
+
+% Estilo do documento:
+\usepackage{Arquivos/UFPR}
+
+% Pacotes e formatação:
+\input{Arquivos/Formatação}
+
+% Informações do documento:
+\input{Arquivos/Dados}
+
+
+
+% ----------------------------------------------------------
+% DADOS INICIAIS
+% ----------------------------------------------------------
+
+\begin{document}
+
+% Uppercase dos títulos:
+\renewcommand{\tablename}{TABELA}
+\renewcommand{\figurename}{FIGURA}
+\renewcommand{\figureautorefname}{FIGURA}
+\renewcommand{\tableautorefname}{TABELA}
+\newcommand{\equationname}{EQUA\c{C}\~AO~}
+\renewcommand{\equationautorefname}{EQUA\c{C}\~AO~}
+\renewcommand{\bibname}{{REFER\^ENCIAS}}
+\renewcommand{\apendicesname}{Ap\^endices}
+\renewcommand{\anexosname}{Anexos}
+
+% Fonte do número da primeira página do capítulo:
+\aliaspagestyle{chapter}{chapfirst}
+
+
+
+% ----------------------------------------------------------
+% ELEMENTOS PRÉ-TEXTUAIS
+% ----------------------------------------------------------
+\pretextual
+
+\include{Pré/Capa}                             % Capa.
+\include{Pré/Folha_de_rosto}                   % Folha de rosto.
+\include{Pré/Ficha_catalográfica}              % Ficha catalográfica.
+%\include{Pré/Errata}                          % Errata.
+\include{Pré/Termo_de_aprovação}               % Termo de aprovação.
+%\include{Pré/Dedicatória}                     % Dedicatória.
+\include{Pré/Agradecimentos}                   % Agradecimentos.
+%\include{Pré/Epígrafe}                        % Epígrafe.
+\include{Pré/Resumo}                           % Resumo.
+\include{Pré/Abstract}                         % Abstract.
+\include{Pré/Listas}                           % Listas de figuras, quadros, tabelas e sumário.
+
+
+
+% ----------------------------------------------------------
+% ELEMENTOS TEXTUAIS
+% ----------------------------------------------------------
+\textual
+
+\include{Capítulos/1_Introdução}
+\include{Capítulos/2_Revisão_de_literatura}
+\include{Capítulos/3_Metodologia_e_dados}
+\include{Capítulos/4_Resultados}
+\include{Capítulos/5_Considerações_finais}
+
+
+
+% ----------------------------------------------------------
+% ELEMENTOS PÓS-TEXTUAIS
+% ----------------------------------------------------------
+\postextual
+
+% Referências:
+\begingroup
+\renewcommand*{\bibfont}{\raggedleft}
+\printbibliography[heading = bibintoc, notkeyword = {consulta}, notkeyword={npub-informal}]
+\endgroup
+
+% Capítulos pós-textuais:
+%\addtocontents{toc}{\vspace{4pt}}
+
+% Apêndice:
+\include{Pós/Apêndice}
+
+% Anexo:
+%\include{Pós/Anexo}
+
+\end{document}
+
+
